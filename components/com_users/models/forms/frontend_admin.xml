@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- $Id: frontend_admin.xml 19396 2010-11-08 11:11:40Z chdemko $ -->
+<form>
+	<fields name="params">
+		<!--  Backend user account settings. -->
+		<fieldset name="params" label="COM_USERS_SETTINGS_FIELDSET_LABEL">
+
+			<field name="admin_language" type="language"
+				client="administrator"
+				description="COM_USERS_USER_FIELD_BACKEND_LANGUAGE_DESC"
+				label="COM_USERS_USER_FIELD_BACKEND_LANGUAGE_LABEL"
+			>
+				<option value="">JOPTION_USE_DEFAULT</option>
+			</field>
+
+			<field name="helpsite" type="helpsite"
+				label="COM_USERS_USER_FIELD_HELPSITE_LABEL"
+				description="COM_USERS_USER_FIELD_HELPSITE_DESC"
+			>
+				<option value="">JOPTION_USE_DEFAULT</option>
+			</field>
+
+			<field name="spacer" type="spacer" class="spacer"
+				label="COM_USERS_USER_FIELD_BACKEND_TEMPLATE_LABEL"
+			/>	
+
+		</fieldset>
+	</fields>
+</form>

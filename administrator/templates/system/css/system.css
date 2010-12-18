@@ -1,0 +1,8 @@
+/**
+ * @version		$Id: system.css 18896 2010-09-14 23:44:36Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+/* Import project-level system CSS */
+@import url(../../../../media/system/css/system.css);

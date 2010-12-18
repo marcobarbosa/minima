@@ -1,0 +1,16 @@
+/**
+ * @version		$Id: offline_rtl.css 14276 2010-01-18 14:20:28Z louis $
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+ /**
+ * Joomla! 1.5 Offline RTL css file
+ *
+ * @package				Joomla
+ * @since				1.5
+ * @version				1.0
+ */
+
+#frame form{ text-align: right; }
+label { float:right; }

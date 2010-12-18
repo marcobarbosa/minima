@@ -1,0 +1,26 @@
+/**
+ * @version		$Id: ieonly.css 14276 2010-01-18 14:20:28Z louis $
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+/* IE ONLY CSS */
+
+body.width_fmax div#wrapper {
+	width: expression(((document.body.clientWidth)) < 751? "750px": ((document.body.clientWidth)) > 1050? "1050px": "auto" );
+}
+
+div.module_menu div div div {
+	width: 100%;
+}
+
+div#footer {
+	width: 100%;
+}
+
+div#whitebox_b {
+	width: 100%;
+}
+#pathway {
+   float: left;
+}
