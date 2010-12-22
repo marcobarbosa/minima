@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.6" client="administrator" method="upgrade">
+    <name>Minima Analytics widget</name>
+    <author>Marco Barbosa</author>
+    <creationDate>October 2010</creationDate>
+    <copyright>Copyright (C) 2010 Webnific. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <authorEmail>iam@marcobarbosa.com</authorEmail>
+    <authorUrl>http://marcobarbosa.com</authorUrl>
+    <version>0.8</version>
+    <description>This module provides a analytics widget for Minima.</description>
+    <files>
+        <filename module="mod_analytics">mod_analytics.php</filename>        
+        <filename>index.html</filename>
+        <folder>assets</folder>
+	<folder>tmpl</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="show_add_link"
+                    type="list"
+                    default="1"
+                    label="Show link"
+                    description="Show the 'Add shortcut' link on the bar ?">
+                    <option
+                        value="0">No</option>
+                    <option
+                        value="1">Yes</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                    <field name="label1" type="text" default="" label="Label1" description="" size="10" />
+                    <field name="link1" type="text" default="" label="Link1" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label2" type="text" default="" label="Label2" description="" size="10" />
+                    <field name="link2" type="text" default="" label="Link2" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label3" type="text" default="" label="Label3" description="" size="10" />
+                    <field name="link3" type="text" default="" label="Link3" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label4" type="text" default="" label="Label4" description="" size="10" />
+                    <field name="link4" type="text" default="" label="Link4" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label5" type="text" default="" label="Label5" description="" size="10" />
+                    <field name="link5" type="text" default="" label="Link5" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label6" type="text" default="" label="Label6" description="" size="10" />
+                    <field name="link6" type="text" default="" label="Link6" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label7" type="text" default="" label="Label7" description="" size="10" />
+                    <field name="link7" type="text" default="" label="Link7" description="" size="30" />
+                    <field type="spacer" />
+
+                    <field name="label8" type="text" default="" label="Label8" description="" size="10" />
+                    <field name="link8" type="text" default="" label="Link8" description="" size="30" />
+                    <field type="spacer" />
+            </fieldset>
+        </fields>
+    </config>
+</install>
