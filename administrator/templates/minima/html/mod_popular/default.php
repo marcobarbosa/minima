@@ -16,11 +16,11 @@ if (count($list)) :
     foreach ($list as $i=>$item) :
         $strItems .= $item->hits.",";
         $strLegends .= "\"%%.%% - ".$item->title."\",";
-    $strLinks .= "\"index.php?option=com_content&task=article.edit&id=".$item->id."\",";
+        $strLinks .= "\"index.php?option=com_content&task=article.edit&id=".$item->id."\",";
     endforeach;
 
     // just to trim the last comma
-    // can we make this drier?
+    // is there a better way to do this?
     $strItems = substr($strItems, 0, -1)."]";
     $strLegends = substr($strLegends, 0, -1)."]";
     $strLinks = substr($strLinks, 0, -1)."]";
@@ -38,9 +38,9 @@ endif;
                 var r = Raphael("piechart");
                 r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
-                r.g.text(150, 50, "<?php echo JText::_('MOD_POPULAR'); ?>").attr({"font-size": 20});
+                //r.g.text(100, 60, "<?php echo JText::_('MOD_POPULAR'); ?>").attr({"font-size": 20});
 
-                var pie = r.g.piechart(150, 200, 100, <?php echo $strItems; ?>, {legend: <?php echo $strLegends; ?>, legendpos: "east", href: <?php echo $strLinks; ?> });
+                var pie = r.g.piechart(110, 110, 90, <?php echo $strItems; ?>, {legend: <?php echo $strLegends; ?>, legendpos: "east", href: <?php echo $strLinks; ?> });
                 pie.hover(function () {
                     this.sector.stop();
                     this.sector.scale(1.1, 1.1, this.cx, this.cy);

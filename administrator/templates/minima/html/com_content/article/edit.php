@@ -80,15 +80,13 @@ JHtml::_('behavior.keepalive');
         <ul id="advanced-tabs">
             <li class="publishing"><a href="#" class="active"><?php echo JText::_('COM_CONTENT_FIELDSET_PUBLISHING'); ?></a></li>
             <li class="details"><a href="#"><?php echo JText::_('JDETAILS'); ?></a></li>
-            <li class="rules"><a href="#"><?php echo JText::_('COM_CONTENT_FIELDSET_RULES'); ?></a></li>
             <li class="metadata"><a href="#"><?php echo JText::_('JGLOBAL_FIELDSET_METADATA_OPTIONS'); ?></a></li>
         </ul>
         <div id="tabs">
             <fieldset id="publishing" class="panelform">
                 <ol class="adminformlist">
                     <li><?php echo $this->form->getLabel('created_by'); ?>
-                    <?php echo $this->form->getInput('created_by'); ?><br /><br /></li>
-                    <!--<hr class="space" />-->
+                    <?php echo $this->form->getInput('created_by'); ?></li>
 
                     <li><?php echo $this->form->getLabel('created_by_alias'); ?>
                     <?php echo $this->form->getInput('created_by_alias'); ?></li>
@@ -141,10 +139,6 @@ JHtml::_('behavior.keepalive');
                     ?>
                 </fieldset>
             <?php endforeach; ?>
-
-            <fieldset id="rules" class="panelform">
-                <?php echo $this->form->getInput('rules'); ?>
-            </fieldset>
 
             <fieldset id="metadata" class="panelform">
                 <ol class="adminformlist">

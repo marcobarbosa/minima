@@ -30,9 +30,14 @@ Element.implement('switchClass', function(a, b){ var toggle = this.hasClass(a); 
 $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
 
 /*
- * ElementFilter by David Walsh (http://davidwalsh.name)
+ * ElementFilter by David Walsh (http://davidwalsh.name/plugin-element-filter)
  */
 var ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,caseSensitive:false,ignoreKeys:[13,27,32,37,38,39,40],matchAnywhere:true,property:"text",trigger:"keyup",onStart:$empty,onShow:$empty,onHide:$empty,onComplete:$empty},initialize:function(c,b,a){this.setOptions(a);this.observeElement=document.id(c);this.elements=$$(b);this.matches=this.elements;this.misses=[];this.listen();},listen:function(){this.observeElement.addEvent(this.options.trigger,function(a){if(this.observeElement.value.length){if(!this.options.ignoreKeys.contains(a.code)){this.fireEvent("start");this.findMatches(this.options.cache?this.matches:this.elements);this.fireEvent("complete");}}else{this.findMatches(this.elements,false);}}.bind(this));},findMatches:function(f,b){var e=this.observeElement.value;var a=this.options.matchAnywhere?e:"^"+e;var g=this.options.caseSensitive?"":"i";var c=new RegExp(a,g);var d=[];f.each(function(i){var h=(b==undefined?c.test(i.get(this.options.property)):b);if(h){if(!i.retrieve("showing")){this.fireEvent("show",[i]);}d.push(i);i.store("showing",true);}else{if(i.retrieve("showing")){this.fireEvent("hide",[i]);}i.store("showing",false);}return true;}.bind(this));return d;}});
+
+/*
+ * mooPlaceholder by Dimitri Christoff (http://fragged.org/mooplaceholder-input-placeholder-behaviour-class_1081.html)
+ */
+ var mooPlaceholder=new Class({Implements:[Options],options:{htmlPlaceholder:"placeholder",unmoddedClass:"unchanged",parentNode:document,defaultSelector:"input[placeholder]"},initialize:function(a){this.setOptions(a);this.nativeSupport="placeholder" in document.createElement("input")},attachToElements:function(a){var b=this.options.parentNode.getElements(a||this.options.defaultSelector);if(b.length){b.each(function(c){this.attachEvents(c)},this)}},attachEvents:function(a,b){var b=b||a.get(this.options.htmlPlaceholder);if(this.nativeSupport||!$(a)||!b||!b.length){return}a.set("value",b).store("placeholder",b);if(this.options.unmoddedClass){a.addClass(this.options.unmoddedClass)}a.addEvents({change:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c!=d){a.removeClass(this.options.unmoddedClass).removeEvents("change")}}.bind(this),focus:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d){a.set("value","").removeClass(this.options.unmoddedClass)}}.bind(this),blur:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d||c==""){a.set("value",d).addClass(this.options.unmoddedClass)}}.bind(this)})}});
 
 // tabs plugin
 /*var minimaTabs = new Class ({
@@ -79,6 +84,9 @@ window.addEvent('load', function() {
 });
 
 window.addEvent('domready', function() {
+
+    // mooPlaceholder to use html5 placeholder
+    //new mooPlaceholder().attachEvents($("search-term"));
 
     // Iphone checkboxes
     (function(a){this.IPhoneCheckboxes=new Class({Implements:[Options],options:{checkedLabel:"ON",uncheckedLabel:"OFF",background:"#fff",containerClass:"iPhoneCheckContainer",labelOnClass:"iPhoneCheckLabelOn",labelOffClass:"iPhoneCheckLabelOff",handleClass:"iPhoneCheckHandle",handleBGClass:"iPhoneCheckHandleBG",handleSliderClass:"iPhoneCheckHandleSlider",elements:"input[type=checkbox].check"},initialize:function(b){this.setOptions(b);this.elements=$$(this.options.elements);this.elements.each(function(c){this.observe(c)},this)},observe:function(e){e.set("opacity",0);var d=new Element("div",{"class":this.options.containerClass}).inject(e.getParent());e.inject(d);var g=new Element("div",{"class":this.options.handleClass}).inject(d);var c=new Element("div",{"class":this.options.handleBGClass,style:this.options.background}).inject(g);var i=new Element("div",{"class":this.options.handleSliderClass}).inject(g);var b=new Element("label",{"class":this.options.labelOffClass,text:this.options.uncheckedLabel}).inject(d);var f=new Element("label",{"class":this.options.labelOnClass,text:this.options.checkedLabel}).inject(d);var h=d.getSize().x-39;e.offFx=new Fx.Tween(b,{property:"opacity",duration:200});e.onFx=new Fx.Tween(f,{property:"opacity",duration:200});d.addEvent("mouseup",function(){var l=!e.checked;var j=(l?h:0);var k=(l?34:0);c.hide();new Fx.Tween(g,{duration:100,property:"left",onComplete:function(){c.setStyle("left",k).show()}}).start(j);if(l){e.offFx.start(0);e.onFx.start(1)}else{e.offFx.start(1);e.onFx.start(0)}e.set("checked",l)});if(e.checked){b.set("opacity",0);f.set("opacity",1);g.setStyle("left",h);c.setStyle("left",34)}else{f.set("opacity",0);c.setStyle("left",0)}}})})(document.id);
@@ -517,14 +525,19 @@ window.addEvent('domready', function() {
                 }
             });
 
+            panelPage.getChildren("li").addEvent('click', function() {
+
+            });
+
         } // end of if next
 
         // search-filter to filter the components
         var searchTerm = $('search-term');
+
         if (searchTerm) {
-            var myFilter = new ElementFilter('search-term', '#panel-list li', {
+            var myFilter = new ElementFilter('search-term', '#panel-list li a', {
                 trigger: 'keyup',
-                cache: true,
+                cache: false,
                 onShow: function(element) {
                     element.show();
                     /*element.set('morph',{
@@ -532,7 +545,7 @@ window.addEvent('domready', function() {
                             element.setStyle('background-color','#fff');
                         }
                     });
-                    element.morph({'padding-left':30,'background-color':'#a5faa9'});*/
+                    element.morph({'background-color':'#a5faa9'});*/
                 },
                 onHide: function(element) {
                     element.hide();
@@ -541,16 +554,18 @@ window.addEvent('domready', function() {
                             element.setStyle('background-color','#fff');
                         }
                     });
-                    element.morph({'padding-left':0,'background-color':'#fac3a5'});*/
+                    element.morph({'background-color':'#fac3a5'});*/
                 },
                 onComplete: function(element) {
-                    showButtons();
+                    console.log(element);
+                    //showButtons();
                 }
             });
         }
         var extra = $('more');
-        var extraLists = $('list-content').hide();
+        var extraLists = $('list-content');
         var openPanel = $('panel-tab');
+        var listWrapper = $('list-wrapper');
 
         if (!extra.hasClass('disabled') && !openPanel.hasClass('disabled'))
         {
@@ -567,23 +582,33 @@ window.addEvent('domready', function() {
             // change status on toggle complete
             panel.addEvent('complete', function() {
                 openPanel.set('class', panelStatus[panel.open]);
-                //extra.set('class', panelStatus[panel.open]);
             });
 
             // dropdown menu
-            //extra.addEvent('mouseenter', function(){
             extra.addEvent('click', function(){
                 //this.getParent().addClass('active');
                 this.switchClass('active','inactive');
                 //this.addClass('active');
                 extraLists.toggle();
             });
-            //$('list-wrapper').addEvent('mouseleave', function(){
-            $('list-wrapper').addEvent('outerclick', function(){
-                this.removeClass('active');
+
+            var hideLists = function() {
+                extra.set('class','inactive');
+                listWrapper.removeClass('active');
                 extraLists.hide();
+            }
+
+            // turn off list when click outside
+            listWrapper.addEvent('outerClick', function(){
+                hideLists();
             });
 
+            // turn off list when clicking a link
+            extraLists.getElements("a").addEvent('click', function(){
+                hideLists();
+            });
+
+            // slide up panel when clicking a link
             $$('#panel-list li').addEvent('click', function(){
                 panel.toggle();
             });

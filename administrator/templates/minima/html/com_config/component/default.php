@@ -86,5 +86,5 @@ JHtml::_('behavior.formvalidation');
 		<input type="hidden" name="component" value="<?php echo $this->component->option;?>" />
 		<input type="hidden" name="task" value="" />
 		<?php echo JHtml::_('form.token'); ?>
-	</div>
+	<br />
 </form>

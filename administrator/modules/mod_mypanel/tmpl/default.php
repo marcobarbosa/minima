@@ -22,7 +22,7 @@ $nPages = ceil( (count($items)*2) / 9);
 ?>
 <div id="panel">
     <!-- search field -->
-    <!--<input type="text" id="search-term" />-->
+    <!--<input type="text" id="search-term" placeholder="What are you looking for?" />-->
     <?php if (!$invisible) : ?>
     <!-- dots pagination -->
     <ul id="panel-pagination">

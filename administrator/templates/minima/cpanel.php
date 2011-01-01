@@ -46,20 +46,22 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&subset=latin">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin">
     <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet" />
+
+    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
         #panel-tab, #panel-tab.active, #panel-wrapper,#more, #more.inactive { background-color: <?php echo $darkerColor; ?>; }
-        #header, #prev, #next { background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
+        #tophead, #prev, #next { background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
         #prev, #next { border: 1px solid <?php echo $templateColor; ?> }
         #prev:active, #next:active { background: <?php echo $darkerColor; ?>; }
         .box:hover { -moz-box-shadow: 0 0 10px <?php echo $templateColor; ?>; -webkit-box-shadow: 0 0 10px <?php echo $templateColor; ?>; box-shadow: 0 0 10px <?php echo $templateColor; ?>; }
         #panel-pagination li { color: <?php echo $templateColor; ?>; }
         ::selection { background: <?php echo $templateColor; ?>; color:#000; /* Safari */ }
         ::-moz-selection { background: <?php echo $templateColor; ?>; color:#000; /* Firefox */ }
-        body { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
+        body, a:link { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
     </style>
 
@@ -74,13 +76,13 @@ $currentUser = JFactory::getUser();
     </script>
 
 </head>
-<body id="minwidth-body" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
+<body id="minwidth" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
 <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
             <jdoc:include type="modules" name="panel" />
     </div>
     <?php endif; ?>
-    <div id="header">
+    <header id="tophead">
             <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
                 <span class="site-link"><a href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
@@ -98,7 +100,7 @@ $currentUser = JFactory::getUser();
             <div id="list-wrapper">
                 <span id="more"<?php if (JRequest::getInt('hidemainmenu')) echo " class=\"disabled\""; ?>></span>
                 <div class="clr"></div>
-                <div id="list-content">
+                <nav id="list-content">
                     <dl class="first">
                         <dt>Tools</dt>
                         <?php if( $currentUser->authorize( array('core.manage','com_checkin') ) ): ?><dd><a href="index.php?option=com_checkin"><?php echo JText::_('TPL_MINIMA_TOOLS_GLOBAL_CHECKIN'); ?></a></dd><?php endif; ?>
@@ -113,30 +115,31 @@ $currentUser = JFactory::getUser();
                         <?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?><dd><a href="index.php?option=com_plugins"><?php echo JText::_('TPL_MINIMA_TOOLS_PLUGINS'); ?></a></dd><?php endif; ?>
                         <?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?><dd><a href="index.php?option=com_templates"><?php echo JText::_('TPL_MINIMA_TOOLS_TEMPLATES'); ?></a></dd><?php endif; ?>
                     </dl>
-                </div><!-- /#list-content -->
+                </nav><!-- /#list-content -->
             </div><!-- /#list-wrapper -->
-    </div><!-- /#header -->
-    <div id="shortcuts">
-            <jdoc:include type="modules" name="shortcuts" />
-    </div>
+    </header><!-- /header -->
 
+    <nav id="shortcuts">
+        <jdoc:include type="modules" name="shortcuts" />
+    </nav>
+    <div class="message-wrapper"><jdoc:include type="message" /></div><hr class="space" />
     <div id="content-cpanel">
-        <jdoc:include type="message" />
-
-        <noscript>
-                <?php echo  JText::_('WARNJAVASCRIPT') ?>
-        </noscript>
-        <div id="widgets-first" class="col">
+        <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
+        <section id="widgets-first" class="col">
             <jdoc:include type="modules" name="widgets-first" style="widget" />
-        </div><!-- /#widgets-first -->
-        <div id="widgets-last" class="col">
+        </section><!-- /#widgets-first -->
+        <section id="widgets-last" class="col">
             <jdoc:include type="modules" name="widgets-last" style="widget" />
-        </div><!-- /#widgets-last -->
-    <p class="copyright">
-        <a href="http://www.joomla.org">Joomla!</a>
-        <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
-    </p>
-    <jdoc:include type="modules" name="footer" style="none"  />
+        </section><!-- /#widgets-last -->
     </div><!-- /#content-cpanel -->
+
+    <footer>
+        <p class="copyright">
+            <a href="http://www.joomla.org">Joomla!</a>
+            <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
+        </p>
+        <jdoc:include type="modules" name="footer" style="none"  />
+    </footer>
+
 </body>
 </html>

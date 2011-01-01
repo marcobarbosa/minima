@@ -37,7 +37,10 @@ $app = &JFactory::getApplication();
 
     <jdoc:include type="head" />
 
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&subset=latin">
     <link href="templates/<?php echo $this->template ?>/css/template.css?v=1" rel="stylesheet" type="text/css" />
+
+    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
 
     <style type="text/css">
             body { background-color: <?php echo $templateColor;?>; }
@@ -53,9 +56,12 @@ $app = &JFactory::getApplication();
     </script>
 
 </head>
-<body onload="javascript:setFocus()" id="front">
+<body onload="javascript:setFocus()" id="login-page">
     <div id="logo-box">
         <span id="logo"><?php echo $app->getCfg('sitename');?></span>
+    </div>
+    <div id="site-box">
+        <span class="site-link"><a href="<?php echo JURI::root();?>">&larr; <?php echo JText::_('TPL_MINIMA_VIEW_SITE'); ?></a></span>
     </div>
     <div id="login-container">
         <div id="message-wrapper"><jdoc:include type="message" /></div>
@@ -65,7 +71,6 @@ $app = &JFactory::getApplication();
                     <?php echo  JText::_('WARNJAVASCRIPT') ?>
                 </noscript>
         </div><!-- /#login-box -->
-        <!--<span class="site-link"><a href="<?php echo JURI::root();?>" target="_blank"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>-->
     </div>
 
 </body>

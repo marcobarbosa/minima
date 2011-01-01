@@ -14,27 +14,40 @@
  * Blue2: #27617D
  */
 
-@font-face                              {
-                                            font-family: 'Nobile';
-                                            src: url('../fonts/nobile-webfont.eot');
-                                            src: local('Nobil'), url('../fonts/nobile-webfont.woff') format('woff'), url('../fonts/nobile-webfont.ttf') format('truetype'), url('../fonts/nobile-webfont.svg#webfontyYKteq07') format('svg');
-                                            font-weight: normal;
-                                            font-style: normal;
-                                        }
-
-body                                    {
-                                            background: #f4f4f4;
-                                            margin: 0 0 10px;
-                                            padding: 0;
-                                        }
-
-.jbg                                    {   background: #f4f4f4 url('../images/bg_body.png') no-repeat 98% 95%; }
-
-/* FIXES
+/* RESET
 ====================================================================================== */
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+                                        {   display: block; }
+
+nav ul                                  {   list-style: none; }
+
+blockquote, q                           {   quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after                       {   content: ''; content: none; }
+
+ins                                     {   background-color: #ff9; color: #000; text-decoration: none; }
+
+mark                                    {   background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+
+del                                     {   text-decoration: line-through; }
+
+abbr[title], dfn[title]                 {   border-bottom: 1px dotted; cursor: help; }
+
+/* END HTML5DOCTOR RESET CSS */
+
+/*
+ * Custom Reset
+ */
+
+/* always force a scrollbar in non-IE: */
+html                                    {   overflow-y: scroll; }
+
 BODY.ready #panel-wrapper               {   display: block; }
 
-body#front                              {   margin: 0 auto; overflow: hidden; }
+body#login-page                         {   margin: 0 auto; overflow: hidden; }
 
 .padTop                                 {   margin-top: 10px!Important; }
 
@@ -63,13 +76,20 @@ html, body                              {   height: 95%; }
 .clr                                    {   clear: both;  height: 0; overflow:hidden; }
 
 iframe                                  {   border: none;  }
-.contentpane                            {   background: #ddd; }
+.contentpane, .contentpane fieldset:first-child, #sbox-content
+                                        {   background: #ddd; }
+
+    .contentpane fieldset:first-child   { margin: 0; padding: 0; width: 100%; }
 
 a, img                                  {   margin: 0; padding: 0; }
 
 img                                     {   border: none; }
 
 form                                    {   margin: 0; padding: 0; }
+select, input, textarea, button         {   font: 99% sans-serif; }
+    input, select                       {   vertical-align: middle; }
+
+pre, code, kbd, samp                    {   font-family: monospace, sans-serif; }
 
 hr                                      {   background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:.1em;margin:1.45em 0;border:none;}
 hr.space                                {   background:#fff;color:#fff;visibility:hidden;}
@@ -85,11 +105,8 @@ h3                                      {   font-size: 13px; }
 
 h1,h2,h3,h4,h5                          {   color: #555;}
 
-* :focus,
-a:active                                {   outline: none; }
-
 a:link,
-a:visited                               {   color: #297BA2; text-decoration: none; outline: none; }
+a:visited                               {   color: #297BA2; text-decoration: none; }
 
 a:hover                                 {   color: #27617D; text-decoration: underline; }
 
@@ -106,14 +123,86 @@ p.error                                 {   color: red; font-weight: bold; }
 .deny,
 .unwritable                             {   color: red; }
 
+/* Hide only visually, but have it available for screenreaders
+   www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden
+*/
+.visuallyHidden                         {
+                                            border: 0 !important;
+                                            clip: rect(0 0 0 0);
+                                            height: 1px !important;
+                                            margin: -1px !important;
+                                            overflow: hidden !important;
+                                            padding: 0 !important;
+                                            position: absolute !important;
+                                            width: 1px !important;
+                                        }
+
 .none                                   {   color: #aaa; }
 .hide                                   {   display: none; }
 .invisible                              {   visibility: hidden; }
 .hidelabeltxt                           {   text-indent:-9999em; }
 .nowrap                                 {   white-space: nowrap; }
 
+ul, ol                                  {   margin-left: 2em; }
+ol                                      {   list-style-type: decimal; }
 .clean                                  {   margin: 0; padding: 0; list-style: none; }
     .clean li                           {   margin: 0; padding: 0; float: left; }
+
+nav ul, nav li                          {   margin: 0; }
+
+small                                   {   font-size: 85%; }
+strong, th                              {   font-weight: bold; }
+
+/* set sub, sup without affecting line-height: gist.github.com/413930*/
+sub, sup                                {   font-size: 75%; line-height: 0; position: relative; }
+    sup                                 {   top: -0.5em; }
+    sub                                 {   bottom: -0.25em; }
+
+pre                                     {
+                                              padding: 15px;
+                                              /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+                                              white-space: pre; /* CSS2 */
+                                              white-space: pre-wrap; /* CSS 2.1 */
+                                              white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+                                              word-wrap: break-word; /* IE */
+                                        }
+
+textarea                                {   overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+
+/* align checkboxes, radios, text inputs with their label
+   by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"]                     {   vertical-align: text-bottom; }
+input[type="checkbox"]                  {   vertical-align: bottom; }
+.ie7 input[type="checkbox"]             {   vertical-align: baseline; }
+
+/* hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button
+                                        {   cursor: pointer; }
+
+/* colors for form validity */
+input:valid, textarea:valid             {  }
+input:invalid, textarea:invalid         {
+                                            border-radius: 1px;
+                                            -moz-box-shadow: 0px 0px 5px red;
+                                            -webkit-box-shadow: 0px 0px 5px red;
+                                            box-shadow: 0px 0px 5px red;
+                                        }
+.no-boxshadow input:invalid,
+.no-boxshadow textarea:invalid          {   background-color: #f0dddd; }
+
+/* make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button                                  {   width: auto; overflow: visible; }
+
+/* bicubic resizing for non-native sized IMG:
+   code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/ */
+.ie7 img                                {   -ms-interpolation-mode: bicubic; }
+
+/* >> The Magnificent CLEARFIX: Updated to prevent margin-collapsing on child elements << j.mp/bestclearfix */
+.clearfix:before, .clearfix:after       {   content: "\0020"; display: block; height: 0; visibility: hidden; }
+.clearfix:after                         {   clear: both; }
+/* fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.clearfix                               {   zoom: 1; }
 
 /* TEMPLATE OVERRIDES
 ====================================================================================== */
@@ -139,25 +228,29 @@ p.error                                 {   color: red; font-weight: bold; }
 
 
 #new-modules-list                       {   list-style: none; margin: 0; padding: 20px; }
-    #new-modules-list li                {   border-bottom: 1px solid #eee; height: 35px; line-height: 35px; }
-        #new-modules-list li a          {
+    #new-modules-list li,
+    dl.menu_type dd ul li               {   border-bottom: 1px solid #eee; height: 35px; line-height: 35px; }
+        #new-modules-list li a,
+        dl.menu_type dd ul li           {
                                             background: #fff;
                                             display: block;
-                                            font-size: 14px; font-weight: bold;
+                                            font-size: 14px; font-weight: normal;
                                             height: 35px;
                                             line-height: 35px;
                                             padding-left: 20px;
                                         }
-            #new-modules-list li a:hover{
-                                            background: #eee;
-                                            -moz-box-shadow: 4px 4px 0 #ddd;
-                                            -webkit-box-shadow: 4px 4px 0 #ddd;
-                                            box-shadow: 4px 4px 0 #ddd;
+            #new-modules-list li a:hover,
+            dl.menu_type dd ul li:hover {
+                                            background: #eee; font-weight: bold;
+                                            -moz-box-shadow: 4px 4px 0 #ccc;
+                                            -webkit-box-shadow: 4px 4px 0 #ccc;
+                                            box-shadow: 4px 4px 0 #ccc;
                                             position: relative; top: -4px; left: -4px;
                                             padding-left: 40px;
                                             text-decoration: none;
                                         }
-            #new-modules-list li a:active{
+            #new-modules-list li a:active,
+            dl.menu_type dd ul li:active{
                                             border: 1px solid #ccc;
                                             position: relative; top: -1px; left: -1px;
                                             -moz-box-shadow: none;
@@ -169,27 +262,33 @@ p.error                                 {   color: red; font-weight: bold; }
 
 /* TEMPLATE STYLES
 ====================================================================================== */
+
+body                                    {
+                                            background: #f4f4f4;
+                                            margin: 0 0 10px;
+                                            padding: 0;
+                                        }
+
+.jbg                                    {   background: #f4f4f4 url('../images/bg_body.png') no-repeat 98% 95%; }
+
 .copyright                              {   clear: both; color: #999; font-size: 13px; text-shadow: 1px 1px 0 #fff; text-align: center; padding: 10px 0; }
 
-#header                                 {
-                                            min-width: 100%;
+#tophead                                 {
+                                            width: 100%;
                                             height: 45px;
                                             float: left;
                                             position: relative;
                                         }
 
-    #header .title                      {
+    #tophead .title                      {
                                             color: #fff;
                                             float: left;
                                             margin-left: 20px;
                                         }
 
-        #logo                           {   font: normal 26px 'Nobile', arial, serif; }
+        #tophead .site-link a            {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -4px;}
 
-        #header .site-link a            {   color: #fff; font-size:11px!Important; margin: 0 0 0 5px; float: none;}
-
-        #header .title, #logo,
-        .site-link a                    {   vertical-align: middle; height: 45px; line-height: 45px;}
+        #logo                           {   font: normal 26px/38px 'Nobile', arial, serif; }
 
 #header-box                             {   background: #f0f0f0; }
 
@@ -199,15 +298,14 @@ p.error                                 {   color: red; font-weight: bold; }
 #wrapper                                {   min-width: 980px; white-space: nowrap; }
 
 /* The 1140px Grid by Andy Taylor  http://cssgrid.net - http://www.twitter.com/andytlr - http://www.catchingzebra.com */
-
  #content-cpanel                        {
                                             padding: 0 20px;
                                             max-width: 1140px;
                                             margin: 0 auto;
-                                            width: 100%;
+                                            width: 95%;
                                         }
 
-        .col                            {   float: left; margin-right: 3.8%; margin-top: 3px; }
+        .col                            {   float: left; margin-right: 3.8%; margin-top: -15px; }
 
 #widgets-first                          {   width: 48.1%; }
 #widgets-last                           {   width: 48.1%; margin-right: 0;}
@@ -246,9 +344,10 @@ p.error                                 {   color: red; font-weight: bold; }
                                             -webkit-border-radius: 6px;
                                             border-radius: 6px;
                                             margin: 10px 10px 2px;
+                                            overflow: hidden;
                                         }
 
-#analytics                              {   height: 290px;  }
+/*#analytics                              {   height: 290px;  }
 
 #analytics-data                         {
                                             position: absolute;
@@ -257,16 +356,18 @@ p.error                                 {   color: red; font-weight: bold; }
                                         }
 
 #piechart svg,
-#analytics svg                          {   max-width: 500px; min-height: 350px; margin: -20px; }
+#analytics svg                          {   max-width: 500px; max-height: 350px; }*/
 
-#analytics svg                          {   padding-top: 20px; max-width: 100%; }
+#piechart svg                           {   height: 220px; min-width: 100%; }
+
+/*#analytics svg                          {   padding-top: 20px; max-width: 100%; }*/
 
 .box .adminlist                         {   padding: 0 5px; border-top: none; }
 
-    .box .adminlist th                  {   padding: 8px 0; background: #eee; }
+    .box .adminlist th                  {   background: #eee; }
 
     .box .adminlist th,
-    .box .adminlist td                  {   text-align: left; }
+    .box .adminlist td                  {   text-align: left; height: 32px; }
 
         .box .adminlist td:first-child,
         .box .adminlist th:first-child  {   padding-left: 10px; }
@@ -353,6 +454,9 @@ p.error                                 {   color: red; font-weight: bold; }
                                             color: #297BA2;
                                             text-shadow: none;
                                             -moz-transition: background-color 0.3s ease;
+                                            -webkit-transition: background-color 0.3s ease;
+                                            -o-transition: background-color 0.3s ease;
+                                            transition: background-color 0.3s ease;
                                         }
 
 #shortcuts li.active a,
@@ -397,7 +501,7 @@ BODY.error                              {   background: #ccc; }
                                             border-radius: 0 0 4px 4px;
                                             background:#dfdfdf;
                                             float: left;
-                                            padding-bottom: 10px; padding-top: 12px;
+                                            padding-bottom: 12px; padding-top: 12px;
                                             width: 100%;
                                         }
     /* to avoid flicker */
@@ -424,6 +528,8 @@ BODY.error                              {   background: #ccc; }
 /*#form-login                             {   margin: 20px; padding: 15px 0 0; }*/
 #logo-box                               {   color: #fff; position: absolute; bottom: 40px; right: 40px; }
     #logo-box #logo                     {   font-size: 42px; }
+    #site-box                           {   position: absolute; bottom: 40px; left: 40px; }
+        #site-box a                     {   color: #fff; font-size: 16px; }
 #form-login,
 #login-box                              {
                                             -moz-border-radius: 10px;
@@ -452,8 +558,9 @@ BODY.error                              {   background: #ccc; }
 
     #login-box #lang                    {   font-size: 13px; width: 235px; }
 
-    #login-box input                    {   font-size: 22px; margin-bottom: 10px; padding: 4px; text-shadow: 0 0 0;}
-        #login-box input.inputbox       {   max-width: 225px; }
+    #login-box input                    {   font-size: 22px; margin-bottom: 10px; padding: 4px; text-shadow: 0 0 0; }
+        #login-box input.inputbox       {   width: 225px; }
+        #login-box select               {   width: 235px; }
 
     #form-login .button1                {   display: none; }
     #form-login .hidebtn                {   margin: 20px auto 20px 8px!Important; max-width: 400px!Important;  }
@@ -634,7 +741,7 @@ BODY.error                              {   background: #ccc; }
 
     #panel-pagination                   {   width: 50%; position: absolute; top: -5px; padding: 0 46%;}
         #panel-pagination li            {
-                                            color: #ccc;
+                                            color: #ccc; cursor: pointer;
                                             font-size: 42px; font-weight: bold; font-family: Georgia;
                                             line-height: 0;
                                             float: left; margin-right: 2px;
@@ -659,7 +766,7 @@ BODY.error                              {   background: #ccc; }
                                             width: 176px;
                                         }
 
-            #panel-list li a:hover      {   text-decoration: none; }
+            #panel-list li a:hover      {   text-decoration: none; text-shadow: 1px 1px 0 #444; }
             #panel-list li a:active     {   position: relative; top: 2px; }
 
             #panel-list li.ext a        {
@@ -676,7 +783,7 @@ BODY.error                              {   background: #ccc; }
                                             display: block;
                                             padding: 5px 5px 5px 0;
                                             opacity: 0.4;
-                                            overflow: hidden;
+                                            overflow: hidden; letter-spacing: 1px;
                                         }
 
 #panel-list li a:hover .extension-desc  {   opacity: 1; }
@@ -758,19 +865,20 @@ div.pagetitle                           {
                                         }
 
 div.pagetitle h2                        {
-                                            /*146295*/
                                             color: #297BA2;
                                             font: normal 26px/48px 'Nobile', arial, serif;
                                             margin: 0;
                                             padding: 0;
                                             text-shadow: 1px 1px 0 #ddd;
                                         }
+    .contentpane h2                     {   text-shadow: 1px 1px 0 #fff!Important; }
 
 .hiddenmenu .pagetitle h2               {   font-size: 26px; line-height: 44px; padding-top: 5px; }
 
 div.pagetitle span                      {   color: #666; }
 
 #toolbar                                {   padding: 7px 0; display: none; }
+    .contentpane #toolbar               {   display: block; }
 
 div.toolbar-list                        {   float: right; padding: 0; text-align: right; }
 
@@ -821,7 +929,6 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
                                             margin-right:10px;
                                             position: relative;
                                             -webkit-background-clip: padding-box;
-                                            outline: 0;
                                         }
 
 input#upload-submit                     { text-shadow: 0 0 0;}
@@ -845,7 +952,6 @@ input[type="submit"],button,#upbutton, input.button, input[type="button"]
                                             margin-right: 10px;
                                             position: relative;
                                             -webkit-background-clip: padding-box;
-                                            outline: 0;
                                             padding: 4px 10px;
                                             text-shadow: 1px 1px 0 #f8f8f8;
                                         }
@@ -1115,7 +1221,8 @@ input#upload-submit:active              {   background:#34B62A; border-color:#40
                                         }
 
 .pane-sliders .adminlist                {   border: none; font-size: 11px;  }
-    .pane-sliders .adminlist td         {   border: none; } .adminlist .label { width: 20%; vertical-align: middle;}
+    .pane-sliders .adminlist td         {   border: none; }
+    .adminlist .label                   {   width: 20%; vertical-align: middle;}
 
 .pane-toggler                          {   margin: 5px 0!Important; }
 .pane-toggler span                     {   background: transparent url(../images/j_arrow.png) 5px 50% no-repeat; padding-left: 20px; }
@@ -1144,7 +1251,7 @@ dl.tabs                                 {
                                         }
 
     dl.tabs dt                          {
-                                            background: #f0f0f0;
+                                            background: #cfcfcf;
                                             border: 1px solid #ddd;
                                             border-bottom: none;
                                             -moz-border-radius: 6px 6px 0 0;
@@ -1154,7 +1261,7 @@ dl.tabs                                 {
                                             float: left;
                                             font-size: 1.1em;
                                             margin-right: 5px;
-                                            padding: 6px 10px;
+                                            padding: 8px 10px;
                                         }
 
 dl.tabs dt.open                         {
@@ -1163,9 +1270,13 @@ dl.tabs dt.open                         {
                                             z-index: 100;
                                         }
 
+dl.tabls dt a                           {   text-shadow: 1px 1px 0 #f8f8f8; }
+
 dl.tabs dt.open a                       {   color: #666; font-weight:bold; }
-dl.tabs dt.open a:hover                 {   text-decoration: none;  }
-dl.tabs dt.closed:hover a               {   text-decoration: underline;  }
+    dl.tabs dt.open a:hover             {   text-decoration: none;  }
+
+dl.tabs dt.closed:hover                 {   background: #bbb; }
+    dl.tabs dt.closed:hover a           {   text-decoration: underline;  }
 
 div.current                             {
                                             background: #fff;
@@ -1173,12 +1284,12 @@ div.current                             {
                                             -webkit-border-radius: 0 8px 8px 8px;
                                             border-radius: 0 8px 8px 8px;
                                             border: 1px solid #ddd;
-                                            color:#333;
+                                            color: #333;
                                             clear: both;
-                                            padding: 10px 10px;
+                                            padding: 10px;
                                         }
 
-div.current dd                          {   margin: 0; padding: 0; }
+div.current dd                          {   margin: 0 15px; padding: 0; }
 
 dl#content-pane.tabs                    {   margin: 1px 0 0 0; }
 
@@ -1242,10 +1353,11 @@ div.current table#acl-config th.acl-groups
                                             color: #555;
                                             display: block;
                                             float: left;
-                                            height: 85px;
+                                            height: 82px;
                                             padding: 8px;
+                                            margin-right: 10px;
                                             text-decoration: none;
-                                            width: 90px;
+                                            width: 80px;
                                         }
 
                 #cpanel li a:hover,
@@ -1273,7 +1385,7 @@ div.current table#acl-config th.acl-groups
         #cpanel span                    {
                                             display: block;
                                             text-align: center;
-                                            margin-top: 65px;
+                                            margin-top: 60px;
                                         }
 .icon                                   {   background-color: #fff; height: 100px!important; width: 120px!important; }
     .icon:active                        {   position: relative; top: 2px; }
@@ -1366,19 +1478,19 @@ div.current table#acl-config th.acl-groups
 ====================================================================================== */
 
 /* Standards for commonly used elements */
-div.width-20                            {   width: 20%; }
-div.width-30                            {   width: 30%; }
-div.width-35                            {   width: 35%; }
-div.width-40                            {   width: 40%; }
-div.width-45                            {   width: 45%; }
-div.width-50                            {   width: 50%; }
-div.width-55                            {   width: 55%; }
-div.width-60                            {   width: 60%; }
-div.width-65                            {   width: 65%; }
-div.width-70                            {   width: 70%; }
-div.width-80                            {   width: 80%; }
-div.width-90                            {   width: 90%; }
-div.width-100                           {   width: 100%; margin: 0 auto; }
+.width-20                            {   width: 20%; }
+.width-30                            {   width: 30%; }
+.width-35                            {   width: 35%; }
+.width-40                            {   width: 40%; }
+.width-45                            {   width: 45%; }
+.width-50                            {   width: 50%; }
+.width-55                            {   width: 55%; }
+.width-60                            {   width: 60%; }
+.width-65                            {   width: 65%; }
+.width-70                            {   width: 70%; }
+.width-80                            {   width: 80%; }
+.width-90                            {   width: 90%; }
+.width-100                           {   width: 100%; margin: 0 auto; }
 
 
 .clrlft                                 {   clear: left; }
@@ -1461,7 +1573,6 @@ textarea:focus                          {
                                             -moz-box-shadow: 0 0 4px rgba(0,0,0,0.4);
                                             -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.4);
                                             box-shadow: 0 0 4px rgba(0,0,0,0.3);
-                                            outline: none;
                                         }
 
 input:hover,
@@ -1483,16 +1594,27 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                                             border-radius: 6px;
                                         }
 
+    .config-option-list li input, .config-option-list li select
+                                        {   padding: 4px!Important; }
+
+        .config-option-list li,
         .adminformlist li               {   padding: 0 5px 8px!Important; border-top: 1px dashed #e0e0e0;  }
 
+                .config-option-list li:first-child,
                 .adminformlist li:first-child
                                         {   border-top: none; }
 
+            .config-option-list li:hover,
             .adminformlist li:hover     {   background: #f4f4f4; }
+
+                .config-option-list li:hover label,
                 .adminformlist li:hover label
                                         {   color: #555; }
 
-    fieldset label                      {
+                    .config-option-list li:hover label:first-child {    color: #444; }
+
+    fieldset label, .config-option-list li label:first-child
+                                        {
                                             color: #777;
                                             display: block;
                                             font-size: 13px;
@@ -1559,14 +1681,18 @@ span.readonly                           {
 #jform_clickurl                         {   width: 355px; }
 
 #jform-imp                              {   width: 70px; }
-
+*/
 #jform_params_width,
 #jform_params_height,
 #jform_params_increase,
 #jform_params_shownumber,
-#jform_params_count                     {   width: 50px; }
+#jform_params_count,
+#jform_num_leading_articles,
+#jform_num_intro_articles,
+#jform_num_columns,
+#jform_num_links                        {   width: 50px; }
 
-#jform_id                               {   width: 50px; background-color:#FFFFFF; border: 0 none; }*/
+/*#jform_id                               {   width: 50px; background-color:#FFFFFF; border: 0 none; }*/
 
 /* fixes */
 #component-form                         {   margin: 0 10px; color: #666; }
@@ -1581,9 +1707,9 @@ span.readonly                           {
 #item-basic ol.adminformlist            {   margin-top: -20px!Important; }
 
 
-.article-title {margin: 10px auto 5px;}
-.article-title label {line-height: 1.8; margin-bottom: -10px;}
-.article-text:hover {background: transparent!Important;}
+.article-title                          {   margin: 10px auto 5px; }
+    .article-title label                {   line-height: 1.8; margin-bottom: -10px; }
+    .article-text:hover                 {   background: transparent!Important; }
 
 #jform_title                            {   min-width: 600px; margin: 10px 0 0 0px; height: 20px; font-size: 16px; }
 #jform_alias                            {   max-width: 200px; }
@@ -1618,6 +1744,8 @@ label.required:after                    {
 /* Hide the extension name on create category page */
 label#jform_extension-lbl,
 input#jform_extension                   {   display: none; }
+
+/* different input sizes */
 
 /*
  * Batch Section
@@ -1709,7 +1837,7 @@ div.jform_na                            {
                                             margin-top: 5px;
                                         }*/
 
-div#jform_template,
+/*div#jform_template,
 div#jform_template-desc                 {
                                             float: left;
                                             font-size: 1.091em;
@@ -1723,7 +1851,7 @@ input#description                       {   margin-top: 3px; }
 
 th.col1template                         {   width: 210px; }
 
-div.editor-border                       {   border: 1px solid #CCCCCC; }
+div.editor-border                       {   border: 1px solid #CCCCCC; }*/
 
 /*ul#overviewlist,
 ul#paramlist                            {
@@ -1816,12 +1944,12 @@ label.filter-hide-lbl                   {
 
 div.filter-select input,
 div.filter-select select                {
-                                            margin: auto 5px;
+                                            margin: auto 0;
                                         }
 
 button.filter-go                        {
                                             float: left;
-                                            margin-right: 15px;
+                                            margin-right: 10px;
                                         }
 
 label.filter-published-lbl              {
@@ -1938,9 +2066,9 @@ table.adminlist                         {
                                         }
 
 table.adminlist td,
-table.adminlist th                      {   font-size: 12px; padding: 6px 4px; }
+table.adminlist th                      {   font-size: 12px; padding: 6px 4px; vertical-align: middle; }
 
-.adminlist .title                       {   font-size: 13px; }
+.adminlist .title                       {   font-size: 14px; }
 
 table.adminlist tr th:last-child,
 table.adminlist tr td:last-child        {   padding-right: 15px; }
@@ -1970,7 +2098,7 @@ table.adminlist thead th, table.adminlist tfoot th
 
 table.adminlist tfoot td                {   background: #fff; border-top: 1px solid #ddd; }
 table.adminlist th                      {   padding: 0; }
-    table.adminlist th a                {   display: block; padding: 6px 6px; }
+    table.adminlist th a                {   display: block; padding: 6px; }
     table.adminlist th a:hover          {   background-color: #d9d9d9; text-decoration: none; }
 
 table.adminlist th a.saveorder          {   margin-top: -20px; padding: 0; }
@@ -2318,7 +2446,7 @@ a.pointer                               {   cursor: pointer; }
 .button2-left .article                  {   background: url(../images/button/j_button2_readmore.png) 100% 0 no-repeat; }
 */
 
-.button2-left { float: left; margin: 10px; position: relative; left: 10px;}
+.button2-left                           {   margin: 10px; position: relative; left: 10px; }
 
 
 a.pointer                               {   cursor: pointer; }
@@ -2614,8 +2742,10 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-apply                          {   background-position: 10px -88px; }
 .icon-48-archive                        {   background-position: 10px -186px; }
 .icon-48-article-add                    {   background-position: 10px -284px; }
+    #cpanel .icon-48-article-add        {   background-position: 24px -284px; }
 .icon-48-article-edit                   {   background-position: 10px -382px; }
 .icon-48-article                        {   background-position: 10px -480px; }
+    #cpanel .icon-48-article            {   background-position: 24px -480px; }
 .icon-48-banners-categories             {   background-position: 10px -578px; }
 .icon-48-banners-clients                {   background-position: 10px -676px; }
 .icon-48-banners-tracks                 {   background-position: 10px -774px; }
@@ -2625,10 +2755,12 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-content-categories             {   background-position: 10px -1166px; }
 .icon-48-category,
 .icon-48-categories                     {   background-position: 10px -1166px; }
+    #cpanel .icon-48-category           {   background-position: 24px -1166px; }
 .icon-48-checkin                        {   background-position: 10px -1264px; }
 .icon-48-clear                          {   background-position: 10px -1362px; }
 .icon-48-component                      {   background-position: 10px -1460px; }
 .icon-48-config                         {   background-position: 10px -1558px; }
+    #cpanel .icon-48-config             {   background-position: 24px -1558px; }
 .icon-48-contact-categories             {   background-position: 10px -1656px; }
 .icon-48-contact                        {   background-position: 10px -1753px; }
 .icon-48-content                        {   background-position: 10px -1852px; }
@@ -2638,6 +2770,7 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-download                       {   background-position: 10px -2212px; }
 .icon-48-edit                           {   background-position: 10px -2310px; }
 .icon-48-extension                      {   background-position: 10px -2408px; }
+    #cpanel .icon-48-extension          {   background-position: 24px -2408px; }
 .icon-48-featured                       {   background-position: 10px -2506px; }
 .icon-48-frontpage                      {   background-position: 10px -2604px; }
 .icon-48-generic                        {   background-position: 10px -2702px; }
@@ -2650,9 +2783,11 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-messages                       {   background-position: 10px -3290px; }
 .icon-48-systeminfo,
 .icon-48-user-profile                   {   background-position: 10px -3388px; }
+    #cpanel .icon-48-user-profile       {   background-position: 24px -3388px; }
 .icon-48-install                        {   background-position: 10px -3486px; }
 .icon-48-language,
 .icon-48-langmanager                    {   background-position: 10px -3584px; }
+    #cpanel .icon-48-language           {   background-position: 24px -3584px; }
 .icon-48-levels-add                     {   background-position: 10px -3682px; }
 .icon-48-levels                         {   background-position: 10px -3780px; }
 .icon-48-weblinks-categories            {   background-position: 10px -3878px; }
@@ -2660,10 +2795,13 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-massmail                       {   background-position: 10px -4074px; }
 .icon-48-media,
 .icon-48-mediamanager                   {   background-position: 10px -4172px; }
+    #cpanel .icon-48-media              {   background-position: 24px -4172px; }
 .icon-48-menu-add                       {   background-position: 10px -4270px; }
 .icon-48-menu                           {   background-position: 10px -4368px; }
 .icon-48-menumgr                        {   background-position: 10px -4466px; }
+    #cpanel .icon-48-menumgr            {   background-position: 24px -4466px; }
 .icon-48-module                         {   background-position: 10px -4564px; }
+    #cpanel .icon-48-module             {   background-position: 24px -4564px; }
 .icon-48-move                           {   background-position: 10px -4662px; }
 .icon-48-new-privatemessage             {   background-position: 10px -4760px; }
 .icon-48-newcategory                    {   background-position: 10px -4858px; }
@@ -2687,12 +2825,14 @@ span.move_up                            {   background-position: 0 -888px;  }
 .icon-48-searchtext                     {   background-position: 10px -6426px; }
 .icon-48-themes,
 .icon-48-thememanager                   {   background-position: 10px -6524px; }
+    #cpanel .icon-48-themes             {   background-position: 24px -6524px; }
 .icon-48-trash                          {   background-position: 10px -6622px; }
 .icon-48-unarchive                      {   background-position: 10px -6720px; }
 .icon-48-upload                         {   background-position: 10px -6818px; }
 .icon-48-user-add                       {   background-position: 10px -6916px; }
 .icon-48-user,
 .icon-48-user-edit                      {   background-position: 10px -7014px; }
+    #cpanel .icon-48-user               {   background-position: 24px -7014px; }
 .icon-48-writemess                      {   background-position: 10px -7112px; }
 .icon-messaging                         {   background-position: 10px -7210px; }
 
@@ -2791,7 +2931,7 @@ ul.subext li                            {   margin-left: 0; }
 
 /* MODAL STYLES
 ====================================================================================== */
-h2.modal-title                          {   margin: 5px 0 0 15px; }
+h2.modal-title                          {   margin: 5px 0 0 15px; text-align: center; }
 ul.menu_types                           {
                                             padding: 0 0 0 15px;
                                             width: 95%;
@@ -2800,11 +2940,12 @@ ul.menu_types                           {
 
 ul.menu_types li,
 dl.menu_type dd ul li                   {
-                                            width: 240px;
-                                            list-style: none;
                                             display: block;
+                                            font-size: 13px; line-height: 1.5;
                                             float: left;
+                                            list-style: none;
                                             margin-right: 10px;
+                                            width: 240px;
                                         }
 
 ul.menu_types li                        {   width: 47%; }
@@ -2816,11 +2957,14 @@ dl.menu_type                            {
                                         }
 
 dl.menu_type dt                         {
+                                            color: #666;
                                             font-weight: bold;
-                                            font-size: 1.091em;
+                                            font-size: 14px; line-height: 2;
                                             float: left;
-                                            margin: 13px 0 5px 0;
-                                            border-bottom: 1px solid #666;
+                                            margin: 10px auto 0;
+                                            padding-left: 15px;
+                                            border-bottom: 1px solid #888;
+                                            text-shadow: 1px 1px 0 #fff;
                                             width: 240px;
                                         }
 
@@ -2829,9 +2973,25 @@ dl.menu_type dd                         {
                                             margin: 0;
                                         }
 
-dl.menu_type dd ul li                   {   margin: 0; }
+dl.menu_type dd ul li                   {
+                                            margin: 0;
+                                            font-weight: normal;
+                                            border-bottom: 1px solid #ddd;
+                                            height: 25px; line-height: 25px;
+                                            padding-left: 15px;
+                                        }
 
-dl.menu_type dd ul                      {   margin-left: -40px; }
+    dl.menu_type dd ul li:hover         {
+                                            padding-left: 15px;
+                                        }
+
+        dl.menu_type dd ul li:hover  a  {   text-decoration: none; }
+
+    dl.menu_type dd ul li a             {   display: block;
+                                            height: 25px; line-height: 25px;
+                                        }
+
+dl.menu_type dd ul                      {   margin-left: -40px;}
 
 /* ACL STYLES
 ====================================================================================== */
@@ -3076,16 +3236,16 @@ ul.config-option-list li                {
                                             padding: 0;
                                             list-style: none;
                                         }
-ul.config-option-list li                {   min-height: 30px;}
+/*ul.config-option-list li                {   min-height: 30px;}
 
 ul.config-option-list fieldset          {
                                             margin: 0;
                                             padding-left: 0;
                                             padding-right: 0;
                                         }
-
+*/
 /* CSS Rules Permission Angie */
-#rules                                  {   position: relative; }
+/*#rules                                  {   position: relative; }
 #config-document #permissions-sliders   {   margin-bottom: 130px;}
 
 #permissions-sliders ul#rules,
@@ -3254,8 +3414,9 @@ table.group-rules td select             {   margin:0 !important }
                                         {
                                             background: #f5f5f5 url(../images/j_arrow_right.png) center right no-repeat;
                                         }
-
+*/
 /* global_config permissions */
+/*
 #page-permissions  fieldset ul#rules  .jpane-slider
                                         {   width: 60%; }
 
@@ -3265,6 +3426,7 @@ table.group-rules td select             {   margin:0 !important }
 
 #permissions-sliders .jpane-slider ol   {   width: 90%; margin: 10px auto; }
 #permissions-sliders .jpane-slider ol li{   color: #444; padding: 2px!Important; line-height: 1.5; }
+*/
 
 /* Tab changes for accessibility */
 dl.tabs dt h3                           {
@@ -3296,6 +3458,27 @@ input.system-openid, input.com-system-openid
                                            background-position: 0 50%;
                                            color: #000;
                                            padding-left: 18px;
+                                        }
+
+/* MEDIA QUERIES
+====================================================================================== */
+/*
+ * print styles
+ * inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/
+ */
+@media print                            {
+                                            * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important;
+                                            -ms-filter: none !important; } /* black prints faster: sanbeiji.com/archives/953 */
+                                            a, a:visited { color: #444 !important; text-decoration: underline; }
+                                            a[href]:after { content: " (" attr(href) ")"; }
+                                            abbr[title]:after { content: " (" attr(title) ")"; }
+                                            .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* don't show links for images, or javascript/internal links */
+                                            pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+                                            thead { display: table-header-group; } /* css-discuss.incutio.com/wiki/Printing_Tables */
+                                            tr, img { page-break-inside: avoid; }
+                                            @page { margin: 0.5cm; }
+                                            p, h2, h3 { orphans: 3; widows: 3; }
+                                            h2, h3{ page-break-after: avoid; }
                                         }
 
 /* IEvil

@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 ?>
 
-<script src="/joomladev/administrator/modules/mod_analytics/assets/js/raphael-analytics.js" type="text/javascript" charset="utf-8"></script>
+<script src="/home/marco/Work/code/minima/administrator/modules/mod_analytics/assets/js/raphael-analytics.js" type="text/javascript" charset="utf-8"></script>
 
 <table id="analytics-data">
     <tfoot>
