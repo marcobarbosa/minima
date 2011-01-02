@@ -146,7 +146,7 @@ window.addEvent('domready', function() {
         var bulkListParent   = new Element('li', {
             'id': 'bulkActions',
             'events': {
-                'click': function(){
+                'click': function(event){
                     bulkListChildren.toggle();
                     $$('#bulkActions > a:first-child').switchClass('active', 'inactive');
                     this.switchClass('active', 'inactive');
@@ -159,7 +159,7 @@ window.addEvent('domready', function() {
         });
 
         // and add the anchor to this parent <li>
-        var bulkListAnchor   = new Element('a', {'html': language['actionBtn'],'href': '#'}); // parent anchor
+        var bulkListAnchor   = new Element('a', {'html': language['actionBtn']}); // parent anchor
         var spanArrow        = new Element('span', {'class' : 'arrow'}); // arrow
 
         /* ----------------------------- */
