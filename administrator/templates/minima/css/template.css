@@ -910,7 +910,7 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
                                             display: block;
                                             height: 10px;
                                             position: absolute;
-                                            right: 6px; bottom: 8px;
+                                            right: 6px; top: 8px;
                                             width: 12px;
                                         }
 
@@ -1005,12 +1005,14 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
                                             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#888888', endColorstr='#999999');
                                             -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#888888', EndColorStr='#999999')";
                                             border-color: #fff; text-shadow: none!Important;
+                                            border-color: rgba(0, 0, 0, 0.4);
                                             color: #fff;
                                             -moz-border-radius: 8px 8px 0 0;
                                             -webkit-border-radius: 8px 8px 0 0;
                                             border-radius: 8px 8px 0 0;
                                             -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
                                             -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+                                            padding-bottom: 4px;
                                         }
 
 #bulkActions a:active                   {   background: #ccc!Important; top: 0; text-shadow: none!Important; }
@@ -1020,42 +1022,68 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
                                             margin-top: 25px;
                                             padding: 0;
                                             position: absolute;
-                                            -moz-box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-                                            -webkit-box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-                                            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+                                            -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+                                            -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+                                            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
                                             width: 94px;
                                             z-index: 2;
+                                            -webkit-border-radius: 0 8px 8px 8px;
+                                            -moz-border-radius: 0 8px 8px 8px;
+                                            border-radius: 0 8px 8px 8px;
                                         }
 
-    #actions li                         {   width:100%; }
+    #actions li                         {   
+    										/*width:100%;*/
+    										
+    										display: block;
+    										float: none;
+    										font-weight: normal;
+    										text-align:left;
+    									}
 
         #actions li a                   {
-                                            background: #ddd;
+        									float: none;
+        									background: #ddd;
                                             border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
-                                            border:none; border-top: 1px solid #e4e4e4!Important; border-bottom:1px solid #ccc!Important;
+                                            border: 1px solid #ccc; border-top: 1px solid #e4e4e4!Important; border-bottom: 1px solid #ccc!Important;
                                             color: #297BA2!Important;
-                                            display: block;
-                                            float: left;
                                             font-weight: normal;
                                             padding: 6px 0 6px 12px;
-                                            text-align:left;
-                                            width: 90%;
-                                            -webkit-background-clip: padding-box;
+                                            margin: 0;
                                         }
 
-            #actions li a:active        {
+            #actions li a:active,
+            #actions li a:hover         {
                                             text-shadow: none;
                                             -moz-box-shadow: none;
                                             -webkit-box-shadow: none;
                                         }
 
-    #actions li:first-child a           {   border-top:none; }
+    #actions li:first-child a           {   
+    										border-top: 1px solid #ccc!Important;
+    										-webkit-border-top-right-radius: 8px;
+    										-moz-border-radius-topright: 8px;
+    										border-top-right-radius: 8px;
+    									}
 
-    #actions li a:hover                 {   background:#eee;
-                                            color:#222!Important;
-                                            text-decoration:none;
+    #actions li:last-child a           {   
+    										border-bottom: 1px solid #ccc!Important;
+    										-webkit-border-bottom-right-radius: 8px;
+    										-moz-border-radius-bottomright: 8px;
+    										border-bottom-right-radius: 8px;
+    										-webkit-border-bottom-left-radius: 8px;
+    										-moz-border-radius-bottomleft: 8px;
+    										border-bottom-left-radius: 8px;
+    										
+    									}
+
+    #actions li a:hover                 {   background: #eee;
+    										border: 1px solid #ccc;
+                                            color: #222!Important;
+                                            text-decoration: none;
                                             text-shadow: none;
                                         }
+                                        
 
 #form-login input.hidebtn, input#upload-submit,
 #toolbar-new a,
