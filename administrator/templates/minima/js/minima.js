@@ -198,8 +198,8 @@ window.addEvent('domready', function() {
     if ( $('submenu') ) $('submenu').addClass('minimaTabs');
 
     // system-message fade
-    var systemMessage = $('system-message'), systemMessageLastChild = systemMessage.getElement("ul li:last-child");
-    if (systemMessage && systemMessageLastChild)
+    var systemMessage = $('system-message');
+    if (systemMessage && systemMessage.getElement("ul li:last-child"))
     {
         var hideAnchor = new Element('a', {
             'href': '#',
@@ -213,8 +213,7 @@ window.addEvent('domready', function() {
         });
 
         // inject hideAnchor in the system-message container
-        systemMessage.show();
-        systemMessageLastChild.adopt(hideAnchor);
+        systemMessage.show().getElement("ul li:last-child").adopt(hideAnchor);
     }
 
     // highlighting the ACL rules changes for better accessibility
