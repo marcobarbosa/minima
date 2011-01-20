@@ -65,21 +65,14 @@ $currentUser = JFactory::getUser();
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
     </style>
 
-    <script src="templates/<?php echo $this->template ?>/js/raphael.min.js" charset="utf-8"></script>
-
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-    <script>
-        head.js(
-            //{raphael: "templates/minima/js/raphael.min.js?v=1"},
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
-        );
-    </script>
+    <script src="templates/<?php echo $this->template ?>/js/raphael.min.js" charset="utf-8"></script>
 
 </head>
 <body id="minwidth" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
-<?php if( $this->countModules('panel') ): ?>
+    <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
-            <jdoc:include type="modules" name="panel" />
+        <jdoc:include type="modules" name="panel" />
     </div>
     <?php endif; ?>
     <header id="tophead">
@@ -140,6 +133,11 @@ $currentUser = JFactory::getUser();
         </p>
         <jdoc:include type="modules" name="footer" style="none"  />
     </footer>
-
+    <script>
+        head.js(
+            //{raphael: "templates/minima/js/raphael.min.js?v=1"},
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
+        );
+    </script>
 </body>
 </html>

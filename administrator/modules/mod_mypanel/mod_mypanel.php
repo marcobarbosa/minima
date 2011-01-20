@@ -1,8 +1,8 @@
 <?php
 /**
- * @version     0.2
+ * @version     0.8
  * @package     Minima
- * @subpackage  mod_panel
+ * @subpackage  mod_mypanel
  * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt

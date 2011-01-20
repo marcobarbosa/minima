@@ -2,7 +2,7 @@
 /**
  * @version     0.8
  * @package     Minima
- * @subpackage  mod_panel
+ * @subpackage  mod_mypanel
  * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -35,7 +35,7 @@ $nPages = ceil( (count($items)*2) / 9);
     <a href="#" id="prev" <?php if ($invisible) echo "class=\"invisible\""; ?>>&laquo;</a>
     <ul id="panel-list">
         <?php
-            $class = "";
+            $class = ""; $count = 0;
             // standard components that we have the icons ready
             //$std = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search", "com_weblinks");
             $std = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search");
@@ -47,7 +47,7 @@ $nPages = ceil( (count($items)*2) / 9);
                     $class = "icon-48-".$arrClass[1];
                 } else {
                     $arrImg = explode("com_", $item->element);
-                    $img = JPATH_ADMINISTRATOR."/".$item->element."/images/icons/icon-48-".strtolower($arrImg[1]).".png";
+                    $img = JPATH_ADMINISTRATOR."/components".$item->element."/images/icons/icon-48-".strtolower($arrImg[1]).".png";
                     // FIXME JPATH is the wrong constant
                     // fallback if img not found
                    if (!file_exists($img)) $class = "icon-48-generic";

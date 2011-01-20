@@ -54,11 +54,6 @@ $currentUser = JFactory::getUser();
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-    <script>
-        head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
-        );
-    </script>
 
 </head>
 <body id="minwidth-body" class="<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
@@ -107,6 +102,13 @@ $currentUser = JFactory::getUser();
     <nav id="shortcuts">
             <jdoc:include type="modules" name="shortcuts" />
     </nav><!-- /#shortcuts -->
+    <?php else: ?>
+        <!--<header id="tophead" class="editing">
+            <div class="title">
+                <span id="logo"><?php echo $app->getCfg('sitename');?></span>
+                <span class="site-link"><a href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
+            </div>
+        </header>-->
     <?php endif; ?>
     <div class="message-wrapper"><jdoc:include type="message" /></div>
     <div id="content">
@@ -130,6 +132,9 @@ $currentUser = JFactory::getUser();
         <jdoc:include type="modules" name="footer" style="none"  />
     </footer>
     <script>
+        head.js(
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
+        );
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",
             showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",

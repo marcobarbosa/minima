@@ -229,11 +229,12 @@ window.addEvent('domready', function() {
     var subMenu =  $('submenu');
 
     // fix left border on toolbar
-    if( !subMenu && $('toolbar-box') )
+    /*if( !subMenu && $('toolbar-box') )
     {
-        $('toolbar-box').addClass('borderLeft');
+        //$('toolbar-box').addClass('borderLeft');
     }
-    else if( $('item-form') )
+    else if( $('item-form') )*/
+    if (subMenu && $('item-form'))
     {
         // move the submenu to the top of content
         subMenu.inject($('content'),'top');
@@ -525,8 +526,29 @@ window.addEvent('domready', function() {
                 }
             });
 
+            // FIXME: DRY this!
             panelPage.getChildren("li").addEvent('click', function() {
-
+                // add pagination events
+                if(toIncrement < 0) {
+                    next.show();
+                    toIncrement += increment;
+                    panelSlide.pause();
+                    panelSlide.start('margin-left', toIncrement);
+                    // fix pagination
+                    panelPage.getFirst('.current').removeClass('current').getPrevious('li').addClass('current');
+                    // hide buttons if needed
+                    showButtons();
+                }
+                else if(toIncrement > maxRightIncrement) {
+                    prev.show();
+                    toIncrement -= increment;
+                    panelSlide.pause();
+                    panelSlide.start('margin-left', toIncrement);
+                    // fix pagination
+                    panelPage.getFirst('.current').removeClass('current').getNext('li').addClass('current');
+                    // hide buttons if needed
+                    showButtons();
+                }
             });
 
         } // end of if next

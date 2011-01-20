@@ -8,28 +8,20 @@
     <authorEmail>iam@marcobarbosa.com</authorEmail>
     <authorUrl>http://marcobarbosa.com</authorUrl>
     <version>0.8</version>
-    <description>This module provides a panel for the minima template.</description>
+    <description>This module provides a panel for the minima template.</description>    
+    <!-- Extension Update Specification -->
+    <updateservers>
+        <server type="collection" priority="1" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
+    </updateservers>
+    <!--  Dependencies -->
+    <dependencies>
+        <dependency type="platform" name="joomla" operator="=" version="1.6" />
+    </dependencies>
+    <!-- Files -->
     <files>
         <filename module="mod_mypanel">mod_mypanel.php</filename>
         <filename>helper.php</filename>
         <filename>index.html</filename>
         <folder>tmpl</folder>
     </files>
-    <params>
-        <param
-            name="layout"
-            type="modulelayouts"
-            label="JField_Alt_Layout_Label"
-            description="JField_Alt_Module_Layout_Desc"
-            module="mod_menu"
-            client_id="1">
-        </param>
-
-    </params>
-    <params group="advanced">
-        <param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
-            <option value="1">Use global</option>
-            <option value="0">No caching</option>
-        </param>
-    </params>
 </install>

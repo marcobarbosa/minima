@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
 <install type="template" version="1.6" client="administrator" method="upgrade">
-    <name>Minima Template</name>
+    <name>Minima</name>
     <creationDate>July 2010</creationDate>
     <author>Marco Barbosa</author>
     <authorEmail>iam@marcobarbosa.com</authorEmail>
@@ -9,7 +9,16 @@
     <copyright>Copyright (C) 2010 Webnific. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <version>0.8</version>
-    <description>Minima backend template. Enjoy!</description>
+    <description>Minima backend template. Enjoy!</description>    
+    <!-- Extension Update Specification -->
+    <updateservers>
+        <server type="collection" priority="1" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
+    </updateservers>
+    <!--  Dependencies -->
+    <dependencies>
+        <dependency type="platform" name="joomla" operator="=" version="1.6" />
+    </dependencies>
+    <!-- Files -->
     <files>
         <filename>component.php</filename>
         <filename>cpanel.php</filename>
@@ -30,10 +39,12 @@
         <folder>images</folder>
         <folder>js</folder>
     </files>
+    <!-- Languages -->
     <languages>
         <language tag="en-GB">language/en-GB/en-GB.tpl_minima.ini</language>
         <language tag="en-GB">language/en-GB/en-GB.tpl_minima.sys.ini</language>
     </languages>
+    <!-- Positions -->
     <positions>
         <position>cp_shell</position>
         <position>debug</position>
@@ -50,6 +61,7 @@
         <position>widgets-first</position>
         <position>widgets-last</position>
     </positions>
+    <!-- Params -->
     <config>
         <fields name="params">
             <fieldset name="basic">
