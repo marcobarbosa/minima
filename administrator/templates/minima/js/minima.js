@@ -197,6 +197,8 @@ window.addEvent('domready', function() {
     // add tabs to #submenu
     if ( $('submenu') ) $('submenu').addClass('minimaTabs');
 
+    // remove border on empty lists
+
     // system-message fade
     var systemMessage = $('system-message');
     if (systemMessage && systemMessage.getElement("ul li:last-child"))
@@ -228,6 +230,13 @@ window.addEvent('domready', function() {
     // get the submenu (tabs) to work
     var subMenu =  $('submenu');
 
+    // fix submenu position on overrides
+    if ( (subMenu && subMenu.hasClass('out')) || (subMenu && $('item-form')) )
+    {
+        // move the submenu to the top of content
+        subMenu.inject($('content'),'top');
+    }
+
     // fix left border on toolbar
     /*if( !subMenu && $('toolbar-box') )
     {
@@ -236,8 +245,6 @@ window.addEvent('domready', function() {
     else if( $('item-form') )*/
     if (subMenu && $('item-form'))
     {
-        // move the submenu to the top of content
-        subMenu.inject($('content'),'top');
 
         /* Adding the tabs functionality
          * -------------------------------- */

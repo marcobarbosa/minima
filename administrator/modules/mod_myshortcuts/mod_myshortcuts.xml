@@ -12,7 +12,8 @@
     <scriptfile>mod_myshortcuts.script.php</scriptfile>
     <!-- Extension Update Specification -->
     <updateservers>
-        <server type="collection" priority="1" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
+        <server type="extension" priority="1" name="Minima Update Site">http://minimatemplate.com/update/modules/mod_myshortcuts/extension.xml</server>
+        <server type="collection" priority="2" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
     </updateservers>
     <!--  Dependencies -->
     <dependencies>

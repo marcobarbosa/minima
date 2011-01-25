@@ -8,11 +8,12 @@
     <authorUrl>http://minimatemplate.com</authorUrl>
     <copyright>Copyright (C) 2010 Webnific. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>0.8</version>
-    <description>Minima backend template. Enjoy!</description>    
+    <version>0.8</version>    
+    <description>TPL_MINIMA_XML_DESCRIPTION</description>
     <!-- Extension Update Specification -->
     <updateservers>
-        <server type="collection" priority="1" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
+        <server type="extension" priority="1" name="Minima Update Site">http://minimatemplate.com/update/templates/tpl_minima/extension.xml</server>
+        <server type="collection" priority="2" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
     </updateservers>
     <!--  Dependencies -->
     <dependencies>

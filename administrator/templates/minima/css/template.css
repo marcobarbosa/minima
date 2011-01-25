@@ -1,4 +1,4 @@
-
+/* heeeere */
 
 @charset "UTF-8";
 
@@ -109,7 +109,7 @@ a:link,
 a:visited                               {   color: #297BA2; text-decoration: none; }
 
 a:hover                                 {   color: #27617D; text-decoration: underline; }
-a:hover, a:active                  {   outline: none; }
+a:hover, a:active                       {   outline: none; }
 
 .enabled                                {   color: green; font-weight: bold; }
 .disabled,
@@ -291,6 +291,9 @@ body                                    {
 
         #logo                           {   font: normal 26px/38px 'Nobile', arial, serif; }
 
+        #tophead.editing                {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 35px; }
+            #tophead.editing #logo      {    font-size: 22px; line-height: 32px;}
+
 #header-box                             {   background: #f0f0f0; }
 
 #footer .copyright                      {   color: #fff; line-height: 160%; margin: 10px; text-align: center; }
@@ -366,7 +369,7 @@ body                                    {
 
 /*#analytics svg                          {   padding-top: 20px; max-width: 100%; }*/
 
-.box .adminlist                         {   padding: 0 5px; border-top: none; }
+.box .adminlist                         {   padding: 0 5px; border-top: none; width: 98%; margin: 0 auto; }
 
     .box .adminlist th                  {   background: #eee; }
 
@@ -523,6 +526,8 @@ BODY.error                              {   background: #ccc; }
                                         }
 
 #submenu                                {   z-index: 2; position: relative; }
+    #submenu.out {  display: none;}
+        BODY.ready #submenu.out {display: block;}
 
 #toolbar-box                            {
                                             /*-webkit-border-top-right-radius: 4px;
@@ -620,7 +625,7 @@ BODY.error                              {   background: #ccc; }
 
 #open-filter.active                     {   color: #606060; background-position: right -13px; }
 
-#panel-wrapper                          {   display: none; padding: 20px 20px 10px; }
+#panel-wrapper                          {   display: none; padding: 20px 20px 20px; }
     BODY.ready #panel-wrapper           {   display: block; }
 
 #tab-wrapper                            {   float: left; position: absolute; left: 50%; }
@@ -2125,8 +2130,8 @@ table.adminlist                         {
                                             border-spacing: 0;
                                             border-top: 1px solid #cecece;
                                             color: #666;
-                                            margin: 0 auto;
-                                            width: 98%;
+                                            margin: 0 12px;
+                                           /* width: 98%;*/
                                         }
 
 table.adminlist td,
@@ -2236,8 +2241,8 @@ table.adminlist td.order span           {
 .list-footer                            {
                                             background: #fff;
                                             height: 35px;
-                                            margin: 0 auto;
-                                            width: 98%!Important;
+                                            margin: 0 12px;
+                                            /*width: 98%!Important;*/
                                         }
 
 table.adminlist .list-footer            {   border: none; margin-top: -4px; padding: 0;  width:100%; }
@@ -2959,7 +2964,7 @@ span.move_up                            {   background-position: 0 -888px;  }
 #submenu a.active, #submenu a.active:hover,
 #submenu span.nolink.active             {
                                             background: #fff; color: #666; font-weight:bold; text-decoration:none;
-                                            border: 1px solid #eee; border-bottom: none;
+                                            border: 1px solid #e4e4e4; border-bottom: none;
                                         }
 
 /* COMPONENT STYLES

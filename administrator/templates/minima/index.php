@@ -103,12 +103,11 @@ $currentUser = JFactory::getUser();
             <jdoc:include type="modules" name="shortcuts" />
     </nav><!-- /#shortcuts -->
     <?php else: ?>
-        <!--<header id="tophead" class="editing">
+        <header id="tophead" class="editing">
             <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
-                <span class="site-link"><a href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
             </div>
-        </header>-->
+        </header>
     <?php endif; ?>
     <div class="message-wrapper"><jdoc:include type="message" /></div>
     <div id="content">

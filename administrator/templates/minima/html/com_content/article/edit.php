@@ -30,7 +30,7 @@ JHtml::_('behavior.keepalive');
         }
     }
 </script>
-<ul id="submenu">
+<ul id="submenu" class="out">
     <li class="item-content"><a href="#" class="active"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_CONTENT'); ?></a></li>
     <li class="item-parameters"><a href="#"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_PARAMETERS'); ?></a></li>
     <li class="item-permissions"><a href="#"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_PERMISSIONS'); ?></a></li>
