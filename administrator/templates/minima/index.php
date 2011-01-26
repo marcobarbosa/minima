@@ -56,7 +56,7 @@ $currentUser = JFactory::getUser();
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
 
 </head>
-<body id="minwidth-body" class="<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
+<body id="minwidth-body" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
@@ -83,14 +83,14 @@ $currentUser = JFactory::getUser();
             <div class="clr"></div>
             <div id="list-content">
                 <dl class="first">
-                    <dt>Tools</dt>
+                    <dt><?php echo JText::_('TPL_MINIMA_TOOLS',true);?></dt>
                     <?php if( $currentUser->authorize( array('core.manage','com_checkin') ) ): ?><dd><a href="index.php?option=com_checkin"><?php echo JText::_('TPL_MINIMA_TOOLS_GLOBAL_CHECKIN'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache"><?php echo JText::_('TPL_MINIMA_TOOLS_CLEAR_CACHE'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache&amp;view=purge"><?php echo JText::_('TPL_MINIMA_TOOLS_PURGE_EXPIRED_CACHE'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_admin') ) ): ?><dd><a href="index.php?option=com_admin&amp;view=sysinfo"><?php echo JText::_('TPL_MINIMA_TOOLS_SYSTEM_INFORMATION'); ?></a></dd><?php endif; ?>
                 </dl>
                 <dl class="last">
-                <dt>Extensions</dt>
+                <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
                     <?php if( $currentUser->authorize( array('core.manage','com_languages') ) ): ?><dd><a href="index.php?option=com_languages"><?php echo JText::_('TPL_MINIMA_TOOLS_LANGUAGES'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_modules') ) ): ?><dd><a href="index.php?option=com_modules"><?php echo JText::_('TPL_MINIMA_TOOLS_MODULES'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?><dd><a href="index.php?option=com_plugins"><?php echo JText::_('TPL_MINIMA_TOOLS_PLUGINS'); ?></a></dd><?php endif; ?>

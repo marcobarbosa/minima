@@ -276,7 +276,7 @@ body                                    {
 
 #tophead                                 {
                                             width: 100%;
-                                            height: 45px;
+                                            height: 40px;
                                             float: left;
                                             position: relative;
                                         }
@@ -287,12 +287,12 @@ body                                    {
                                             margin-left: 20px;
                                         }
 
-        #tophead .site-link a            {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -4px;}
+        #tophead .site-link a            {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
 
         #logo                           {   font: normal 26px/38px 'Nobile', arial, serif; }
 
-        #tophead.editing                {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 35px; }
-            #tophead.editing #logo      {    font-size: 22px; line-height: 32px;}
+        #tophead.editing                {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 30px; }
+            #tophead.editing #logo      {    font-size: 21px; line-height: 27px;}
 
 #header-box                             {   background: #f0f0f0; }
 
@@ -409,7 +409,7 @@ body                                    {
                                             float: left;
                                             margin: 0 0 12px;
                                             overflow:hidden;
-                                            padding: 4px 0 4px;
+                                            padding: 3px 0;
                                             width: 100%;
                                             z-index: 10;
                                         }
@@ -482,7 +482,7 @@ body                                    {
                                         }
 
 #content                                {   clear: both; display: block; margin: 10px 10px 20px; padding: 0 10px; }
-
+    .locked #content                    {   max-width: 1140px; margin: 0 auto; }
 
 BODY.error                              {   background: #ccc; }
     BODY.error #content                 {
@@ -591,7 +591,7 @@ BODY.error                              {   background: #ccc; }
 
 #user-status                            {
                                             list-style: none;
-                                            margin: 12px 20px 0 0;
+                                            margin: 10px 20px 0 0;
                                             height: 20px;
                                             line-height: 20px;
                                             padding: 0;
@@ -602,8 +602,8 @@ BODY.error                              {   background: #ccc; }
                                             border-left-color: rgba(238,238,238,0.2);
                                             color: #eee;
                                             display: block;
-                                            height: 20px; line-height: 20px;
-                                            font-size: 12px;
+                                            height: 20px;
+                                            font-size: 12px; line-height: 1;
                                             float: left;
                                             padding: 0 10px;
                                         }
@@ -664,7 +664,7 @@ BODY.error                              {   background: #ccc; }
                                             float: right;
                                             height: 16px;
                                             padding: 5px 18px 4px 8px;
-                                            width: 16px;
+                                            width: 16px; margin-top: -3px;
                                         }
 
 #more:hover,  #more.active, #more.active:hover
@@ -849,7 +849,7 @@ BODY.error                              {   background: #ccc; }
  * STATUS STYLES
  */
 
-#module-status                          {   float: right; }
+#module-status                          {   float: right; height: 40px; line-height: 40px; }
 
     #module-status span                 {   padding: 4px 4px 0 22px; }
 
@@ -894,7 +894,7 @@ div.pagetitle h2                        {
                                         }
     .contentpane h2                     {   text-shadow: 1px 1px 0 #fff!Important; }
 
-.hiddenmenu .pagetitle h2               {   font-size: 26px; line-height: 44px; padding-top: 5px; }
+.locked .pagetitle h2                   {   font-size: 26px; line-height: 44px; padding-top: 5px; }
 
 div.pagetitle span                      {   color: #666; }
 
@@ -936,7 +936,8 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
                                         }
 
 #bulkActions a,
-#toolbar a, input#upload-submit         {
+#toolbar a,
+input#upload-submit                     {
                                             background: #cfcfcf;
                                             background: -moz-linear-gradient(-90deg,#f9f9f9,#cfcfcf);
                                             background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#cfcfcf));
@@ -945,6 +946,9 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
                                             -moz-border-radius: 8px;
                                             -webkit-border-radius: 8px;
                                             border-radius: 8px;
+                                            -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+                                            -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+                                            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
                                             border: 1px solid #cfcfcf;
                                             color: #555;
                                             margin-right:10px;
@@ -954,16 +958,19 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
 
 input#upload-submit                     { text-shadow: 0 0 0;}
 
-input[type="submit"],button,#upbutton, input.button, input[type="button"]
-                                        {
+input[type="submit"],
+button,
+#upbutton,
+input.button,
+input[type="button"]                    {
                                             background: #f9f9f9;
                                             background: -moz-linear-gradient(-90deg,#f9f9f9,#dadada);
                                             background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#dadada));
                                             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#dadada');
                                             -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#f9f9f9', EndColorStr='#dadada')";
-                                            -moz-box-shadow: 0 0 2px #ccc;
-                                            -webkit-box-shadow: 0 0 2px #ccc;
-                                            box-shadow: 0 0 2px #ccc;
+                                            -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0 0 2px #ccc;
+                                            -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0 0 2px #ccc;
+                                            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3),0 0 2px #ccc;
                                             -moz-border-radius: 14px;
                                             -webkit-border-radius: 14px;
                                             border-radius: 14px;
@@ -981,8 +988,11 @@ input[type="submit"],button,#upbutton, input.button, input[type="button"]
 
         #bulkActions a:hover,
         #toolbar a:hover,
-        input[type="submit"]:hover,button:hover,#upbutton:hover,input.button:hover,input[type="button"]:hover
-                                        {
+        input[type="submit"]:hover,
+        button:hover,
+        #upbutton:hover,
+        input.button:hover,
+        input[type="button"]:hover      {
                                             border-color: #aaa;
                                             color:#303030;
                                             text-decoration:none;
@@ -991,8 +1001,11 @@ input[type="submit"],button,#upbutton, input.button, input[type="button"]
                                             -webkit-box-shadow: 0 0 2px #bbb;
                                             box-shadow: 0 0 2px #bbb;
                                         }
-        input[type="submit"]:hover, button:hover, #upbutton:hover, input.button:hover,input[type="button"]:hover
-                                        {
+        input[type="submit"]:hover,
+        button:hover,
+        #upbutton:hover,
+        input.button:hover,
+        input[type="button"]:hover      {
                                             border-color: #999;
                                             -moz-box-shadow: 0 0 2px #aaa;
                                             -webkit-box-shadow: 0 0 2px #aaa;
@@ -1005,11 +1018,15 @@ input#upload-submit:active              {
                                             background: #ccc;
                                             -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
                                             -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-                                            text-shadow: -1px -1px 0 rgba(255,255,255,0.50);
+                                            /*text-shadow: -1px -1px 0 rgba(255,255,255,0.50);*/
+                                            text-shadow: 0 0 1px #000;
                                         }
 
-input[type="submit"]:active, button:active, #upbutton:active, input.button:active, input[type="button"]:active
-                                        {
+input[type="submit"]:active,
+button:active,
+#upbutton:active,
+input.button:active,
+input[type="button"]:active             {
                                             background: #f9f9f9;
                                             background: -moz-linear-gradient(-90deg,#cfcfcf,#f9f9f9);
                                             background: -webkit-gradient(linear, left top, left bottom, from(#cfcfcf), to(#f9f9f9));
@@ -1018,8 +1035,8 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
                                             top: 1px;
                                         }
 
-#bulkActions .active, #bulkActions .active:hover
-                                        {
+#bulkActions .active,
+#bulkActions .active:hover              {
                                             background: #999;
                                             background: -moz-linear-gradient(-90deg,#888,#999);
                                             background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#999));
@@ -1055,7 +1072,6 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
 
     #actions li                         {
                                             /*width:100%;*/
-
                                             display: block;
                                             float: none;
                                             font-weight: normal;
@@ -1106,7 +1122,8 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
                                         }
 
 
-#form-login input.hidebtn, input#upload-submit,
+#form-login input.hidebtn,
+input#upload-submit,
 #toolbar-new a,
 #toolbar-popup-new a,
 #toolbar-apply a,
@@ -1176,7 +1193,7 @@ input[type="submit"]:active, button:active, #upbutton:active, input.button:activ
 #toolbar-apply a:active,
 #toolbar-save a:active,
 #form-login input.hidebtn:active,
-input#upload-submit:active              {   background:#34B62A; border-color:#409239; }
+input#upload-submit:active              {   background: #34B62A!Important; border-color:#409239; }
 
 #toolbar-save-new a,
 #toolbar-save-copy a                    {
