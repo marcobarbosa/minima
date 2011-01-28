@@ -21,50 +21,31 @@ $app = &JFactory::getApplication();
 
 ?>
 <!DOCTYPE html>
+<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
-<!--[if lt IE 7 ]> <html lang="<?php echo  $this->language; ?>" class="no-js ie6" dir="<?php echo  $this->direction; ?>" id="minwidth"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="<?php echo  $this->language; ?>" class="no-js ie7" dir="<?php echo  $this->direction; ?>" id="minwidth"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="<?php echo  $this->language; ?>" class="no-js ie8" dir="<?php echo  $this->direction; ?>" id="minwidth"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="<?php echo  $this->language; ?>" class="no-js ie9" dir="<?php echo  $this->direction; ?>" id="minwidth"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>" id="minwidth"> <!--<![endif]-->
 <head>
 
     <meta charset="utf-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <jdoc:include type="head" />
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&subset=latin">
-    <link href="templates/<?php echo $this->template ?>/css/template.css?v=1" rel="stylesheet" type="text/css" />
-
-    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+    <link href="http://fonts.googleapis.com/css?family=Nobile&subset=latin" rel="stylesheet" type="text/css">
+    <link href="templates/<?php echo $this->template ?>/css/template.css?v=1" rel="stylesheet" type="text/css">
 
     <style type="text/css">
             body { background-color: <?php echo $templateColor;?>; }
             #login-box { border: 15px solid <?php echo $darkerColor; ?>}
-            #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
+            #logo { text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
+            #system-message { display: block; }
+            .message-wrapper {margin-top: -80px;}
     </style>
-
-    <script type="text/javascript">
-    function setFocus() {
-        document.getElementById('form-login').username.select();
-        document.getElementById('form-login').username.focus();
-    }
-    </script>
 
 </head>
 <body onload="javascript:setFocus()" id="login-page">
-    <div id="logo-box">
-        <span id="logo"><?php echo $app->getCfg('sitename');?></span>
-    </div>
-    <div id="site-box">
-        <span class="site-link"><a href="<?php echo JURI::root();?>">&larr; <?php echo JText::_('TPL_MINIMA_VIEW_SITE'); ?></a></span>
-    </div>
     <div id="login-container">
-        <div id="message-wrapper"><jdoc:include type="message" /></div>
+        <div class="message-wrapper"><jdoc:include type="message" /></div>
         <div id="login-box">
                     <jdoc:include type="component" />
                 <noscript>
@@ -72,6 +53,17 @@ $app = &JFactory::getApplication();
                 </noscript>
         </div><!-- /#login-box -->
     </div>
-
+    <div id="site-box">
+        <span class="site-link"><a href="<?php echo JURI::root();?>">&larr; <?php echo JText::_('TPL_MINIMA_VIEW_SITE'); ?></a></span>
+    </div>
+    <div id="logo-box">
+        <span id="logo"><?php echo $app->getCfg('sitename');?></span>
+    </div>
+    <script type="text/javascript">
+        function setFocus() {
+            document.getElementById('form-login').username.select();
+            document.getElementById('form-login').username.focus();
+        }
+    </script>
 </body>
 </html>

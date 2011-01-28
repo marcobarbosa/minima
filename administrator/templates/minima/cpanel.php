@@ -36,7 +36,7 @@ $currentUser = JFactory::getUser();
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>" id="minwidth">
+<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
 <head>
 
@@ -46,10 +46,10 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin">
-    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin" rel="stylesheet" type="text/css" >
+    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
@@ -67,9 +67,10 @@ $currentUser = JFactory::getUser();
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
     <script src="templates/<?php echo $this->template ?>/js/raphael.min.js" charset="utf-8"></script>
+    <!--http://yandex.st/raphael/1.5.2/raphael.min.js-->
 
 </head>
-<body id="minwidth" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
+<body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />
@@ -78,7 +79,7 @@ $currentUser = JFactory::getUser();
     <header id="tophead">
             <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
-                <span class="site-link"><a href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
+                <span class="site-link"><a target="_blank" title="<?php echo $app->getCfg('sitename');?>" href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
             </div>
             <div id="module-status">
                 <jdoc:include type="modules" name="status"  />

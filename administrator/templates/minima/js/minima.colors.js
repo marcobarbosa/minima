@@ -47,6 +47,14 @@ window.addEvent('domready', function() {
 
         // associate to field
         inputDarkerColor.set('value', darkerColor);
+        // change header
+        /*background-color: -webkit-gradient(linear, left top, left bottom, from(value), to(darkerColor));
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=value, endColorstr=darkerColor);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='value', EndColorStr='darkerColor')";*/
+        $('tophead').setStyles({
+            //background: value,
+            //background: -moz-linear-gradient(-90deg,'#ccc','#ddd')
+        });
     }
 
 });

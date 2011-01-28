@@ -47,8 +47,6 @@ abbr[title], dfn[title]                 {   border-bottom: 1px dotted; cursor: h
 /* always force a scrollbar in non-IE: */
 html                                    {   overflow-y: scroll; }
 
-body#login-page                         {   margin: 0 auto; overflow: hidden; }
-
 .padTop                                 {   margin-top: 10px!Important; }
 
 .borderLeft                             {
@@ -71,7 +69,7 @@ body, td, th                            {   font: 11px Arial, Helvetica, sans-se
 
 html, body                              {   height: 95%; }
 
-#minwidth                               {   min-width: 960px; }
+#minima                                 {   min-width: 960px; }
 
 .clr                                    {   clear: both;  height: 0; overflow:hidden; }
 
@@ -127,7 +125,10 @@ p.error                                 {   color: red; font-weight: bold; }
 /* Hide only visually, but have it available for screenreaders
    www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden
 */
-.visuallyHidden                         {
+.visuallyHidden,
+#filters_search-lbl,
+.filter-search-lbl,
+.hide-lbl                               {
                                             border: 0 !important;
                                             clip: rect(0 0 0 0);
                                             height: 1px !important;
@@ -154,10 +155,7 @@ nav ul, nav li                          {   margin: 0; }
 small                                   {   font-size: 85%; }
 strong, th                              {   font-weight: bold; }
 
-/* set sub, sup without affecting line-height: gist.github.com/413930*/
-sub, sup                                {   font-size: 75%; line-height: 0; position: relative; }
-    sup                                 {   top: -0.5em; }
-    sub                                 {   bottom: -0.25em; }
+sub, sup                                {   font-size: 75%; line-height: 0; }
 
 pre                                     {
                                               padding: 15px;
@@ -274,25 +272,25 @@ body                                    {
 
 .copyright                              {   clear: both; color: #999; font-size: 13px; text-shadow: 1px 1px 0 #fff; text-align: center; padding: 10px 0; }
 
-#tophead                                 {
+#tophead                                {
                                             width: 100%;
                                             height: 40px;
                                             float: left;
                                             position: relative;
                                         }
 
-    #tophead .title                      {
+    #tophead .title                     {
                                             color: #fff;
                                             float: left;
                                             margin-left: 20px;
                                         }
 
-        #tophead .site-link a            {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
+        #tophead .site-link a           {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
 
         #logo                           {   font: normal 26px/38px 'Nobile', arial, serif; }
 
-        #tophead.editing                {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 30px; }
-            #tophead.editing #logo      {    font-size: 21px; line-height: 27px;}
+        #tophead.locked                 {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 30px; }
+            #tophead.locked #logo       {    font-size: 21px; line-height: 27px;}
 
 #header-box                             {   background: #f0f0f0; }
 
@@ -545,9 +543,7 @@ BODY.error                              {   background: #ccc; }
 #submenu a.active                       {   background:#fff!Important; }
 
 #login-container                        {   width: 100%; margin: 120px auto 0; }
-#login-container #message-wrapper       {   float: right; position: relative;left: -50%; top: -80px; }
 
-/*#form-login                             {   margin: 20px; padding: 15px 0 0; }*/
 #logo-box                               {   color: #fff; position: absolute; bottom: 40px; right: 40px; }
     #logo-box #logo                     {   font-size: 42px; }
     #site-box                           {   position: absolute; bottom: 40px; left: 40px; }
@@ -587,6 +583,7 @@ BODY.error                              {   background: #ccc; }
 
     #form-login .button1                {   display: none; }
     #form-login .hidebtn                {   margin: 20px auto 20px 8px!Important; max-width: 400px!Important;  }
+
 .update-message                         {   color: #888; float: right; font-size: 13px; margin: 12px; }
 
 #user-status                            {
@@ -1063,7 +1060,7 @@ input[type="button"]:active             {
                                             -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
                                             -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.5);
                                             box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-                                            width: 94px;
+                                            min-width: 94px;
                                             z-index: 2;
                                             -webkit-border-radius: 0 8px 8px 8px;
                                             -moz-border-radius: 0 8px 8px 8px;
@@ -1071,7 +1068,7 @@ input[type="button"]:active             {
                                         }
 
     #actions li                         {
-                                            /*width:100%;*/
+                                            width:100%;
                                             display: block;
                                             float: none;
                                             font-weight: normal;
@@ -1304,6 +1301,9 @@ h3.pane-toggler a:hover                {   text-decoration: none; }
                                             margin-left:-25px;
                                             margin-top: 10px;
                                         }
+
+#warning-sliders                        {   margin: 10px 10px 0; }
+#warnings-list .panel                   {   margin: 0; }
 
 /*input#jformparams_link_titles1,
 input#jformparams_show_title1,
@@ -1594,9 +1594,8 @@ fieldset                                {
                                             -webkit-border-radius: 6px;
                                             border-radius: 6px;
                                             border: none;
+                                            margin: 10px 10px 0;
                                             margin-top: 10px!Important;
-                                            margin-bottom: 5px;
-                                            margin-left: 10px; margin-right: 10px;
                                             overflow: hidden;
                                             padding: 0 15px 15px 15px;
                                         }
@@ -1829,6 +1828,8 @@ input.required                          {   background-color: #d5eeff; }
 label#jform_extension-lbl,
 input#jform_extension                   {   display: none; }
 
+.col1template                           {   width: 1%; min-width: 210px; }
+
 /* different input sizes */
 
 /*
@@ -2011,22 +2012,28 @@ fieldset#filter-bar                     {
                                             background: transparent;
                                             display: none;
                                             height: 35px;
+                                            margin: 0;
                                             margin-bottom: 2px;
                                         }
 
     #filter-bar button                  {   padding: 2px 4px;}
 
+
+
 .filter-search button                   {   margin-right: 2px; }
 
-label.filter-search-lbl                 {
-                                            display: none;
-                                            margin-left: 5px;
-                                        }
+.filter-select                          {   margin-left: 10px; float: left; }
 
-label.filter-hide-lbl                   {
+/*#filters_search-lbl                     {
+                                            margin-left: 5px;
+                                        }*/
+
+/*label.filter-hide-lbl                   {
                                             clear: none;
                                             margin-left: 5px;
-                                        }
+                                        }*/
+
+#filters_hideprotected-lbl              { display: inline; }
 
 /*div.filter-select input,
 div.filter-select select                {
@@ -2148,7 +2155,7 @@ table.adminlist                         {
                                             border-top: 1px solid #cecece;
                                             color: #666;
                                             margin: 0 12px;
-                                           /* width: 98%;*/
+                                            /*width: 98%;*/
                                         }
 
 table.adminlist td,
@@ -2964,18 +2971,20 @@ span.move_up                            {   background-position: 0 -888px;  }
                                             border-radius: 4px 4px 0 0;
                                             cursor: pointer;
                                             color: #666;
-                                            display:block;
+                                            display: block;
                                             font-size: 1.1em;
                                             font-weight: normal;
                                             float:left;
                                             padding: 8px 10px;
-                                            -webkit-transition: background 0.2s ease 0;
-                                            -moz-transition: background-color 0.3s ease 0;
-                                            -o-transition: background 0.3s ease 0;
-                                            transition: background 0.3s ease 0;
                                         }
 
-#submenu li a:hover                     {   background: #ccc; color: #333; text-decoration: none; text-decoration: underline; }
+#submenu li a:hover                     {   background: #ccc; color: #333; text-decoration: none; text-decoration: underline;
+                                            /*-webkit-transition: background 0.5s ease;
+                                            -moz-transition: background-color 0.3s ease 0;
+                                            -o-transition: background 0.3s ease 0;
+                                            transition: background 0.3s ease 0;*/
+                                        }
+
 #submenu span.nolink                    {   color: #999; }
 
 #submenu a.active, #submenu a.active:hover,

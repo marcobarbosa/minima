@@ -24,7 +24,7 @@ $currentUser = JFactory::getUser();
 ?>
 
 <!DOCTYPE html>
-<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>" id="minwidth">
+<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
 <head>
 
@@ -34,10 +34,10 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin">
-    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin" rel="stylesheet" type="text/css">
+    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
+    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
@@ -56,7 +56,7 @@ $currentUser = JFactory::getUser();
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
 
 </head>
-<body id="minwidth-body" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
@@ -66,7 +66,7 @@ $currentUser = JFactory::getUser();
     <header id="tophead">
         <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
-                <span class="site-link"><a href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
+                <span class="site-link"><a target="_blank" title="<?php echo $app->getCfg('sitename');?>" href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
         </div>
         <div id="module-status">
             <jdoc:include type="modules" name="status"  />
@@ -103,7 +103,7 @@ $currentUser = JFactory::getUser();
             <jdoc:include type="modules" name="shortcuts" />
     </nav><!-- /#shortcuts -->
     <?php else: ?>
-        <header id="tophead" class="editing">
+        <header id="tophead" class="locked">
             <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
             </div>

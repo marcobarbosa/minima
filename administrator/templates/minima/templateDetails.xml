@@ -8,7 +8,7 @@
     <authorUrl>http://minimatemplate.com</authorUrl>
     <copyright>Copyright (C) 2010 Webnific. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-    <version>0.8</version>    
+    <version>0.8</version>
     <description>TPL_MINIMA_XML_DESCRIPTION</description>
     <!-- Extension Update Specification -->
     <updateservers>
@@ -66,13 +66,6 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field
-                    name="templateLogo"
-                    type="media"
-                    default="images/logo_minima.png"
-                    label="TPL_MINIMA_LOGO_LABEL"
-                    description="TPL_MINIMA_LOGO_DESCRIPTION"
-                    exclude="\.html" hide_default="no" />
                 <field type="loader" label="" name="Loader" addfieldpath="/administrator/templates/minima/elements" />
                 <field
                     name="templateColor"

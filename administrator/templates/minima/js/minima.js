@@ -192,12 +192,14 @@ window.addEvent('domready', function() {
     $(document.body).removeClass('no-js');
 
     // add id #adminlist to .adminlist
-    if ( $$('.adminlist').length ) $$('.adminlist').set('id','adminlist');
+    var adminlist = $$('.adminlist');
+    if (adminlist.length) adminlist.set('id','adminlist');
 
     // add tabs to #submenu
-    if ( $('submenu') ) $('submenu').addClass('minimaTabs');
+    if ($('submenu') ) $('submenu').addClass('minimaTabs');
 
     // remove border on empty lists
+    /*border-top: 1px dashed #e0e0e0;*/
 
     // system-message fade
     var systemMessage = $('system-message');
