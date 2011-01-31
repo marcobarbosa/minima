@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 $user = JFactory::getUser();
 ?>
 <div class="width-100 fltlft">
-<table width="100%">
+<table width="100%" class="media-manager">
 	<tr valign="top">
 		<td width="200">		
 			<fieldset id="treeview" class="adminform">

@@ -231,10 +231,12 @@ window.addEvent('domready', function() {
 
     // get the submenu (tabs) to work
     var subMenu =  $('submenu');
+    var itemForm = $('item-form');
 
     // fix submenu position on overrides
     if ( (subMenu && subMenu.hasClass('out')) || (subMenu && $('item-form')) )
     {
+        if (itemForm) itemForm.getChildren('div').addClass('hide');
         // move the submenu to the top of content
         subMenu.inject($('content'),'top');
     }
@@ -251,7 +253,7 @@ window.addEvent('domready', function() {
         /* Adding the tabs functionality
          * -------------------------------- */
 
-        var tabs = $$('.minimaTabs a'), cont = $('item-form').getChildren('div').addClass('hide');
+        var tabs = $$('.minimaTabs a'), cont = itemForm.getChildren('div').addClass('hide');
 
         // hide all tabs contens
         //cont.addClass('hide');

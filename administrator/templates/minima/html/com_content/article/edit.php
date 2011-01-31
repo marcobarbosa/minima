@@ -33,23 +33,28 @@ JHtml::_('behavior.keepalive');
 <ul id="submenu" class="out">
     <li class="item-content"><a href="#" class="active"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_CONTENT'); ?></a></li>
     <li class="item-parameters"><a href="#"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_PARAMETERS'); ?></a></li>
+    <?php if ($this->canDo->get('core.admin')): ?>
     <li class="item-permissions"><a href="#"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_PERMISSIONS'); ?></a></li>
+    <?php endif; ?>
 </ul>
 <form action="<?php JRoute::_('index.php?option=com_content'); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
     <div id="item-basic">
-        <fieldset id="form-left" class="adminform">
+    <div class="width-70 fltlft">
+        <fieldset class="adminform">
             <legend><?php echo empty($this->item->id) ? JText::_('COM_CONTENT_NEW_ARTICLE') : JText::sprintf('COM_CONTENT_EDIT_ARTICLE', $this->item->id); ?></legend>
             <ol class="adminformlist">
-                <li class="article-title">
+                <li class="item-title">
                     <?php echo $this->form->getLabel('title'); ?>
                     <?php echo $this->form->getInput('title'); ?>
                 </li>
-                <li class="article-text">
+                <li class="item-text">
                     <?php echo $this->form->getInput('articletext'); ?>
                 </li>
             </ol>
         </fieldset>
-        <fieldset id="form-right" class="adminform">
+	</div>
+	<div class="width-30 fltrt item-info">
+        <fieldset class="adminform">
             <legend><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_INFORMATION'); ?></legend>
             <ol class="adminformlist">
                 <li><?php echo $this->form->getLabel('alias'); ?>
@@ -74,6 +79,7 @@ JHtml::_('behavior.keepalive');
                 <?php echo $this->form->getInput('id'); ?></li>
             </ol>
         </fieldset>
+	</div>
     </div><!-- #item-basic -->
 
     <div id="item-advanced">
@@ -120,7 +126,7 @@ JHtml::_('behavior.keepalive');
                     ?>
                 <fieldset id="details" class="panelform">
                     <?php
-                    // 2 lists, one for the "Show" stuff and the other with the rest
+                    // 2 columns, one for the "Show" stuff and the other with the rest
                     $listLeft = "<ol class=\"adminformlist fltlft\">"; $listRight = "<ol class=\"adminformlist fltlft\">"; $showIntro = "";
 
                     foreach ($this->form->getFieldset($name) as $field):
@@ -175,15 +181,15 @@ JHtml::_('behavior.keepalive');
     </div><!-- /#item-advanced -->
 
     <div id="item-permissions">
-    <?php if ($this->canDo->get('core.admin')): ?>
-        <div class="width-100 fltlft">
-                <fieldset class="adminform">
-                    <?php echo $this->form->getLabel('rules'); ?>
-                    <?php echo $this->form->getInput('rules'); ?>
-                </fieldset>
-        </div>
+    <?php if ($this->canDo->get('core.admin')): ?>        
+	<div class="width-100 fltlft">
+		<fieldset class="panelform">
+			<?php echo $this->form->getLabel('rules'); ?>
+			<?php echo $this->form->getInput('rules'); ?>
+		</fieldset>
+	</div>
     <?php endif; ?>
-    </div>
+    </div><!-- /#item-permissions -->
 
     <input type="hidden" name="task" value="" />
         <?php echo JHtml::_('form.token'); ?>

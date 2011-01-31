@@ -32,7 +32,7 @@ $nPages = ceil( (count($items)*2) / 9);
     </ul>
     <?php endif; ?>
     <!-- prev button -->
-    <a href="#" id="prev" <?php if ($invisible) echo "class=\"invisible\""; ?>>&laquo;</a>
+    <a href="#" id="prev" <?php if ($invisible) echo "class=\"invisible\""; ?>></a>
     <ul id="panel-list">
         <?php
             $class = ""; $count = 0;
@@ -59,11 +59,11 @@ $nPages = ceil( (count($items)*2) / 9);
                         <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
                     </a>
                 </li>
-                <!--<li>
+                <li>
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
                         <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
                     </a>
-                </li>-->
+                </li>
         <?php else: ?>
                 <li class="ext">
                     <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $item->alias; ?>" />
@@ -75,7 +75,7 @@ $nPages = ceil( (count($items)*2) / 9);
     <?php endforeach; ?>
     </ul>
     <!-- next button -->
-    <a href="#" id="next" <?php if ($invisible) echo "class=\"invisible\""; ?>>&raquo;</a>
+    <a href="#" id="next" <?php if ($invisible) echo "class=\"invisible\""; ?>></a>
 </div>
 
 <div class="clr"></div>
