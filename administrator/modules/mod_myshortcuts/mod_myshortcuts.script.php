@@ -42,15 +42,21 @@ class Mod_MyshortcutsInstallerScript {
         }
 
         // template
-        // update modules positions
-        $db->setQuery("UPDATE `#__modules`".
+        // insert new modules 
+        /*$db->setQuery("UPDATE `#__modules`".
             " SET `position` = 'widgets-first'".
-            " WHERE `#__modules`.`position` = 'cpanel'; ");
-
+            " WHERE `#__modules`.`position` = 'cpanel'; ");*/
+	   /*INSERT INTO `jos_modules` (`title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES
+	   ('Popular Articles', '', '', 3, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{"count":"5","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+           ('Recently Added Articles', '', '', 4, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{"count":"5","ordering":"c_dsc","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+           ('Logged-in Users', '', '', 2, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{"count":"5","name":"1","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+	*/
+	
         if (!$db->query() && ($db->getErrorNum() != 1060)) {
             die($db->getErrorMsg(true));
         }
 
+	// copy modules positions
         $db->setQuery("UPDATE `#__modules`".
             " SET `position` = 'widgets-last'".
             " WHERE `#__modules`.`module` = 'mod_popular'; ");

@@ -29,9 +29,10 @@ $app = &JFactory::getApplication();
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href="http://fonts.googleapis.com/css?family=Nobile&subset=latin" rel="stylesheet" type="text/css">
+
     <jdoc:include type="head" />
 
-    <link href="http://fonts.googleapis.com/css?family=Nobile&subset=latin" rel="stylesheet" type="text/css">
     <link href="templates/<?php echo $this->template ?>/css/template.css?v=1" rel="stylesheet" type="text/css">
 
     <style type="text/css">

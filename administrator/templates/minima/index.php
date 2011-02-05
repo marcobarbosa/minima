@@ -75,13 +75,13 @@ $currentUser = JFactory::getUser();
         </div>
         <?php if( $this->countModules('panel') ): ?>
         <div id="tab-wrapper">
-            <span id="panel-tab"<?php if (JRequest::getInt('hidemainmenu')) echo " class=\"disabled\""; ?>>
+            <span id="panel-tab">
                 <?php echo JText::_('TPL_MINIMA_PANEL') ?>
             </span>
         </div>
         <?php endif; ?>
         <div id="list-wrapper">
-            <span id="more"<?php if (JRequest::getInt('hidemainmenu')) echo " class=\"disabled\""; ?>></span>
+            <span id="more"></span>
             <div class="clr"></div>
             <div id="list-content">
                 <dl class="first">

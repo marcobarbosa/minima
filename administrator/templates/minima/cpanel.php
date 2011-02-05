@@ -67,8 +67,9 @@ $currentUser = JFactory::getUser();
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-    <script src="templates/<?php echo $this->template ?>/js/raphael.min.js" charset="utf-8"></script>
-    <!--http://yandex.st/raphael/1.5.2/raphael.min.js-->
+
+    <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
+    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael.min.js"%3E%3C/script%3E'))</script>
 
 </head>
 <body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
@@ -137,7 +138,6 @@ $currentUser = JFactory::getUser();
     </footer>
     <script>
         head.js(
-            //{raphael: "templates/minima/js/raphael.min.js?v=1"},
             {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
         );
     </script>

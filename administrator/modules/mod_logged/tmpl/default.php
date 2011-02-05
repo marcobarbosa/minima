@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 17203 2010-05-20 17:16:37Z infograf768 $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	mod_logged
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -63,7 +63,7 @@ defined('_JEXEC') or die;
 			<td class="center">
 				<?php if ($user->client_id == 0) :?>
 					<a href="<?php echo $user->logoutLink;?>">
-						<img src="templates/bluestork/images/menu/icon-16-logout.png"/>
+						<?php echo JHtml::_('image', 'mod_logged/icon-16-logout.png', JText::_('JLOGOUT'), null, true);?>
 					</a>
 				<?php endif; ?>
 			</td>
