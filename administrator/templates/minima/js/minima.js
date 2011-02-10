@@ -39,6 +39,11 @@ var ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,cas
  */
  var mooPlaceholder=new Class({Implements:[Options],options:{htmlPlaceholder:"placeholder",unmoddedClass:"unchanged",parentNode:document,defaultSelector:"input[placeholder]"},initialize:function(a){this.setOptions(a);this.nativeSupport="placeholder" in document.createElement("input")},attachToElements:function(a){var b=this.options.parentNode.getElements(a||this.options.defaultSelector);if(b.length){b.each(function(c){this.attachEvents(c)},this)}},attachEvents:function(a,b){var b=b||a.get(this.options.htmlPlaceholder);if(this.nativeSupport||!$(a)||!b||!b.length){return}a.set("value",b).store("placeholder",b);if(this.options.unmoddedClass){a.addClass(this.options.unmoddedClass)}a.addEvents({change:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c!=d){a.removeClass(this.options.unmoddedClass).removeEvents("change")}}.bind(this),focus:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d){a.set("value","").removeClass(this.options.unmoddedClass)}}.bind(this),blur:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d||c==""){a.set("value",d).addClass(this.options.unmoddedClass)}}.bind(this)})}});
 
+/**
+ * MyPanelClass by Henrik Hussfelt, Marco Barbosa
+ */
+ var MyPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}});
+ 
 // tabs plugin
 /*var minimaTabs = new Class ({
 
@@ -448,121 +453,38 @@ window.addEvent('domready', function() {
     if (tabsWrapper)
     {
 
-        // status of the filter, if it's on or off
-        var panelStatus = {
-            'true': 'active',
-            'false': 'inactive'
-        };
+	    // fixing wrapper bug - thanks to d_mitar
+	    Fx.Slide.Mine = new Class({
+	        Extends: Fx.Slide,
+	        initialize: function(el, options) {
+	            this.parent(el, options);
+	            this.wrapper = this.element.getParent();
+	        }
+	    });
 
-        // fixing wrapper bug - thanks to d_mitar
-        Fx.Slide.Mine = new Class({
-            Extends: Fx.Slide,
-            initialize: function(el, options) {
-                this.parent(el, options);
-                this.wrapper = this.element.getParent();
-                this.wrapper.setStyles({
-                    //"float": "left",
-                    //"display": "inline"
-                });
-            },
-            onStart: function() {
-                // do stuff to this.wrapper if wanted
-            }
+		// Create a MyPanel instance
+		var MyPanel = new MyPanelClass({
+				panelWrapper: $('panel-wrapper'),
+				prev: $('prev'),
+				next: $('next'),
+				panelList: $('panel-list'),
+				panelPage: $('panel-pagination')
+		});
 
-        });
+		// Setup click event for previous
+		$('prev').addEvent('click', function() {
+			MyPanel.doPrevious();
+		});
+		// Setup click event for previous
+		$('next').addEvent('click', function() {
+			MyPanel.doNext();
+		});
 
-        var panel = new Fx.Slide.Mine(tabsWrapper, {
-            mode: "vertical",
-            transition: Fx.Transitions.Pow.easeOut
-        }).hide();
-
-        // Adding horizontal sliders
-        var prev = $('prev');
-        var next = $('next');
-        var panelList = $('panel-list');
-
-        if (next) {
-            var toIncrement = 0,
-                increment = 900;
-            // creating the slider
-            var panelSlide = new Fx.Tween( panelList, {duration: 500, transition: 'back:in:out'} );
-            // how many extensions
-            var extNum = panelList.getChildren("li").length;
-            // increase the width basing on extNum
-            panelList.setStyle("width", Math.round(extNum / 9) * 900 );
-            // dynamic max incrementation size (it depends on how many elements)
-            var maxRightIncrement = ( increment * -( Math.ceil(extNum / 9) ) ) + 900;
-
-            // pagination
-            var panelPage = $('panel-pagination');
-
-            // fix buttons visualization
-            var showButtons = function() {
-                /*if (toIncrement == 0 && !prev.hasClass('disabled')) prev.addClass('disabled');
-                else prev.removeClass('disabled');
-
-                if (toIncrement == maxRightIncrement && !next.hasClass('disabled')) next.addClass('disabled');
-                else next.removeClass('disabled');*/
-                if (toIncrement == 0) prev.hide();
-                else if (toIncrement == maxRightIncrement) next.hide();
-            }
-
-            // fix buttons for the first time
-            showButtons();
-
-            // add the buttons events
-            prev.addEvent('click', function() {
-                if(toIncrement < 0) {
-                    next.show();
-                    toIncrement += increment;
-                    panelSlide.pause();
-                    panelSlide.start('margin-left', toIncrement);
-                    // fix pagination
-                    panelPage.getFirst('.current').removeClass('current').getPrevious('li').addClass('current');
-                    // hide buttons if needed
-                    showButtons();
-                }
-            });
-
-            next.addEvent('click', function() {
-                if(toIncrement > maxRightIncrement) {
-                    prev.show();
-                    toIncrement -= increment;
-                    panelSlide.pause();
-                    panelSlide.start('margin-left', toIncrement);
-                    // fix pagination
-                    panelPage.getFirst('.current').removeClass('current').getNext('li').addClass('current');
-                    // hide buttons if needed
-                    showButtons();
-                }
-            });
-
-            // FIXME: DRY this!
-            panelPage.getChildren("li").addEvent('click', function() {
-                // add pagination events
-                if(toIncrement < 0) {
-                    next.show();
-                    toIncrement += increment;
-                    panelSlide.pause();
-                    panelSlide.start('margin-left', toIncrement);
-                    // fix pagination
-                    panelPage.getFirst('.current').removeClass('current').getPrevious('li').addClass('current');
-                    // hide buttons if needed
-                    showButtons();
-                }
-                else if(toIncrement > maxRightIncrement) {
-                    prev.show();
-                    toIncrement -= increment;
-                    panelSlide.pause();
-                    panelSlide.start('margin-left', toIncrement);
-                    // fix pagination
-                    panelPage.getFirst('.current').removeClass('current').getNext('li').addClass('current');
-                    // hide buttons if needed
-                    showButtons();
-                }
-            });
-
-        } // end of if next
+		// Fix panel pagination
+		$('panel-pagination').getChildren("li").addEvent('click', function() {
+			// Send ID to changepage as this contains pagenumber
+			MyPanel.changeToPage(this);
+		});
 
         // search-filter to filter the components
         var searchTerm = $('search-term');
@@ -595,58 +517,56 @@ window.addEvent('domready', function() {
                 }
             });
         }
+
         var extra = $('more');
         var extraLists = $('list-content');
         var openPanel = $('panel-tab');
         var listWrapper = $('list-wrapper');
 
-        if (!extra.hasClass('disabled') && !openPanel.hasClass('disabled'))
-        {
-            // open the panel slide
-            openPanel.addEvents({
-                'click': function(){
-                    panel.toggle();
-                },
-                'outerClick' : function(){
-                    //panel.slideOut();
-                }
-            });
-
-            // change status on toggle complete
-            panel.addEvent('complete', function() {
-                openPanel.set('class', panelStatus[panel.open]);
-            });
-
-            // dropdown menu
-            extra.addEvent('click', function(){
-                //this.getParent().addClass('active');
-                this.switchClass('active','inactive');
-                //this.addClass('active');
-                extraLists.toggle();
-            });
-
-            var hideLists = function() {
-                extra.set('class','inactive');
-                listWrapper.removeClass('active');
-                extraLists.hide();
+        // open the panel slide
+        openPanel.addEvents({
+            'click': function(){
+        		MyPanel.panel.toggle();
+            },
+            'outerClick' : function(){
+                //panel.slideOut();
             }
+        });
 
-            // turn off list when click outside
-            listWrapper.addEvent('outerClick', function(){
-                hideLists();
-            });
+        // change status on toggle complete
+        MyPanel.panel.addEvent('complete', function() {
+            openPanel.set('class', MyPanel.panelStatus[MyPanel.panel.open]);
+        });
 
-            // turn off list when clicking a link
-            extraLists.getElements("a").addEvent('click', function(){
-                hideLists();
-            });
+        // dropdown menu
+        extra.addEvent('click', function(){
+            //this.getParent().addClass('active');
+            this.switchClass('active','inactive');
+            //this.addClass('active');
+            extraLists.toggle();
+        });
 
-            // slide up panel when clicking a link
-            $$('#panel-list li').addEvent('click', function(){
-                panel.toggle();
-            });
+        var hideLists = function() {
+            extra.set('class','inactive');
+            listWrapper.removeClass('active');
+            extraLists.hide();
+        }
 
-        }  // end hasClass('disabled')
+        // turn off list when click outside
+        listWrapper.addEvent('outerClick', function(){
+            hideLists();
+        });
+
+        // turn off list when clicking a link
+        extraLists.getElements("a").addEvent('click', function(){
+            hideLists();
+        });
+
+        // slide up panel when clicking a link
+        $$('#panel-list li').addEvent('click', function(){
+            panel.toggle();
+        });
+
     }// end of if(tabsWrapper)
 
 });
