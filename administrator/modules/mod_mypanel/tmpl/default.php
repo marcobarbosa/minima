@@ -15,7 +15,7 @@ $items = ModMypanelHelper::getItems();
 $invisible = false;
 
 //$nPages = ceil( count($items) / 9);
-$nPages = ceil( (count($items)*2) / 9);
+$nPages = ceil( (count($items)*3) / 9);
 
 // hide arrows if items lower or equal 9
 //if (count($items) <= 9) $invisible = true;
@@ -26,9 +26,13 @@ $nPages = ceil( (count($items)*2) / 9);
     <?php if (!$invisible) : ?>
     <!-- dots pagination -->
     <ul id="panel-pagination">
+    	<?php $pageCount=0;?>
         <?php for($i=0; $i < $nPages; $i++) : ?>
-            <li <?php if($i == 0) echo "class=\"current\"" ?>>.</li>
-        <?php endfor; ?>
+            <li <?php if($i == 0) echo "class=\"current\"" ?> id="panel-pagination-<?php echo $pageCount;?>">.</li>
+        <?php
+        	$pageCount+=1;
+        endfor;
+        ?>
     </ul>
     <?php endif; ?>
     <!-- prev button -->
@@ -59,6 +63,17 @@ $nPages = ceil( (count($items)*2) / 9);
                         <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
+                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
+                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
                         <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
