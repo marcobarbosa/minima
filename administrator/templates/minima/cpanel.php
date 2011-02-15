@@ -154,7 +154,7 @@ $currentUser = JFactory::getUser();
     <script>
         // google font
         WebFontConfig = {
-            google: { families: [ 'Nobile:latin' ] }
+            google: { families: [ 'Nobile' ] }
         };
         (function() {
             var wf = document.createElement('script');

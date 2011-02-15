@@ -906,6 +906,7 @@ div.pagetitle h2                        {
                                             padding: 0;
                                             text-shadow: 1px 1px 0 #ddd;
                                         }
+
     .contentpane h2                     {   text-shadow: 1px 1px 0 #fff!Important; }
 
 .locked .pagetitle h2                   {   font-size: 26px; line-height: 44px; padding-top: 5px; }
