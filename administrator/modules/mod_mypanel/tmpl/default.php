@@ -36,7 +36,7 @@ $nPages = ceil( (count($items)*3) / 9);
     </ul>
     <?php endif; ?>
     <!-- prev button -->
-    <a href="#" id="prev" <?php if ($invisible) echo "class=\"invisible\""; ?>></a>
+    <a href="#" id="prev" <?php if ($invisible) echo "class=\"invisible\""; ?>><span class="arrow"></span></a>
     <ul id="panel-list">
         <?php
             $class = ""; $count = 0;
@@ -90,7 +90,7 @@ $nPages = ceil( (count($items)*3) / 9);
     <?php endforeach; ?>
     </ul>
     <!-- next button -->
-    <a href="#" id="next" <?php if ($invisible) echo "class=\"invisible\""; ?>></a>
+    <a href="#" id="next" <?php if ($invisible) echo "class=\"invisible\""; ?>><span class="arrow"></span></a>
 </div>
 
 <div class="clr"></div>

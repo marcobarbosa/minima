@@ -32,9 +32,6 @@ $currentUser = JFactory::getUser();
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <link href="http://fonts.googleapis.com/css?family=Nobile&amp;subset=latin" rel="stylesheet" type="text/css">
-
     <jdoc:include type="head" />
 
     <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet">
@@ -45,7 +42,7 @@ $currentUser = JFactory::getUser();
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
         #panel-tab, #panel-tab.active, #panel-wrapper,#more, #more.inactive { background-color: <?php echo $darkerColor; ?>; }
         #tophead { background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
-        #prev, #next { border: 1px solid <?php echo $templateColor; ?>; background-color: <?php echo $templateColor;?>; background-color: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background-color: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
+        #prev, #next { border: 1px solid <?php echo $templateColor; ?>; background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
         #prev:active, #next:active { background-color: <?php echo $darkerColor; ?>; }
         .box:hover { -moz-box-shadow: 0 0 10px <?php echo $templateColor; ?>; -webkit-box-shadow: 0 0 10px <?php echo $templateColor; ?>; box-shadow: 0 0 10px <?php echo $templateColor; ?>; }
         #panel-pagination li { color: <?php echo $templateColor; ?>; }
@@ -133,6 +130,19 @@ $currentUser = JFactory::getUser();
         <jdoc:include type="modules" name="footer" style="none"  />
     </footer>
     <script>
+        // google font
+        WebFontConfig = {
+            google: { families: [ 'Nobile:latin' ] }
+        };
+        (function() {
+            var wf = document.createElement('script');
+            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+        })();
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
         );
@@ -142,5 +152,8 @@ $currentUser = JFactory::getUser();
             closeFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>"
         });
     </script>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="templates/<?php echo  $this->template ?>/js/selectivizr.js"></script>
+    <![endif]-->
 </body>
 </html>

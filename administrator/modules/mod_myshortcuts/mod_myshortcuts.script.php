@@ -32,6 +32,16 @@ class Mod_MyshortcutsInstallerScript {
             echo $db->getErrorMsg(true);
         }
 
+        // copy modules
+        $db->setQuery("INSERT INTO `#__modules` (`title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES".
+            " ('Popular Articles', '', '', 3, 'widgets-last', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{\"count\":\"5\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
+            " ('Recently Added Articles', '', '', 4, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{\"count\":\"5\",\"ordering\":\"c_dsc\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
+            " ('Logged-in Users', '', '', 2, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{\"count\":\"5\",\"name\":\"1\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),";
+
+        if (!$db->query() && ($db->getErrorNum() != 1060)) {
+            die($db->getErrorMsg(true));
+        }
+
         // add values to modules_menu
         $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
             " SELECT `id`,0 FROM `#__modules`".
@@ -41,29 +51,14 @@ class Mod_MyshortcutsInstallerScript {
             echo $db->getErrorMsg(true);
         }
 
-        // template
-        // insert new modules 
+        // copy modules positions
         /*$db->setQuery("UPDATE `#__modules`".
-            " SET `position` = 'widgets-first'".
-            " WHERE `#__modules`.`position` = 'cpanel'; ");*/
-	   /*INSERT INTO `jos_modules` (`title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES
-	   ('Popular Articles', '', '', 3, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{"count":"5","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
-           ('Recently Added Articles', '', '', 4, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{"count":"5","ordering":"c_dsc","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
-           ('Logged-in Users', '', '', 2, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{"count":"5","name":"1","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
-	*/
-	
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            die($db->getErrorMsg(true));
-        }
-
-	// copy modules positions
-        $db->setQuery("UPDATE `#__modules`".
             " SET `position` = 'widgets-last'".
             " WHERE `#__modules`.`module` = 'mod_popular'; ");
 
         if (!$db->query() && ($db->getErrorNum() != 1060)) {
             die($db->getErrorMsg(true));
-        }
+        }*/
 
         // set minima style default
         $db->setQuery("UPDATE `#__template_styles`".
@@ -80,6 +75,30 @@ class Mod_MyshortcutsInstallerScript {
         if (!$db->query() && ($db->getErrorNum() != 1060)) {
             die($db->getErrorMsg(true));
         }
+
+
+        /**
+         * Set the default language based on the browser http headers
+         * by Stian Didriksen, Marco Barbosa
+         * GNU General Public License version 2 or later; see LICENSE.txt
+         */
+
+        //Set the loaded language based on the browser http headers
+        /*if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+        {
+            $config =& JFactory::getConfig();
+            $languages = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $languages = explode(',', $languages);
+            $language  = $config->getValue('config.language');
+            foreach($languages as $language)
+            {
+                if(JLanguage::exists($language)) break;
+            }
+            $config->setValue('config.language', $language);
+            $language = JFactory::getLanguage();
+            $language->setLanguage($config->getValue('config.language'));
+            $language->load();
+        }*/
 
     }
 }

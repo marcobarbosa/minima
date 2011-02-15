@@ -145,7 +145,7 @@ abstract class ModMyshortcutsHelper
                 ),*/
                 array(
                     'link' => JRoute::_('index.php?option=com_installer'),
-                    'text' => JText::_('MOD_MYSHORTCUTS_EXTENSIONS'),
+                    'text' => JText::_('MOD_MYSHORTCUTS_EXTEND'),
                     'access' => array('core.manage','com_installer')
                 ),
                 array(
