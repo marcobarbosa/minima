@@ -14,7 +14,7 @@ defined('_JEXEC') or die;
 // defining the active icon
 $juri = clone(JURI::getInstance());
 
-$url = ($juri->getQuery()) ? $juri->getPath()."?".$juri->getQuery() : $url = $juri->getPath();
+$url = ( $juri->getQuery() ) ? $juri->getPath()."?".$juri->getQuery() : $url = $juri->getPath();
 
 /*echo "<ul>";
 echo "<li>".$button['link']."</li><br />";

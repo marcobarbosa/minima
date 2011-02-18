@@ -1,33 +1,70 @@
 /* the humans responsible & colophon */
 /* humanstxt.org */
 
+/* TEAM */
+    Author: Marco Barbosa
+    Site: marcobarbosa.com
+    Twitter: @MarcoBarbosa
+    From: Brazil
 
-/* CONTRIBUTORS */
-    Marco Barbosa - Creator
-    Marcobarbosa.com
-    @MarcoBarbosa
+    Javascript developer: Henrik Hussfelt
+    Twitter: @hussfelt
+    From: Sweden
 
-    Henrik Hussfelt - Javascript
-
-    Stian Didriksen - Javascript & CSS3
-
-    Dimitry - Javascript
-
+    Javascript & CSS3 "ninja": Stian Didriksen
+    Twitter: @stipsan
+    From: Norway
 
 /* TRANSLATIONS */
-    Norwegian by Torkil
-    German by
-    Swedish by
+    Norwegian: Torkil S. Johnsen
+    German: Christian Hent
+    Swedish: Linda Kadar
+    Brazilian Portuguese: Marco Barbosa
 
+/* SPECIAL THANKS */    
+    Dimitar Christoff - Javascript tips and refactoring
+    -------------------------
+    J and Beyond - the coolest Joomla! event you will ever be.
+    Molajo - Because Joomla! rocks and Molajo crocs!    
 
-/* THANKS */
-    Name - url
+/* THANKS (those who helped somewhat: feedback, motivation, etc) */
+    Amy Stephen
+    Brian Teeman
+    Babs Gösgens
+    Cristina Solana
+    Chris Rault
+    Christian Hent
+    Fotis Envagelou
+    Henrik Hussfelt
+    Jeremy Wilken    
+    Linda Kadar
+    Martin Blodau
+    Michael Babker    
+    Robert Vining
+    Sarah Watz
+    Stian Didriksen
+    Torkil S. Johnsen
+    Everybody who raised his hand on JAB10 giving feedback.
+    Molajo    
 
-
+/* Some cool #mootools folks: */
+    d_mitar
+    rev087
+    keeto
+    fakedarren
+    FunFactor
+    csuwldcat
+    rpflo
+    Oskar__
+    boushley
+    Garrick
+    thanks for the kind help! (by m4co)
+ 
 /* PROJECT */
-    Joomla! 1.6
-    Standards: HTML5, CSS3
-    Components: Mootools 1.3, HeadJS, RaphaelJS
+    CMS: Joomla! 1.6
+    Doctype: HTML5, CSS3
+    Javascript: Mootools 1.3, HeadJS, RaphaelJS
+    More: Lots of coffee and/or tea with loud music.
 
            _       _
  _ __ ___ (_)_ __ (_)_ __ ___   __ _

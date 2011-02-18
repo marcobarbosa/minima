@@ -2,7 +2,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Henrik Hussfelt, Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 

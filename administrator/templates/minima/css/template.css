@@ -1,12 +1,10 @@
-/* heeeere */
-
 @charset "UTF-8";
 
 /**
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -305,8 +303,10 @@ body                                    {
 
 #header-box                             {   background: #f0f0f0; }
 
-#footer .copyright                      {   color: #fff; line-height: 160%; margin: 10px; text-align: center; }
-#footer .version                        {   margin: 10px; text-align: center; }
+
+footer .copyright                       {   line-height: 160%; margin: 10px; text-align: center; }
+footer .version                         {   margin: 10px; text-align: center; }
+    #topLink                            {   float: right; font-size: 11px; margin-right: 20px; }
 
 #wrapper                                {   min-width: 980px; white-space: nowrap; }
 
@@ -530,6 +530,19 @@ BODY.error                              {   background: #ccc; }
                                             padding: 5px 10px 5px;
                                         }
 
+    #content-top                        {   background: #f4f4f4; z-index: 99; }
+
+    .fixed                              {   
+                                            position: fixed; top: 0; left: 20px; 
+                                            padding-top: 10px;
+                                            -webkit-transition: all 0.3s ease-in-out;
+                                            -moz-transition: all 0.3s ease-in-out;
+                                            -o-transition: all 0.3s ease-in-out;
+                                            transition: all 0.3s ease-in-out;
+                                        }
+
+        .locked .fixed                  {   max-width: 1140px; }
+                                        
 #toolbar-box,
 #submenu a.active                       {   background:#fff!Important; }
 
@@ -1172,7 +1185,7 @@ input#upload-submit,
                                             color:#fff;
                                         }
 
-#form-login input.hidebtn               {
+#form-login input.hidebtn               {   
                                             -moz-border-radius: 10px;
                                             -webkit-border-radius: 10px;
                                             border-radius: 10px;
@@ -1186,7 +1199,8 @@ input#upload-submit,
 #toolbar-new a,
 #toolbar-popup-new a                    {   margin-right: 25px; }
 
-#form-login input.hidebtn:hover,input#upload-submit:hover,
+#form-login input.hidebtn:hover, 
+input#upload-submit:hover,
 #toolbar-new a:hover,
 #toolbar-popup-new a:hover,
 #toolbar-apply a:hover,
@@ -1194,7 +1208,7 @@ input#upload-submit,
 #toolbar-save-new a:hover,
 #toolbar-save-copy a:hover,
 #toolbar-delete a:hover                 {
-                                            border-color:#409239;
+                                            border-color: #409239;
                                             text-shadow: 1px 1px 0 rgba(0,0,0,0.50);
                                         }
 
@@ -1206,7 +1220,7 @@ input#upload-submit,
 #toolbar-popup-new a:active,
 #toolbar-apply a:active,
 #toolbar-save a:active,
-#form-login input.hidebtn:active,
+#form-login input.hidebtn:active, #form-login input.hidebtn:focus,
 input#upload-submit:active              {   background: #34B62A!Important; border-color:#409239; }
 
 #toolbar-save-new a,
@@ -1233,9 +1247,12 @@ input#upload-submit:active              {   background: #34B62A!Important; borde
 #toolbar-config a,
 #toolbar-cancel a                       {
                                             background: transparent;
-                                            border: none;
-                                            margin-right: 0px;
+                                            border: none!Important;
+                                            margin-right: 0;
                                             color: #297BA2;
+                                            -moz-box-shadow: none;
+                                            -webkit-box-shadow: none;
+                                            box-shadow: none;
                                         }
 
 #toolbar-popup-Popup a:hover,
@@ -1248,11 +1265,12 @@ input#upload-submit:active              {   background: #34B62A!Important; borde
 #toolbar-help a:active,
 #toolbar-config a:active,
 #toolbar-cancel a:active                  {
-                                            background: transparent;
+                                            background: transparent!Important;
+                                            border: none!Important;
+                                            color: #297BA2;
                                             -moz-box-shadow: none;
                                             -webkit-box-shadow: none;
-                                            box-shadow: none;
-                                            color: #297BA2;
+                                            box-shadow: none;                           
                                             text-decoration: underline;
                                             text-shadow: none;
                                         }
@@ -1717,6 +1735,8 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
     #component-form input,
     #component-form select              {   padding: 0; }
 
+    #component-form #toolbar li:hover   {   background: none; border: none; }
+
 .tab-description,
 .mod-desc,
 .plg-desc                               {   font-size: 13px; font-style: italic; color: #666; }
@@ -1864,10 +1884,10 @@ input.text-area-order                   {
 
 #uploadform                             {   background: #fff!Important; }
 
-fieldset.uploadform label               {
+/*fieldset.uploadform label               {
                                             clear:left;
                                             min-width: 100px;
-                                        }
+                                        }*/
 
 #upload-noflash                         {
                                             padding: 0;
@@ -2991,7 +3011,7 @@ ul.config-option-list li                {
  */
 
 .rule-desc { margin: 5px 0;}
-.rule-notes { color: #666;  line-height: 1.5;}
+.rule-desc, .rule-notes { color: #666;  line-height: 1.5;}
 
 #permissions-sliders ul#rules .pane-slider.pane-hide
 {

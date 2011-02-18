@@ -3,7 +3,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -31,7 +31,7 @@ $app = &JFactory::getApplication();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.css?v=1" rel="stylesheet" type="text/css">
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
             body { background-color: <?php echo $templateColor;?>; }

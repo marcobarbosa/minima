@@ -3,7 +3,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -34,9 +34,7 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
+    <link href="templates/<?php echo  $this->template ?>/css/template.min.css" rel="stylesheet">    
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
@@ -61,7 +59,7 @@ $currentUser = JFactory::getUser();
         <div id="panel-wrapper">
             <jdoc:include type="modules" name="panel" />
         </div>
-        <?php endif; ?>
+        <?php endif; ?>        
     <header id="tophead">
         <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
@@ -110,24 +108,27 @@ $currentUser = JFactory::getUser();
     <?php endif; ?>
     <div class="message-wrapper"><jdoc:include type="message" /></div>
     <div id="content">
-        <?php if (!JRequest::getInt('hidemainmenu')): ?>
-            <jdoc:include type="modules" name="submenu" />
-        <?php endif; ?>
-        <div id="toolbar-box">
-            <jdoc:include type="modules" name="toolbar" />
-            <jdoc:include type="modules" name="title" />
-        </div>
-        <div id="content-box">
+        <header id="content-top">
+            <?php if (!JRequest::getInt('hidemainmenu')): ?>
+                <jdoc:include type="modules" name="submenu" />
+            <?php endif; ?>
+            <div id="toolbar-box">
+                <jdoc:include type="modules" name="toolbar" />
+                <jdoc:include type="modules" name="title" />
+            </div>
+        </header><!-- /# content-top -->
+        <section id="content-box">
             <jdoc:include type="component" />
             <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
-        </div><!-- /#content-box -->
+        </section><!-- /#content-box -->
     </div><!-- /#content -->
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
             <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
+            <a href="#minima" id="topLink"><?php echo JText::_('TPL_MINIMA_TOP'); ?></a>
         </p>
-        <jdoc:include type="modules" name="footer" style="none"  />
+        <jdoc:include type="modules" name="footer" style="none"  />        
     </footer>
     <script>
         // google font
@@ -144,7 +145,7 @@ $currentUser = JFactory::getUser();
             s.parentNode.insertBefore(wf, s);
         })();
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
         );
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",

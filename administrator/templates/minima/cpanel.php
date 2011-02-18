@@ -3,7 +3,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -26,29 +26,7 @@ $lighterColor   = $this->params->get('lighterColor');
 //$welcome = $this->params->get('welcome_message',1);
 
 // get the current logged in user
-$currentUser = JFactory::getUser();
-
-/*[1:37:32 PM AMT] ercan.ozkaya: $modules = JModuleHelper::getModules('cpanel'); will give you the modules.
-[1:37:55 PM AMT] ercan.ozkaya: and then you should walk the array and call JModuleHelper::renderModule($module)
-[1:38:57 PM AMT] ercan.ozkaya: or JModuleHelper::renderModule($module, $attribs)
-*/
-/*
-        if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
-        {
-            $config =& JFactory::getConfig();
-            $languages = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            $languages = explode(',', $languages);
-            $language  = $config->getValue('config.language');
-            foreach($languages as $language)
-            {
-                if(JLanguage::exists($language)) { echo "UHUL"; }else { echo "NOPE";}//break;
-            }
-            $config->setValue('config.language', $language);
-            $language = JFactory::getLanguage();
-            $language->setLanguage($config->getValue('config.language'));
-            $language->load();
-        }*/
-
+$currentUser = JFactory::getUser();    
 
 ?>
 
@@ -63,7 +41,7 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo  $this->template ?>/css/template.css?v=1" rel="stylesheet">
+    <link href="templates/<?php echo  $this->template ?>/css/template.min.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
 
@@ -166,7 +144,7 @@ $currentUser = JFactory::getUser();
             s.parentNode.insertBefore(wf, s);
         })();
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js?v=1"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
         );
     </script>
     <!--[if (gte IE 6)&(lte IE 8)]>

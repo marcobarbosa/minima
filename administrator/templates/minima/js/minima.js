@@ -2,7 +2,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -34,16 +34,16 @@ $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hi
  */
 var ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,caseSensitive:false,ignoreKeys:[13,27,32,37,38,39,40],matchAnywhere:true,property:"text",trigger:"keyup",onStart:$empty,onShow:$empty,onHide:$empty,onComplete:$empty},initialize:function(c,b,a){this.setOptions(a);this.observeElement=document.id(c);this.elements=$$(b);this.matches=this.elements;this.misses=[];this.listen();},listen:function(){this.observeElement.addEvent(this.options.trigger,function(a){if(this.observeElement.value.length){if(!this.options.ignoreKeys.contains(a.code)){this.fireEvent("start");this.findMatches(this.options.cache?this.matches:this.elements);this.fireEvent("complete");}}else{this.findMatches(this.elements,false);}}.bind(this));},findMatches:function(f,b){var e=this.observeElement.value;var a=this.options.matchAnywhere?e:"^"+e;var g=this.options.caseSensitive?"":"i";var c=new RegExp(a,g);var d=[];f.each(function(i){var h=(b==undefined?c.test(i.get(this.options.property)):b);if(h){if(!i.retrieve("showing")){this.fireEvent("show",[i]);}d.push(i);i.store("showing",true);}else{if(i.retrieve("showing")){this.fireEvent("hide",[i]);}i.store("showing",false);}return true;}.bind(this));return d;}});
 
-/*
- * mooPlaceholder by Dimitri Christoff (http://fragged.org/mooplaceholder-input-placeholder-behaviour-class_1081.html)
- */
- var mooPlaceholder=new Class({Implements:[Options],options:{htmlPlaceholder:"placeholder",unmoddedClass:"unchanged",parentNode:document,defaultSelector:"input[placeholder]"},initialize:function(a){this.setOptions(a);this.nativeSupport="placeholder" in document.createElement("input")},attachToElements:function(a){var b=this.options.parentNode.getElements(a||this.options.defaultSelector);if(b.length){b.each(function(c){this.attachEvents(c)},this)}},attachEvents:function(a,b){var b=b||a.get(this.options.htmlPlaceholder);if(this.nativeSupport||!$(a)||!b||!b.length){return}a.set("value",b).store("placeholder",b);if(this.options.unmoddedClass){a.addClass(this.options.unmoddedClass)}a.addEvents({change:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c!=d){a.removeClass(this.options.unmoddedClass).removeEvents("change")}}.bind(this),focus:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d){a.set("value","").removeClass(this.options.unmoddedClass)}}.bind(this),blur:function(){var c=a.get("value").trim(),d=a.retrieve("placeholder");if(c==d||c==""){a.set("value",d).addClass(this.options.unmoddedClass)}}.bind(this)})}});
-
 /**
  * MyPanelClass by Henrik Hussfelt, Marco Barbosa
  */
  var MyPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}});
- 
+
+/**
+ * ScrollSpy by David Walsh (http://davidwalsh.name/js/scrollspy)
+ */
+var ScrollSpy=new Class({Implements:[Options,Events],options:{container:window,max:0,min:0,mode:"vertical"},initialize:function(a){this.setOptions(a);this.container=document.id(this.options.container);this.enters=this.leaves=0;this.inside=false;this.listener=function(d){var b=this.container.getScroll(),c=b[this.options.mode=="vertical"?"y":"x"];if(c>=this.options.min&&(this.options.max==0||c<=this.options.max)){if(!this.inside){this.inside=true;this.enters++;this.fireEvent("enter",[b,this.enters,d])}this.fireEvent("tick",[b,this.inside,this.enters,this.leaves,d])}else{if(this.inside){this.inside=false;this.leaves++;this.fireEvent("leave",[b,this.leaves,d])}}this.fireEvent("scroll",[b,this.inside,this.enters,this.leaves,d])};this.addListener()},start:function(){this.container.addEvent("scroll",this.listener.bind(this))},stop:function(){this.container.removeEvent("scroll",this.listener.bind(this))},addListener:function(){this.start()}});
+
 // tabs plugin
 /*var minimaTabs = new Class ({
 
@@ -90,29 +90,30 @@ window.addEvent('load', function() {
 
 window.addEvent('domready', function() {
 
-    // mooPlaceholder to use html5 placeholder
-    //new mooPlaceholder().attachEvents($("search-term"));
-
     // Iphone checkboxes
     (function(a){this.IPhoneCheckboxes=new Class({Implements:[Options],options:{checkedLabel:"ON",uncheckedLabel:"OFF",background:"#fff",containerClass:"iPhoneCheckContainer",labelOnClass:"iPhoneCheckLabelOn",labelOffClass:"iPhoneCheckLabelOff",handleClass:"iPhoneCheckHandle",handleBGClass:"iPhoneCheckHandleBG",handleSliderClass:"iPhoneCheckHandleSlider",elements:"input[type=checkbox].check"},initialize:function(b){this.setOptions(b);this.elements=$$(this.options.elements);this.elements.each(function(c){this.observe(c)},this)},observe:function(e){e.set("opacity",0);var d=new Element("div",{"class":this.options.containerClass}).inject(e.getParent());e.inject(d);var g=new Element("div",{"class":this.options.handleClass}).inject(d);var c=new Element("div",{"class":this.options.handleBGClass,style:this.options.background}).inject(g);var i=new Element("div",{"class":this.options.handleSliderClass}).inject(g);var b=new Element("label",{"class":this.options.labelOffClass,text:this.options.uncheckedLabel}).inject(d);var f=new Element("label",{"class":this.options.labelOnClass,text:this.options.checkedLabel}).inject(d);var h=d.getSize().x-39;e.offFx=new Fx.Tween(b,{property:"opacity",duration:200});e.onFx=new Fx.Tween(f,{property:"opacity",duration:200});d.addEvent("mouseup",function(){var l=!e.checked;var j=(l?h:0);var k=(l?34:0);c.hide();new Fx.Tween(g,{duration:100,property:"left",onComplete:function(){c.setStyle("left",k).show()}}).start(j);if(l){e.offFx.start(0);e.onFx.start(1)}else{e.offFx.start(1);e.onFx.start(0)}e.set("checked",l)});if(e.checked){b.set("opacity",0);f.set("opacity",1);g.setStyle("left",h);c.setStyle("left",34)}else{f.set("opacity",0);c.setStyle("left",0)}}})})(document.id);
 
     // instanciate
     //var chx = new IPhoneCheckboxes();
 
-    /* ----------------------------- */
+    // ------------------------------- 
 
     // get the language strings
     var language = MooTools.lang.get('Minima');
 
-    /* TOOLBAR
-     * ================================================== */
-
-    // save all anchors first
-    var toolbarElements = $$('.toolbar-list li a');
+    // DOM variables    
+    var toolbarElements = $$('.toolbar-list li a'); // save all anchors first
     var toolbar = $('toolbar');
     var bulkActions = new Array();
     var bulkNonActions = new Array();
+    var filterBar = $('filter-bar');
+    var contentTop = $('content-top');
+    var topHead = $('tophead');
+    // ------------------------------- 
 
+    /* TOOLBAR
+     * ================================================== */
+        
     if( toolbarElements.length )
     {
         toolbarElements.each(function(item1){
@@ -128,7 +129,7 @@ window.addEvent('domready', function() {
         });
     }
 
-    /* ----------------------------- */
+    // ------------------------------- 
     // create elements
     if(bulkActions.length)
     {
@@ -167,7 +168,7 @@ window.addEvent('domready', function() {
         var bulkListAnchor   = new Element('a', {'html': language['actionBtn']}); // parent anchor
         var spanArrow        = new Element('span', {'class' : 'arrow'}); // arrow
 
-        /* ----------------------------- */
+        // ------------------------------- 
         // now fix the elements
 
         // first add the new parent li
@@ -194,7 +195,7 @@ window.addEvent('domready', function() {
     if (toolbar) toolbar.show();
 
     $(document.body).addClass('ready');
-    $(document.body).removeClass('no-js');
+    //$(document.body).removeClass('no-js');
 
     // add id #adminlist to .adminlist
     var adminlist = $$('.adminlist');
@@ -313,7 +314,7 @@ window.addEvent('domready', function() {
     }
 
     // fix padding when there's no tabs
-    if ( !$('filter-bar')  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
+    if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
 
     // make whole row clickable
     if ($$('.adminlist').length)
@@ -378,9 +379,8 @@ window.addEvent('domready', function() {
     /* FILTER ACCORDION
      * ================================================== */
 
-    // make filter-bar a slide
-    var bar = $('filter-bar');
-    if (bar)
+    // make filter-bar a slide    
+    if (filterBar)
     {
 
         // status of the filter, if it's on or off
@@ -389,18 +389,24 @@ window.addEvent('domready', function() {
             'false': language['showFilter']
         };
 
-        var filterSlide = new Fx.Slide(bar).hide();
+        var filterSlide = new Fx.Slide(filterBar).hide();
 
         // filter anchor element
         var filterAnchor = new Element('a', {
-            'href': '#',
+            'href': '#minima',
             'id': 'open-filter',
             'html': language['closeFilter'],
             'events': {
                 'click': function(e){
                     e.stop();
                     filterSlide.toggle();
-                    this.toggleClass("active");
+                    this.toggleClass("active");                    
+                    if (this.hasClass("active")) {
+                      $('filter_search').focus();  
+                    } 
+                    if (contentTop.hasClass('fixed')) {
+                        window.scrollTo(0,0);
+                    }
                 }
             }
         });
@@ -410,7 +416,7 @@ window.addEvent('domready', function() {
         var filterActive = false;
         var pageTitle = "";
 
-        bar.getElements('input, select').each(function(el) {
+        filterBar.getElements('input, select').each(function(el) {
             var elValue = el.get('value');
             // if any filter is selected
             if (elValue && elValue != 0 && elValue != '*')
@@ -440,9 +446,29 @@ window.addEvent('domready', function() {
         $$('.pagetitle').grab(filterAnchor);
         //$$('.pagetitle h2').inject(filterAnchor, 'before');
 
-        bar.show();
+        filterBar.show();
     } //end filter-bar
 
+    // fixed content-box header when scrolling    
+    /* scrollspy instance */    
+    var ss = new ScrollSpy({
+        min: 80, 
+        onEnter: function() {
+            // we are in locked mode, must fix positioning
+            if(document.body.hasClass('locked')) {
+                contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
+            }            
+            contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
+        },
+        onLeave: function() {
+            contentTop.removeClass('fixed');
+            if(document.body.hasClass('locked')) {
+                contentTop.setStyle('width', '100%');
+            }
+        }
+    }); 
+    
+    // ------------------------------- 
 
     /* PANEL TAB
      * ================================================== */
@@ -452,7 +478,6 @@ window.addEvent('domready', function() {
 
     if (tabsWrapper)
     {
-
 	    // fixing wrapper bug - thanks to d_mitar
 	    Fx.Slide.Mine = new Class({
 	        Extends: Fx.Slide,
@@ -487,7 +512,7 @@ window.addEvent('domready', function() {
 		});
 
         // search-filter to filter the components
-        var searchTerm = $('search-term');
+        /*var searchTerm = $('search-term');
 
         if (searchTerm) {
             var myFilter = new ElementFilter('search-term', '#panel-list li a', {
@@ -495,28 +520,28 @@ window.addEvent('domready', function() {
                 cache: false,
                 onShow: function(element) {
                     element.show();
-                    /*element.set('morph',{
+                    element.set('morph',{
                         onComplete: function() {
                             element.setStyle('background-color','#fff');
                         }
                     });
-                    element.morph({'background-color':'#a5faa9'});*/
+                    element.morph({'background-color':'#a5faa9'});
                 },
                 onHide: function(element) {
                     element.hide();
-                    /*element.set('morph',{
+                    element.set('morph',{
                         onComplete: function() {
                             element.setStyle('background-color','#fff');
                         }
                     });
-                    element.morph({'background-color':'#fac3a5'});*/
+                    element.morph({'background-color':'#fac3a5'});
                 },
                 onComplete: function(element) {
                     console.log(element);
                     //showButtons();
                 }
             });
-        }
+        }*/
 
         var extra = $('more');
         var extraLists = $('list-content');

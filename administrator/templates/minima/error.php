@@ -3,7 +3,7 @@
  * @version     0.8
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,7 +20,7 @@ if (!isset($this->params)) {$this->params = $app->getTemplate(true)->params;};
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css" />
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body id="front" class="error">

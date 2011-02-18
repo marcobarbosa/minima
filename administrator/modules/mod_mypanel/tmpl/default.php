@@ -4,7 +4,7 @@
  * @package     Minima
  * @subpackage  mod_mypanel
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
+ * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,8 +14,8 @@ defined('_JEXEC') or die;
 $items = ModMypanelHelper::getItems();
 $invisible = false;
 
-//$nPages = ceil( count($items) / 9);
-$nPages = ceil( (count($items)*3) / 9);
+$nPages = ceil( count($items) / 9);
+//$nPages = ceil( (count($items)*3) / 9);
 
 // hide arrows if items lower or equal 9
 //if (count($items) <= 9) $invisible = true;
@@ -62,23 +62,7 @@ $nPages = ceil( (count($items)*3) / 9);
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
                         <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
                     </a>
-                </li>
-                <li>
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
-                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
-                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
-                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
-                    </a>
-                </li>
+                </li>                
         <?php else: ?>
                 <li class="ext">
                     <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $item->alias; ?>" />
