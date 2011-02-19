@@ -21,31 +21,32 @@
     Swedish: Linda Kadar
     Brazilian Portuguese: Marco Barbosa
 
-/* SPECIAL THANKS */    
+/* SPECIAL THANKS */
     Dimitar Christoff - Javascript tips and refactoring
     -------------------------
     J and Beyond - the coolest Joomla! event you will ever be.
-    Molajo - Because Joomla! rocks and Molajo crocs!    
+    Molajo - Because Joomla! rocks and Molajo crocs!
 
 /* THANKS (those who helped somewhat: feedback, motivation, etc) */
     Amy Stephen
     Brian Teeman
-    Babs Gösgens
+    Babs G&ouml;sgens
     Cristina Solana
     Chris Rault
     Christian Hent
     Fotis Envagelou
     Henrik Hussfelt
-    Jeremy Wilken    
+    Jeremy Wilken
     Linda Kadar
     Martin Blodau
-    Michael Babker    
+    Matt Thomas
+    Michael Babker
     Robert Vining
     Sarah Watz
     Stian Didriksen
     Torkil S. Johnsen
     Everybody who raised his hand on JAB10 giving feedback.
-    Molajo    
+    Molajo
 
 /* Some cool #mootools folks: */
     d_mitar
@@ -59,7 +60,7 @@
     boushley
     Garrick
     thanks for the kind help! (by m4co)
- 
+
 /* PROJECT */
     CMS: Joomla! 1.6
     Doctype: HTML5, CSS3

@@ -9,7 +9,7 @@
 
 // No direct access.
 defined('_JEXEC') or die;
-$user =& JFactory::getUser();
+$user = JFactory::getUser();
 
 echo "<ul id=\"user-status\">";
     echo "<li>".JText::_('TPL_MINIMA_HELLO')." <a href=\"index.php?option=com_admin&amp;task=profile.edit\">".$user->username."</a></li>";

@@ -17,7 +17,7 @@ $darkerColor   = $this->params->get('darkerColor');
 // just to avoid user error when # is missing
 if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->get('templateColor');
 
-$app = &JFactory::getApplication();
+$app = JFactory::getApplication();
 
 ?>
 <!DOCTYPE html>
@@ -74,7 +74,7 @@ $app = &JFactory::getApplication();
         })();
         function setFocus() {
             document.getElementById('form-login').username.select();
-            document.getElementById('form-login').username.focus();
+            document.getElementById('form-login').username.focus();	    
         }
     </script>
 </body>

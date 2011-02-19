@@ -82,6 +82,15 @@ class Mod_MyshortcutsInstallerScript {
         if (!$db->query() && ($db->getErrorNum() != 1060)) {
             echo $db->getErrorMsg(true);
         }
+	
+	// add values to modules_menu
+        $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
+            " SELECT `id`,0 FROM `#__modules`".
+            " WHERE `#__modules`.`position` = 'widgets-last' OR `#__modules`.`position` = 'widgets-first'");
+
+        if (!$db->query() && ($db->getErrorNum() != 1060)) {
+            echo $db->getErrorMsg(true);
+        }
 
         // set minima style default
         $db->setQuery("UPDATE `#__template_styles`".
@@ -116,7 +125,7 @@ class Mod_MyshortcutsInstallerScript {
                 // fix the filename with the language prefix: 'en-GB.tpl_minima.ini'
                 $file = $currentLang.".".$toDownload;
                 // url to download the language
-                $url = "http://minimatemplate.com/download/language/".$currentLang."/".$file;
+                $url = "http://minimatemplate.com/get/language/".$currentLang."/".$file;
                 // path to save the file
                 $path = JPATH_ADMINISTRATOR.'/language/'.$currentLang.'/'.$file;
                 // content of the file

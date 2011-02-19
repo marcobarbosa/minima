@@ -9,7 +9,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
-$app    = &JFactory::getApplication();
+$app    = JFactory::getApplication();
 
 // template color parameter
 $templateColor = $this->params->get('templateColor');

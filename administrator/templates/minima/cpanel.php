@@ -10,12 +10,12 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$app    = &JFactory::getApplication();
+$app    = JFactory::getApplication();
 
 // Remove unnecessary inline javascript
-$headerstuff = $this->getHeadData();
+/*$headerstuff = $this->getHeadData();
 $headerstuff['script'] = array();
-$this->setHeadData($headerstuff);
+$this->setHeadData($headerstuff);*/
 
 // template color parameter
 $templateColor = $this->params->get('templateColor');

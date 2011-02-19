@@ -15,7 +15,7 @@ function pagination_list_footer($list)
     static $instancetest = 0;
 
     // Initialise variables.
-    $lang = &JFactory::getLanguage();
+    $lang = JFactory::getLanguage();
     $html = "<div class=\"list-footer\">\n";
 
     //$html .= "\n<div class=\"limit\">".JText::_('JGLOBAL_DISPLAY_NUM').$list['limitfield']."</div>";
@@ -41,7 +41,7 @@ function pagination_list_footer($list)
 function pagination_list_render($list)
 {
     // Initialize variables
-    $lang = &JFactory::getLanguage();
+    $lang = JFactory::getLanguage();
 
     //var_dump($lang);
     //JText::_('TPL_MINIMA_LAQUO');
