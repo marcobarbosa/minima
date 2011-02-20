@@ -62,7 +62,9 @@ $currentUser = JFactory::getUser();
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
     <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael.min.js"%3E%3C/script%3E'))</script>
-
+	<!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+    <![endif]-->
 </head>
 <body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
     <?php if( $this->countModules('panel') ): ?>
@@ -146,8 +148,5 @@ $currentUser = JFactory::getUser();
             {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
         );
     </script>
-    <!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo  $this->template ?>/js/selectivizr.js"></script>
-    <![endif]-->
 </body>
 </html>

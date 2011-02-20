@@ -22,7 +22,6 @@ if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->
 $currentUser = JFactory::getUser();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
@@ -50,7 +49,9 @@ $currentUser = JFactory::getUser();
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-
+	<!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+    <![endif]-->
 </head>
 <body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
@@ -151,9 +152,6 @@ $currentUser = JFactory::getUser();
             showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",
             closeFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>"
         });
-    </script>
-    <!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo  $this->template ?>/js/selectivizr.js"></script>
-    <![endif]-->
+    </script>  
 </body>
 </html>
