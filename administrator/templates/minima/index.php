@@ -131,19 +131,6 @@ $currentUser = JFactory::getUser();
         <jdoc:include type="modules" name="footer" style="none"  />        
     </footer>
     <script>
-        // google font
-        WebFontConfig = {
-            google: { families: [ 'Nobile' ] }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
         );
