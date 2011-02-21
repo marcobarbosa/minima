@@ -1662,7 +1662,13 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                                         {   padding: 4px!Important; }
 
         .config-option-list li,
-        .adminformlist li               {   padding: 0 5px 8px!Important; border-top: 1px dashed #e0e0e0;  }
+        .adminformlist li               {   
+                                            padding: 0 5px 8px!Important; 
+                                            border-top: 1px dashed #e0e0e0;  
+                                            -moz-border-radius: 0;
+                                            -webkit-border-radius: 0;
+                                            border-radius: 0;
+                                        }
 
                 .config-option-list li:first-child,
                 .adminformlist li:first-child
@@ -1753,6 +1759,7 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
 .item-info                              {   min-height: 475px; }
     .item-info .adminformlist li:first-child
                                         {   margin-top: 15px;}
+    .item-info fieldset                 {   background: #f8f8f8; }
 
 #jform_title                            {   min-width: 500px; height: 20px; font-size: 16px; }
 #jform_title-lbl                        {   margin-bottom: 0; }

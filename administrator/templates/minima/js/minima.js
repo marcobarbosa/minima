@@ -452,7 +452,7 @@ window.addEvent('domready', function() {
     // fixed content-box header when scrolling    
     /* scrollspy instance */    
     var ss = new ScrollSpy({
-        min: 80, 
+        min: 120, 
         onEnter: function() {
             // we are in locked mode, must fix positioning
             if(document.body.hasClass('locked')) {

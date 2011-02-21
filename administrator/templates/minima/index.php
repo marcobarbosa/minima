@@ -34,7 +34,7 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo  $this->template ?>/css/template.min.css" rel="stylesheet">    
+    <link href="templates/<?php echo  $this->template ?>/css/template.css" rel="stylesheet">    
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
@@ -145,7 +145,7 @@ $currentUser = JFactory::getUser();
             s.parentNode.insertBefore(wf, s);
         })();
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js"}
         );
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",
