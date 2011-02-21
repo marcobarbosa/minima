@@ -25,7 +25,6 @@ $app = JFactory::getApplication();
 
 <head>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,19 +58,6 @@ $app = JFactory::getApplication();
         <span id="logo"><?php echo $app->getCfg('sitename');?></span>
     </div>
     <script type="text/javascript">
-        // google font
-        WebFontConfig = {
-            google: { families: [ 'Nobile:latin' ] }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
         function setFocus() {
             document.getElementById('form-login').username.select();
             document.getElementById('form-login').username.focus();	    

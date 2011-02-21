@@ -22,13 +22,11 @@ if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->
 $currentUser = JFactory::getUser();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
 <head>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -51,7 +49,9 @@ $currentUser = JFactory::getUser();
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-
+	<!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+    <![endif]-->
 </head>
 <body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
@@ -131,19 +131,6 @@ $currentUser = JFactory::getUser();
         <jdoc:include type="modules" name="footer" style="none"  />        
     </footer>
     <script>
-        // google font
-        WebFontConfig = {
-            google: { families: [ 'Nobile' ] }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"}
         );
@@ -152,9 +139,6 @@ $currentUser = JFactory::getUser();
             showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",
             closeFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>"
         });
-    </script>
-    <!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo  $this->template ?>/js/selectivizr.js"></script>
-    <![endif]-->
+    </script>  
 </body>
 </html>

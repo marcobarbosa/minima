@@ -271,6 +271,14 @@ button                                  {   width: auto; overflow: visible; }
 /* TEMPLATE STYLES
 ====================================================================================== */
 
+@font-face {
+    font-family: 'Nobile';
+    src: url('../fonts/nobile.eot');
+    src: local('Nobile'), url('../fonts/nobile.woff') format('woff'), url('../fonts/nobile.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body                                    {
                                             background: #f4f4f4;
                                             margin: 0 0 10px;

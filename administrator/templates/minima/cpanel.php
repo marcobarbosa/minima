@@ -35,7 +35,6 @@ $currentUser = JFactory::getUser();
 
 <head>
 
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -63,7 +62,9 @@ $currentUser = JFactory::getUser();
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
     <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael.min.js"%3E%3C/script%3E'))</script>
-
+	<!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+    <![endif]-->
 </head>
 <body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
     <?php if( $this->countModules('panel') ): ?>
@@ -130,25 +131,9 @@ $currentUser = JFactory::getUser();
         <jdoc:include type="modules" name="footer" style="none"  />
     </footer>
     <script>
-        // google font
-        WebFontConfig = {
-            google: { families: [ 'Nobile' ] }
-        };
-        (function() {
-            var wf = document.createElement('script');
-            wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-        })();
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
         );
     </script>
-    <!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo  $this->template ?>/js/selectivizr.js"></script>
-    <![endif]-->
 </body>
 </html>
