@@ -1,6 +1,5 @@
 <?php
-/**
- * @version     0.8
+/** 
  * @package     Minima
  * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Webnific. All rights reserved.
@@ -29,9 +28,7 @@ endif;
 ?>
     <?php if(!empty($strItems)): ?>
 
-        <script src="templates/minima/js/g.raphael.piechart.min.js" type="text/javascript" charset="utf-8"></script>
-        <!--<script src="templates/minima/js/g.raphael.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="templates/minima/js/g.pie.min.js" type="text/javascript" charset="utf-8"></script>-->
+        <script src="templates/minima/js/g.raphael.piechart.min.js" type="text/javascript" charset="utf-8"></script>        
 
         <script type="text/javascript" charset="utf-8">
             window.onload = function () {

@@ -1,6 +1,5 @@
 <?php
-/**
- * @version     0.2
+/** 
  * @package     Minima
  * @subpackage  mod_myshortcuts
  * @author      Marco Barbosa

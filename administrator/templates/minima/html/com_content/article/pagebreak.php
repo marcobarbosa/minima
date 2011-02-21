@@ -1,6 +1,5 @@
 <?php
-/**
- * @version     0.2
+/** 
  * @package     Minima
  * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Webnific. All rights reserved.

@@ -1,6 +1,5 @@
 <?php
-/**
- * @version     0.8
+/** 
  * @package     Minima
  * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
