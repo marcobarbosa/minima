@@ -113,7 +113,7 @@ class Mod_MyshortcutsInstallerScript {
         //$currentLang = "de-DE";
 
         // available translations
-        $languages = array("de-DE", "nb-NO", "pt-BR");
+        $languages = array("de-DE", "nb-NO", "pt-BR", "sv-SE", "ru-RU");
 
         // files to download (without the language prefix)
         $files = array("mod_myshortcuts.ini","tpl_minima.ini");

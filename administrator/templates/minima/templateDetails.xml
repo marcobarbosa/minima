@@ -34,6 +34,7 @@
         <filename>template_preview.png</filename>
         <filename>template_thumbnail.png</filename>
         <folder>css</folder>
+        <folder>fonts</folder>
         <folder>elements</folder>
         <folder>html</folder>
         <folder>language</folder>
