@@ -303,11 +303,11 @@ body                                    {
 
         #tophead .site-link a           {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
 
-        #logo                           {   font: normal 26px/38px 'Nobile', arial, serif; }
+        #logo                           {   font: normal 26px/36px 'Nobile', arial, serif; }
 
         #tophead.locked                 {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 30px; }
-            #tophead.locked #logo       {    font-size: 21px; line-height: 27px;}
-
+            #tophead.locked #logo       {   font-size: 21px; line-height: 24px;}
+            #tophead.locked .site-link a{   font-size: 11px; }
 #header-box                             {   background: #f0f0f0; }
 
 
@@ -991,7 +991,7 @@ input#upload-submit                     {
                                             -webkit-background-clip: padding-box;
                                         }
 
-input#upload-submit                     { text-shadow: 0 0 0;}
+input#upload-submit                     {   text-shadow: 0 0 0; }
 
 input[type="submit"],
 button,
@@ -1180,7 +1180,7 @@ input#upload-submit,
                                             margin-right: 10px;
                                             padding: 6px 18px;
                                             text-decoration: none;
-                                            text-shadow: 0 1px 2px #555;
+                                            text-shadow: 0 0 2px #555;
                                         }
 
 #toolbar-delete a

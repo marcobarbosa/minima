@@ -29,7 +29,7 @@ $app = JFactory::getApplication();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet" type="text/css">
+    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
             body { background-color: <?php echo $templateColor;?>; }

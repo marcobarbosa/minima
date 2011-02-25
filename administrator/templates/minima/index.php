@@ -102,6 +102,7 @@ $currentUser = JFactory::getUser();
         <header id="tophead" class="locked">
             <div class="title">
                 <span id="logo"><?php echo $app->getCfg('sitename');?></span>
+                <span class="site-link"><a target="_blank" title="<?php echo $app->getCfg('sitename');?>" href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
             </div>
         </header>
     <?php endif; ?>

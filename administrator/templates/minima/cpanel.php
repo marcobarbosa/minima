@@ -39,7 +39,7 @@ $currentUser = JFactory::getUser();
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo  $this->template ?>/css/template.min.css" rel="stylesheet">
+    <link href="templates/<?php echo  $this->template ?>/css/template.css" rel="stylesheet">
 
     <!-- <link rel="stylesheet" media="handheld" href="css/handheld.css?v=1">  -->
 
