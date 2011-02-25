@@ -108,6 +108,7 @@ window.addEvent('domready', function() {
     var filterBar = $('filter-bar');
     var contentTop = $('content-top');
     var topHead = $('tophead');
+    var minima = $('minima');
     // ------------------------------- 
 
     /* TOOLBAR
@@ -448,12 +449,15 @@ window.addEvent('domready', function() {
         filterBar.show();
     } //end filter-bar
 
+    console.log(document.getScrollSize());
+
     // fixed content-box header when scrolling    
     /* scrollspy instance */    
     var ss = new ScrollSpy({
-        min: 120, 
+        min: 200, 
         onEnter: function() {
             // we are in locked mode, must fix positioning
+            //if( document.getScroll().y > 200) {
             if(document.body.hasClass('locked')) {
                 contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
             }            
