@@ -811,7 +811,15 @@ BODY.error                              {   background: #ccc; }
                                             width: 176px;
                                         }
 
-            #panel-list li a:hover      {   text-decoration: none; text-shadow: 1px 1px 0 #444; }
+            #panel-list li a:hover      {   
+                                            -moz-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            -webkit-box-reflect: below 3px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(255,255,255,0.5)));
+                                            text-decoration: none; 
+                                            text-shadow: 1px 1px 0 #444; 
+                                        }
+
             #panel-list li a:active     {   position: relative; top: 2px; }
 
             #panel-list li.ext a        {
