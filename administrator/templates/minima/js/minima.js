@@ -376,10 +376,11 @@ window.addEvent('domready', function() {
         onEnter: function() {
             // we are in locked mode, must fix positioning
             if (scrollSize > 200) {
-            //if (document.body.hasClass('locked')) {
-                contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
-            };            
+                if (document.body.hasClass('locked')) {
+                    contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
+                };
             contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
+            };
         },
         onLeave: function() {
             contentTop.removeClass('fixed');

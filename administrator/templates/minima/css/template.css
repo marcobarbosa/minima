@@ -1448,8 +1448,6 @@ dl#content-pane.tabs                    {   margin: 1px 0 0 0; }
                 #cpanel li a:hover,
                 #cpanel li a:focus,
                 #cpanel li a:active     {
-                                            -moz-transform: scale(1.10);
-                                            -webkit-transform: scale(1.10);
                                             -moz-box-shadow: 0 0 2px #777;
                                             -webkit-box-shadow: 0 0 2px #777;
                                             box-shadow: 0 0 2px #777;
@@ -1605,7 +1603,7 @@ legend                                  {
                                             text-transform: uppercase;
                                         }
 
-input[type="text"], select, textarea                 {
+input, select, textarea                 {
                                             background: #eee;
                                             border: 1px solid #ccc;
                                             font-size: 12px;
