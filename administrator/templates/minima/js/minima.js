@@ -53,17 +53,19 @@ window.addEvent('domready', function() {
     // ------------------------------- 
 
     // get the language strings
-    var language = MooTools.lang.get('Minima');
+    var 
+        language = MooTools.lang.get('Minima');
 
     // DOM variables    
-    var toolbarElements = $$('.toolbar-list li a'); // save all anchors first
-    var toolbar = $('toolbar');
-    var bulkActions = new Array();
-    var bulkNonActions = new Array();
-    var filterBar = $('filter-bar');
-    var contentTop = $('content-top');
-    var topHead = $('tophead');
-    var minima = $('minima');
+    var 
+        toolbarElements = $$('.toolbar-list li a'),
+        toolbar = $('toolbar'),
+        bulkActions = new Array(),
+        bulkNonActions = new Array(),
+        filterBar = $('filter-bar'),
+        contentTop = $('content-top'),
+        topHead = $('tophead'),
+        minima = $('minima');
     // ------------------------------- 
 
     /* TOOLBAR
@@ -154,7 +156,7 @@ window.addEvent('domready', function() {
 
     // add id #adminlist to .adminlist
     var adminlist = $$('.adminlist');
-    if (adminlist.length) adminlist.set('id','adminlist');
+    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
 
     // add tabs to #submenu
     if ($('submenu') ) $('submenu').addClass('minimaTabs');
@@ -364,20 +366,19 @@ window.addEvent('domready', function() {
         //$$('.pagetitle h2').inject(filterAnchor, 'before');
 
         filterBar.show();
-    } //end filter-bar
-
-    console.log(document.getScrollSize());
+    } //end filter-bar    
 
     // fixed content-box header when scrolling    
+    scrollSize = document.getScrollSize().y - document.getSize().y;
     /* scrollspy instance */    
     var ss = new ScrollSpy({
         min: 200, 
         onEnter: function() {
             // we are in locked mode, must fix positioning
-            //if( document.getScroll().y > 200) {
-            if(document.body.hasClass('locked')) {
+            if (scrollSize > 200) {
+            //if (document.body.hasClass('locked')) {
                 contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
-            }            
+            };            
             contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
         },
         onLeave: function() {

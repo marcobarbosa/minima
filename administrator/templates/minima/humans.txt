@@ -10,19 +10,16 @@
     Javascript developer: Henrik Hussfelt
     Twitter: @hussfelt
     From: Sweden
-
-    Javascript & CSS3 "ninja": Stian Didriksen
-    Twitter: @stipsan
-    From: Norway
-
-/* TRANSLATIONS */
+    
+/* CONTRIBUTORS */
     Norwegian: Torkil S. Johnsen
     German: Christian Hent
     Swedish: Linda Kadar
     Brazilian Portuguese: Marco Barbosa
 
 /* SPECIAL THANKS */
-    Dimitar Christoff - Javascript tips and refactoring
+    Dimitar Christoff (@d_mitar) - Javascript tips and refactoring
+    Stian Didriksen (@stipsan) - JS and CSS3 Improvements
     -------------------------
     J and Beyond - the coolest Joomla! event you will ever be.
     Molajo - Because Joomla! rocks and Molajo crocs!
