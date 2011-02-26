@@ -28,60 +28,15 @@ Element.implement('switchClass', function(a, b){ var toggle = this.hasClass(a); 
 // extending Selector for a visible boolean
 $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
 
-/*
- * ElementFilter by David Walsh (http://davidwalsh.name/plugin-element-filter)
- */
-var ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,caseSensitive:false,ignoreKeys:[13,27,32,37,38,39,40],matchAnywhere:true,property:"text",trigger:"keyup",onStart:$empty,onShow:$empty,onHide:$empty,onComplete:$empty},initialize:function(c,b,a){this.setOptions(a);this.observeElement=document.id(c);this.elements=$$(b);this.matches=this.elements;this.misses=[];this.listen();},listen:function(){this.observeElement.addEvent(this.options.trigger,function(a){if(this.observeElement.value.length){if(!this.options.ignoreKeys.contains(a.code)){this.fireEvent("start");this.findMatches(this.options.cache?this.matches:this.elements);this.fireEvent("complete");}}else{this.findMatches(this.elements,false);}}.bind(this));},findMatches:function(f,b){var e=this.observeElement.value;var a=this.options.matchAnywhere?e:"^"+e;var g=this.options.caseSensitive?"":"i";var c=new RegExp(a,g);var d=[];f.each(function(i){var h=(b==undefined?c.test(i.get(this.options.property)):b);if(h){if(!i.retrieve("showing")){this.fireEvent("show",[i]);}d.push(i);i.store("showing",true);}else{if(i.retrieve("showing")){this.fireEvent("hide",[i]);}i.store("showing",false);}return true;}.bind(this));return d;}});
-
-/**
- * MyPanelClass by Henrik Hussfelt, Marco Barbosa
- */
- var MyPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}});
-
-/**
- * ScrollSpy by David Walsh (http://davidwalsh.name/js/scrollspy)
- */
-var ScrollSpy=new Class({Implements:[Options,Events],options:{container:window,max:0,min:0,mode:"vertical"},initialize:function(a){this.setOptions(a);this.container=document.id(this.options.container);this.enters=this.leaves=0;this.inside=false;this.listener=function(d){var b=this.container.getScroll(),c=b[this.options.mode=="vertical"?"y":"x"];if(c>=this.options.min&&(this.options.max==0||c<=this.options.max)){if(!this.inside){this.inside=true;this.enters++;this.fireEvent("enter",[b,this.enters,d])}this.fireEvent("tick",[b,this.inside,this.enters,this.leaves,d])}else{if(this.inside){this.inside=false;this.leaves++;this.fireEvent("leave",[b,this.leaves,d])}}this.fireEvent("scroll",[b,this.inside,this.enters,this.leaves,d])};this.addListener()},start:function(){this.container.addEvent("scroll",this.listener.bind(this))},stop:function(){this.container.removeEvent("scroll",this.listener.bind(this))},addListener:function(){this.start()}});
-
-// tabs plugin
-/*var minimaTabs = new Class ({
-
-    initialize: function(cont,tabs)
-    {
-        this.cont = cont;
-        this.tabs = tabs;
-    }
-
-    hideTabs: function(cont)
-    {
-        // hide all tabs contens
-        cont.addClass('hide');
-
-        // except the first one
-        cont[0].removeClass('hide');
-        return this;
-    }, // end of hideTabs
-
-    doTabs: function(cont,tabs)
-    {
-         this.hideTabs(cont);
-         tabs.each(function(tab, index){
-            tab.addEvents({
-                click: function(e){
-                    e.stop();
-
-                    tabs.removeClass('active');
-                    this.addClass('active');
-
-                    cont.addClass('hide');
-                    cont[index].removeClass('hide');
-                }
-            });
-
-        });
-    } // end of doTabs
-
-});*/
+// ElementFilter by David Walsh (http://davidwalsh.name/plugin-element-filter)
+var
+	ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,caseSensitive:false,ignoreKeys:[13,27,32,37,38,39,40],matchAnywhere:true,property:"text",trigger:"keyup",onStart:$empty,onShow:$empty,onHide:$empty,onComplete:$empty},initialize:function(c,b,a){this.setOptions(a);this.observeElement=document.id(c);this.elements=$$(b);this.matches=this.elements;this.misses=[];this.listen();},listen:function(){this.observeElement.addEvent(this.options.trigger,function(a){if(this.observeElement.value.length){if(!this.options.ignoreKeys.contains(a.code)){this.fireEvent("start");this.findMatches(this.options.cache?this.matches:this.elements);this.fireEvent("complete");}}else{this.findMatches(this.elements,false);}}.bind(this));},findMatches:function(f,b){var e=this.observeElement.value;var a=this.options.matchAnywhere?e:"^"+e;var g=this.options.caseSensitive?"":"i";var c=new RegExp(a,g);var d=[];f.each(function(i){var h=(b==undefined?c.test(i.get(this.options.property)):b);if(h){if(!i.retrieve("showing")){this.fireEvent("show",[i]);}d.push(i);i.store("showing",true);}else{if(i.retrieve("showing")){this.fireEvent("hide",[i]);}i.store("showing",false);}return true;}.bind(this));return d;}}),
+	// MyPanelClass by Henrik Hussfelt, Marco Barbosa
+	MyPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}}),
+	// MinimaTabsClass by Henrik Hussfelt, Marco Barbosa
+	MinimaTabsClass=new Class({Implements:[Options],options:{},elements:{tabs:null,content:null},initialize:function(a,b){this.setOptions(a);this.elements=b},showFirst:function(){this.elements.content.pick().removeClass("hide")},hideAllContent:function(){this.elements.content.addClass("hide")},addTabsAction:function(){this.elements.tabs.each(function(b,a){b.addEvents({click:function(c){c.stop();this.elements.tabs.removeClass("active");this.elements.tabs[a].addClass("active");this.elements.content.addClass("hide");this.elements.content[a].removeClass("hide")}.bind(this)})}.bind(this))}}),
+	// ScrollSpy by David Walsh (http://davidwalsh.name/js/scrollspy)
+	ScrollSpy=new Class({Implements:[Options,Events],options:{container:window,max:0,min:0,mode:"vertical"},initialize:function(a){this.setOptions(a);this.container=document.id(this.options.container);this.enters=this.leaves=0;this.inside=false;this.listener=function(d){var b=this.container.getScroll(),c=b[this.options.mode=="vertical"?"y":"x"];if(c>=this.options.min&&(this.options.max==0||c<=this.options.max)){if(!this.inside){this.inside=true;this.enters++;this.fireEvent("enter",[b,this.enters,d])}this.fireEvent("tick",[b,this.inside,this.enters,this.leaves,d])}else{if(this.inside){this.inside=false;this.leaves++;this.fireEvent("leave",[b,this.leaves,d])}}this.fireEvent("scroll",[b,this.inside,this.enters,this.leaves,d])};this.addListener()},start:function(){this.container.addEvent("scroll",this.listener.bind(this))},stop:function(){this.container.removeEvent("scroll",this.listener.bind(this))},addListener:function(){this.start()}});
 
 window.addEvent('load', function() {
 
@@ -253,65 +208,27 @@ window.addEvent('domready', function() {
         //$('toolbar-box').addClass('borderLeft');
     }
     else if( $('item-form') )*/
-    if (subMenu && $('item-form'))
-    {
+    if (subMenu && $('item-form')) {
+        // Start tabs actions, create instances of class
+    	var MinimaTabs_Horizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
+        	MinimaTabs_Vertical = new MinimaTabsClass({}, {'tabs': $$('#advanced-tabs a'), 'content': $('tabs').getChildren('.panelform')});
 
-        /* Adding the tabs functionality
-         * -------------------------------- */
+    	// Add tabs for horizontal submenu
+        // Hide all content elements
+        MinimaTabs_Horizontal.hideAllContent();
+        // Show the first
+        MinimaTabs_Horizontal.showFirst();
+        // Add onClick
+        MinimaTabs_Horizontal.addTabsAction();
 
-        var tabs = $$('.minimaTabs a'), cont = itemForm.getChildren('div').addClass('hide');
-
-        // hide all tabs contens
-        //cont.addClass('hide');
-
-        // except the first one
-        cont[0].removeClass('hide');
-
-        tabs.each(function(tab, index){
-            tab.addEvents({
-                click: function(e){
-                    e.stop();
-
-                    tabs.removeClass('active');
-                    this.addClass('active');
-
-                    cont.addClass('hide');
-                    cont[index].removeClass('hide');
-                }
-            }); //end of tab.addEvents
-        }); // end of tabs.each
-
-        /* Adding the tabs functionality again
-         * TODO Make this a class!
-         * -------------------------------- */
-
-        var tabs2 = $$('#advanced-tabs a'), cont2 = $('tabs').getChildren('.panelform').addClass('hide');
-
-        // hide all tabs contens
-        //cont2.addClass('hide');
-
-        // except the first one
-        cont2[0].removeClass('hide');
-
-        tabs2.each(function(tab2, index){
-            tab2.addEvents({
-                click: function(e){
-                    e.stop();
-
-                    tabs2.removeClass('active');
-                    this.addClass('active');
-
-                    cont2.addClass('hide');
-                    cont2[index].removeClass('hide');
-                }
-            }); //end of tab.addEvents
-        }); // end of tabs.each
-
-        /*var tabs = $$('.minimaTabs a'), cont = $('item-form').getChildren('div');
-        var minimaTabs = new minimaTabs();
-        minimaTabs.doTabs();*/
-
-    }
+        // Add tabs for vertical menu
+        // Hide all content elements
+        MinimaTabs_Vertical.hideAllContent();
+        // Show the first
+        MinimaTabs_Vertical.showFirst();
+        // Add onClick
+        MinimaTabs_Vertical.addTabsAction();
+    };
 
     // fix padding when there's no tabs
     if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
