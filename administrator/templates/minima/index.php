@@ -93,7 +93,7 @@ $currentUser = JFactory::getUser();
                     <?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?><dd><a href="index.php?option=com_templates"><?php echo JText::_('TPL_MINIMA_TOOLS_TEMPLATES'); ?></a></dd><?php endif; ?>
                 </dl>
             </div><!-- /#list-content -->
-        </div><!-- /#list-wrapper -->
+        </div><!-- /#list-wrapper -->        
     </header><!-- /#tophead -->
     <nav id="shortcuts">
             <jdoc:include type="modules" name="shortcuts" />
