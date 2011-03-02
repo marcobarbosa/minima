@@ -370,12 +370,14 @@ window.addEvent('domready', function() {
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;
+    
     /* scrollspy instance */    
     var ss = new ScrollSpy({
+        // the minimum ammount of scrolling before it triggers
         min: 200, 
         onEnter: function() {
             // we are in locked mode, must fix positioning
-            if (scrollSize > 200) {
+            if (scrollSize > 700) {
                 if (document.body.hasClass('locked')) {
                     contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
                 };
@@ -386,7 +388,7 @@ window.addEvent('domready', function() {
             contentTop.removeClass('fixed');
             if(document.body.hasClass('locked')) {
                 contentTop.setStyle('width', '100%');
-            }
+            };
         }
     }); 
     
@@ -398,8 +400,7 @@ window.addEvent('domready', function() {
     // tabs wrapper
     var tabsWrapper = $('panel-wrapper');
 
-    if (tabsWrapper)
-    {
+    if (tabsWrapper) {
 	    // fixing wrapper bug - thanks to d_mitar
 	    Fx.Slide.Mine = new Class({
 	        Extends: Fx.Slide,
@@ -409,8 +410,8 @@ window.addEvent('domready', function() {
 	        }
 	    });
 
-		// Create a MyPanel instance
-		var MyPanel = new MyPanelClass({
+		// Create a Panel instance
+		var Panel = new PanelClass({
 				panelWrapper: $('panel-wrapper'),
 				prev: $('prev'),
 				next: $('next'),
@@ -420,17 +421,17 @@ window.addEvent('domready', function() {
 
 		// Setup click event for previous
 		$('prev').addEvent('click', function() {
-			MyPanel.doPrevious();
+			Panel.doPrevious();
 		});
 		// Setup click event for previous
 		$('next').addEvent('click', function() {
-			MyPanel.doNext();
+			Panel.doNext();
 		});
 
 		// Fix panel pagination
 		$('panel-pagination').getChildren("li").addEvent('click', function() {
 			// Send ID to changepage as this contains pagenumber
-			MyPanel.changeToPage(this);
+			Panel.changeToPage(this);
 		});
 
         // search-filter to filter the components

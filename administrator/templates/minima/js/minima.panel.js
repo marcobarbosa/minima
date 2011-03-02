@@ -5,7 +5,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-var MyPanelClass = new Class({
+var PanelClass = new Class({
 	Implements: [Options],
 
     panelStatus: {
@@ -53,10 +53,6 @@ var MyPanelClass = new Class({
             // Initiate showbuttons
             this.showButtons();
     	};
-    },
-
-    helloWorld: function(){
-    	alert("cool");
     },
 
     doPrevious: function () {
