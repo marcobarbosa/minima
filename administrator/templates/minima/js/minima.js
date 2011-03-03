@@ -369,7 +369,7 @@ window.addEvent('domready', function() {
     } //end filter-bar    
 
     // fixed content-box header when scrolling    
-    scrollSize = document.getScrollSize().y - document.getSize().y;
+    scrollSize = document.getScrollSize().y - document.getSize().y;    
     
     /* scrollspy instance */    
     var ss = new ScrollSpy({
@@ -381,13 +381,15 @@ window.addEvent('domready', function() {
                 if (document.body.hasClass('locked')) {
                     contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
                 };
-            contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
+                contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
             };
         },
         onLeave: function() {
-            contentTop.removeClass('fixed');
-            if(document.body.hasClass('locked')) {
-                contentTop.setStyle('width', '100%');
+            if (scrollSize > 700) {
+                contentTop.removeClass('fixed');
+                if(document.body.hasClass('locked')) {
+                    contentTop.setStyle('width', '100%');
+                };
             };
         }
     }); 
