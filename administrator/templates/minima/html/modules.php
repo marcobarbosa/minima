@@ -18,10 +18,10 @@ function modChrome_widget($module, &$params, &$attribs)
     {
         ?>
         <div id="module-<?php echo $module->id ?>" class="box">
-            <div class="box-top">
+            <header class="box-top">
                 <span><?php echo $module->title; ?></span>
-            </div>
-            <div class="box-content"><?php echo $module->content; ?></div>
+            </header>
+            <section class="box-content"><?php echo $module->content; ?></section>
         </div>
         <?php
     }
