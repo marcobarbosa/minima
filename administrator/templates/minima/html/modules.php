@@ -17,7 +17,7 @@ function modChrome_widget($module, &$params, &$attribs)
     if ($module->content)
     {
         ?>
-        <div class="box">
+        <div id="module-<?php echo $module->id ?>" class="box">
             <div class="box-top">
                 <span><?php echo $module->title; ?></span>
             </div>
