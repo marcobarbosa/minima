@@ -159,27 +159,15 @@ window.addEvent('domready', function() {
     // show back the toolbar after done fixing it
     if (toolbar) toolbar.show();
 
+    // tell css that the document is ready
     $(document.body).addClass('ready');
-    //$(document.body).removeClass('no-js');
 
     // add id #adminlist to .adminlist
     var adminlist = $$('.adminlist');
     if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
 
-    // add tabs to #submenu
-    if ($('submenu') ) $('submenu').addClass('minimaTabs');
-
-    // remove border on empty lists
-    // border-top: 1px dashed #e0e0e0;
-
-    // highlighting the ACL rules changes for better accessibility
-    if ($('rules'))
-    {
-        $$('.jpane-toggler').addEvent('click', function() {
-            var caption = this.getNext('.jpane-slider').getElement('caption');
-            if (caption) caption.set('tween', {duration: '2000'}).highlight('#ffd');
-        })
-    }
+    // add aditional tabs to #submenu position
+    if ($('submenu') ) $('submenu').addClass('minimaTabs');        
 
     // get the submenu (tabs) to work
     var subMenu =  $('submenu');
@@ -193,15 +181,9 @@ window.addEvent('domready', function() {
         subMenu.inject($('content'),'top');
     }
 
-    // fix padding when there's no tabs
+    // fix padding when there are no tabs
     if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
-
-    // fix left border on toolbar
-    /*if( !subMenu && $('toolbar-box') )
-    {
-        //$('toolbar-box').addClass('borderLeft');
-    }
-    else if( $('item-form') )*/
+    
     if (subMenu && $('item-form')) {
         // Start tabs actions, create instances of class
     	var MinimaTabs_Horizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
@@ -224,7 +206,7 @@ window.addEvent('domready', function() {
         MinimaTabs_Vertical.addTabsAction();
     };
 
-    // change h2 while typing title
+    // change h2 while typing the title
     if ($('jform_title'))
     {
         if($('jform_title').get("value") != "")  $$('.pagetitle h2').set('html', $('jform_title').get("value"));
@@ -242,7 +224,6 @@ window.addEvent('domready', function() {
     // make filter-bar a slide    
     if (filterBar)
     {
-
         // status of the filter, if it's on or off
         var filterStatus = {
             'true':  language['closeFilter'],
