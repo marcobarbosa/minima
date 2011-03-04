@@ -889,7 +889,7 @@ BODY.error                              {   background: #ccc; }
 /*
  * STATUS STYLES
  */
-#gravatar                                 {   margin-top: -6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+#gravatar                               {   margin-top: -6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
 
 #module-status                          {   float: right; height: 40px; line-height: 40px; }
 
