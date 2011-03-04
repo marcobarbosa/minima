@@ -48,6 +48,7 @@ $currentUser = JFactory::getUser();
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
+    <script src="templates/<?php echo $this->template ?>/js/minima.class.js"></script>
 	<!--[if (gte IE 6)&(lte IE 8)]>
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
     <![endif]-->
@@ -65,7 +66,7 @@ $currentUser = JFactory::getUser();
                 <span class="site-link"><a target="_blank" title="<?php echo $app->getCfg('sitename');?>" href="<?php echo JURI::root();?>"><?php echo "(".JText::_('TPL_MINIMA_VIEW_SITE').")"; ?></a></span>
         </div>
         <div id="module-status">
-            <jdoc:include type="modules" name="status"  />
+            <jdoc:include type="modules" name="status" />
         </div>
         <?php if( $this->countModules('panel') ): ?>
         <div id="tab-wrapper">
@@ -128,7 +129,7 @@ $currentUser = JFactory::getUser();
             <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
             <a href="#minima" id="topLink"><?php echo JText::_('TPL_MINIMA_TOP'); ?></a>
         </p>
-        <jdoc:include type="modules" name="footer" style="none"  />        
+        <jdoc:include type="modules" name="footer" style="none" />        
     </footer>
     <script>
         head.js(

@@ -35,21 +35,22 @@ var MinimaTabsClass = new Class({
     },
 
     addTabsAction: function() {
+    	var _this = this;
     	this.elements.tabs.each(function(tab, index){
             tab.addEvents({
                 click: function(e){
                 	// Stop the event
                     e.stop();
                     // Remove class active from all tabs
-                    this.elements.tabs.removeClass('active');
+                    _this.elements.tabs.removeClass('active');
                     // Add class to clicked element
-                    this.elements.tabs[index].addClass('active');
+                    _this.elements.tabs[index].addClass('active');
                     // Hide the content
-                    this.elements.content.addClass('hide');
+                    _this.elements.content.addClass('hide');
                     // Add class to clicked elements content
-                    this.elements.content[index].removeClass('hide');
-                }.bind(this)
+                    _this.elements.content[index].removeClass('hide');
+                }
             }); //end of tab.addEvents
-        }.bind(this)); // end of tabs.each
+        }); // end of tabs.each
     }
 });

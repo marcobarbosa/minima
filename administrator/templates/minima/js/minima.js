@@ -1,8 +1,9 @@
 /** 
- * @package     Minima
- * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ * @package			Minima
+ * @author			Marco Barbosa
+ * @contributors	Henrik Hussfelt
+ * @copyright		Copyright (C) 2010 Marco Barbosa. All rights reserved.
+ * @license			GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 /* special thanks to these cool #mootools folks:
@@ -50,14 +51,13 @@ window.addEvent('domready', function() {
     // instanciate
     //var chx = new IPhoneCheckboxes();
 
+    // Initiate all variables
     // ------------------------------- 
 
     // get the language strings
     var 
         language = MooTools.lang.get('Minima');
-
     // DOM variables    
-    var 
         toolbarElements = $$('.toolbar-list li a'),
         toolbar = $('toolbar'),
         bulkActions = new Array(),
@@ -65,9 +65,23 @@ window.addEvent('domready', function() {
         filterBar = $('filter-bar'),
         contentTop = $('content-top'),
         topHead = $('tophead'),
-        minima = $('minima');
+        minima = $('minima'),
+    // Initiate MimimaClass
+        Minima = new MinimaClass({},{systemMessage: $('system-message')})
+    ;
     // ------------------------------- 
 
+    // Trigger actions
+ 
+    // Show system message
+    //
+    Minima.showSystemMessage();
+    // Make whole row clickable, if there are any
+    //
+    if ($$('.adminlist').length) {
+    	Minima.makeRowsClickable();
+    };
+        
     /* TOOLBAR
      * ================================================== */
         
@@ -146,8 +160,8 @@ window.addEvent('domready', function() {
 
     } // end bulkActions.lenght
 
-    /* FIXES
-     * ============================= */
+    // FIXES
+	// =============================
     // show back the toolbar after done fixing it
     if (toolbar) toolbar.show();
 
@@ -162,26 +176,7 @@ window.addEvent('domready', function() {
     if ($('submenu') ) $('submenu').addClass('minimaTabs');
 
     // remove border on empty lists
-    /*border-top: 1px dashed #e0e0e0;*/
-
-    // system-message fade
-    var systemMessage = $('system-message');
-    if (systemMessage && systemMessage.getElement("ul li:last-child"))
-    {
-        var hideAnchor = new Element('a', {
-            'href': '#',
-            'id': 'hide-system-message',
-            'html': 'hide',
-            'events': {
-                'click': function(e){
-                    systemMessage.dissolve({duration: 'short'})
-                }
-            }
-        });
-
-        // inject hideAnchor in the system-message container
-        systemMessage.show().getElement("ul li:last-child").adopt(hideAnchor);
-    }
+    // border-top: 1px dashed #e0e0e0;
 
     // highlighting the ACL rules changes for better accessibility
     if ($('rules'))
@@ -203,6 +198,9 @@ window.addEvent('domready', function() {
         // move the submenu to the top of content
         subMenu.inject($('content'),'top');
     }
+
+    // fix padding when there's no tabs
+    if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
 
     // fix left border on toolbar
     /*if( !subMenu && $('toolbar-box') )
@@ -231,57 +229,6 @@ window.addEvent('domready', function() {
         // Add onClick
         MinimaTabs_Vertical.addTabsAction();
     };
-
-    // fix padding when there's no tabs
-    if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
-
-    // make whole row clickable
-    if ($$('.adminlist').length)
-    {
-        // get the toggle element
-        var toggle = $$('input[name=checkall-toggle]');
-        // now remove the horrible onClick event
-        //toggle.set("onclick",null);
-        // add the real click event
-        toggle.addEvent('click', function(){
-            var rows = $$('.adminlist tbody tr');
-            rows.toggleClass('selected');
-        });
-
-        $$('.adminlist tbody tr input[type=checkbox]').each(function(element){
-
-            var parent = element.getParent('tr');
-
-            var boxchecked = $$('input[name=boxchecked]');
-
-            element.addEvent('click', function(event){
-                event && event.stopPropagation();
-
-                if (element.checked) {
-                    parent.addClass('selected');
-                } else {
-                    parent.removeClass('selected');
-                }
-            });
-
-            parent.addEvent('click', function(){
-                if (element.checked) {
-                    element.set('checked', false);
-                    boxchecked.set('value',0)
-                }else{
-                    element.set('checked', true);
-                    boxchecked.set('value', 1);
-                }
-                element.fireEvent('click');
-            });
-
-        });
-
-        // highlight the sorting column
-        var sortImg = $('adminlist').getElements('th img');
-        sortImg.getParent('th').addClass('active');
-
-    }// end .adminlist
 
     // change h2 while typing title
     if ($('jform_title'))
