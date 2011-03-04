@@ -47,10 +47,9 @@ $currentUser = JFactory::getUser();
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
     </style>
 
-    <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
-    <script src="templates/<?php echo $this->template ?>/js/minima.class.js"></script>
+    <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>    
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
 <body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">

@@ -28,7 +28,7 @@ endif;
 ?>
     <?php if(!empty($strItems)): ?>
 
-        <script src="templates/minima/js/g.raphael.piechart.min.js" type="text/javascript" charset="utf-8"></script>        
+        <script src="templates/minima/js/raphael/g.raphael.piechart.min.js" type="text/javascript" charset="utf-8"></script>        
 
         <script type="text/javascript" charset="utf-8">
             window.onload = function () {

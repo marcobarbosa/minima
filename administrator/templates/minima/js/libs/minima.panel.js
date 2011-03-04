@@ -5,7 +5,7 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-var PanelClass = new Class({
+var MinimaPanelClass = new Class({
 	Implements: [Options],
 
     panelStatus: {
