@@ -305,8 +305,8 @@ body                                    {
 
         #logo                           {   font: normal 26px/36px 'Nobile', arial, serif; }
 
-        #tophead.locked                 {   margin-bottom: 15px; border-bottom: 1px solid #fff; height: 30px; }
-            #tophead.locked #logo       {   font-size: 21px; line-height: 24px;}
+            #tophead.locked             {   margin-bottom: 12px; border-bottom: 1px solid #fff; height: 26px; }
+            #tophead.locked #logo       {   font-size: 19px; line-height: 20px;}
             #tophead.locked .site-link a{   font-size: 11px; }
 #header-box                             {   background: #f0f0f0; }
 
@@ -447,7 +447,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             font-size: 12px;
                                             font-weight:bold;
                                             line-height: 16px;
-                                            padding: 5px 6px;
+                                            padding: 4px 6px;
                                             text-decoration: none;
                                             text-shadow: 1px 1px 0 #eee;
                                             vertical-align: middle;
@@ -733,7 +733,7 @@ BODY.error                              {   background: #ccc; }
                                             box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
                                         }
 
-    #list-wrapper dt                    {   background: #eee; font-weight: bold; padding: 6px; }
+    #list-wrapper dt                    {   background: #f4f4f4; font-weight: bold; padding: 6px; }
 
     #list-wrapper dd                    {   margin: 0; padding:2px; }
 
