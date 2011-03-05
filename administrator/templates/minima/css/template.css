@@ -290,7 +290,7 @@ body                                    {
 
 #tophead                                {
                                             width: 100%;
-                                            height: 40px;
+                                            height: 35px;
                                             float: left;
                                             position: relative;
                                         }
@@ -303,7 +303,7 @@ body                                    {
 
         #tophead .site-link a           {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
 
-        #logo                           {   font: normal 26px/36px 'Nobile', arial, serif; }
+        #logo                           {   font: normal 24px/28px 'Nobile', arial, serif; }
 
             #tophead.locked             {   margin-bottom: 12px; border-bottom: 1px solid #fff; height: 26px; }
             #tophead.locked #logo       {   font-size: 19px; line-height: 20px;}
@@ -599,24 +599,24 @@ BODY.error                              {   background: #ccc; }
 
 #user-status                            {
                                             list-style: none;
-                                            margin: 10px 20px 0 0;
-                                            height: 20px;
-                                            line-height: 20px;
+                                            margin: 0px 20px 0 0;
+                                            height: 35px;
+                                            line-height: 35px;
                                             padding: 0;
                                         }
 
     #user-status li                     {
                                             color: #eee;
                                             display: block;
-                                            height: 20px;
-                                            font-size: 12px; line-height: 1;
+                                            height: 35px;
+                                            font-size: 12px; line-height: 35px;
                                             float: left;
                                             padding: 0 5px;
                                         }
 
         #user-status .pic               {   padding: 0; }
 
-    #user-status li a                   {   color: #fff; height: 20px; line-height: 20px; }
+    #user-status li a                   {   color: #fff; }
 
 #open-filter                            {
                                             background: url('../images/icons.png') no-repeat 128% 4px;
@@ -672,7 +672,7 @@ BODY.error                              {   background: #ccc; }
                                             height: 16px;
                                             padding: 5px 18px 4px 8px;
                                             width: 16px; 
-                                            margin-top: -3px; margin-right: 15px;
+                                            margin-top: -5px; margin-right: 15px;
                                         }
 
 #more:hover,
@@ -889,9 +889,9 @@ BODY.error                              {   background: #ccc; }
 /*
  * STATUS STYLES
  */
-#gravatar                               {   margin-top: -6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+#gravatar                               {   margin-top: 3px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
 
-#module-status                          {   float: right; height: 40px; line-height: 40px; }
+#module-status                          {   float: right; height: 25px; line-height: 25px; }
 
     #module-status span                 {   padding: 4px 4px 0 22px; }
 
