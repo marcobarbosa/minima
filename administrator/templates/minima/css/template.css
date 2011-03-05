@@ -534,7 +534,7 @@ BODY.error                              {   background: #ccc; }
                                             border-radius: 6px 6px 0 0;
                                             border-bottom: 1px solid #ccc!important;
                                             position: relative;
-                                            padding: 5px 10px 5px;
+                                            padding: 0 10px 5px;
                                         }
 
     #content-top                        {   background: #f4f4f4; z-index: 99; }
@@ -918,7 +918,7 @@ p.noresults                             {   padding: 20px 15px; }
 ====================================================================================== */
 div.pagetitle                           {
                                             background-repeat: no-repeat;
-                                            margin-left: 0px;
+                                            margin-left: 0;
                                             padding-left: 70px; padding-bottom: 10px;
                                         }
 
@@ -2013,7 +2013,7 @@ table.adminlist tbody th                {   font-weight: bold; }
 table.adminlist tbody tr                {   background-color: #fff; text-align: left; }
 
 table.adminlist tbody tr td             {   background: #fff; height: 36px; }
-table.adminlist tbody tr.row1 td        {   background: #f4f4f4; border-top: 1px solid #FFF; }
+table.adminlist tbody tr.row1 td        {   background: #f4f4f4; /*border-top: 1px solid #FFF;*/ }
 
 table.adminlist tfoot tr                {   color: #333; }
 
@@ -2022,11 +2022,25 @@ table.adminlist tfoot th                {   border-top: 1px solid #cecece; text-
 table.adminlist tbody tr.row0:hover td,
 table.adminlist tbody tr.row1:hover td,
 table tbody tr:hover td,
-table.adminlist tr.selected td          {   background-color: #ffd!important; }
-    .media-manager tbody tr:hover td       {   background: transparent!important;}
+table.adminlist tr.selected td,
+table.adminlist tr.row1.selected td     {                          
+                                            background-color: #FFD;
+                                        }
+
+
+/*table.adminlist tr.selected td,
+table.adminlist tr.row1.selected td     {   
+                                            background-color: #FFFFBF;
+                                            background: -moz-linear-gradient(top, #FFFFBF 0%, #FFD 98%);
+                                            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFBF), color-stop(98%,#FFD));
+                                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFBA', endColorstr='#FFD',GradientType=0 );
+                                        }*/
+
+
+    .media-manager tbody tr:hover td    {   background: transparent!important;}
 
 table tbody tr:hover td span,
-table tbody tr:hover td label        {   color: #333!important; }
+table tbody tr:hover td label           {   color: #333!important; }
 
 table.adminlist td.order                {
                                             text-align: center;
