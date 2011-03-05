@@ -733,16 +733,11 @@ BODY.error                              {   background: #ccc; }
                                             box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
                                         }
 
-    #list-wrapper dt                    {   background: #f4f4f4; font-weight: bold; padding: 6px; }
+    #list-wrapper dt                    {   background: #f8f8f8; font-weight: bold; padding: 6px; }
 
     #list-wrapper dd                    {   margin: 0; padding:2px; }
 
         #list-wrapper dd a              {   display:block; padding: 5px; }
-            #list-wrapper dd a:hover    {
-                                            background:#ddd;
-                                            color: #000;
-                                            text-decoration: none;
-                                        }
             #list-wrapper dd a:active   {   background: #ccc; position:relative; top: 1px;}
 
     #list-wrapper .first                {
