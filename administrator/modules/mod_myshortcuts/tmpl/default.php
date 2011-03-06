@@ -26,7 +26,7 @@ $buttons = ModMyshortcutsHelper::getButtons();
 	</li>
 	<li class="parent">
 		<a href="<?php echo JRoute::_('index.php?option=com_content'); ?>">
-			CONTENT
+			Content
 		</a>
 		<ul>
 			<li>
