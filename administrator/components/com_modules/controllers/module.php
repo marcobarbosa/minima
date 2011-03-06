@@ -36,6 +36,32 @@ class ModulesControllerModule extends JControllerForm
 			$cache->clean();
 		}
 	}
+	
+	public function saveAjax()
+	{
+		$data		= JRequest::getVar('jform', array(), 'post', 'array');
+		$model		= $this->getModel();
+		
+		$form = $model->getForm($data, false);
+
+		if (!$form) {
+			echo 'false';
+			JFactory::getApplication()->close();
+		}
+		
+		// Test if the data is valid.
+		$validData = $model->validate($form, $data);
+
+		// Check for validation errors.
+		if ($validData === false) {
+			echo 'false';
+			JFactory::getApplication()->close();
+		}
+		$table = JTable::getInstance('module');
+		$table->bind($validData);
+		echo $table->store();
+		JFactory::getApplication()->close();
+	}
 
 	/**
 	 * Override parent add method.

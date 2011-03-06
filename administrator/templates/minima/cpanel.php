@@ -53,16 +53,47 @@ $itemid = JRequest::getCmd('Itemid', '');
         ::-moz-selection { background: <?php echo $templateColor; ?>; color:#000; /* Firefox */ }
         body, a:link { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
-        #gravatar { border: 1px solid <?php echo $darkerColor; ?>; }
-        #gravatar:hover { border-color: <?php echo $templateColor; ?>;}
     </style>
 
-    <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>
+    <script src="templates/<?php echo $this->template ?>/js/head.min.js"></script>
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
-    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>
+    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael.min.js"%3E%3C/script%3E'))</script>
+	<script>
+		window.addEvent('domready', function(){
+			new Sortables($$('.col'),{
+				onComplete: function(widget){
+					order = null;
+					position = widget.getParent();
+					elementsList = $(position.id).getChildren();
+					elementsList.each(function(element,index){ if(element.id == widget.id){ order = index; } });
+					order = parseInt(order) + 1;
+					token = '<?php echo JUtility::getToken(); ?>=1';
+					title =  widget.getChildren('div.box-top > span').get('html');
+					new Request({
+						url: 'index.php?option=com_modules&task=module.saveAjax',
+						method: 'post',
+						data: 'tmpl=none&jform[title]='+title+'&jform[id]='+widget.id+'&jform[position]='+position.id+'&jform[ordering]='+order+'&'+token,
+						onSuccess: function(data){
+							if(data == '1'){
+								message = null;
+								fx = null;
+								$$('div.message-wrapper').each(function(div){
+									message = div;
+									div.set('html', '<dl id="system-message" style="display: none;"><dt class="message">Message</dt><dd class="message message"><ul><li>Module position changed!<a href="#" id="hide-system-message">hide</a></li></ul></dd></dl>');
+								});
+								$('system-message').reveal();
+								$('hide-system-message').addEvent('click',function(){ $('system-message').dissolve({duration: 'short'}); });
+							}
+						}
+					}).send();
+					
+				}
+			});
+		});
+	</script>
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
 <body id="minima" class="full jbg <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
