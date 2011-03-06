@@ -28,19 +28,34 @@ $buttons = ModMyshortcutsHelper::getButtons();
 		<a href="<?php echo JRoute::_('index.php?option=com_content'); ?>">
 			Content
 		</a>
-		<nav>
-			<li>
-				<a>Articles</a>
-			</li>
-			<li>
-				<a></a>
-			</li>
-			<li>
-				<a></a>
-			</li>
-		</nav>
+		<nav class="sub">			
+			<ul>
+				<li>
+					<a class="section" href="#">Articles</a>
+				</li>
+				<li>
+					<a>Add New Article</a>
+				</li>
+				<li>
+					<a>Featured Articles</a>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<a class="section">Categories</a>
+				</li>
+				<li>
+					<a>Add New Category</a>
+				</li>
+			</ul>
+			<ul class="row">
+				<li>
+					<a class="section">Media</a>
+				</li>				
+			</ul>
+		</nav><!-- end of inner -->
 	</li>
-	<li>
+	<!--<li>
 		<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.add'); ?>">
 			<?php echo JText::_('MOD_MYSHORTCUTS_ADD_ARTICLE'); ?>
 		</a>
@@ -49,9 +64,9 @@ $buttons = ModMyshortcutsHelper::getButtons();
 		<a href="<?php echo JRoute::_('index.php?option=com_media');?>">
 			<?php echo JText::_('MOD_MYSHORTCUTS_MEDIA'); ?>
 		</a>
-	</li>
+	</li>-->
 	<li>
-		<a href="<?php echo JRoute::_('index.php?option=com_menus&view=menus'); ?>">
+		<a href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>">
 			<?php echo JText::_('MOD_MYSHORTCUTS_MENUS'); ?>
 		</a>
 	</li>
@@ -62,14 +77,14 @@ $buttons = ModMyshortcutsHelper::getButtons();
 	</li>
 	<li>			
 		<a href="#">Extensions</a>
-		<ul>
+		<!--<ul>
 			<li><a>Languages</a></li>
 			<li><a>Modules</a></li>
 			<li><a>Plugins</a></li>
 			<li><a>Templates</a></li>
-		</ul>
+		</ul>-->
 	</li>
-	<li>
+	<li class="last">
 		<a href="<?php echo JRoute::_('index.php?option=com_admin&view=help'); ?>">
 			<?php echo JText::_('MOD_MYSHORTCUTS_HELP'); ?>
 		</a>

@@ -403,6 +403,12 @@ footer .version                         {   margin: 10px; text-align: center; }
 .box:hover .box-top span, .box-top:hover span
                                         {   text-shadow: 1px 1px 0 #333; }
 
+/*----------------------------------------------------------------*/                                     
+
+/*
+ * SHORTCUTS MENU
+ */
+
 #shortcuts                              {
                                             background: #ccc;
                                             background: -moz-linear-gradient(-90deg,#ddd,#ccc);
@@ -425,7 +431,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             text-align: center;
                                         }
 
-        #shortcuts ul li                {   display: block; float: left; margin-right: 15px; }
+        #shortcuts ul li                {   display: block; float: left; margin-right: 15px; width: auto;}
 
         #shortcuts ul .home             {   margin-right: 2px; }
             #shortcuts ul .home  a      {
@@ -434,14 +440,15 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             width: 16px;
                                         }
 
-            #shortcuts ul li.last       {   float:right; line-height: 25px; margin-right:20px; }
+            #shortcuts ul li.last       {   float: right; line-height: 25px; margin-right:20px; }
 
             #shortcuts li a             {
                                             background-color: transparent;
                                             -moz-border-radius: 6px;
                                             -webkit-border-radius: 6px;
                                             border-radius: 6px;
-                                            color: #555;
+                                            color: #555; 
+                                            cursor: pointer;
                                             display: block;
                                             float: left;
                                             font-size: 12px;
@@ -452,10 +459,11 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             text-shadow: 1px 1px 0 #eee;
                                             vertical-align: middle;
                                             -webkit-background-clip: padding-box;
+                                            /*width: auto;*/
                                         }
 
-#shortcuts ul li.last a                 {   color: #fff; text-decoration: underline; }
-#shortcuts ul li.last a:hover           {   text-decoration: none; }
+/*#shortcuts ul li.last a                 {   color: #fff; text-decoration: underline; }
+#shortcuts ul li.last a:hover           {   text-decoration: none; }*/
 
 #shortcuts li.active a,
 #shortcuts li a:hover                {
@@ -479,6 +487,70 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             background-color: rgba(0,0,0,0.2);
                                             color: #fff;
                                         }
+/*
+ * SHORTCUTS DROP DOWN MENUS
+ */
+
+#shortcuts .parent a                    {   
+                                            /*position: relative; */
+                                            background: url('../images/icons.png') no-repeat right -119px;                                            
+                                            width: 100%;
+                                            padding-left: 0;
+                                            padding-right: 26px;
+                                        }
+
+    #shortcuts .sub a                   {   background: transparent; }                                        
+#shortcuts .sub                         {   
+                                            position: absolute;
+                                            top: 65px;
+                                            background: #fff; 
+                                            /*display: none; */
+                                            border: 4px solid #ccc;
+                                            border: 4px solid rgba(205,205,205,0.4);
+                                            -webkit-border-radius: 6px;
+                                            -moz-border-radius: 6px;
+                                            border-radius: 6px;                                          
+                                            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+                                            -webkit-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.4);
+                                            -moz-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.4);
+                                            box-shadow: 0 0 1px #666, 0 6px 6px rgba(0,0,0,0.4);
+                                            padding-top: 5px;
+                                            z-index: 3;
+                                        }
+
+#shortcuts .sub ul                      {   
+                                            margin: 0; 
+                                            padding: 0 10px 10px; 
+                                            float: left;
+                                            max-width: 130px;
+                                        }
+    #shortcuts .sub ul li               {   
+                                            width: auto; 
+                                            height: 24px; 
+                                            line-height: 24px; 
+                                        }
+        #shortcuts .sub ul li a         {                                               
+                                            color: #297BA2;
+                                            font-weight: normal;
+                                            height: auto;
+                                            text-align: left;                          
+                                            text-shadow: none;
+                                            width: 100%;
+                                        }
+            #shortcuts .sub ul li a:hover
+                                        {                                               
+                                            background: transparent; 
+                                            color: #27617D;  
+                                            text-decoration: underline; 
+                                        }
+    #shortcuts .sub .row                {
+                                            clear: both;
+                                            width: 300px; float: left;
+                                        }    
+
+    #shortcuts .section                 {   font-weight: bold!Important; }
+
+/*----------------------------------------------------------------*/
 
 #content                                {   clear: both; display: block; margin: 10px 10px 20px; padding: 0 10px; }
     .locked #content                    {   max-width: 1140px; margin: 0 auto; }
@@ -680,16 +752,16 @@ BODY.error                              {   background: #ccc; }
 #more.active:hover
                                         {
                                             background-position: center -515px;
-                                            -moz-border-radius: 4px 4px 0 0;
-                                            -webkit-border-radius: 4px 4px 0 0;
-                                            border-radius: 4px 4px 0 0;
+                                            -moz-border-radius: 6px 6px 0 0;
+                                            -webkit-border-radius: 6px 6px 0 0;
+                                            border-radius: 6px 6px 0 0;
                                             cursor: pointer;
                                             color: #333;
                                         }
 #more:hover                             {
-                                            -moz-border-radius: 4px;
-                                            -webkit-border-radius: 4px;
-                                            border-radius: 4px;
+                                            -moz-border-radius: 6px;
+                                            -webkit-border-radius: 6px;
+                                            border-radius: 6px;
                                         }
 
 #more.active,
