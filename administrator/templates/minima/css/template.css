@@ -532,6 +532,7 @@ footer .version                         {   margin: 10px; text-align: center; }
         #shortcuts .sub ul li a         {                                               
                                             color: #297BA2;
                                             font-weight: normal;
+                                            display: block;
                                             height: auto;
                                             text-align: left;                          
                                             text-shadow: none;
