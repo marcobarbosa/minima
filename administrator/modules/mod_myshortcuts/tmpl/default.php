@@ -28,11 +28,17 @@ $buttons = ModMyshortcutsHelper::getButtons();
 		<a href="<?php echo JRoute::_('index.php?option=com_content'); ?>">
 			Content
 		</a>
-		<ul>
+		<nav>
+			<li>
+				<a>Articles</a>
+			</li>
 			<li>
 				<a></a>
 			</li>
-		</ul>
+			<li>
+				<a></a>
+			</li>
+		</nav>
 	</li>
 	<li>
 		<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.add'); ?>">
