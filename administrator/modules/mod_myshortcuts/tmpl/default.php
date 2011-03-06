@@ -24,10 +24,15 @@ $buttons = ModMyshortcutsHelper::getButtons();
 			<?php echo JText::_('MOD_MYSHORTCUTS_CONFIGURATION');?>
 		</a>
 	</li>
-	<li>
+	<li class="parent">
 		<a href="<?php echo JRoute::_('index.php?option=com_content'); ?>">
-			<?php echo JText::_('MOD_MYSHORTCUTS_ARTICLES'); ?>
+			CONTENT
 		</a>
+		<ul>
+			<li>
+				<a></a>
+			</li>
+		</ul>
 	</li>
 	<li>
 		<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.add'); ?>">
