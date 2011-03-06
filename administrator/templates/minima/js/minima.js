@@ -165,12 +165,12 @@ window.addEvent('domready', function() {
     var adminlist = $$('.adminlist');
     if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
 
-    // add aditional tabs to #submenu position
-    if ($('submenu') ) $('submenu').addClass('minimaTabs');        
-
     // get the submenu (tabs) to work
     var subMenu =  $('submenu');
     var itemForm = $('item-form');
+
+    // add aditional tabs to #submenu position
+    if ( subMenu ) subMenu.addClass('minimaTabs');            
 
     // fix submenu position on overrides
     if ( (subMenu && subMenu.hasClass('out')) || (subMenu && $('item-form')) )
@@ -256,6 +256,8 @@ window.addEvent('domready', function() {
         var filterActive = false;
         var pageTitle = "";
 
+        // FIXME not detecting correctly
+        // we must find out if any of the filters are in use (selected)
         filterBar.getElements('input, select').each(function(el) {
             var elValue = el.get('value');
             // if any filter is selected
@@ -285,7 +287,8 @@ window.addEvent('domready', function() {
         // add the filter anchor next to pagetitle
         $$('.pagetitle').grab(filterAnchor);
         //$$('.pagetitle h2').inject(filterAnchor, 'before');
-
+        
+        // hidden to avoid flicker, show it back after done fixing it
         filterBar.show();
     } //end filter-bar    
 
