@@ -1,3 +1,5 @@
+window.addEvent('domready', function() { 
+
     // FIXES
 	// =============================
   
@@ -13,11 +15,7 @@
     // some tables don't have an id of #adminlist
     // so add it if not found
     var adminlist = $$('.adminlist');
-    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
-
-    // get the submenu (tabs) to work
-    var subMenu =  $('submenu');
-    var itemForm = $('item-form');
+    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');    
 
     // position aditional tabs to #submenu position
     if (subMenu) subMenu.addClass('minimaTabs');            
@@ -46,3 +44,5 @@
             $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
         });
     }; // end jform_title
+
+});

@@ -134,7 +134,8 @@ $currentUser = JFactory::getUser();
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
         );
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",

@@ -133,7 +133,8 @@ $currentUser = JFactory::getUser();
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
         );
     </script>
 </body>

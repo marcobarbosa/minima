@@ -59,6 +59,8 @@ window.addEvent('domready', function() {
         contentTop = $('content-top'),
         topHead = $('tophead'),
         minima = $('minima'),
+        subMenu =  $('submenu'),
+        itemForm = $('item-form'),
     // Initiate MimimaClass
         Minima = new MinimaClass({},{systemMessage: $('system-message')})
     ;
@@ -152,37 +154,7 @@ window.addEvent('domready', function() {
         // everything's ready, now show it back
 
     } // end bulkActions.lenght
-
-    // FIXES
-	// =============================
-    // show back the toolbar after done fixing it
-    if (toolbar) toolbar.show();
-
-    // tell css that the document is ready
-    $(document.body).addClass('ready');
-
-    // add id #adminlist to .adminlist
-    var adminlist = $$('.adminlist');
-    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
-
-    // get the submenu (tabs) to work
-    var subMenu =  $('submenu');
-    var itemForm = $('item-form');
-
-    // add aditional tabs to #submenu position
-    if ( subMenu ) subMenu.addClass('minimaTabs');            
-
-    // fix submenu position on overrides
-    if ( (subMenu && subMenu.hasClass('out')) || (subMenu && $('item-form')) )
-    {
-        if (itemForm) itemForm.getChildren('div').addClass('hide');
-        // move the submenu to the top of content
-        subMenu.inject($('content'),'top');
-    }
-
-    // fix padding when there are no tabs
-    if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
-    
+        
     if (subMenu && $('item-form')) {
         // Start tabs actions, create instances of class
     	var MinimaTabs_Horizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
@@ -203,19 +175,7 @@ window.addEvent('domready', function() {
         MinimaTabs_Vertical.showFirst();
         // Add onClick
         MinimaTabs_Vertical.addTabsAction();
-    };
-
-    // change h2 while typing the title
-    if ($('jform_title'))
-    {
-        if($('jform_title').get("value") != "")  $$('.pagetitle h2').set('html', $('jform_title').get("value"));
-        $('jform_title').addEvent('keyup', function(event){
-            // show h2 with the title typed
-            if($('jform_title').get("value") != "") $$('.pagetitle h2').set('html', this.get("value"));
-            //fix alias
-            $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
-        });
-    } // end jform_title
+    };    
 
     /* FILTER ACCORDION
      * ================================================== */
