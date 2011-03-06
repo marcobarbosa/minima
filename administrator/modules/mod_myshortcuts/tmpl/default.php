@@ -51,12 +51,12 @@ $buttons = ModMyshortcutsHelper::getButtons();
 	</li>
 	<li>			
 		<a href="#">Extensions</a>
-		<ul>
+		<!--<ul>
 			<li><a>Languages</a></li>
 			<li><a>Modules</a></li>
 			<li><a>Plugins</a></li>
 			<li><a>Templates</a></li>
-		</ul>
+		</ul>-->
 	</li>
 	<li>
 		<a href="<?php echo JRoute::_('index.php?option=com_admin&view=help'); ?>">
