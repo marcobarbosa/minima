@@ -88,6 +88,6 @@ var MinimaClass = new Class({
         });
 
         // highlight the sorting column
-        $('adminlist').getElements('th img').getParent('th').addClass('active');
+        $$('.adminlist th img').getParent('th').addClass('active');
 	}
 });

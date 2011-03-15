@@ -440,7 +440,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             width: 16px;
                                         }
 
-            #shortcuts ul li.last       {   float: right; line-height: 25px; margin-right:20px; }
+            #shortcuts ul li.last       {   float: right; margin-right:20px; }
 
             #shortcuts li a             {
                                             background-color: transparent;
@@ -476,8 +476,7 @@ footer .version                         {   margin: 10px; text-align: center; }
 #shortcuts li.active a,
 #shortcuts li a:active                  {
                                             -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-                                            /*-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);*/
-                                            -webkit-box-shadow: none;
+                                            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);                                            
                                         }
 
 #shortcuts li a:active                  {   position: relative; top: 1px; color: #333; }
@@ -499,9 +498,10 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             padding-right: 26px;
                                         }
 
-    #shortcuts .sub a                   {   background: transparent; }                                        
+    #shortcuts .sub a                   {   background: transparent; }   
+                                     
 #shortcuts .sub                         {   
-                                            position: absolute;
+                                            position: absolute; display: none;
                                             top: 65px;
                                             background: #fff; 
                                             /*display: none; */
@@ -509,8 +509,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             border: 4px solid rgba(205,205,205,0.4);
                                             -webkit-border-radius: 6px;
                                             -moz-border-radius: 6px;
-                                            border-radius: 6px;                                          
-                                            box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+                                            border-radius: 6px;                                            
                                             -webkit-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.4);
                                             -moz-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.4);
                                             box-shadow: 0 0 1px #666, 0 6px 6px rgba(0,0,0,0.4);
@@ -518,17 +517,21 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             z-index: 3;
                                         }
 
+#shortcuts .parent .sub.hover           {   display: block; }
+
 #shortcuts .sub ul                      {   
                                             margin: 0; 
                                             padding: 0 10px 10px; 
                                             float: left;
                                             max-width: 130px;
                                         }
+
     #shortcuts .sub ul li               {   
                                             width: auto; 
                                             height: 24px; 
                                             line-height: 24px; 
                                         }
+
         #shortcuts .sub ul li a         {                                               
                                             color: #297BA2;
                                             font-weight: normal;

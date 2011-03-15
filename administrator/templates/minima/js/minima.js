@@ -33,7 +33,7 @@ var
 	MinimaTabsClass=new Class({Implements:[Options],options:{},elements:{tabs:null,content:null},initialize:function(a,b){this.setOptions(a);this.elements=b},showFirst:function(){this.elements.content.pick().removeClass("hide")},hideAllContent:function(){this.elements.content.addClass("hide")},addTabsAction:function(){this.elements.tabs.each(function(b,a){b.addEvents({click:function(c){c.stop();this.elements.tabs.removeClass("active");this.elements.tabs[a].addClass("active");this.elements.content.addClass("hide");this.elements.content[a].removeClass("hide")}.bind(this)})}.bind(this))}}),
 
     // MinimaClass
-    MinimaClass=new Class({Implements:[Options],options:{},element:{systemMessage:null},initialize:function(a,b){this.setOptions(a);this.element.systemMessage=b.systemMessage},showSystemMessage:function(){if(this.element.systemMessage&&this.element.systemMessage.getElement("ul li:last-child")){var b=this;var a=new Element("a",{href:"#",id:"hide-system-message",html:"hide",events:{click:function(c){b.element.systemMessage.dissolve({duration:"short"})}}});this.element.systemMessage.show().getElement("ul li:last-child").adopt(a)}},makeRowsClickable:function(){var a=$$("input[name=checkall-toggle]");a.addEvent("click",function(){var b=$$(".adminlist tbody tr");b.toggleClass("selected")});$$(".adminlist tbody tr input[type=checkbox]").each(function(b){var c=b.getParent("tr");var d=$$("input[name=boxchecked]");b.addEvent("click",function(e){e&&e.stopPropagation();if(b.checked){c.addClass("selected")}else{c.removeClass("selected")}});c.addEvent("click",function(){if(b.checked){b.set("checked",false);d.set("value",0)}else{b.set("checked",true);d.set("value",1)}b.fireEvent("click")})});$("adminlist").getElements("th img").getParent("th").addClass("active")}});
+    MinimaClass=new Class({Implements:[Options],options:{},element:{systemMessage:null},initialize:function(a,b){this.setOptions(a);this.element.systemMessage=b.systemMessage},showSystemMessage:function(){if(this.element.systemMessage&&this.element.systemMessage.getElement("ul li:last-child")){var b=this;var a=new Element("a",{href:"#",id:"hide-system-message",html:"hide",events:{click:function(c){b.element.systemMessage.dissolve({duration:"short"})}}});this.element.systemMessage.show().getElement("ul li:last-child").adopt(a)}},makeRowsClickable:function(){var a=$$("input[name=checkall-toggle]");a.addEvent("click",function(){var b=$$(".adminlist tbody tr");b.toggleClass("selected")});$$(".adminlist tbody tr input[type=checkbox]").each(function(b){var c=b.getParent("tr");var d=$$("input[name=boxchecked]");b.addEvent("click",function(e){e&&e.stopPropagation();if(b.checked){c.addClass("selected")}else{c.removeClass("selected")}});c.addEvent("click",function(){if(b.checked){b.set("checked",false);d.set("value",0)}else{b.set("checked",true);d.set("value",1)}b.fireEvent("click")})});$$(".adminlist th img").getParent("th").addClass("active")}});
 
 window.addEvent('load', function() {
 
@@ -58,7 +58,7 @@ window.addEvent('domready', function() {
         filterBar = $('filter-bar'),
         contentTop = $('content-top'),
         topHead = $('tophead'),
-        minima = $('minima'),
+        minima = $('minima')        
     // Initiate MimimaClass
         Minima = new MinimaClass({},{systemMessage: $('system-message')})
     ;
@@ -438,6 +438,30 @@ window.addEvent('domready', function() {
             panel.toggle();
         });
 
+        var dropDownElements = minima.getElements('#shortcuts .parent');
+
+        dropDownElements.each(function(li) {            
+            li.addEvents({
+               'click' : function() {
+                    // hide all others first                       
+                    //dropDownElements.getChildren('.hover').removeClass('hover');                    
+                    //minima.getElements('#shortcuts .sub').removeClass('hover');
+                    this.getChildren('.sub').toggleClass('hover');
+               }
+            });
+            /*li.addEvent('click', function() {    
+                // hide any .sub that is active first            
+                this.toggleClass("hover");
+            });*/
+        });
+        
+
+        // FIXME only perform outerClick if the menu is has class hover (is active)        
+
+        /*dropDown.addEvent('outerClick', function(){
+            this.getChildren('.sub').toggleClass("hover");
+        });*/
+    
     }// end of if(tabsWrapper)
 
 });
