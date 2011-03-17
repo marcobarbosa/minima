@@ -155,6 +155,10 @@ window.addEvent('domready', function() {
 
     // FIXES
 	// =============================
+    new Fx.SmoothScroll({
+        links: '#topLink'
+    });
+
     // show back the toolbar after done fixing it
     if (toolbar) toolbar.show();
 
@@ -185,24 +189,24 @@ window.addEvent('domready', function() {
     
     if (subMenu && $('item-form')) {
         // Start tabs actions, create instances of class
-    	var MinimaTabs_Horizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
-        	MinimaTabs_Vertical = new MinimaTabsClass({}, {'tabs': $$('#advanced-tabs a'), 'content': $('tabs').getChildren('.panelform')});
+    	var MinimaTabsHorizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
+        	MinimaTabsVertical = new MinimaTabsClass({}, {'tabs': $$('#advanced-tabs a'), 'content': $('tabs').getChildren('.panelform')});
 
     	// Add tabs for horizontal submenu
         // Hide all content elements
-        MinimaTabs_Horizontal.hideAllContent();
+        MinimaTabsHorizontal.hideAllContent();
         // Show the first
-        MinimaTabs_Horizontal.showFirst();
+        MinimaTabsHorizontal.showFirst();
         // Add onClick
-        MinimaTabs_Horizontal.addTabsAction();
+        MinimaTabsHorizontal.addTabsAction();
 
         // Add tabs for vertical menu
         // Hide all content elements
-        MinimaTabs_Vertical.hideAllContent();
+        MinimaTabsVertical.hideAllContent();
         // Show the first
-        MinimaTabs_Vertical.showFirst();
+        MinimaTabsVertical.showFirst();
         // Add onClick
-        MinimaTabs_Vertical.addTabsAction();
+        MinimaTabsVertical.addTabsAction();
     };
 
     // change h2 while typing the title
@@ -245,7 +249,7 @@ window.addEvent('domready', function() {
                       $('filter_search').focus();  
                     } 
                     if (contentTop.hasClass('fixed')) {
-                        window.scrollTo(0,0);
+                        window.scrollTo(0,0);                        
                     }
                 }
             }
@@ -440,28 +444,20 @@ window.addEvent('domready', function() {
 
         var dropDownElements = minima.getElements('#shortcuts .parent');
 
-        dropDownElements.each(function(li) {            
+        dropDownElements.each(function(li) {             
+            // add events to the list elements
             li.addEvents({
                'click' : function() {
-                    // hide all others first                       
-                    //dropDownElements.getChildren('.hover').removeClass('hover');                    
-                    //minima.getElements('#shortcuts .sub').removeClass('hover');
-                    this.getChildren('.sub').toggleClass('hover');
+                    // show or hide when click on the arrow                    
+                    $$(this.getChildren('.sub'), this.getElement('a')).toggleClass('hover');
+               },
+               'outerClick' : function() {
+                    // hide when clicking outside or on a different element                    
+                    $$(this.getChildren('.sub'), this.getElement('a')).removeClass('hover');
                }
-            });
-            /*li.addEvent('click', function() {    
-                // hide any .sub that is active first            
-                this.toggleClass("hover");
-            });*/
+            });            
         });
-        
 
-        // FIXME only perform outerClick if the menu is has class hover (is active)        
-
-        /*dropDown.addEvent('outerClick', function(){
-            this.getChildren('.sub').toggleClass("hover");
-        });*/
-    
     }// end of if(tabsWrapper)
 
 });

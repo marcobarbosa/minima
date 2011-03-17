@@ -22,8 +22,8 @@ echo "</ul>";*/
 
 ?>
 
-<li <?php if(strpos($url,$button['link']) !== false) echo "class=\"active\""; ?>>
-    <a href="<?php echo $button['link']; ?>">
+<li>
+    <a href="<?php echo $button['link']; ?>" <?php if(strpos($url,$button['link']) !== false) echo "class=\"active\""; ?>>
         <span><?php echo $button['text']; ?></span>
     </a>
 </li>
