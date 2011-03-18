@@ -713,7 +713,7 @@ BODY.error                              {   background: #ccc; }
     #user-status li a                   {   color: #fff; }
 
 #open-filter                            {                
-                                            background: url('../images/arrows.png') no-repeat right 4px;
+                                            background: #ffd url('../images/arrows.png') no-repeat right 4px;
                                             display: block;
                                             font-size: 13px;
                                             margin: -6px 0;
@@ -723,7 +723,7 @@ BODY.error                              {   background: #ccc; }
 
 #open-filter:hover                      {   background-position: right 6px; }
 
-#open-filter.active                     {   color: #606060; background-position: right -208px; }
+#open-filter.active                     {   color: #606060; background-color: transparent; background-position: right -208px; }
 
 #panel-wrapper                          {   display: none; padding: 20px 20px 20px; }
     BODY.ready #panel-wrapper           {   display: block; }
@@ -1583,35 +1583,40 @@ dl#content-pane.tabs                    {   margin: 1px 0 0 0; }
 
 #item-advanced                          {   margin-top: 10px; }
 
-#advanced-tabs                          {
+#vertical-tabs                          {
                                             float: left;
                                             margin: 0 0 0 10px;
                                             padding: 0;
                                             width: 200px;
                                         }
-    #advanced-tabs li                   {   list-style: none; margin-bottom: 5px; }
-        #advanced-tabs li a
+    #vertical-tabs li                   {   list-style: none; border-bottom: 1px solid #fff; }
+        #vertical-tabs li a
                                         {
-                                            background: #ccc;
-                                            background: -moz-linear-gradient(-90deg,#ccc,#bbb);
-                                            background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
-                                            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', endColorStr='#cccccc');
-                                            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', EndColorStr='#cccccc')";
-                                            -moz-border-radius: 6px 0 0 6px;
-                                            -webkit-border-radius: 6px 0 0 6px;
-                                            border-radius: 6px 0 0 6px;
+                                            border-bottom: 1px solid #ccc;
                                             color: #666;
                                             display: block;
                                             font-size: 13px;
                                             padding: 12px;
                                         }
 
-            #advanced-tabs li a.active  {   font-weight: bold;  }
-            #advanced-tabs li a:hover   {   background: #bbb; color: #333; }
+            #vertical-tabs li a.active  {   font-weight: bold; outline: none;  }
+            
+            #vertical-tabs li a:hover   {   
+                                            background: #bbb; 
+                                            color: #333;  
+                                        }
 
-            #advanced-tabs li a.active,
-            #advanced-tabs li a.active:hover
-                                        {   color:#444; background: #fff; text-decoration: none; text-align: right; }
+            #vertical-tabs li a.active,
+            #vertical-tabs li a:hover               
+                                        {
+                                            background: -webkit-gradient(linear, 25% 0%, 0% 0%, from(rgb(255, 255, 255)), to(rgba(255, 255, 255, 0.4)));
+                                            background: -moz-linear-gradient(center right, rgb(255, 255, 255) 25%, rgba(255, 255, 255, 0.4) 80%);
+
+                                        }                                        
+
+            #vertical-tabs li a.active,
+            #vertical-tabs li a.active:hover
+                                        {   color:#444; text-decoration: none; text-align: right; }
 
 #tabs                                   {   margin-left: 200px; }
     #tabs .panelform                    {

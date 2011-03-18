@@ -190,7 +190,7 @@ window.addEvent('domready', function() {
     if (subMenu && $('item-form')) {
         // Start tabs actions, create instances of class
     	var MinimaTabsHorizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
-        	MinimaTabsVertical = new MinimaTabsClass({}, {'tabs': $$('#advanced-tabs a'), 'content': $('tabs').getChildren('.panelform')});
+        	MinimaTabsVertical = new MinimaTabsClass({}, {'tabs': $$('#vertical-tabs a'), 'content': $('tabs').getChildren('.panelform')});
 
     	// Add tabs for horizontal submenu
         // Hide all content elements
