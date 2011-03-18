@@ -1600,18 +1600,17 @@ dl#content-pane.tabs                    {   margin: 1px 0 0 0; }
                                         }
 
             #vertical-tabs li a.active  {   font-weight: bold; outline: none;  }
-            
-            #vertical-tabs li a:hover   {   
-                                            background: #bbb; 
-                                            color: #333;  
-                                        }
 
-            #vertical-tabs li a.active,
-            #vertical-tabs li a:hover               
+                #vertical-tabs li a.active            
                                         {
+                                            background: #fff;
                                             background: -webkit-gradient(linear, 25% 0%, 0% 0%, from(rgb(255, 255, 255)), to(rgba(255, 255, 255, 0.4)));
                                             background: -moz-linear-gradient(center right, rgb(255, 255, 255) 25%, rgba(255, 255, 255, 0.4) 80%);
+                                        }                                        
 
+            #vertical-tabs li a:hover   {   
+                                            background: #ccc; 
+                                            color: #333;  
                                         }                                        
 
             #vertical-tabs li a.active,
