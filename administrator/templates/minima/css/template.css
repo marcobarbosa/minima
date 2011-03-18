@@ -233,7 +233,7 @@ button                                  {   width: auto; overflow: visible; }
         #new-modules-list li a,
         dl.menu_type dd ul li           {
                                             /*background: #fff;*/
-                                            background: #fff url('../images/icons.png') no-repeat 15px -288px;
+                                            background: #fff url('../images/arrows.png') no-repeat center -240px;
                                             display: block;
                                             font-size: 14px; font-weight: normal;
                                             height: 35px;
@@ -2442,35 +2442,6 @@ a img.calendar                          {
 
 #login-error-message                    {   color: #c00;  }
 
-/*
- * MINIMA ICONS SPRITE
- */
- #container li {
-   background: url(../images/icons.png) no-repeat top left;
-}
-
-.icon-arrow_blue_down{ background-position: 0 0; width: 12px; height: 8px; }
-.icon-arrow_blue_left{ background-position: 0 -28px; width: 8px; height: 12px; }
-.icon-arrow_blue_right{ background-position: 0 -60px; width: 8px; height: 12px; }
-.icon-arrow_blue_up{ background-position: 0 -92px; width: 12px; height: 8px; }
-.icon-arrow_dark_down{ background-position: 0 -120px; width: 12px; height: 8px; }
-.icon-arrow_dark_left{ background-position: 0 -148px; width: 8px; height: 12px; }
-.icon-arrow_dark_right{ background-position: 0 -180px; width: 8px; height: 12px; }
-.icon-arrow_dark_up{ background-position: 0 -212px; width: 12px; height: 8px; }
-.icon-arrow_gray_down{ background-position: 0 -240px; width: 12px; height: 8px; }
-.icon-arrow_gray_left{ background-position: 0 -268px; width: 8px; height: 12px; }
-.icon-arrow_gray_right{ background-position: 0 -300px; width: 8px; height: 12px; }
-.icon-arrow_gray_up{ background-position: 0 -332px; width: 12px; height: 8px; }
-.icon-arrow_white_down{ background-position: 0 -360px; width: 12px; height: 8px; }
-.icon-arrow_white_left{ background-position: 0 -388px; width: 8px; height: 12px; }
-.icon-arrow_white_right{ background-position: 0 -420px; width: 8px; height: 12px; }
-.icon-arrow_white_up{ background-position: 0 -452px; width: 12px; height: 8px; }
-.icon-home{ background-position: 0 -480px; width: 22px; height: 19px; }
-.icon-tools_black_down{ background-position: 0 -519px; width: 34px; height: 18px; }
-.icon-tools_black_up{ background-position: 0 -557px; width: 34px; height: 18px; }
-.icon-tools_white{ background-position: 0 -595px; width: 34px; height: 18px; }
-
-
 /* JGRID STYLES
 ====================================================================================== */
 /* Admin backend grid table elements */
@@ -2818,6 +2789,7 @@ span.move_up                            {   background-position: 0 -888px;  }
 #submenu span.nolink.active             {
                                             background: #fff; color: #666; font-weight:bold; text-decoration:none;
                                             border: 1px solid #e4e4e4; border-bottom: none;
+                                            outline: none;
                                         }
 
 /* COMPONENT STYLES
