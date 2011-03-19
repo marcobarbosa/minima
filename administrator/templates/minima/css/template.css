@@ -964,7 +964,11 @@ BODY.error                              {   background: #ccc; }
     #prev.disabled                      {   display: none; }
 
     #prev .arrow,
-    #next .arrow                        {   display: block; background: transparent url('../images/icons.png') no-repeat top left; width: 14px; height: 28px; }
+    #next .arrow                        {   
+                                            display: block; 
+                                            background: transparent url('../images/arrows.png') no-repeat top left;
+                                            width: 14px; height: 28px; 
+                                        }
 
     #prev .arrow                        {   background-position: 3px -379px; }
         #prev:hover .arrow              {   background-position: 2px -379px; }
@@ -1484,13 +1488,13 @@ input#upload-submit:active              {   background: #34B62A!important; borde
     .adminlist .label                   {   width: 20%; vertical-align: middle;}
 
 .pane-toggler                          {    margin: 5px 0!important; }
-.pane-toggler span                     {    background: transparent url('../images/icons.png') 11px -57px no-repeat; padding-left: 29px; }
-.pane-toggler-down span                {    background: transparent url('../images/icons.png') 11px 4px no-repeat; padding-left: 29px; }
+.pane-toggler span                     {    background: transparent url('../images/arrows.png') 5px -59px no-repeat; padding-left: 29px; }
+.pane-toggler-down span                {    background: transparent url('../images/arrows.png') 5px 4px no-repeat; padding-left: 29px; }
 
         #permissions-sliders #rules li h3.pane-toggler:hover span
-                                       {    background: #efefef url('../images/icons.png') 11px -177px no-repeat; color: #666!important; }
+                                       {    background: #efefef url('../images/arrows.png') 5px -179px no-repeat; color: #666!important; }
         #permissions-sliders #rules li h3.pane-toggler-down span
-                                       {    background: #efefef url('../images/icons.png') 11px -117px no-repeat; color: #666!important; }
+                                       {    background: #efefef url('../images/arrows.png') 5px -116px no-repeat; color: #666!important; }
 
 h3.pane-toggler-down a:hover,
 h3.pane-toggler a:hover                {    text-decoration: none; }
