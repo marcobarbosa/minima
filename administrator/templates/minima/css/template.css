@@ -226,23 +226,25 @@ button                                  {   width: auto; overflow: visible; }
 
 
 #new-modules-list                       {   list-style: none; margin: 0; padding: 20px; }
+    
     #new-modules-list li,
-    dl.menu_type dd ul li               {   border-bottom: 1px solid #ddd; height: 35px; line-height: 35px; }
+    dl.menu_type dd ul li               {   border-bottom: 1px solid #ddd; height: 32px; line-height: 32px; }        
+        
         #new-modules-list li a,
         dl.menu_type dd ul li           {                                            
-                                            background: #fff url('../images/arrows.png') no-repeat 15px 0;
+                                            background: #fff url('../images/arrows.png') no-repeat 10px -290px;
                                             display: block;
                                             font-size: 14px; font-weight: normal;
-                                            height: 35px;
-                                            line-height: 35px;
+                                            height: 32px;
+                                            line-height: 32px;
                                             padding-left: 35px;
-                                        }
+                                        }                
 
-                dl.menu_type dd ul li   {   background-position: 18px -291px; padding-left: 40px; }
+                dl.menu_type dd ul li   {   background-position: 10px -291px; padding-left: 40px; }
 
             #new-modules-list li a:hover,
             dl.menu_type dd ul li:hover {
-                                            background: #eee url('../images/arrows.png') no-repeat 15px -48px;
+                                            background: #eee url('../images/arrows.png') no-repeat 15px -50px;
                                             font-weight: bold;
                                             -moz-box-shadow: 4px 4px 0 #ccc;
                                             -webkit-box-shadow: 4px 4px 0 #ccc;
@@ -251,8 +253,10 @@ button                                  {   width: auto; overflow: visible; }
                                             padding-left: 40px;
                                             text-decoration: none;
                                         }
+
                 dl.menu_type dd ul li:hover
-                                        {   background: #eee url('../images/arrows.png') no-repeat 18px -51px; }
+                                        {   background: #eee url('../images/arrows.png') no-repeat 15px -51px;  }
+
             #new-modules-list li a:active,
             dl.menu_type dd ul li:active{
                                             border: 1px solid #ccc;
@@ -2963,7 +2967,7 @@ dl.menu_type dd ul li                   {
                                         }
 
     dl.menu_type dd ul li:hover         {
-                                            padding-left: 35px;
+                                            padding-left: 40px;
                                         }
 
         dl.menu_type dd ul li:hover  a  {   text-decoration: none; }
