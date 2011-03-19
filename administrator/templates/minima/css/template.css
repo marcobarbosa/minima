@@ -521,7 +521,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             display: none;
                                             position: absolute; 
                                             top: 65px;
-                                            background: #fff;                                             
+                                            background: #fff;                                            
                                             border: 4px solid #ccc;
                                             border: 4px solid rgba(205,205,205,0.4);
                                             -webkit-border-radius: 6px;
@@ -531,7 +531,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             -webkit-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.5);
                                             box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.5);
                                             padding-top: 5px;
-                                            z-index: 3;
+                                            z-index: 3;            
                                         }
 
 #shortcuts .parent .sub.hover           {   display: block; }
@@ -829,7 +829,7 @@ BODY.error                              {   background: #ccc; }
                                             -webkit-box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.5);
                                             box-shadow: 0 0 1px #666, 0 5px 10px rgba(0,0,0,0.5);
                                             position: relative;
-                                            right: -50px;
+                                            margin-right: -50px;
                                         }
 
     #list-wrapper dl                    {

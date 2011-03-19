@@ -438,8 +438,8 @@ window.addEvent('domready', function() {
         });
 
         // slide up panel when clicking a link
-        $$('#panel-list li').addEvent('click', function(){
-            panel.toggle();
+        minima.getElements('#panel-list li').addEvent('click', function(){            
+            Panel.panel.toggle();
         });
 
         var dropDownElements = minima.getElements('#shortcuts .parent');
@@ -448,12 +448,20 @@ window.addEvent('domready', function() {
             // add events to the list elements
             li.addEvents({
                'click' : function() {
+                    var sub = this.getChildren('.sub');
                     // show or hide when click on the arrow                    
-                    $$(this.getChildren('.sub'), this.getElement('a')).toggleClass('hover');
+                    //sub.toggleClass('hover').reveal();
+                    if (sub[0].isDisplayed()) {
+                        sub.dissolve({duration: 300}).removeClass('hover');
+                    } else {
+                        sub.reveal({duration: 400}).addClass('hover');
+                    }
+                    this.getElement('a').toggleClass('hover');
                },
                'outerClick' : function() {
                     // hide when clicking outside or on a different element                    
-                    $$(this.getChildren('.sub'), this.getElement('a')).removeClass('hover');
+                    this.getChildren('.sub').dissolve({duration: 300}).removeClass('hover');
+                    this.getElement('a').removeClass('hover');
                }
             });            
         });
