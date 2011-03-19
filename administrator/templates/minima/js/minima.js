@@ -15,6 +15,13 @@
     // extending Selector for a visible boolean
     $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
 
+    /*Element.implement('toggleReveal', function(el) {
+        if (el.isDisplayed()) {
+            return el.dissolve({duration: 300});
+        } else {
+            return el.reveal({duration: 400});
+        }
+    });*/
 
 var
     // ElementFilter by David Walsh (http://davidwalsh.name/plugin-element-filter)
@@ -393,10 +400,10 @@ window.addEvent('domready', function() {
             });
         }*/
 
-        var extra = $('more');
-        var extraLists = $('list-content');
-        var openPanel = $('panel-tab');
-        var listWrapper = $('list-wrapper');
+        var extra = $('more')
+            extraLists = $('list-content'),
+            openPanel = $('panel-tab'),
+            listWrapper = $('list-wrapper');
 
         // open the panel slide
         openPanel.addEvents({
@@ -425,12 +432,13 @@ window.addEvent('domready', function() {
             extra.set('class','inactive');
             listWrapper.removeClass('active');
             extraLists.hide();
+            //extraLists.toggleReveal();
         }
 
         // turn off list when click outside
         listWrapper.addEvent('outerClick', function(){
             hideLists();
-        });
+        });        
 
         // turn off list when clicking a link
         extraLists.getElements("a").addEvent('click', function(){
@@ -440,27 +448,25 @@ window.addEvent('domready', function() {
         // slide up panel when clicking a link
         minima.getElements('#panel-list li').addEvent('click', function(){            
             Panel.panel.toggle();
-        });
+        });        
 
-        var dropDownElements = minima.getElements('#shortcuts .parent');
-
-        dropDownElements.each(function(li) {             
+        minima.getElements('#shortcuts .parent').each(function(li) {             
             // add events to the list elements
             li.addEvents({
                'click' : function() {
                     var sub = this.getChildren('.sub');
                     // show or hide when click on the arrow                    
-                    //sub.toggleClass('hover').reveal();
+                    //sub.toggleReveal(li).toggleClass('hover');
                     if (sub[0].isDisplayed()) {
-                        sub.dissolve({duration: 300}).removeClass('hover');
+                        sub.dissolve({duration: 200}).removeClass('hover');
                     } else {
-                        sub.reveal({duration: 400}).addClass('hover');
+                        sub.reveal({duration: 300}).addClass('hover');
                     }
                     this.getElement('a').toggleClass('hover');
                },
                'outerClick' : function() {
                     // hide when clicking outside or on a different element                    
-                    this.getChildren('.sub').dissolve({duration: 300}).removeClass('hover');
+                    this.getChildren('.sub').dissolve({duration: 200}).removeClass('hover');
                     this.getElement('a').removeClass('hover');
                }
             });            
