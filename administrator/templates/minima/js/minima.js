@@ -15,23 +15,27 @@
     // extending Selector for a visible boolean
     $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
 
-    /*Element.implement('toggleReveal', function(el) {
-        if (el.isDisplayed()) {
-            return el.dissolve({duration: 300});
-        } else {
-            return el.reveal({duration: 400});
-        }
-    });*/
+    // toggle for reveal or dissolve
+    Element.implement('toggleReveal', function(el, options) {        
+        return el.isDisplayed() ? el.dissolve(options) : el.reveal(options);
+    });
 
 var
+
+    // PLUGINS
+    // ==================================================
+    
     // ElementFilter by David Walsh (http://davidwalsh.name/plugin-element-filter)
 	ElementFilter=new Class({Implements:[Options,Events],options:{cache:true,caseSensitive:false,ignoreKeys:[13,27,32,37,38,39,40],matchAnywhere:true,property:"text",trigger:"keyup",onStart:$empty,onShow:$empty,onHide:$empty,onComplete:$empty},initialize:function(c,b,a){this.setOptions(a);this.observeElement=document.id(c);this.elements=$$(b);this.matches=this.elements;this.misses=[];this.listen();},listen:function(){this.observeElement.addEvent(this.options.trigger,function(a){if(this.observeElement.value.length){if(!this.options.ignoreKeys.contains(a.code)){this.fireEvent("start");this.findMatches(this.options.cache?this.matches:this.elements);this.fireEvent("complete");}}else{this.findMatches(this.elements,false);}}.bind(this));},findMatches:function(f,b){var e=this.observeElement.value;var a=this.options.matchAnywhere?e:"^"+e;var g=this.options.caseSensitive?"":"i";var c=new RegExp(a,g);var d=[];f.each(function(i){var h=(b==undefined?c.test(i.get(this.options.property)):b);if(h){if(!i.retrieve("showing")){this.fireEvent("show",[i]);}d.push(i);i.store("showing",true);}else{if(i.retrieve("showing")){this.fireEvent("hide",[i]);}i.store("showing",false);}return true;}.bind(this));return d;}}),
 
     // ScrollSpy by David Walsh (http://davidwalsh.name/js/scrollspy)
     ScrollSpy=new Class({Implements:[Options,Events],options:{container:window,max:0,min:0,mode:"vertical"},initialize:function(a){this.setOptions(a);this.container=document.id(this.options.container);this.enters=this.leaves=0;this.inside=false;this.listener=function(d){var b=this.container.getScroll(),c=b[this.options.mode=="vertical"?"y":"x"];if(c>=this.options.min&&(this.options.max==0||c<=this.options.max)){if(!this.inside){this.inside=true;this.enters++;this.fireEvent("enter",[b,this.enters,d])}this.fireEvent("tick",[b,this.inside,this.enters,this.leaves,d])}else{if(this.inside){this.inside=false;this.leaves++;this.fireEvent("leave",[b,this.leaves,d])}}this.fireEvent("scroll",[b,this.inside,this.enters,this.leaves,d])};this.addListener()},start:function(){this.container.addEvent("scroll",this.listener.bind(this))},stop:function(){this.container.removeEvent("scroll",this.listener.bind(this))},addListener:function(){this.start()}});
 
-    // Iphone checkboxes by David Walsh ()
+    // Iphone checkboxes by David Walsh (http://davidwalsh.name/iphone-checkboxes-mootools)
     (function(a){this.IPhoneCheckboxes=new Class({Implements:[Options],options:{checkedLabel:"ON",uncheckedLabel:"OFF",background:"#fff",containerClass:"iPhoneCheckContainer",labelOnClass:"iPhoneCheckLabelOn",labelOffClass:"iPhoneCheckLabelOff",handleClass:"iPhoneCheckHandle",handleBGClass:"iPhoneCheckHandleBG",handleSliderClass:"iPhoneCheckHandleSlider",elements:"input[type=checkbox].check"},initialize:function(b){this.setOptions(b);this.elements=$$(this.options.elements);this.elements.each(function(c){this.observe(c)},this)},observe:function(e){e.set("opacity",0);var d=new Element("div",{"class":this.options.containerClass}).inject(e.getParent());e.inject(d);var g=new Element("div",{"class":this.options.handleClass}).inject(d);var c=new Element("div",{"class":this.options.handleBGClass,style:this.options.background}).inject(g);var i=new Element("div",{"class":this.options.handleSliderClass}).inject(g);var b=new Element("label",{"class":this.options.labelOffClass,text:this.options.uncheckedLabel}).inject(d);var f=new Element("label",{"class":this.options.labelOnClass,text:this.options.checkedLabel}).inject(d);var h=d.getSize().x-39;e.offFx=new Fx.Tween(b,{property:"opacity",duration:200});e.onFx=new Fx.Tween(f,{property:"opacity",duration:200});d.addEvent("mouseup",function(){var l=!e.checked;var j=(l?h:0);var k=(l?34:0);c.hide();new Fx.Tween(g,{duration:100,property:"left",onComplete:function(){c.setStyle("left",k).show()}}).start(j);if(l){e.offFx.start(0);e.onFx.start(1)}else{e.offFx.start(1);e.onFx.start(0)}e.set("checked",l)});if(e.checked){b.set("opacity",0);f.set("opacity",1);g.setStyle("left",h);c.setStyle("left",34)}else{f.set("opacity",0);c.setStyle("left",0)}}})})(document.id);
+
+    // MINIMA CLASSES
+    // ==================================================
 
 	// MinimaPanelClass by Henrik Hussfelt, Marco Barbosa
 	MinimaPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}}),
@@ -39,7 +43,7 @@ var
 	// MinimaTabsClass by Henrik Hussfelt, Marco Barbosa
 	MinimaTabsClass=new Class({Implements:[Options],options:{},elements:{tabs:null,content:null},initialize:function(a,b){this.setOptions(a);this.elements=b},showFirst:function(){this.elements.content.pick().removeClass("hide")},hideAllContent:function(){this.elements.content.addClass("hide")},addTabsAction:function(){this.elements.tabs.each(function(b,a){b.addEvents({click:function(c){c.stop();this.elements.tabs.removeClass("active");this.elements.tabs[a].addClass("active");this.elements.content.addClass("hide");this.elements.content[a].removeClass("hide")}.bind(this)})}.bind(this))}}),
 
-    // MinimaClass
+    // MinimaClass by Henrik Hussfelt, Marco Barbosa
     MinimaClass=new Class({Implements:[Options],options:{},element:{systemMessage:null},initialize:function(a,b){this.setOptions(a);this.element.systemMessage=b.systemMessage},showSystemMessage:function(){if(this.element.systemMessage&&this.element.systemMessage.getElement("ul li:last-child")){var b=this;var a=new Element("a",{href:"#",id:"hide-system-message",html:"hide",events:{click:function(c){b.element.systemMessage.dissolve({duration:"short"})}}});this.element.systemMessage.show().getElement("ul li:last-child").adopt(a)}},makeRowsClickable:function(){var a=$$("input[name=checkall-toggle]");a.addEvent("click",function(){var b=$$(".adminlist tbody tr");b.toggleClass("selected")});$$(".adminlist tbody tr input[type=checkbox]").each(function(b){var c=b.getParent("tr");var d=$$("input[name=boxchecked]");b.addEvent("click",function(e){e&&e.stopPropagation();if(b.checked){c.addClass("selected")}else{c.removeClass("selected")}});c.addEvent("click",function(){if(b.checked){b.set("checked",false);d.set("value",0)}else{b.set("checked",true);d.set("value",1)}b.fireEvent("click")})});$$(".adminlist th img").getParent("th").addClass("active")}});
 
 window.addEvent('load', function() {
@@ -124,13 +128,14 @@ window.addEvent('domready', function() {
             'id': 'bulkActions',
             'events': {
                 'click': function(event){
-                    bulkListChildren.toggle();
-                    $$('#bulkActions > a:first-child').switchClass('active', 'inactive');
-                    this.switchClass('active', 'inactive');
+                    //bulkListChildren.toggle();
+                    this.toggleReveal(bulkListChildren,{duration: 200, styles: ['border']});
+                    $$(minima.getElement('#bulkActions > a:first-child'), this).switchClass('active', 'inactive');                                        
                 },
                 'outerClick': function(){
-                    bulkListChildren.hide();
-                    $$('#bulkActions > a:first-child').set('class','inactive');
+                    //bulkListChildren.hide();
+                    bulkListChildren.dissolve({duration: 250});
+                    minima.getElement('#bulkActions > a:first-child').set('class','inactive');
                 }
             }
         });
@@ -304,7 +309,7 @@ window.addEvent('domready', function() {
     scrollSize = document.getScrollSize().y - document.getSize().y;    
     
     /* scrollspy instance */    
-    var ss = new ScrollSpy({
+    new ScrollSpy({
         // the minimum ammount of scrolling before it triggers
         min: 200, 
         onEnter: function() {
@@ -409,10 +414,10 @@ window.addEvent('domready', function() {
         openPanel.addEvents({
             'click': function(){
         		Panel.panel.toggle();
-            },
+            }/*,
             'outerClick' : function(){
-                //panel.slideOut();
-            }
+                //Panel.panel.slideOut();
+            }*/
         });
 
         // change status on toggle complete
@@ -421,18 +426,16 @@ window.addEvent('domready', function() {
         });
 
         // dropdown menu
-        extra.addEvent('click', function(){
-            //this.getParent().addClass('active');
-            this.switchClass('active','inactive');
-            //this.addClass('active');
-            extraLists.toggle();
+        extra.addEvent('click', function(){            
+            this.switchClass('active','inactive');            
+            //extraLists.toggle();
+            this.toggleReveal(extraLists, {heightOverride: '155',duration: 250});
         });
 
         var hideLists = function() {
             extra.set('class','inactive');
             listWrapper.removeClass('active');
-            extraLists.hide();
-            //extraLists.toggleReveal();
+            extraLists.dissolve();            
         }
 
         // turn off list when click outside
@@ -453,15 +456,9 @@ window.addEvent('domready', function() {
         minima.getElements('#shortcuts .parent').each(function(li) {             
             // add events to the list elements
             li.addEvents({
-               'click' : function() {
-                    var sub = this.getChildren('.sub');
+               'click' : function() {                    
                     // show or hide when click on the arrow                    
-                    //sub.toggleReveal(li).toggleClass('hover');
-                    if (sub[0].isDisplayed()) {
-                        sub.dissolve({duration: 200}).removeClass('hover');
-                    } else {
-                        sub.reveal({duration: 300}).addClass('hover');
-                    }
+                    this.toggleReveal(this.getChildren('.sub')[0]).toggleClass('hover');                    
                     this.getElement('a').toggleClass('hover');
                },
                'outerClick' : function() {

@@ -716,12 +716,13 @@ BODY.error                              {   background: #ccc; }
     #user-status li a                   {   color: #fff; }
 
 #open-filter                            {                
-                                            background: #ffd url('../images/arrows.png') no-repeat right 4px;
+                                            background: #fff url('../images/arrows.png') no-repeat right 4px;
                                             display: block;
+                                            float: left;     
                                             font-size: 13px;
+                                            font-weight: bold;
                                             margin: -6px 0;
-                                            padding-right: 20px;
-                                            float: left;                                            
+                                            padding-right: 25px;               
                                         }
 
 #open-filter:hover                      {   background-position: right 6px; }
@@ -1793,6 +1794,7 @@ input.button                            {   cursor: pointer; }
 input.readonly                          {   background: #eee; }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 select:focus,
 textarea:focus                          {
                                             background: #ffd!important;

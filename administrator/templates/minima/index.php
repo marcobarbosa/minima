@@ -20,6 +20,10 @@ if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->
 // get the current logged in user
 $currentUser = JFactory::getUser();
 
+$lang   = JFactory::getLanguage();
+/*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
+//$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
@@ -87,13 +91,15 @@ $currentUser = JFactory::getUser();
                     <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache&amp;view=purge"><?php echo JText::_('TPL_MINIMA_TOOLS_PURGE_EXPIRED_CACHE'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_admin') ) ): ?><dd><a href="index.php?option=com_admin&amp;view=sysinfo"><?php echo JText::_('TPL_MINIMA_TOOLS_SYSTEM_INFORMATION'); ?></a></dd><?php endif; ?>
                 </dl>
+                <?php if( $currentUser->authorize( array('core.manage','com_installer') ) ): ?>
                 <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
-                    <?php if( $currentUser->authorize( array('core.manage','com_languages') ) ): ?><dd><a href="index.php?option=com_languages">Install</a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_modules') ) ): ?><dd><a href="index.php?option=com_modules">Update</a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?><dd><a href="index.php?option=com_plugins">Manage</a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?><dd><a href="index.php?option=com_templates">Discover</a></dd><?php endif; ?>
+                    <dd><a href="index.php?option=com_installer">Install</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
                 </dl>
+                <?php endif; ?>
             </nav><!-- /#list-content -->
         </div><!-- /#list-wrapper -->        
     </header><!-- /#tophead -->

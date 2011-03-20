@@ -84,7 +84,7 @@ class ModMypanelHelper
         } //end foreach
 
         // Load additional language files.
-        foreach (array_keys($langs) as $langName) {
+        foreach (array_keys($langs) as $langName) {            
             // Load the core file then
             // Load extension-local file.
                 $lang->load($langName, JPATH_BASE, null, false, false)
