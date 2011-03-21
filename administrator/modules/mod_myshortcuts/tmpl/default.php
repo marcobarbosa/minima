@@ -15,6 +15,11 @@ $buttons = ModMyshortcutsHelper::getButtons();
 // get the current logged in user
 $currentUser = JFactory::getUser();
 
+$lang   = JFactory::getLanguage();
+$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
+
+/*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
+//$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
 ?>
 
 <ul>
@@ -35,35 +40,35 @@ $currentUser = JFactory::getUser();
 		) : 
 	?>
 	<li class="parent">
-		<a href="#">Content</a>
+		<a href="#"><?php echo JText::_('MOD_MENU_COM_CONTENT');?></a>
 		<nav class="sub">			
 			<?php if( $currentUser->authorize( array('core.manage','com_content') ) ): ?>
 			<ul>				
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_content#content-box'); ?>">Articles</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_content#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_ARTICLES'); ?></a>
 				</li>			
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.add'); ?>">Add New Article</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_content&task=article.add'); ?>"><?php echo JText::_('MOD_MENU_COM_CONTENT_NEW_ARTICLE'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_content&view=featured#content-box'); ?>">Featured Articles</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_content&view=featured#content-box'); ?>"><?php echo JText::_('MOD_MENU_COM_CONTENT_FEATURED'); ?></a>
 				</li>
 			</ul>
 			<?php endif; ?>
 			<?php if( $currentUser->authorize( array('core.manage','com_categories') ) ): ?>
 			<ul>
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_categories&view=categories&extension=com_content#content-box'); ?>">Categories</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_categories&view=categories&extension=com_content#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_CATEGORIES'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_categories&view=category&layout=edit&extension=com_content'); ?>">Add New Category</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_categories&view=category&layout=edit&extension=com_content'); ?>"><?php echo JText::_('MOD_MENU_COM_CONTENT_NEW_CATEGORY'); ?></a>
 				</li>
 			</ul>
 			<?php endif; ?>
 			<?php if( $currentUser->authorize( array('core.manage','com_media') ) ): ?>
 			<ul class="row">
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_media#content-box');?>">Media</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_media#content-box');?>"><?php echo JText::_('MOD_MYSHORTCUTS_MEDIA'); ?></a>
 				</li>				
 			</ul>
 			<?php endif; ?>
@@ -72,14 +77,14 @@ $currentUser = JFactory::getUser();
 	<?php endif; ?>
 	<?php if( $currentUser->authorize( array('core.manage','com_menus') ) ): ?>
 	<li class="parent">
-		<a href="#">Menus</a>
+		<a href="#"><?php echo JText::_('MOD_MENU_MENUS'); ?></a>
 		<nav class="sub">			
 			<ul>
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>">All Menus</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>"><?php echo JText::_('MOD_MENU_MENUSSSSSS'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=menu&layout=edit'); ?>">Add New Menu</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=menu&layout=edit'); ?>"><?php echo JText::_('MOD_MENU_MENU_MANAGER_NEW_MENU'); ?></a>
 				</li>
 			</ul>			
 		</nav><!-- /.sub -->
@@ -87,33 +92,33 @@ $currentUser = JFactory::getUser();
 	<?php endif; ?>
 	<?php if( $currentUser->authorize( array('core.manage','com_users') ) ): ?>
 	<li class="parent">
-		<a href="#">Users</a>	
+		<a href="#"><?php echo JText::_('MOD_MENU_COM_USERS'); ?></a>	
 		<nav class="sub">			
 			<ul>
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=users#content-box'); ?>">All Users</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=users#content-box'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.add'); ?>">Add New User</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.add'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_ADD_USER'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&view=mail'); ?>">Mass Email Users</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&view=mail'); ?>"><?php echo JText::_('MOD_MENU_MASS_MAIL_USERS'); ?></a>
 				</li>
 				</ul>			
 			<ul>
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=groups#content-box'); ?>">Groups</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=groups#content-box'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_GROUPS'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&task=group.add'); ?>">Add New Group</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&task=group.add'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_ADD_GROUP'); ?></a>
 				</li>
 				</ul>			
 			<ul class="row">
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=levels#content-box'); ?>">Access Levels</a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=levels#content-box'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_LEVELS'); ?></a>
 				</li>
 				<li>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&task=level.add'); ?>">Add New Access Level</a>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&task=level.add'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_ADD_LEVEL'); ?></a>
 				</li>
 			</ul>
 		</nav><!-- /.sub -->
@@ -127,20 +132,20 @@ $currentUser = JFactory::getUser();
 		): 
 	?>
 	<li class="parent">			
-		<a href="#">Extensions</a>
+		<a href="#"><?php echo JText::_('MOD_MENU_EXTENSIONS_EXTENSIONS'); ?></a>
 		<nav class="sub">			
 			<ul>
 				<?php if( $currentUser->authorize( array('core.manage','com_languages') ) ): ?>
-				<li><a href="<?php echo JRoute::_('index.php?option=com_languages#content-box'); ?>">Languages</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_languages#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_LANGUAGES'); ?></a></li>
 				<?php endif; ?>
 				<?php if( $currentUser->authorize( array('core.manage','com_modules') ) ): ?>
-				<li><a href="<?php echo JRoute::_('index.php?option=com_modules#content-box'); ?>">Modules</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_modules#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_MODULES'); ?></a></li>
 				<?php endif; ?>
 				<?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?>
-				<li><a href="<?php echo JRoute::_('index.php?option=com_plugins#content-box'); ?>">Plugins</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_plugins#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_PLUGINS'); ?></a></li>
 				<?php endif; ?>
 				<?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?>
-				<li><a href="<?php echo JRoute::_('index.php?option=com_templates#content-box'); ?>">Templates</a></li>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_templates#content-box'); ?>"><?php echo JText::_('MOD_MYSHORTCUTS_TEMPLATES'); ?></a></li>
 				<?php endif; ?>
 			</ul>
 		</nav><!-- /.sub -->
@@ -148,7 +153,7 @@ $currentUser = JFactory::getUser();
 	<?php endif; ?>
 	<li class="last">
 		<a href="<?php echo JRoute::_('index.php?option=com_admin&view=help'); ?>">
-			<?php echo JText::_('MOD_MYSHORTCUTS_HELP'); ?>
+			<?php echo JText::_('MOD_MENU_HELP'); ?>
 		</a>
 	</li>
 </ul>
