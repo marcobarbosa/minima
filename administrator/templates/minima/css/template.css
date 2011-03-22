@@ -569,6 +569,9 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             color: #27617D;  
                                             text-decoration: underline; 
                                         }
+            
+            #shortcuts .sub ul li a:active 
+                                        {   -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
 
     #shortcuts .sub .row                {
                                             clear: both;
