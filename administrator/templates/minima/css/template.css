@@ -972,10 +972,11 @@ BODY.error                              {   background: #ccc; }
                                             width: 28px; height: 28px; 
                                         }
 
-    #prev .arrow                        {   background-position: 3px -388px; }
-        #prev:hover .arrow              {   background-position: 2px -379px; }
-    #next .arrow                        {   background-position: 3px -411px; }
-        #next:hover .arrow              {   background-position: 4px -411px; }
+    #prev .arrow                        {   background-position: -2px -380px; }
+        #prev:hover .arrow              {   background-position: -3px -380px; }
+
+    #next .arrow                        {   background-position: -6px -412px; }
+        #next:hover .arrow              {   background-position: -5px -412px; }
 
 
     #prev .arrow:hover, 
