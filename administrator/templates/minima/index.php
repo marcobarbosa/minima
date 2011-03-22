@@ -24,6 +24,13 @@ $lang   = JFactory::getLanguage();
 /*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
 //$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
 
+// Detecting Active Variables
+$option = JRequest::getCmd('option', '');
+$view = JRequest::getCmd('view', '');
+$layout = JRequest::getCmd('layout', '');
+$task = JRequest::getCmd('task', '');
+$itemid = JRequest::getCmd('Itemid', '');
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
@@ -58,7 +65,7 @@ $lang   = JFactory::getLanguage();
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">

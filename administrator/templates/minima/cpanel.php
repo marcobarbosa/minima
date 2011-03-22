@@ -19,6 +19,13 @@ $lighterColor   = $this->params->get('lighterColor');
 // get the current logged in user
 $currentUser = JFactory::getUser();    
 
+// Detecting Active Variables
+$option = JRequest::getCmd('option', '');
+$view = JRequest::getCmd('view', '');
+$layout = JRequest::getCmd('layout', '');
+$task = JRequest::getCmd('task', '');
+$itemid = JRequest::getCmd('Itemid', '');
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +66,7 @@ $currentUser = JFactory::getUser();
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
+<body id="minima" class="full jbg cpanel <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />

@@ -540,22 +540,24 @@ footer .version                         {   margin: 10px; text-align: center; }
 #shortcuts .sub ul                      {   
                                             margin: 0; 
                                             padding: 0 10px 10px; 
-                                            float: left;
-                                            max-width: 130px;
+                                            float: left;                                
                                         }
 
     #shortcuts .sub ul li               {   
+                                            clear: both;
                                             width: 100%; 
                                             height: 24px; 
-                                            line-height: 24px; 
-                                            overflow: hidden;
+                                            line-height: 24px;
+                                            width: 100%;
                                         }
 
-        #shortcuts .sub ul li a         {                                               
+        #shortcuts .sub ul li a         {        
+                                            background: #fff;                                     
                                             color: #297BA2;
                                             font-weight: normal;
                                             display: block;
                                             height: auto;
+                                            padding-right: 0;
                                             text-align: left;                          
                                             text-shadow: none;
                                             width: 100%;

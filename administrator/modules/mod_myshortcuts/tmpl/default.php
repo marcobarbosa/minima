@@ -16,7 +16,11 @@ $buttons = ModMyshortcutsHelper::getButtons();
 $currentUser = JFactory::getUser();
 
 $lang   = JFactory::getLanguage();
-$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
+//$lang->load('mod_menu', JPATH_ADMINISTRATOR, $lang->getDefault(), false, false);
+$lang->load('mod_menu', JPATH_ADMINISTRATOR, 'en-GB', true);
+$lang->load('mod_menu', JPATH_ADMINISTRATOR, $lang->getDefault(), true);
+$lang->load('mod_menu', JPATH_ADMINISTRATOR, null, true);
+
 
 /*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
 //$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
@@ -81,7 +85,7 @@ $lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
 		<nav class="sub">			
 			<ul>
 				<li>
-					<a class="section" href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>"><?php echo JText::_('MOD_MENU_MENUSSSSSS'); ?></a>
+					<a class="section" href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>"><?php echo JText::_('MOD_MENU_MENUS'); ?></a>
 				</li>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=menu&layout=edit'); ?>"><?php echo JText::_('MOD_MENU_MENU_MANAGER_NEW_MENU'); ?></a>
