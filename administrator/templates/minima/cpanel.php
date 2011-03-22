@@ -11,21 +11,20 @@ defined('_JEXEC') or die;
 
 $app    = JFactory::getApplication();
 
-// Remove unnecessary inline javascript
-/*$headerstuff = $this->getHeadData();
-$headerstuff['script'] = array();
-$this->setHeadData($headerstuff);*/
-
 // template color parameter
 $templateColor = $this->params->get('templateColor');
 $darkerColor   = $this->params->get('darkerColor');
 $lighterColor   = $this->params->get('lighterColor');
 
-// Is it visiting for the first time?
-//$welcome = $this->params->get('welcome_message',1);
-
 // get the current logged in user
 $currentUser = JFactory::getUser();    
+
+// Detecting Active Variables
+$option = JRequest::getCmd('option', '');
+$view = JRequest::getCmd('view', '');
+$layout = JRequest::getCmd('layout', '');
+$task = JRequest::getCmd('task', '');
+$itemid = JRequest::getCmd('Itemid', '');
 
 ?>
 
@@ -67,7 +66,7 @@ $currentUser = JFactory::getUser();
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="full jbg cpanel<?php if (JRequest::getInt('hidemainmenu')) echo " hiddenmenu"; ?>">
+<body id="minima" class="full jbg cpanel <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />
@@ -89,30 +88,31 @@ $currentUser = JFactory::getUser();
             </div>
             <?php endif; ?>
             <div id="list-wrapper">
-                <span id="more"<?php if (JRequest::getInt('hidemainmenu')) echo " class=\"disabled\""; ?>></span>
-                <div class="clr"></div>
-                <nav id="list-content">
-                    <dl class="first">
-                        <dt>Tools</dt>
-                        <?php if( $currentUser->authorize( array('core.manage','com_checkin') ) ): ?><dd><a href="index.php?option=com_checkin"><?php echo JText::_('TPL_MINIMA_TOOLS_GLOBAL_CHECKIN'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache"><?php echo JText::_('TPL_MINIMA_TOOLS_CLEAR_CACHE'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache&amp;view=purge"><?php echo JText::_('TPL_MINIMA_TOOLS_PURGE_EXPIRED_CACHE'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_admin') ) ): ?><dd><a href="index.php?option=com_admin&amp;view=sysinfo"><?php echo JText::_('TPL_MINIMA_TOOLS_SYSTEM_INFORMATION'); ?></a></dd><?php endif; ?>
-                    </dl>
-                    <dl class="last">
-                    <dt>Extensions</dt>
-                        <?php if( $currentUser->authorize( array('core.manage','com_languages') ) ): ?><dd><a href="index.php?option=com_languages"><?php echo JText::_('TPL_MINIMA_TOOLS_LANGUAGES'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_modules') ) ): ?><dd><a href="index.php?option=com_modules"><?php echo JText::_('TPL_MINIMA_TOOLS_MODULES'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?><dd><a href="index.php?option=com_plugins"><?php echo JText::_('TPL_MINIMA_TOOLS_PLUGINS'); ?></a></dd><?php endif; ?>
-                        <?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?><dd><a href="index.php?option=com_templates"><?php echo JText::_('TPL_MINIMA_TOOLS_TEMPLATES'); ?></a></dd><?php endif; ?>
-                    </dl>
-                </nav><!-- /#list-content -->
-            </div><!-- /#list-wrapper -->
-    </header><!-- /header -->
-
+            <span id="more"></span>
+            <div class="clr"></div>
+            <nav id="list-content">
+                <dl>
+                    <dt><?php echo JText::_('TPL_MINIMA_TOOLS',true);?></dt>
+                    <?php if( $currentUser->authorize( array('core.manage','com_checkin') ) ): ?><dd><a href="index.php?option=com_checkin"><?php echo JText::_('TPL_MINIMA_TOOLS_GLOBAL_CHECKIN'); ?></a></dd><?php endif; ?>
+                    <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache"><?php echo JText::_('TPL_MINIMA_TOOLS_CLEAR_CACHE'); ?></a></dd><?php endif; ?>
+                    <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache&amp;view=purge"><?php echo JText::_('TPL_MINIMA_TOOLS_PURGE_EXPIRED_CACHE'); ?></a></dd><?php endif; ?>
+                    <?php if( $currentUser->authorize( array('core.manage','com_admin') ) ): ?><dd><a href="index.php?option=com_admin&amp;view=sysinfo"><?php echo JText::_('TPL_MINIMA_TOOLS_SYSTEM_INFORMATION'); ?></a></dd><?php endif; ?>
+                </dl>
+                <?php if( $currentUser->authorize( array('core.manage','com_installer') ) ): ?>
+                <dl>
+                    <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
+                    <dd><a href="index.php?option=com_installer">Install</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
+                </dl>
+                <?php endif; ?>
+            </nav><!-- /#list-content -->
+        </div><!-- /#list-wrapper --> 
+    </header><!-- /#tophead -->
     <nav id="shortcuts">
         <jdoc:include type="modules" name="shortcuts" />
-    </nav>
+    </nav><!-- /#shortcuts -->
     <div class="message-wrapper"><jdoc:include type="message" /></div><hr class="space" />
     <div id="content-cpanel">
         <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
@@ -135,6 +135,7 @@ $currentUser = JFactory::getUser();
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
             {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
+
         );
     </script>
 </body>

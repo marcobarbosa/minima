@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 $user = JFactory::getUser();
 
 $gravatar_hash =  md5( strtolower( trim( $user->email ) ) );
-
 echo "<ul id=\"user-status\">";
     echo "<li class=\"pic\"><a href=\"index.php?option=com_admin&amp;task=profile.edit\"><img id=\"gravatar\" src=\"http://www.gravatar.com/avatar/$gravatar_hash?d=mm&s=26\" alt=\"$user->name\" /></a></li>";
     echo "<li><a href=\"index.php?option=com_admin&amp;task=profile.edit\">".$user->username."</a></li>";

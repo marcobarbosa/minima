@@ -90,7 +90,7 @@ $saveOrder  = $listOrder == 'ordering';
     <?php if( $this->pagination->total > 0 ): ?><div id="pagination-top"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>
     <div class="clr"> </div>
 
-    <table class="adminlist" id="modules-mgr">
+    <table id="adminlist" class="adminlist" id="modules-mgr">
         <thead>
             <tr>
                 <th width="1%">

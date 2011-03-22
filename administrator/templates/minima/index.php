@@ -20,6 +20,17 @@ if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->
 // get the current logged in user
 $currentUser = JFactory::getUser();
 
+$lang   = JFactory::getLanguage();
+/*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
+//$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
+
+// Detecting Active Variables
+$option = JRequest::getCmd('option', '');
+$view = JRequest::getCmd('view', '');
+$layout = JRequest::getCmd('layout', '');
+$task = JRequest::getCmd('task', '');
+$itemid = JRequest::getCmd('Itemid', '');
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
@@ -54,7 +65,7 @@ $currentUser = JFactory::getUser();
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="<?php if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
@@ -79,22 +90,24 @@ $currentUser = JFactory::getUser();
         <div id="list-wrapper">
             <span id="more"></span>
             <div class="clr"></div>
-            <div id="list-content">
-                <dl class="first">
+            <nav id="list-content">
+                <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_TOOLS',true);?></dt>
                     <?php if( $currentUser->authorize( array('core.manage','com_checkin') ) ): ?><dd><a href="index.php?option=com_checkin"><?php echo JText::_('TPL_MINIMA_TOOLS_GLOBAL_CHECKIN'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache"><?php echo JText::_('TPL_MINIMA_TOOLS_CLEAR_CACHE'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_cache') ) ): ?><dd><a href="index.php?option=com_cache&amp;view=purge"><?php echo JText::_('TPL_MINIMA_TOOLS_PURGE_EXPIRED_CACHE'); ?></a></dd><?php endif; ?>
                     <?php if( $currentUser->authorize( array('core.manage','com_admin') ) ): ?><dd><a href="index.php?option=com_admin&amp;view=sysinfo"><?php echo JText::_('TPL_MINIMA_TOOLS_SYSTEM_INFORMATION'); ?></a></dd><?php endif; ?>
                 </dl>
-                <dl class="last">
-                <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
-                    <?php if( $currentUser->authorize( array('core.manage','com_languages') ) ): ?><dd><a href="index.php?option=com_languages"><?php echo JText::_('TPL_MINIMA_TOOLS_LANGUAGES'); ?></a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_modules') ) ): ?><dd><a href="index.php?option=com_modules"><?php echo JText::_('TPL_MINIMA_TOOLS_MODULES'); ?></a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_plugins') ) ): ?><dd><a href="index.php?option=com_plugins"><?php echo JText::_('TPL_MINIMA_TOOLS_PLUGINS'); ?></a></dd><?php endif; ?>
-                    <?php if( $currentUser->authorize( array('core.manage','com_templates') ) ): ?><dd><a href="index.php?option=com_templates"><?php echo JText::_('TPL_MINIMA_TOOLS_TEMPLATES'); ?></a></dd><?php endif; ?>
+                <?php if( $currentUser->authorize( array('core.manage','com_installer') ) ): ?>
+                <dl>
+                    <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
+                    <dd><a href="index.php?option=com_installer">Install</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
+                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
                 </dl>
-            </div><!-- /#list-content -->
+                <?php endif; ?>
+            </nav><!-- /#list-content -->
         </div><!-- /#list-wrapper -->        
     </header><!-- /#tophead -->
     <nav id="shortcuts">
