@@ -6,20 +6,6 @@
  * @license			GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-    // outerClick function
-    (function(){var b;var a=function(f){var d=$(f.target);var c=d.getParents();b.each(function(g){var e=g.element;if(e!=d&&!c.contains(e)){g.fn.call(e,f)}})};Element.Events.outerClick={onAdd:function(c){if(!b){document.addEvent("click",a);b=[]}b.push({element:this,fn:c})},onRemove:function(c){b=b.filter(function(d){return d.element!=this||d.fn!=c},this);if(!b.length){document.removeEvent("click",a);b=null}}}})();
-
-    // switchClass function
-    Element.implement('switchClass', function(a, b){ var toggle = this.hasClass(a); this.removeClass(toggle ? a : b).addClass(toggle ? b : a); return this; });
-
-    // extending Selector for a visible boolean
-    $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
-
-    // toggle for reveal or dissolve
-    Element.implement('toggleReveal', function(el, options) {        
-        return el.isDisplayed() ? el.dissolve(options) : el.reveal(options);
-    });
-
 var
 
     // PLUGINS
@@ -189,19 +175,8 @@ window.addEvent('domready', function() {
     // get the submenu (tabs) to work
     var subMenu =  $('submenu');
     var itemForm = $('item-form');
-
-    // fix submenu position on overrides
-    if ( (subMenu && subMenu.hasClass('out')) || (subMenu && $('item-form')) )
-    {
-        if (itemForm) itemForm.getChildren('div').addClass('hide');
-        // move the submenu to the top of content
-        subMenu.inject($('content'),'top');
-    }
-
-    // fix padding when there are no tabs
-    if ( !filterBar  && $$('.adminlist') ){ $$('.adminlist').addClass('padTop');}
     
-    if (subMenu && $('item-form')) {
+    if (subMenu && itemForm) {
         // Start tabs actions, create instances of class
     	var MinimaTabsHorizontal = new MinimaTabsClass({}, {'tabs': $$('.minimaTabs a'), 'content': itemForm.getChildren('div')}),
         	MinimaTabsVertical = new MinimaTabsClass({}, {'tabs': $$('#vertical-tabs a'), 'content': $('tabs').getChildren('.panelform')});
@@ -222,93 +197,11 @@ window.addEvent('domready', function() {
         // Add onClick
         MinimaTabsVertical.addTabsAction();
     };
-
-    // change h2 while typing the title
-    if ($('jform_title'))
-    {
-        if($('jform_title').get("value") != "")  $$('.pagetitle h2').set('html', $('jform_title').get("value"));
-        $('jform_title').addEvent('keyup', function(event){
-            // show h2 with the title typed
-            if($('jform_title').get("value") != "") $$('.pagetitle h2').set('html', this.get("value"));
-            //fix alias
-            $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
-        });
-    } // end jform_title
-
+    
     /* FILTER ACCORDION
      * ================================================== */
 
-    // make filter-bar a slide    
-    if (filterBar)
-    {
-        // status of the filter, if it's on or off
-        var filterStatus = {
-            'true':  language['closeFilter'],
-            'false': language['showFilter']
-        };
-
-        var filterSlide = new Fx.Slide(filterBar).hide();
-
-        // filter anchor element
-        var filterAnchor = new Element('a', {
-            'href': '#minima',
-            'id': 'open-filter',
-            'html': language['closeFilter'],
-            'events': {
-                'click': function(e){
-                    e.stop();
-                    filterSlide.toggle();
-                    this.toggleClass("active");                    
-                    if (this.hasClass("active")) {
-                      $('filter_search').focus();  
-                    } 
-                    if (contentTop.hasClass('fixed')) {
-                        window.scrollTo(0,0);                        
-                    }
-                }
-            }
-        });
-
-        // show filter if it's being used
-        // -------------------------------
-        var filterActive = false;
-        var pageTitle = "";
-
-        // FIXME not detecting correctly
-        // we must find out if any of the filters are in use (selected)
-        filterBar.getElements('input, select').each(function(el) {
-            var elValue = el.get('value');
-            // if any filter is selected
-            if (elValue && elValue != 0 && elValue != '*')
-            {
-                // set to active
-                filterActive = true;
-                // add the selected filters to the pageTitle
-                pageTitle += ( el.get('tag').toLowerCase() == "select" ) ?
-                    el.getElement("option:selected").get("html").toLowerCase() + " " : pageTitle += elValue.toLowerCase() + " ";
-            }
-        });
-
-        // if filter is active then show #filter-bar
-        if (filterActive) filterSlide.show(); filterAnchor.set('html', filterStatus[filterSlide.open]);
-        // and change <h2> showing the selected filters
-        var h2Title = $$('.pagetitle').getElement('h2');
-
-        if (pageTitle) h2Title.set( 'html', h2Title.get('html') + "<em>( "+pageTitle+")</em>" );
-        // -------------------------------
-
-        // change status on toggle complete
-        filterSlide.addEvent('complete', function() {
-            filterAnchor.set('html', filterStatus[filterSlide.open]);
-        });
-
-        // add the filter anchor next to pagetitle
-        $$('.pagetitle').grab(filterAnchor);
-        //$$('.pagetitle h2').inject(filterAnchor, 'before');
-        
-        // hidden to avoid flicker, show it back after done fixing it
-        filterBar.show();
-    } //end filter-bar    
+  
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;    
