@@ -1,16 +1,3 @@
-    // outerClick function
-    (function(){var b;var a=function(f){var d=$(f.target);var c=d.getParents();b.each(function(g){var e=g.element;if(e!=d&&!c.contains(e)){g.fn.call(e,f)}})};Element.Events.outerClick={onAdd:function(c){if(!b){document.addEvent("click",a);b=[]}b.push({element:this,fn:c})},onRemove:function(c){b=b.filter(function(d){return d.element!=this||d.fn!=c},this);if(!b.length){document.removeEvent("click",a);b=null}}}})();
-
-    // switchClass function
-    Element.implement('switchClass', function(a, b){ var toggle = this.hasClass(a); this.removeClass(toggle ? a : b).addClass(toggle ? b : a); return this; });
-
-    // extending Selector for a visible boolean
-    $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
-
-    // toggle for reveal or dissolve
-    Element.implement('toggleReveal', function(el, options) {        
-        return el.isDisplayed() ? el.dissolve(options) : el.reveal(options);
-    });
 
 window.addEvent('domready', function() { 
 
@@ -40,11 +27,11 @@ window.addEvent('domready', function() {
     if (subMenu) subMenu.addClass('minimaTabs');            
 
     // some overrides have tabs that are out of place   
-    if ((subMenu && subMenu.hasClass('out')) || (subMenu && itemForm)) {
+    if ((subMenu && subMenu.hasClass('out')) || (subMenu && itemForm)) {        
         // hide the tabs content
         //if (itemForm) itemForm.getChildren('div').addClass('hide');
         // position the tabs on the right place
-        subMenu.inject($('content'),'top');
+        subMenu.inject($('content'),'top');        
     }; // end of subMenu
 
     // FIXME must see if this is necessary
