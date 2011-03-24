@@ -312,6 +312,7 @@ window.addEvent('domready', function() {
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;    
+    tableHead = minima.getElements('#adminlist thead');
     
     /* scrollspy instance */    
     new ScrollSpy({
@@ -324,6 +325,8 @@ window.addEvent('domready', function() {
                     contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
                 };
                 contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
+                //$$(contentTop,tableHead).setStyle('width', topHead.getSize().x - 40).addClass('fixed');
+
             };
         },
         onLeave: function() {

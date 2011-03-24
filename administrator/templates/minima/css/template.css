@@ -641,7 +641,7 @@ BODY.error                              {   background: #ccc; }
 
     #content-top                        {   background: #f4f4f4; z-index: 99; }
 
-    .fixed                              {   
+    #content-top.fixed                  {
                                             position: fixed; top: 0; left: 20px; 
                                             padding-top: 10px;
                                             -webkit-transition: padding 0.3s ease-in-out;
@@ -651,6 +651,8 @@ BODY.error                              {   background: #ccc; }
                                         }
 
         .locked .fixed                  {   max-width: 1140px; }
+
+        #content-top.fixed #submenu     {   display: none; }
                                         
 #toolbar-box,
 #submenu a.active                       {   background:#fff!important; }
@@ -2122,6 +2124,8 @@ table.adminlist thead th, table.adminlist tfoot th
                                             font-size: 13px; font-weight: bold;
                                             text-align: center;
                                         }
+
+table.adminlist thead.fixed th          {   position: fixed;}
 
 table.adminlist tfoot td                {   background: #fff; border-top: 1px solid #ddd; }
 table.adminlist th                      {   padding: 0; }
