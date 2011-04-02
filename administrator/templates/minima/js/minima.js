@@ -109,7 +109,7 @@ window.addEvent('domready', function() {
 
     // ------------------------------- 
     // create elements
-    if(bulkActions.length)
+    if(bulkActions.length > 1)
     {
         // create the new <ul>
         var bulkListChildren = new Element('ul', {'id' : 'actions'}).hide(); // actions <ul>

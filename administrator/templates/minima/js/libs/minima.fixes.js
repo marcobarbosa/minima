@@ -15,11 +15,12 @@ window.addEvent('domready', function() {
     // FIXME must see if this is necessary
     // some tables don't have an id of #adminlist
     // so add it if not found
-    var adminlist = $$('.adminlist'),
-    subMenu = $('submenu'),
-    jformTitle = $('jform_title'),
-    itemForm = $('item-form'),
-    language = MooTools.lang.get('Minima');
+    var 
+        adminlist = $$('.adminlist'),
+        subMenu = $('submenu'),
+        jformTitle = $('jform_title'),
+        itemForm = $('item-form'),
+        language = MooTools.lang.get('Minima');
 
     if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');    
 

@@ -122,7 +122,6 @@ $itemid = JRequest::getCmd('Itemid', '');
             <jdoc:include type="modules" name="widgets-last" style="widget" />
         </section><!-- /#widgets-last -->
     </div><!-- /#content-cpanel -->
-
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
@@ -134,7 +133,6 @@ $itemid = JRequest::getCmd('Itemid', '');
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
             {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-
         );
     </script>
 </body>

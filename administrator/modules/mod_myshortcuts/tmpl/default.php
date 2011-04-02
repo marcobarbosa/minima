@@ -21,9 +21,6 @@ $lang->load('mod_menu', JPATH_ADMINISTRATOR, 'en-GB', true);
 $lang->load('mod_menu', JPATH_ADMINISTRATOR, $lang->getDefault(), true);
 $lang->load('mod_menu', JPATH_ADMINISTRATOR, null, true);
 
-
-/*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
-//$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
 ?>
 
 <ul>

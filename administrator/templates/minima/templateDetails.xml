@@ -12,7 +12,7 @@
     <description>TPL_MINIMA_XML_DESCRIPTION</description>
     <!-- Extension Update Specification -->
     <updateservers>
-        <server type="extension" priority="1" name="Minima Update Site">http://minimatemplate.com/update/templates/tpl_minima/extension.xml</server>
+        <server type="extension" priority="1" name="Minima Update Site">http://minimatemplate.com/update/templates/minima/extension.xml</server>
         <server type="collection" priority="2" name="Minima Update Site">http://minimatemplate.com/update/update.xml</server>
     </updateservers>
     <!--  Dependencies -->

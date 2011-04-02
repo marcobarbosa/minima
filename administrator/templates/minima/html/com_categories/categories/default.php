@@ -118,9 +118,11 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
             $originalOrders = array();
             foreach ($this->items as $i => $item) :
                 $orderkey = array_search($item->id, $this->ordering[$item->parent_id]);
-                $canCheckin = $user->authorise('core.manage',       'com_checkin') || $item->checked_out==$user->get('id');
-                $canChange = $canCheckin;
-                ?>
+                $canEdit	= $user->authorise('core.edit',			$extension.'.category.'.$item->id);
+		$canCheckin	= $user->authorise('core.admin', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+		$canEditOwn	= $user->authorise('core.edit.own',		$extension.'.category.'.$item->id) && $item->created_user_id == $userId;
+		$canChange	= $user->authorise('core.edit.state',	$extension.'.category.'.$item->id) && $canCheckin;
+		?>
                 <tr class="row<?php echo $i % 2; ?>">
                     <td class="center">
                         <?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -130,17 +132,23 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                             <?php echo (int) $item->id; ?></span>
                     </td>
                     <td class="indent-<?php echo intval(($item->level-1)*15)+4; ?>">
-                        <?php if ($item->checked_out) : ?>
-                            <?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'categories.', $canCheckin); ?>
-                        <?php endif; ?>
-                        <a class="table-title" href="<?php echo JRoute::_('index.php?option=com_categories&task=category.edit&cid[]='.$item->id.'&extension='.$extension);?>">
-                            <?php echo $this->escape($item->title); ?></a>
-                        <p class="smallsub" title="<?php echo $this->escape($item->path);?>">
-                            <?php if (empty($item->note)) : ?>
-                                <?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?>
-                            <?php else : ?>
-                                <?php echo JText::sprintf('JGLOBAL_LIST_ALIAS_NOTE', $this->escape($item->alias), $this->escape($item->note));?>
-                            <?php endif; ?></p>
+                        <?php echo str_repeat('<span class="gi">|&mdash;</span>', $item->level-1) ?>
+						<?php if ($item->checked_out) : ?>
+							<?php echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'categories.', $canCheckin); ?>
+						<?php endif; ?>
+						<?php if ($canEdit || $canEditOwn) : ?>
+							<a href="<?php echo JRoute::_('index.php?option=com_categories&task=category.edit&id='.$item->id.'&extension='.$extension);?>">
+								<?php echo $this->escape($item->title); ?></a>
+						<?php else : ?>
+							<?php echo $this->escape($item->title); ?>
+						<?php endif; ?>
+						<p class="smallsub" title="<?php echo $this->escape($item->path);?>">
+							<?php echo str_repeat('<span class="gtr">|&mdash;</span>', $item->level-1) ?>
+							<?php if (empty($item->note)) : ?>
+								<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS', $this->escape($item->alias));?>
+							<?php else : ?>
+								<?php echo JText::sprintf('JGLOBAL_LIST_ALIAS_NOTE', $this->escape($item->alias), $this->escape($item->note));?>
+							<?php endif; ?></p>
                     </td>
                     <td class="center">
                         <?php echo JHtml::_('jgrid.published', $item->published, $i, 'categories.', $canChange);?>
@@ -149,7 +157,7 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                         <?php if ($canChange) : ?>
                             <?php if ($saveOrder) : ?>
                                 <span><?php echo $this->pagination->orderUpIcon($i, isset($this->ordering[$item->parent_id][$orderkey - 1]), 'categories.orderup', 'JLIB_HTML_MOVE_UP', $ordering); ?></span>
-                                <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, isset($this->ordering[$item->parent_id][$orderkey + 1]), 'categories.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
+  					  <span><?php echo $this->pagination->orderDownIcon($i, $this->pagination->total, isset($this->ordering[$item->parent_id][$orderkey + 1]), 'categories.orderdown', 'JLIB_HTML_MOVE_DOWN', $ordering); ?></span>
                             <?php endif; ?>
                             <?php $disabled = $saveOrder ?  '' : 'disabled="disabled"'; ?>
                             <input type="text" name="order[]" size="5" value="<?php echo $orderkey + 1;?>" <?php echo $disabled ?> class="text-area-order" />

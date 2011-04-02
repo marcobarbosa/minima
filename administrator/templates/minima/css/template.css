@@ -473,7 +473,6 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             transition: background-color, color, box-shadow 0.2s ease-in-out;
                                         }
 
-#shortcuts li a.active,
 #shortcuts li a.hover,
 #shortcuts li a:hover                   {
                                             background-color: #fff;
@@ -498,7 +497,7 @@ footer .version                         {   margin: 10px; text-align: center; }
 
 #shortcuts li a:active                  {   position: relative; top: 1px; color: #333; }
 
-#shortcuts li a.active                  {
+#shortcuts li a.hover                   {
                                             background-color: #aaa;
                                             background-color: rgba(0,0,0,0.2);
                                             color: #fff;
