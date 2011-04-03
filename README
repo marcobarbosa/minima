@@ -3,3 +3,8 @@ Minima is a admin template for Joomla 1.6 that focus on minimalism to provide a 
 The template features Mootools 1.3 and lots of HTML5 & CSS 3 goodness.
 
 ( Full Joomla 1.6 installation included for testing. Minima's content is at 'administrator/templates/minima/' )
+
+* After installation, you must run:
+git rm -r --cached installation
+
+then remove the installation folder.

@@ -3,4 +3,5 @@
 .buildpath
 installation/
 installation2/
+_installation/
 configuration.php
