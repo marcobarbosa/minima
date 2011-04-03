@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: default.xml 19203 2010-10-22 16:28:34Z chdemko $ -->
+	<!-- $Id: default.xml 20358 2011-01-19 10:40:58Z infograf768 $ -->
 <metadata>
 	<layout title="COM_CONTACT_CATEGORY_VIEW_DEFAULT_TITLE" option="COM_CONTACT_CATEGORY_VIEW_DEFAULT_OPTION">
 		<help
@@ -30,7 +30,7 @@
 <fields name="params">
 <fieldset name="basic" label="JGLOBAL_CATEGORY_OPTIONS">
 
-			<field name="spacer1" type="spacer" class="spacer"
+			<field name="spacer1" type="spacer" class="text"
 					label="JGLOBAL_SUBSLIDER_DRILL_CATEGORIES_LABEL"
 			/>
 			
@@ -106,7 +106,7 @@
 
 <fieldset name="advanced" label="JGLOBAL_LIST_LAYOUT_OPTIONS">
 			
-			<field name="spacer2" type="spacer" class="spacer"
+			<field name="spacer2" type="spacer" class="text"
 					label="JGLOBAL_SUBSLIDER_DRILL_CATEGORIES_LABEL"
 			/>
 			
@@ -187,7 +187,7 @@
 
 		<field name="show_state_headings"
 			type="list"
-			label="JGLOBAL_STATE"
+			label="COM_CONTACT_FIELD_CONFIG_STATE_LABEL"
 			description="COM_CONTACT_FIELD_CONFIG_STATE_DESC"
 		>
 			<option value="">JGLOBAL_USE_GLOBAL</option>

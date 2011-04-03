@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: styles.php 19580 2010-11-19 16:21:46Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: styles.php 20231 2011-01-10 01:46:33Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,6 +35,9 @@ class TemplatesControllerStyles extends JControllerAdmin
 			if (empty($pks)) {
 				throw new Exception(JText::_('COM_TEMPLATES_NO_TEMPLATE_SELECTED'));
 			}
+
+			JArrayHelper::toInteger($pks);
+
 			$model = $this->getModel();
 			$model->duplicate($pks);
 			$this->setMessage(JText::_('COM_TEMPLATES_SUCCESS_DUPLICATED'));
@@ -70,7 +73,7 @@ class TemplatesControllerStyles extends JControllerAdmin
 	 *
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Style', $prefix = 'TemplatesModel')
+	public function getModel($name = 'Style', $prefix = 'TemplatesModel', $config = array())
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;
@@ -89,10 +92,13 @@ class TemplatesControllerStyles extends JControllerAdmin
 		// Initialise variables.
 		$pks = JRequest::getVar('cid', array(), 'post', 'array');
 
-		try {
+		try
+		{
 			if (empty($pks)) {
 				throw new Exception(JText::_('COM_TEMPLATES_NO_TEMPLATE_SELECTED'));
 			}
+
+			JArrayHelper::toInteger($pks);
 
 			// Pop off the first element.
 			$id = array_shift($pks);
@@ -100,7 +106,9 @@ class TemplatesControllerStyles extends JControllerAdmin
 			$model->setHome($id);
 			$this->setMessage(JText::_('COM_TEMPLATES_SUCCESS_HOME_SET'));
 
-		} catch (Exception $e) {
+		}
+		catch (Exception $e)
+		{
 			JError::raiseWarning(500, $e->getMessage());
 		}
 
@@ -118,8 +126,10 @@ class TemplatesControllerStyles extends JControllerAdmin
 
 		// Initialise variables.
 		$pks = JRequest::getVar('cid', array(), 'get', 'array');
+		JArrayHelper::toInteger($pks);
 
-		try {
+		try
+		{
 			if (empty($pks)) {
 				throw new Exception(JText::_('COM_TEMPLATES_NO_TEMPLATE_SELECTED'));
 			}
@@ -130,7 +140,9 @@ class TemplatesControllerStyles extends JControllerAdmin
 			$model->unsetHome($id);
 			$this->setMessage(JText::_('COM_TEMPLATES_SUCCESS_HOME_UNSET'));
 
-		} catch (Exception $e) {
+		}
+		catch (Exception $e)
+		{
 			JError::raiseWarning(500, $e->getMessage());
 		}
 

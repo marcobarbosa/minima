@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: atom.php 18963 2010-09-20 16:34:10Z dextercowley $
+ * @version		$Id: atom.php 20219 2011-01-09 22:14:54Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	Document
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -53,7 +53,7 @@ defined('JPATH_BASE') or die;
 		
 		$feed_title = htmlspecialchars(
 			$app->getCfg('sitename_pagetitles',0)?
-			JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $data->title):
+			JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $data->title):
 			$data->title
 		, ENT_COMPAT, 'UTF-8');
 
@@ -65,7 +65,14 @@ defined('JPATH_BASE') or die;
 		$feed.= "	<title type=\"text\">".$feed_title."</title>\n";
 		$feed.= "	<subtitle type=\"text\">".htmlspecialchars($data->description, ENT_COMPAT, 'UTF-8')."</subtitle>\n";
 		if (empty($data->category) === false) {
-			$feed.= "		<category term=\"".htmlspecialchars($data->category, ENT_COMPAT, 'UTF-8')."\" />\n";
+			if (is_array($data->category)) {
+				foreach ($data->category as $cat) {
+					$feed.= "	<category term=\"".htmlspecialchars($cat, ENT_COMPAT, 'UTF-8')."\" />\n";
+				}
+			}
+			else {
+				$feed.= "	<category term=\"".htmlspecialchars($data->category, ENT_COMPAT, 'UTF-8')."\" />\n";
+			}
 		}
 		$feed.= "	<link rel=\"alternate\" type=\"text/html\" href=\"".$url."\"/>\n";
 		$feed.= "	<id>".str_replace(' ','%20',$data->getBase())."</id>\n";
@@ -93,14 +100,19 @@ defined('JPATH_BASE') or die;
 			$itemDate = JFactory::getDate($data->items[$i]->date);
 			$feed.= "		<published>".htmlspecialchars($itemDate->toISO8601(), ENT_COMPAT, 'UTF-8')."</published>\n";
 			$feed.= "		<updated>".htmlspecialchars($itemDate->toISO8601(),ENT_COMPAT, 'UTF-8')."</updated>\n";
-			$feed.= "		<id>".str_replace(' ', '%20', $url.$data->items[$i]->link)."</id>\n";
+			if (empty($data->items[$i]->guid) === true) {
+				$feed.= "		<id>".str_replace(' ', '%20', $url.$data->items[$i]->link)."</id>\n";
+			}
+			else {
+				$feed.= "		<id>".htmlspecialchars($data->items[$i]->guid, ENT_COMPAT, 'UTF-8')."</id>\n";
+			}
 
 			if ($data->items[$i]->author!="")
 			{
 				$feed.= "		<author>\n";
 				$feed.= "			<name>".htmlspecialchars($data->items[$i]->author, ENT_COMPAT, 'UTF-8')."</name>\n";
 				if ($data->items[$i]->authorEmail!="") {
-					$feed.= "		<email>".htmlspecialchars($data->items[$i]->authorEmail, ENT_COMPAT, 'UTF-8')."</email>\n";
+					$feed.= "			<email>".htmlspecialchars($data->items[$i]->authorEmail, ENT_COMPAT, 'UTF-8')."</email>\n";
 				}
 				$feed.= "		</author>\n";
 			}

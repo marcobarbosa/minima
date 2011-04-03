@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: message.php 16678 2010-05-03 02:04:23Z infograf768 $
+ * @version		$Id: message.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,67 +20,6 @@ jimport('joomla.database.table');
  */
 class MessagesTableMessage extends JTable
 {
-	/**
-	 * Primary Key
-	 *
-	 * @var		int
-	 */
-	public $message_id	= null;
-
-	/**
-	 * Sender's userid
-	 *
-	 * @var		int
-	 */
-	public $user_id_from = null;
-
-	/**
-	 * Recipient's userid
-	 *
-	 * @var		int
-	 */
-	public $user_id_to = null;
-
-	/**
-	 * @var		int
-	 */
-	public $folder_id = null;
-
-	/**
-	 * Message creation timestamp
-	 *
-	 * @var		datetime
-	 */
-	public $date_time = null;
-
-	/**
-	 * Message state
-	 *
-	 * @var		int
-	 */
-	public $state = null;
-
-	/**
-	 * Priority level of the message
-	 *
-	 * @var		int
-	 */
-	public $priority = null;
-
-	/**
-	 * The message subject
-	 *
-	 * @var		string
-	 */
-	public $subject = null;
-
-	/**
-	 * The message body
-	 *
-	 * @var		text
-	 */
-	public $message = null;
-
 	/**
 	 * Constructor
 	 *

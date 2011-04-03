@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: category.php 19371 2010-11-07 08:25:57Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: category.php 20705 2011-02-15 06:23:47Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -58,7 +58,7 @@ class JTableCategory extends JTableNested
 	 *
 	 * @return	int
 	 */
-	protected function _getAssetParentId()
+	protected function _getAssetParentId($table = null, $id = null)
 	{
 		// Initialise variables.
 		$assetId = null;
@@ -97,7 +97,7 @@ class JTableCategory extends JTableNested
 		if ($assetId) {
 			return $assetId;
 		} else {
-			return parent::_getAssetParentId();
+			return parent::_getAssetParentId($table, $id);
 		}
 	}
 
@@ -117,7 +117,7 @@ class JTableCategory extends JTableNested
 		}
 		$this->alias = trim($this->alias);
 		if (empty($this->alias)) {
-			$this->alias = strtolower($this->title);
+			$this->alias = $this->title;
 		}
 
 		$this->alias = JApplication::stringURLSafe($this->alias);

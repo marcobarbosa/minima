@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: modeladmin.php 19526 2010-11-17 13:56:39Z chdemko $
+ * @version		$Id: modeladmin.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -288,7 +288,8 @@ abstract class JModelAdmin extends JModelForm
 		}
 
 		// Convert to the JObject before adding other data.
-		$item = JArrayHelper::toObject($table->getProperties(1), 'JObject');
+		$properties = $table->getProperties(1);
+		$item = JArrayHelper::toObject($properties, 'JObject');
 
 		if (property_exists($item, 'params')) {
 			$registry = new JRegistry;
@@ -302,12 +303,12 @@ abstract class JModelAdmin extends JModelForm
 	/**
 	 * A protected method to get a set of ordering conditions.
 	 *
-	 * @param	object	$record	A record object.
+	 * @param	object	$table	A JTable object.
 	 *
-	 * @return	array	An array of conditions to add to add to ordering queries.
+	 * @return	array	An array of conditions to add to ordering queries.
 	 * @since	1.6
 	 */
-	protected function getReorderConditions($record = null)
+	protected function getReorderConditions($table)
 	{
 		return array();
 	}
@@ -337,12 +338,12 @@ abstract class JModelAdmin extends JModelForm
 	/**
 	 * Prepare and sanitise the table data prior to saving.
 	 *
-	 * @param	JTable	$table	A JTable object.
+	 * @param	JTable	$table	A reference to a JTable object.
 	 *
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function prepareTable($table)
+	protected function prepareTable(&$table)
 	{
 		// Derived class will provide its own implentation if required.
 	}
@@ -376,6 +377,7 @@ abstract class JModelAdmin extends JModelForm
 					// Prune items that you can't change.
 					unset($pks[$i]);
 					JError::raiseWarning(403, JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'));
+					return false;
 				}
 			}
 		}
@@ -514,7 +516,7 @@ abstract class JModelAdmin extends JModelForm
 			}
 
 			// Trigger the onContentBeforeSave event.
-			$result = $dispatcher->trigger($this->event_before_save, array($this->option.'.'.$this->name, $table, $isNew));
+			$result = $dispatcher->trigger($this->event_before_save, array($this->option.'.'.$this->name, &$table, $isNew));
 			if (in_array(false, $result, true)) {
 				$this->setError($table->getError());
 				return false;
@@ -531,7 +533,7 @@ abstract class JModelAdmin extends JModelForm
 			$cache->clean();
 
 			// Trigger the onContentAfterSave event.
-			$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, $table, $isNew));
+			$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, &$table, $isNew));
 		}
 		catch (Exception $e)
 		{
@@ -559,7 +561,7 @@ abstract class JModelAdmin extends JModelForm
 	 * @return	mixed
 	 * @since	1.6
 	 */
-	function saveorder($pks, $order)
+	function saveorder($pks = null, $order = null)
 	{
 		// Initialise variables.
 		$table		= $this->getTable();

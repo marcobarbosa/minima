@@ -1,13 +1,22 @@
 <?php
 /**
- * @version		$Id: default_params.php 19396 2010-11-08 11:11:40Z chdemko $
+ * @version		$Id: default_params.php 20214 2011-01-09 20:25:57Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
 defined('_JEXEC') or die;
+
+JLoader::register('JHtmlUsers', JPATH_COMPONENT . '/helpers/html/users.php');
+JHtml::register('users.spacer', array('JHtmlUsers','spacer'));
+JHtml::register('users.helpsite', array('JHtmlUsers','helpsite'));
+JHtml::register('users.templatestyle', array('JHtmlUsers','templatestyle'));
+JHtml::register('users.admin_language', array('JHtmlUsers','admin_language'));
+JHtml::register('users.language', array('JHtmlUsers','language'));
+JHtml::register('users.editor', array('JHtmlUsers','editor'));
+
 ?>
 <?php $fields = $this->form->getFieldset('params'); ?>
 <?php if (count($fields)): ?>
@@ -16,34 +25,21 @@ defined('_JEXEC') or die;
 	<dl>
 	<?php foreach ($fields as $field):
 		if (!$field->hidden) :?>
-		<dt><?php echo $field->label; ?></dt>
+		<dt><?php echo $field->title; ?></dt>
 		<dd>
-			<?php
-				if ($field->type!='Spacer') {
-					if (empty($this->data->params[$field->fieldname])) {
-						echo JText::_('COM_USERS_PROFILE_VALUE_NOT_FOUND');
-					}
-					else {
-						if ($field->id == 'jform_params_helpsite') {
-							$v_http = substr ($this->data->params[$field->fieldname], 0, 4);
-
-							if($v_http == "http"){
-								echo '<a href="'.$this->data->params[$field->fieldname].'">'.$this->data->params[$field->fieldname].'</a>';
-							} else {
-								echo '<a href="http://'.$this->data->params[$field->fieldname].'">'.$this->data->params[$field->fieldname].'</a>';
-							}
-						} else {
-							echo $this->data->params[$field->fieldname];
-						}
-					}
-				}
-				else {
-					echo $field->input;
-				}
-			?>
+			<?php if (JHtml::isRegistered('users.'.$field->id)):?>
+				<?php echo JHtml::_('users.'.$field->id, $field->value);?>
+			<?php elseif (JHtml::isRegistered('users.'.$field->fieldname)):?>
+				<?php echo JHtml::_('users.'.$field->fieldname, $field->value);?>
+			<?php elseif (JHtml::isRegistered('users.'.$field->type)):?>
+				<?php echo JHtml::_('users.'.$field->type, $field->value);?>
+			<?php else:?>
+				<?php echo JHtml::_('users.value', $field->value);?>
+			<?php endif;?>
 		</dd>
 		<?php endif;?>
 	<?php endforeach;?>
 	</dl>
 </fieldset>
 <?php endif;?>
+

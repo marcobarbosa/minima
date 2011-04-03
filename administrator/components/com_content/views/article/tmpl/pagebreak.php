@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: pagebreak.php 18612 2010-08-24 02:22:25Z ian $
+ * @version		$Id: pagebreak.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

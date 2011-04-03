@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit_assignment.php 19774 2010-12-05 05:45:14Z chdemko $
+ * @version		$Id: edit_assignment.php 20507 2011-01-31 23:07:37Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_modules
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -44,7 +44,7 @@ $menuTypes = MenusHelper::getMenuLinks();
 
 		<fieldset class="adminform">
 			<legend><?php echo JText::_('COM_MODULES_MENU_ASSIGNMENT'); ?></legend>
-			<label id="jform_menus-lbl" class="hasTip" for="jform_menus"><?php echo JText::_('COM_MODULES_MODULE_ASSIGN'); ?></label>
+			<label id="jform_menus-lbl" for="jform_menus"><?php echo JText::_('COM_MODULES_MODULE_ASSIGN'); ?></label>
 
 			<fieldset id="jform_menus" class="radio">
 				<select name="jform[assignment]" id="jform_assignment">
@@ -53,7 +53,7 @@ $menuTypes = MenusHelper::getMenuLinks();
 
 			</fieldset>
 
-			<label id="jform_menuselect-lbl" class="hasTip" for="jform_menuselect"><?php echo JText::_('JGLOBAL_MENU_SELECTION'); ?></label>
+			<label id="jform_menuselect-lbl" for="jform_menuselect"><?php echo JText::_('JGLOBAL_MENU_SELECTION'); ?></label>
 
 			<button type="button" id="jform_toggle" class="jform-rightbtn" onclick="$$('.chk-menulink').each(function(el) { el.checked = !el.checked; });">
 				<?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>

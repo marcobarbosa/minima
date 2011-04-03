@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: application.php 19433 2010-11-10 05:47:32Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: application.php 20899 2011-03-07 20:56:09Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -62,7 +62,7 @@ final class JSite extends JApplication
 		// if a language was specified it has priority
 		// otherwise use user or default language settings
 		jimport('joomla.plugin.helper');
-		JPluginHelper::importPlugin('system');
+		JPluginHelper::importPlugin('system', 'languagefilter');
 
 		if (empty($options['language'])) {
 			$lang = JRequest::getString('language', null);
@@ -122,7 +122,9 @@ final class JSite extends JApplication
 
 		// Load Library language
 		$lang = JFactory::getLanguage();
-		$lang->load('lib_joomla', JPATH_ADMINISTRATOR);
+		$lang->load('lib_joomla', JPATH_SITE)
+		|| $lang->load('lib_joomla', JPATH_ADMINISTRATOR);
+
 	}
 
 	/**
@@ -144,49 +146,58 @@ final class JSite extends JApplication
 	 */
 	public function dispatch($component = null)
 	{
-		// Get the component if not set.
-		if (!$component) {
-			$component = JRequest::getCmd('option');
-		}
-
-		$document	= JFactory::getDocument();
-		$user		= JFactory::getUser();
-		$router		= $this->getRouter();
-		$params		= $this->getParams();
-
-		switch($document->getType())
+		try
 		{
-			case 'html':
-				// Get language
-				$lang_code = JFactory::getLanguage()->getTag();
-				$languages = JLanguageHelper::getLanguages('lang_code');
+			// Get the component if not set.
+			if (!$component) {
+				$component = JRequest::getCmd('option');
+			}
 
-				// Set metadata
-				if (isset($languages[$lang_code]) && $languages[$lang_code]->metakey) {
-					$document->setMetaData('keywords', $languages[$lang_code]->metakey);
-				} else {
-					$document->setMetaData('keywords', $this->getCfg('MetaKeys'));
-				}
-				$document->setMetaData('rights', $this->getCfg('MetaRights'));
-				$document->setMetaData('language', $lang_code);
-				if ($router->getMode() == JROUTER_MODE_SEF) {
+			$document	= JFactory::getDocument();
+			$user		= JFactory::getUser();
+			$router		= $this->getRouter();
+			$params		= $this->getParams();
+
+			switch($document->getType())
+			{
+				case 'html':
+					// Get language
+					$lang_code = JFactory::getLanguage()->getTag();
+					$languages = JLanguageHelper::getLanguages('lang_code');
+
+					// Set metadata
+					if (isset($languages[$lang_code]) && $languages[$lang_code]->metakey) {
+						$document->setMetaData('keywords', $languages[$lang_code]->metakey);
+					} else {
+						$document->setMetaData('keywords', $this->getCfg('MetaKeys'));
+					}
+					$document->setMetaData('rights', $this->getCfg('MetaRights'));
+					$document->setMetaData('language', $lang_code);
+					if ($router->getMode() == JROUTER_MODE_SEF) {
+						$document->setBase(JURI::current());
+					}
+					break;
+
+				case 'feed':
 					$document->setBase(JURI::current());
-				}
-				break;
+					break;
+			}
 
-			case 'feed':
-				$document->setBase(JURI::current());
-				break;
+			$document->setTitle($params->get('page_title'));
+			$document->setDescription($params->get('page_description'));
+			$contents = JComponentHelper::renderComponent($component);
+			$document->setBuffer($contents, 'component');
+
+			// Trigger the onAfterDispatch event.
+			JPluginHelper::importPlugin('system');
+			$this->triggerEvent('onAfterDispatch');
 		}
-
-		$document->setTitle($params->get('page_title'));
-		$document->setDescription($params->get('page_description'));
-		$contents = JComponentHelper::renderComponent($component);
-		$document->setBuffer($contents, 'component');
-
-		// Trigger the onAfterDispatch event.
-		JPluginHelper::importPlugin('system');
-		$this->triggerEvent('onAfterDispatch');
+		// Mop up any uncaught exceptions.
+		catch (Exception $e)
+		{
+			$code = $e->getCode();
+			JError::raiseError($code ? $code : 500, $e->getMessage());
+		}
 	}
 
 	/**
@@ -220,6 +231,7 @@ final class JSite extends JApplication
 					$return		= (string)$uri;
 					$this->setUserState('users.login.form.data',array( 'return' => $return ) );
 					$file = 'offline';
+					JResponse::setHeader('Status', '503 Service Temporarily Unavailable', 'true');
 				}
 				if (!is_dir(JPATH_THEMES.DS.$template->template) && !$this->getCfg('offline')) {
 					$file = 'component';
@@ -343,7 +355,7 @@ final class JSite extends JApplication
 			$lang_code = JFactory::getLanguage()->getTag();
 			$languages = JLanguageHelper::getLanguages('lang_code');
 
-			$title = htmlspecialchars_decode($this->getCfg('sitename'));
+			$title = $this->getCfg('sitename');
 			if (isset($languages[$lang_code]) && $languages[$lang_code]->metadesc) {
 				$description = $languages[$lang_code]->metadesc;
 			} else {

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: registry.php 19360 2010-11-05 21:28:50Z dextercowley $
+ * @version		$Id: registry.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Registry
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -84,11 +84,10 @@ class JRegistry
 	 * Check if a registry path exists.
 	 *
 	 * @param	string	Registry path (e.g. joomla.content.showauthor)
-	 * @param	mixed	Optional default value, returned if the internal value is null.
 	 * @return	boolean
 	 * @since	1.6
 	 */
-	public function exists($path, $default = null)
+	public function exists($path)
 	{
 		// Explode the registry path into an array
 		if ($nodes = explode('.', $path)) {
@@ -213,17 +212,17 @@ class JRegistry
 	 *
 	 * @param	string	Path to file to load
 	 * @param	string	Format of the file [optional: defaults to JSON]
-	 * @param	string	Namespace to load the JSON string into [optional]
+	 * @param	mixed	Options used by the formatter
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
-	public function loadFile($file, $format = 'JSON')
+	public function loadFile($file, $format = 'JSON', $options = array())
 	{
 		// Get the contents of the file
 		jimport('joomla.filesystem.file');
 		$data = JFile::read($file);
 
-		return $this->loadString($data, $format);
+		return $this->loadString($data, $format, $options);
 	}
 
 	/**
@@ -231,6 +230,7 @@ class JRegistry
 	 *
 	 * @param	string	string to load into the registry
 	 * @param	string	format of the string
+	 * @param	mixed	Options used by the formatter
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
@@ -326,17 +326,16 @@ class JRegistry
 	 * Get a namespace in a given string format
 	 *
 	 * @param	string	Format to return the string in
-	 * @param	string	Namespace to return [optional: null returns the default namespace]
 	 * @param	mixed	Parameters used by the formatter, see formatters for more info
 	 * @return	string	Namespace in string format
 	 * @since	1.5
 	 */
-	public function toString($format = 'JSON', $namespace = null, $params = null)
+	public function toString($format = 'JSON', $options = array())
 	{
 		// Return a namespace in a given format
 		$handler = JRegistryFormat::getInstance($format);
 		
-		return $handler->objectToString($this->data, $params);
+		return $handler->objectToString($this->data, $options);
 	}
 
 	/**

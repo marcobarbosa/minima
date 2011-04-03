@@ -1,4 +1,4 @@
-# $Id: joomla.sql 17225 2010-05-24 03:01:15Z dextercowley $
+# $Id: joomla_update_16beta2.sql 20467 2011-01-28 00:17:12Z dextercowley $
 
 #
 # Database updates for 1.6 Beta 1 to Beta 2

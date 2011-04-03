@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: rules.php 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: rules.php 20828 2011-02-22 04:22:21Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('JPATH_BASE') or die;
@@ -97,6 +97,7 @@ class JFormFieldRules extends JFormField
 		// Prepare output
 		$html = array();
 		$html[] = '<div id="permissions-sliders" class="pane-sliders">';
+		$html[] = '<p class="rule-desc">' . JText::_('JLIB_RULES_SETTINGS_DESC') . '</p>';
 		$html[] = '<ul id="rules">';
 
 		// Start a row for each user group.
@@ -105,23 +106,21 @@ class JFormFieldRules extends JFormField
 			$difLevel = $group->level - $curLevel;
 
 			if ($difLevel > 0) {
-				$html[] = '<ul>';
+				$html[] = '<li><ul>';
 			}
 			else if ($difLevel < 0) {
-				$html[] = str_repeat('</li></ul>', -$difLevel);
+				$html[] = str_repeat('</ul></li>', -$difLevel);
 			}
 
 			$html[] = '<li>';
 
 			$html[] = '<div class="panel">';
-			$html[] =	'<h3 class="pane-toggler title" ><a href="javascript:void(0);"><span>';
+			$html[] =	'<h3 class="pane-toggler title"><a href="javascript:void(0);"><span>';
 			$html[] =	str_repeat('<span class="level">|&ndash;</span> ', $curLevel = $group->level) . $group->text;
 			$html[] =	'</span></a></h3>';
-			$html[] =	'<div class="pane-slider content">';
+			$html[] =	'<div class="pane-slider content pane-hide">';
 			$html[] =		'<div class="mypanel">';
 			$html[] =			'<table class="group-rules">';
-			$html[] =				'<caption>' . JText::sprintf('JLIB_RULES_GROUP', $group->text) . '<br /><span>' .
-									 JText::_('JLIB_RULES_SETTINGS_DESC') . '</span></caption>';
 			$html[] =				'<thead>';
 			$html[] =					'<tr>';
 
@@ -143,7 +142,7 @@ class JFormFieldRules extends JFormField
 
 			$html[] =					'</tr>';
 			$html[] =				'</thead>';
-			$html[] =				'<tbody >';
+			$html[] =				'<tbody>';
 
 			foreach ($actions as $action)
 			{
@@ -173,7 +172,7 @@ class JFormFieldRules extends JFormField
 				$html[] = '<option value="0"' . ($assetRule === false ? ' selected="selected"' : '') . '>' .
 							JText::_('JLIB_RULES_DENIED') . '</option>';
 
-				$html[] = '</select>&nbsp; ';
+				$html[] = '</select>&#160; ';
 
 				// If this asset's rule is allowed, but the inherited rule is deny, we have a conflict.
 				if (($assetRule === true) && ($inheritedRule === false)) {
@@ -185,7 +184,7 @@ class JFormFieldRules extends JFormField
 				// Build the Calculated Settings column.
 				// The inherited settings column is not displayed for the root group in global configuration.
 				if ($canCalculateSettings) {
-					$html[] = '<td headers="global_th' . $group->value . '">';
+					$html[] = '<td headers="aclactionth' . $group->value . '">';
 
 					// This is where we show the current effective settings considering currrent group, path and cascade.
 					// Check whether this is a component or global. Change the text slightly.
@@ -244,16 +243,22 @@ class JFormFieldRules extends JFormField
 
 			$html[] = '</tbody>';
 			$html[] = '</table></div>';
-			$html[] = JText::_('JLIB_RULES_SETTING_NOTES');
+
 			$html[] = '</div></div>';
+			$html[] = '</li>';
 
 		} // endforeach
 
-		$html[] = str_repeat('</li></ul>', $curLevel);
-		$html[] = '</ul>';
-		$html[] = '</div>';
+		$html[] = str_repeat('</ul></li>', $curLevel);
+		$html[] = '</ul><div class="rule-notes">';
+		if ($section == 'component' || $section == null ) {
+			$html[] = JText::_('JLIB_RULES_SETTING_NOTES');
+		} else {
+			$html[] = JText::_('JLIB_RULES_SETTING_NOTES_ITEM');
+		}
+		$html[] = '</div></div>';
 
-		$js = "window.addEvent('domready', function(){ new Accordion($$('div#permissions-sliders.pane-sliders .panel h3.pane-toggler'), $$('div#permissions-sliders.pane-sliders .panel div.pane-slider'), {onActive: function(toggler, i) {toggler.addClass('pane-toggler-down');toggler.removeClass('pane-toggler');Cookie.write('jpanesliders_permissions-sliders".$component."',$$('div#permissions-sliders.pane-sliders .panel h3').indexOf(toggler));},onBackground: function(toggler, i) {toggler.addClass('pane-toggler');toggler.removeClass('pane-toggler-down');},duration: 300,display: ".JRequest::getInt('jpanesliders_permissions-sliders'.$component, 0, 'cookie').",show: ".JRequest::getInt('jpanesliders_permissions-sliders'.$component, 0, 'cookie').",opacity: false}); });";
+		$js = "window.addEvent('domready', function(){ new Fx.Accordion($$('div#permissions-sliders.pane-sliders .panel h3.pane-toggler'), $$('div#permissions-sliders.pane-sliders .panel div.pane-slider'), {onActive: function(toggler, i) {toggler.addClass('pane-toggler-down');toggler.removeClass('pane-toggler');i.addClass('pane-down');i.removeClass('pane-hide');Cookie.write('jpanesliders_permissions-sliders".$component."',$$('div#permissions-sliders.pane-sliders .panel h3').indexOf(toggler));},onBackground: function(toggler, i) {toggler.addClass('pane-toggler');toggler.removeClass('pane-toggler-down');i.addClass('pane-hide');i.removeClass('pane-down');},duration: 300,display: ".JRequest::getInt('jpanesliders_permissions-sliders'.$component, 0, 'cookie').",show: ".JRequest::getInt('jpanesliders_permissions-sliders'.$component, 0, 'cookie').", alwaysHide:true, opacity: false}); });";
 
 		JFactory::getDocument()->addScriptDeclaration($js);
 

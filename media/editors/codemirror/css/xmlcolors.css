@@ -1,14 +1,13 @@
+html {
+  cursor: text;
+}
+
 .editbox {
   margin: .4em;
   padding: 0;
   font-family: monospace;
   font-size: 10pt;
   color: black;
-}
-
-body.editbox {
-	border: 1px solid #cccccc;
-	padding: .4em;
 }
 
 .editbox p {
@@ -48,7 +47,7 @@ span.xml-entity {
 }
 
 span.xml-error {
-  color: #F00;
+ color: #F00 !important;
 }
 
 span.xml-text {

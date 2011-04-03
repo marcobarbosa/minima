@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19529 2010-11-17 14:13:43Z chdemko $
+ * @version		$Id: default.php 20724 2011-02-16 08:41:47Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_config
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,10 +27,10 @@ JHtml::_('behavior.formvalidation');
 <form action="<?php echo JRoute::_('index.php?option=com_config');?>" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate">
 	<fieldset>
 		<div class="fltrt">
-			<button type="button" onclick="Joomla.submitform('component.save', this.form);">
-				<?php echo JText::_('JSAVE');?></button>
 			<button type="button" onclick="Joomla.submitform('component.apply', this.form);">
 				<?php echo JText::_('JAPPLY');?></button>
+			<button type="button" onclick="Joomla.submitform('component.save', this.form);">
+				<?php echo JText::_('JSAVE');?></button>
 			<button type="button" onclick="window.parent.SqueezeBox.close();">
 				<?php echo JText::_('JCANCEL');?></button>
 		</div>

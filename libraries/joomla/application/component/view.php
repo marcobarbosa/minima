@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.php 19413 2010-11-09 15:57:44Z dextercowley $
+ * @version		$Id: view.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Application
- * @copyright Copyright Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright Copyright Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -668,7 +668,7 @@ class JView extends JObject
 				if (isset($app))
 				{
 					$component	= preg_replace('/[^A-Z0-9_\.-]/i', '', $component);
-					$fallback	= JPATH_BASE.DS.'templates'.DS.$app->getTemplate().DS.'html'.DS.$component.DS.$this->getName();
+					$fallback	= JPATH_THEMES.DS.$app->getTemplate().DS.'html'.DS.$component.DS.$this->getName();
 					$this->_addPath('template', $fallback);
 				}
 				break;

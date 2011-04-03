@@ -6,7 +6,7 @@
 	<author>Angie Radtke</author>
 	<authorEmail>a.radtke@derauftritt.de</authorEmail>
 	<authorUrl>http://www.der-auftritt.de</authorUrl>
-	<copyright>Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<version>1.6.0</version>
 	<description>TPL_BEEZ2_XML_DESCRIPTION</description>
@@ -29,6 +29,7 @@
 	</files>
 
 	<positions>
+		<position>debug</position>
 		<position>position-0</position>
 		<position>position-1</position>
 		<position>position-2</position>
@@ -56,18 +57,17 @@
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
-				<field name="wrapperSmall" type="text" default="53"
+				<field name="wrapperSmall"  class="validate-numeric" type="text" default="53"
 					label="TPL_BEEZ2_FIELD_WRAPPERSMALL_LABEL"
 					description="TPL_BEEZ2_FIELD_WRAPPERSMALL_DESC"
-					filter="int" />
+					filter="integer" />
 
-				<field name="wrapperLarge" type="text" default="72"
+				<field name="wrapperLarge"  class="validate-numeric" type="text" default="72"
 					label="TPL_BEEZ2_FIELD_WRAPPERLARGE_LABEL"
 					description="TPL_BEEZ2_FIELD_WRAPPERLARGE_DESC"
-					filter="int" />
+					filter="integer" />
 
 				<field name="logo" type="media"
-					hide_default="1"
 					label="TPL_BEEZ2_FIELD_LOGO_LABEL" description="TPL_BEEZ2_FIELD_LOGO_DESC" />
 
 				<field name="sitetitle"  type="text" default=""
@@ -97,7 +97,7 @@
 
 					<option value="nature">TPL_BEEZ2_OPTION_NATURE</option>
 					<option value="personal">TPL_BEEZ2_OPTION_PERSONAL</option>
-					<option value="black">TPL_BEEZ2_OPTION_BLACK</option>
+				
 				</field>
 
 

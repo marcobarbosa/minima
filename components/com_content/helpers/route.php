@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: route.php 19878 2010-12-14 15:02:26Z ian $
+ * @version		$Id: route.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -112,9 +112,9 @@ abstract class ContentHelperRoute
 	{
 		//Create the link
 		if ($id) {
-			$link = 'index.php?option=com_content&task=article.edit&id='. $id;
+			$link = 'index.php?option=com_content&task=article.edit&a_id='. $id;
 		} else {
-			$link = 'index.php?option=com_content&task=article.edit&id=0';
+			$link = 'index.php?option=com_content&task=article.edit&a_id=0';
 		}
 
 		return $link;

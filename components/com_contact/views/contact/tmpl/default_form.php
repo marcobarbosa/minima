@@ -4,7 +4,7 @@
  * @version		/** $Id: default_form.php 11845 2009-05-27 23:28:59Z robs
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
@@ -47,19 +47,19 @@ JHtml::_('behavior.keepalive');
 			</div>
 			<div>
 				<label id="contact-emailmsg" for="contact-email">
-					<?php echo JText::_('JGLOBAL_EMAIL');?>*
+					<?php echo JText::_('JGLOBAL_EMAIL').'<span class="star">&#160;*</span>';?>
 				</label>
 				<input type="text" id="contact-email" name="email" size="30" value="" class="inputbox required validate-email" maxlength="100" />
 			</div>
 			<div>
 				<label for="contact-subject">
-					<?php echo JText::_('COM_CONTACT_CONTACT_MESSAGE_SUBJECT');?>:
+					<?php echo JText::_('COM_CONTACT_CONTACT_MESSAGE_SUBJECT');?>
 				</label>
 				<input type="text" name="subject" id="contact-subject" size="30" class="inputbox" value="" />
 			</div>
 			<div>
 				<label id="contact-textmsg" for="contact-text">
-					<?php echo JText::_('COM_CONTACT_CONTACT_ENTER_MESSAGE');?>:
+					<?php echo JText::_('COM_CONTACT_CONTACT_ENTER_MESSAGE').'<span class="star">&#160;*</span>';?>
 				</label>
 				<textarea cols="50" rows="10" name="text" id="contact-text" class="inputbox required"></textarea>
 			</div>

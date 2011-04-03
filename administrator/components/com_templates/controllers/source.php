@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: source.php 18786 2010-09-07 01:52:35Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: source.php 20899 2011-03-07 20:56:09Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -72,7 +72,7 @@ class TemplatesControllerSource extends JController
 	 *
 	 * @return	object	The model.
 	 */
-	public function &getModel($name = 'Source', $prefix = 'TemplatesModel', $config = array())
+	public function getModel($name = 'Source', $prefix = 'TemplatesModel', $config = array())
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
@@ -104,6 +104,10 @@ class TemplatesControllerSource extends JController
 		$model		= $this->getModel();
 		$recordId	= JRequest::getVar('id');
 		$context	= 'com_templates.edit.source';
+
+		if (preg_match('#\.\.#', base64_decode($recordId))) {
+			return JError::raiseError(500, 'COM_TEMPLATES_ERROR_SOURCE_FILE_NOT_FOUND');
+		}
 
 		// Access check.
 		if (!$this->allowEdit()) {

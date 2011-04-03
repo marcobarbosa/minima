@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19281 2010-10-29 10:12:49Z eddieajau $
+ * @version		$Id: edit.php 20822 2011-02-21 23:02:52Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -22,12 +22,12 @@ $canDo = UsersHelper::getActions();
 Joomla.submitbutton = function(task)
 {
 	if (task == 'level.cancel' || document.formvalidator.isValid(document.id('level-form'))) {
-		Joomla.submitform(task, document.getElementById('level-form'));
+		Joomla.submitform(task, document.id('level-form'));
 	}
 }
 /*
 window.addEvent('domready', function(){
-	$('user-groups').getElements('input').each(function(i){
+	document.id('user-groups').getElements('input').each(function(i){
 		// Event to check all child groups.
 		i.addEvent('check', function(e){
 			// Check the child groups.

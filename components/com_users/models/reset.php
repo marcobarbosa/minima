@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: reset.php 19676 2010-11-29 16:47:08Z infograf768 $
+ * @version		$Id: reset.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -85,9 +85,9 @@ class UsersModelReset extends JModelForm
 	 * @throws	Exception if there is an error in the form event.
 	 * @since	1.6
 	 */
-	protected function preprocessForm(JForm $form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = 'user')
 	{
-		parent::preprocessForm($form, $data, 'user');
+		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**
@@ -100,8 +100,7 @@ class UsersModelReset extends JModelForm
 	protected function populateState()
 	{
 		// Get the application object.
-		$app	= JFactory::getApplication();
-		$params	= $app->getParams('com_users');
+		$params	= JFactory::getApplication()->getParams('com_users');
 
 		// Load the parameters.
 		$this->setState('params', $params);
@@ -192,7 +191,7 @@ class UsersModelReset extends JModelForm
 	function processResetConfirm($data)
 	{
 		jimport('joomla.user.helper');
-		
+
 		// Get the form.
 		$form = $this->getResetConfirmForm();
 
@@ -257,8 +256,8 @@ class UsersModelReset extends JModelForm
 		{
 			$this->setError(JText::_('COM_USERS_USER_NOT_FOUND'));
 			return false;
-		}		
-		
+		}
+
 		// Make sure the user isn't blocked.
 		if ($user->block) {
 			$this->setError(JText::_('COM_USERS_USER_BLOCKED'));
@@ -352,7 +351,7 @@ class UsersModelReset extends JModelForm
 		$token = JUtility::getHash(JUserHelper::genRandomPassword());
 		$salt = JUserHelper::getSalt('crypt-md5');
 		$hashedToken = md5($token.$salt).':'.$salt;
-		
+
 		$user->activation = $hashedToken;
 
 		// Save the user to the database.

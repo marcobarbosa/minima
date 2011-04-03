@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: mod_articles_category.php 19603 2010-11-21 05:37:43Z dextercowley $
+ * @version		$Id: mod_articles_category.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_category
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 // Include the helper functions only once
-require_once dirname(__FILE__).DS.'helper.php';
+require_once dirname(__FILE__).'/helper.php';
 
 		// Prep for Normal or Dynamic Modes
 		$mode = $params->get('mode', 'normal');
@@ -62,6 +62,9 @@ if (!empty($list)) {
 	$grouped = false;
 	$article_grouping = $params->get('article_grouping', 'none');
 	$article_grouping_direction = $params->get('article_grouping_direction', 'ksort');
+	$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+	$item_heading = $params->get('item_heading');
+	
 	if ($article_grouping !== 'none') {
 		$grouped = true;
 		switch($article_grouping)
@@ -70,7 +73,7 @@ if (!empty($list)) {
 			case 'month_year':
 				$list = modArticlesCategoryHelper::groupByDate($list, $article_grouping, $article_grouping_direction, $params->get('month_year_format', 'F Y'));
 				break;
-			case 'author_name':
+			case 'author':
 			case 'category_title':
 				$list = modArticlesCategoryHelper::groupBy($list, $article_grouping, $article_grouping_direction);
 				break;

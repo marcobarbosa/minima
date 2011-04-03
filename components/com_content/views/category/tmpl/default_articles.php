@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_articles.php 19751 2010-12-03 17:02:44Z dextercowley $
+ * @version		$Id: default_articles.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,8 +17,8 @@ JHtml::core();
 // Create some shortcuts.
 $params		= &$this->item->params;
 $n			= count($this->items);
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 
 <?php if (empty($this->items)) : ?>
@@ -50,6 +50,11 @@ $listDirn	= $this->state->get('list.direction');
 		<?php endif; ?>
 
 	<?php if ($this->params->get('filter_field') != 'hide') :?>
+	
+		<!-- @TODO add hidden inputs -->
+		<input type="hidden" name="filter_order" value="" />
+		<input type="hidden" name="filter_order_Dir" value="" />
+		<input type="hidden" name="limitstart" value="" />
 	</fieldset>
 	<?php endif; ?>
 
@@ -113,7 +118,7 @@ $listDirn	= $this->state->get('list.direction');
 					<?php endif; ?>
 
 					<?php if ($this->params->get('list_show_author',1) && !empty($article->author )) : ?>
-					<td class="createdby">
+					<td class="list-author">
 						<?php $author =  $article->author ?>
 						<?php $author = ($article->created_by_alias ? $article->created_by_alias : $author);?>
 
@@ -153,9 +158,6 @@ $listDirn	= $this->state->get('list.direction');
 					</td>
 				<?php endif; ?>
 				</tr>
-			<?php if ($this->items[$i]->state == 0) : ?>
-			</div>
-			<?php endif; ?>
 		<?php endforeach; ?>
 		</tbody>
 	</table>
@@ -176,12 +178,5 @@ $listDirn	= $this->state->get('list.direction');
 		<?php echo $this->pagination->getPagesLinks(); ?>
 	</div>
 	<?php endif; ?>
-
-	<div>
-		<!-- @TODO add hidden inputs -->
-		<input type="hidden" name="filter_order" value="" />
-		<input type="hidden" name="filter_order_Dir" value="" />
-		<input type="hidden" name="limitstart" value="" />
-	</div>
 </form>
 <?php endif; ?>

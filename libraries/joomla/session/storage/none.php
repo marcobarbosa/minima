@@ -3,7 +3,7 @@
  * @version		$Id:none.php 6961 2007-03-15 16:06:53Z tcp $
  * @package		Joomla.Framework
  * @subpackage	Session
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -26,7 +26,7 @@ class JSessionStorageNone extends JSessionStorage
 	* @access public
 	* @param array $options optional parameters
 	*/
-	function register()
+	function register($options = array())
 	{
 		//let php handle the session storage
 	}

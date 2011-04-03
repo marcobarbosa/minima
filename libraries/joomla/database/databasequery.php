@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: databasequery.php 18383 2010-08-10 05:07:25Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: databasequery.php 20824 2011-02-21 23:12:11Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -228,7 +228,7 @@ class JDatabaseQuery
 				$this->_type = null;
 				$this->_select = null;
 				$this->_delete = null;
-				$this->_udpate = null;
+				$this->_update = null;
 				$this->_insert = null;
 				$this->_from = null;
 				$this->_join = null;

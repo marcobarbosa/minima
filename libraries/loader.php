@@ -1,8 +1,8 @@
 <?php
 /**
- * @version $Id: loader.php 18650 2010-08-26 13:28:49Z ian $
+ * @version $Id: loader.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -71,7 +71,7 @@ abstract class JLoader
 				$filename = $base.DS.$path.'.php';
 				if (is_file($filename))
 				{
-					$rs   = (bool) include $filename;
+					$rs   = (bool) include_once $filename;
 				}
 				else
 				{
@@ -129,7 +129,7 @@ abstract class JLoader
 
 		if (array_key_exists($class, JLoader::$classes))
 		{
-			include JLoader::$classes[$class];
+			include_once JLoader::$classes[$class];
 			return true;
 		}
 		return false;

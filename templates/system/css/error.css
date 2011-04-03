@@ -1,6 +1,6 @@
 /**
- * @version		$Id: error.css 19466 2010-11-14 02:30:53Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: error.css 20475 2011-01-28 15:47:14Z chdemko $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -39,21 +39,21 @@ table, td, th, div, pre, blockquote, ul, ol, dl, address,.componentheading,.cont
 }
 
 #outline {
-	width: 814px;
-	margin: 0px;
+	width: 900px;
+	margin: 0 auto;
 	padding: 0px;
 	padding-top: 60px;
 	padding-bottom: 60px;
 	background: #FFFFFF;
 }
 #errorboxoutline {
-	width: 600px;
+	width: 900px;
 	margin: 0px;
 	padding: 0px;
 	border: 1px solid #000000;
 }
 #errorboxheader {
-	width: 600px;
+	width: 900px;
 	margin: 0px;
 	padding: 0px;
 	background: #E44249;

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: menu.php 19422 2010-11-09 22:13:54Z chdemko $
+ * @version		$Id: menu.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

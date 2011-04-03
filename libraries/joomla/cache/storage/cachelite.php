@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: cachelite.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: cachelite.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	Cache
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -79,7 +79,7 @@ class JCacheStorageCachelite extends JCacheStorage
 	 * @return	mixed	Boolean false on failure or a cached data string
 	 * @since	1.6
 	 */
-	public function get($id, $group, $checkTime)
+	public function get($id, $group, $checkTime = true)
 	{
 		$data = false;
 		self::$CacheLiteInstance->setOption('cacheDir', $this->_root.DS.$group.DS);
@@ -185,7 +185,7 @@ class JCacheStorageCachelite extends JCacheStorage
 	 * @return	boolean	True on success, false otherwise
 	 * @since	1.6
 	 */
-	public function clean($group, $mode=null)
+	public function clean($group, $mode = null)
 	{
 		jimport('joomla.filesystem.folder');
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: redirect.php 18375 2010-08-09 17:07:45Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: redirect.php 20740 2011-02-17 10:28:57Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -61,10 +61,10 @@ class RedirectHelper
 		// Build the active state filter options.
 		$options	= array();
 		$options[]	= JHtml::_('select.option', '*', 'JALL');
-		$options[]	= JHtml::_('select.option', '2', 'JARCHIVED');
 		$options[]	= JHtml::_('select.option', '1', 'JENABLED');
 		$options[]	= JHtml::_('select.option', '0', 'JDISABLED');
-		$options[]	= JHtml::_('select.option', '-2', 'JTRASH');
+		$options[]	= JHtml::_('select.option', '2', 'JARCHIVED');
+		$options[]	= JHtml::_('select.option', '-2', 'JTRASHED');
 
 		return $options;
 	}

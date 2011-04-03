@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: module.php 19325 2010-11-02 09:49:27Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: module.php 20819 2011-02-21 21:53:18Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -484,7 +484,7 @@ class JInstallerModule extends JAdapterInstance
 			$extension->set('element', $module);
 			$extension->set('name', $module);
 			$extension->set('state', -1);
-			$extension->set('manifest_cache', serialize($manifest_details));
+			$extension->set('manifest_cache', json_encode($manifest_details));
 			$results[] = clone $extension;
 		}
 
@@ -496,7 +496,7 @@ class JInstallerModule extends JAdapterInstance
 			$extension->set('element', $module);
 			$extension->set('name', $module);
 			$extension->set('state', -1);
-			$extension->set('manifest_cache', serialize($manifest_details));
+			$extension->set('manifest_cache', json_encode($manifest_details));
 			$results[] = clone $extension;
 		}
 
@@ -530,7 +530,7 @@ class JInstallerModule extends JAdapterInstance
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
 		// TODO: Re-evaluate this; should we run installation triggers? postflight perhaps?
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->state = 0;
 		$this->parent->extension->name = $manifest_details['name'];
 		$this->parent->extension->enabled = 1;
@@ -545,14 +545,19 @@ class JInstallerModule extends JAdapterInstance
 		}
 	}
 
-	function refreshManifestCache()
+	/**
+	 * Refreshes the extension table cache
+	 * @return  boolean result of operation, true if updated, false on failure
+	 * @since	1.6
+	 */
+	public function refreshManifestCache()
 	{
 		$client = JApplicationHelper::getClientInfo($this->parent->extension->client_id);
 		$manifestPath = $client->path . DS . 'modules'. DS . $this->parent->extension->element . DS . $this->parent->extension->element . '.xml';
 		$this->parent->manifest = $this->parent->isManifest($manifestPath);
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->name = $manifest_details['name'];
 
 		if ($this->parent->extension->store()) {
@@ -774,7 +779,7 @@ class JInstallerModule extends JAdapterInstance
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
-	protected function _rollback_menu($arg)
+	public function _rollback_menu($arg)
 	{
 		// Get database connector object
 		$db = $this->parent->getDbo();
@@ -804,7 +809,7 @@ class JInstallerModule extends JAdapterInstance
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
-	protected function _rollback_module($arg)
+	public function _rollback_module($arg)
 	{
 		// Get database connector object
 		$db = $this->parent->getDbo();

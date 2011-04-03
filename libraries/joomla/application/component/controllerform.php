@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controllerform.php 19797 2010-12-08 03:36:18Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controllerform.php 20265 2011-01-10 23:49:25Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -309,7 +309,7 @@ class JControllerForm extends JController
 			// Check-out failed, display a notice but allow the user to see the record.
 			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKOUT_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
-			$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $key, $urlVar));
+			$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $urlVar));
 
 			return false;
 		}
@@ -317,7 +317,7 @@ class JControllerForm extends JController
 			// Check-out succeeded, push the new record id into the session.
 			$this->holdEditId($context, $recordId);
 			$app->setUserState($context.'.data', null);
-			$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $key, $urlVar));
+			$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $urlVar));
 
 			return true;
 		}
@@ -353,8 +353,8 @@ class JControllerForm extends JController
 	 */
 	protected function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
 	{
-		$tmpl		= JRequest::getString('tmpl');
-		$layout		= JRequest::getString('layout', 'edit');
+		$tmpl		= JRequest::getCmd('tmpl');
+		$layout		= JRequest::getCmd('layout', 'edit');
 		$append		= '';
 
 		// Setup redirect info.
@@ -381,7 +381,7 @@ class JControllerForm extends JController
 	 */
 	protected function getRedirectToListAppend()
 	{
-		$tmpl		= JRequest::getString('tmpl');
+		$tmpl		= JRequest::getCmd('tmpl');
 		$append		= '';
 
 		// Setup redirect info.
@@ -401,7 +401,7 @@ class JControllerForm extends JController
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function postSaveHook(JModel &$model, $validData)
+	protected function postSaveHook(JModel &$model, $validData = array())
 	{
 	}
 
@@ -463,7 +463,7 @@ class JControllerForm extends JController
 				// Check-in failed, go back to the item and display a notice.
 				$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 				$this->setMessage($this->getError(), 'error');
-				$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId));
+				$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $urlVar));
 
 				return false;
 			}
@@ -539,7 +539,7 @@ class JControllerForm extends JController
 			$app->setUserState($context.'.data', $validData);
 
 			// Check-in failed, go back to the record and display a notice.
-			$this->setError(JText::sprintf('JError_Checkin_saved', $model->getError()));
+			$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()));
 			$this->setMessage($this->getError(), 'error');
 			$this->setRedirect('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $key));
 

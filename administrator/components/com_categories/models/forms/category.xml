@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: category.xml 19638 2010-11-25 02:53:32Z ian $ -->
+	<!-- $Id: category.xml 20525 2011-02-03 01:30:22Z dextercowley $ -->
 <form>
 	<field
 		name="id"
@@ -170,7 +170,7 @@
 	<field
 		name="modified_time"
 		type="text"
-		label="JGLOBAL_MODIFIED_DATE"
+		label="JGLOBAL_FIELD_MODIFIED_LABEL"
 		class="readonly"
 		filter="unset"
 		readonly="true" />

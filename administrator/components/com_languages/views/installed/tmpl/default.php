@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18672 2010-08-27 04:13:12Z eddieajau $
+ * @version		$Id: default.php 20325 2011-01-14 16:59:35Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_languages
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $user	= JFactory::getUser();
 $userId	= $user->get('id');
+$client = $this->state->get('filter.client_id', 0) ? JText::_('JADMINISTRATOR') : JText::_('JSITE');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_languages&view=installed'); ?>" method="post" id="adminForm" name="adminForm">
 
@@ -37,32 +38,35 @@ $userId	= $user->get('id');
 				<th width="20">
 					<?php echo JText::_('COM_LANGUAGES_HEADING_NUM'); ?>
 				</th>
-				<th width="30">
+				<th width="20">
 					&#160;
 				</th>
 				<th width="25%" class="title">
 					<?php echo JText::_('COM_LANGUAGES_HEADING_LANGUAGE'); ?>
 				</th>
-				<th width="5%">
+				<th>
+					<?php echo JText::_('JCLIENT'); ?>
+				</th>
+				<th>
 					<?php echo JText::_('COM_LANGUAGES_HEADING_DEFAULT'); ?>
 				</th>
-				<th width="10%">
+				<th>
 					<?php echo JText::_('JVERSION'); ?>
 				</th>
-				<th width="10%">
+				<th>
 					<?php echo JText::_('JDATE'); ?>
 				</th>
-				<th width="20%">
+				<th>
 					<?php echo JText::_('JAUTHOR'); ?>
 				</th>
-				<th width="25%">
+				<th>
 					<?php echo JText::_('COM_LANGUAGES_HEADING_AUTHOR_EMAIL'); ?>
 				</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="8">
+				<td colspan="9">
 					<?php echo $this->pagination->getListFooter(); ?>
 				</td>
 			</tr>
@@ -81,22 +85,25 @@ $userId	= $user->get('id');
 					<?php echo JHtml::_('languages.id',$i,$row->language);?>
 				</td>
 				<td width="25%">
-					<?php echo $row->name;?>
+					<?php echo $this->escape($row->name);?>
 				</td>
-				<td width="5%" align="center">
+				<td align="center">
+					<?php echo $client;?>
+				</td>
+				<td align="center">
 					<?php echo JHtml::_('jgrid.isdefault', $row->published, $i, 'installed.',  !$row->published && $canChange);?>
 				</td>
 				<td align="center">
-					<?php echo $row->version; ?>
+					<?php echo $this->escape($row->version); ?>
 				</td>
 				<td align="center">
-					<?php echo $row->creationDate; ?>
+					<?php echo $this->escape($row->creationDate); ?>
 				</td>
 				<td align="center">
-					<?php echo $row->author; ?>
+					<?php echo $this->escape($row->author); ?>
 				</td>
 				<td align="center">
-					<?php echo $row->authorEmail; ?>
+					<?php echo $this->escape($row->authorEmail); ?>
 				</td>
 			</tr>
 		<?php endforeach;?>

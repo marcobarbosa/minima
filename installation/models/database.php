@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: database.php 19213 2010-10-23 08:57:56Z infograf768 $
+ * @version		$Id: database.php 20437 2011-01-25 12:09:05Z infograf768 $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -179,7 +179,7 @@ class JInstallationModelDatabase extends JModel
 
 			// Handle default backend language setting. This feature is available for localized versions of Joomla 1.5.
 			$app = JFactory::getApplication();
-			$languages = $app->getLocaliseAdmin();
+			$languages = $app->getLocaliseAdmin($db);
 			if (in_array($options->language, $languages['admin']) || in_array($options->language, $languages['site']))
 			{
 				// Build the language parameters for the language manager.

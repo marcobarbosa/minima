@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: utility.php 18743 2010-09-01 02:01:33Z eddieajau $
+ * @version		$Id: utility.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Utilities
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

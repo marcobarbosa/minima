@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: email.php 18678 2010-08-27 05:17:19Z eddieajau $
+ * @version		$Id: email.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

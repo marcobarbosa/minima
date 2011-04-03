@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: level.php 19518 2010-11-17 10:15:41Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: level.php 20232 2011-01-10 01:52:10Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -63,6 +63,8 @@ class UsersControllerLevel extends JControllerForm
 		else {
 			// Get the model.
 			$model = $this->getModel();
+
+			JArrayHelper::toInteger($ids);
 
 			// Remove the items.
 			if (!$model->delete($ids)) {

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: language.php 19325 2010-11-02 09:49:27Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: language.php 20457 2011-01-27 07:51:58Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -226,7 +226,7 @@ class JInstallerLanguage extends JAdapterInstance
 		if (!$row->store())
 		{
 			// Install failed, roll back changes
-			$this->parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT', $db->getErrorMsg()));
+			$this->parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT', $row->getError()));
 			return false;
 		}
 
@@ -378,7 +378,7 @@ class JInstallerLanguage extends JAdapterInstance
 		if (!$row->store())
 		{
 			// Install failed, roll back changes
-			$this->parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT', $db->getErrorMsg()));
+			$this->parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT', $row->getError()));
 			return false;
 		}
 
@@ -514,7 +514,7 @@ class JInstallerLanguage extends JAdapterInstance
 				$extension->set('element', $language);
 				$extension->set('name', $language);
 				$extension->set('state', -1);
-				$extension->set('manifest_cache', serialize($manifest_details));
+				$extension->set('manifest_cache', json_encode($manifest_details));
 				$results[] = $extension;
 			}
 		}
@@ -529,7 +529,7 @@ class JInstallerLanguage extends JAdapterInstance
 				$extension->set('element', $language);
 				$extension->set('name', $language);
 				$extension->set('state', -1);
-				$extension->set('manifest_cache', serialize($manifest_details));
+				$extension->set('manifest_cache', json_encode($manifest_details));
 				$results[] = $extension;
 			}
 		}
@@ -540,7 +540,7 @@ class JInstallerLanguage extends JAdapterInstance
 	 * Custom discover install method
 	 * Basically updates the manifest cache and leaves everything alone
 	 */
-	function discover_install()
+	public function discover_install()
 	{
 		// Need to find to find where the XML file is since we don't store this normally
 		$client = JApplicationHelper::getClientInfo($this->parent->extension->client_id);
@@ -551,7 +551,7 @@ class JInstallerLanguage extends JAdapterInstance
 		$this->parent->setPath('source', $client->path . DS . 'language'. DS . $short_element);
 		$this->parent->setPath('extension_root', $this->parent->getPath('source'));
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->state = 0;
 		$this->parent->extension->name = $manifest_details['name'];
 		$this->parent->extension->enabled = 1;
@@ -565,5 +565,30 @@ class JInstallerLanguage extends JAdapterInstance
 			return false;
 		}
 		return $this->parent->extension->get('extension_id');
+	}
+
+	/**
+	 * Refreshes the extension table cache
+	 * @return  boolean result of operation, true if updated, false on failure
+	 * @since	1.6
+	 */
+	public function refreshManifestCache()
+	{
+		$client = JApplicationHelper::getClientInfo($this->parent->extension->client_id);
+		$manifestPath = $client->path . DS . 'language'. DS . $this->parent->extension->element . DS . $this->parent->extension->element . '.xml';
+		$this->parent->manifest = $this->parent->isManifest($manifestPath);
+		$this->parent->setPath('manifest', $manifestPath);
+		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
+		$this->parent->extension->name = $manifest_details['name'];
+
+		if ($this->parent->extension->store()) {
+			return true;
+		}
+		else {
+			JError::raiseWarning(101, JText::_('JLIB_INSTALLER_ERROR_MOD_REFRESH_MANIFEST_CACHE'));
+
+			return false;
+		}
 	}
 }

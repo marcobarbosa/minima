@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19450 2010-11-12 06:03:30Z chdemko $
+ * @version		$Id: default.php 20455 2011-01-27 07:30:15Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -15,6 +15,8 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 ?>
+
+<h2 class="modal-title"><?php echo JText::_('COM_MODULES_TYPE_CHOOSE')?></h2>
 
 <ul id="new-modules-list">
 <?php foreach ($this->items as &$item) : ?>
@@ -32,3 +34,4 @@ JHtml::_('behavior.tooltip');
 	</li>
 <?php endforeach; ?>
 </ul>
+<div class="clr"></div>

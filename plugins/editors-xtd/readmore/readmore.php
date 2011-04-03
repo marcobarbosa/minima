@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: readmore.php 17851 2010-06-23 17:39:31Z eddieajau $
+ * @version		$Id: readmore.php 20240 2011-01-10 05:46:24Z dextercowley $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,10 +20,24 @@ jimport('joomla.plugin.plugin');
 class plgButtonReadmore extends JPlugin
 {
 	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
+
+	/**
 	 * readmore button
 	 * @return array A two element array of (imageName, textToInsert)
 	 */
-	function onDisplay($name)
+	public function onDisplay($name)
 	{
 		$app = JFactory::getApplication();
 

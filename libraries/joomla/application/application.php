@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: application.php 19870 2010-12-13 23:57:18Z dextercowley $
+ * @version		$Id: application.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -180,7 +180,13 @@ class JApplication extends JObject
 		// Set user specific editor.
 		$user	= JFactory::getUser();
 		$editor	= $user->getParam('editor', $this->getCfg('editor'));
-		$editor	= JPluginHelper::isEnabled('editors', $editor) ? $editor : $this->getCfg('editor');
+		if (!JPluginHelper::isEnabled('editors', $editor)) {
+			$editor	= $this->getCfg('editor');
+			if (!JPluginHelper::isEnabled('editors', $editor)) {
+				$editor	= 'none';
+			}
+		}
+		
 		$config->set('editor', $editor);
 
 		// Trigger the onAfterInitialise event.

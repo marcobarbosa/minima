@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: index.php 19786 2010-12-06 17:43:12Z infograf768 $
+ * @version		$Id: index.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -29,7 +29,7 @@ $app = JFactory::getApplication();
 	if (!$this->params->get('colourChoice')) : 
 		$colour = 'standard';
 	else :
-		$colour = $this->params->get('colourChoice');
+		$colour = htmlspecialchars($this->params->get('colourChoice'));
 	endif; 
 ?>
 <link href="templates/<?php echo $this->template ?>/css/colour_<?php echo $colour; ?>.css" rel="stylesheet" type="text/css" />
@@ -46,6 +46,9 @@ $app = JFactory::getApplication();
 <?php  endif; ?>
 
 <!-- Load additional CSS styles for Internet Explorer -->
+<!--[if IE 8]>
+	<link href="templates/<?php echo  $this->template ?>/css/ie8.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 <!--[if IE 7]>
 	<link href="templates/<?php echo  $this->template ?>/css/ie7.css" rel="stylesheet" type="text/css" />
 <![endif]-->
@@ -90,7 +93,7 @@ $app = JFactory::getApplication();
 			if ($task == 'edit' || $task == 'editA' || JRequest::getInt('hidemainmenu')) {
 				$logoutLink = '';
 			} else {
-				$logoutLink = JRoute::_('index.php?option=com_login&task=logout');
+				$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JUtility::getToken() .'=1');
 			}
 			$hideLinks	= JRequest::getBool('hidemainmenu');
 			$output = array();
@@ -129,7 +132,7 @@ $app = JFactory::getApplication();
 
 		<!-- Toolbar Icon Buttons -->
 		<div class="toolbar-box">
-			<jdoc:include type="modules" name="toolbar" />
+			<jdoc:include type="modules" name="toolbar" style="xhtml" />
 			<div class="clr"></div>
 		</div>
 

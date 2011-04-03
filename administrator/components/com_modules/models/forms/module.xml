@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: module.xml 19357 2010-11-05 16:47:35Z chdemko $ -->
+	<!-- $Id: module.xml 20725 2011-02-16 09:10:48Z infograf768 $ -->
 <form>
 	<fieldset>
 		<field name="id" type="text"
@@ -49,6 +49,7 @@
 		>
 			<option value="1">JPUBLISHED</option>
 			<option value="0">JUNPUBLISHED</option>
+			<option value="-2">JTRASHED</option>
 		</field>
 
 		<field name="publish_up" type="calendar"
@@ -79,7 +80,6 @@
 			description="COM_MODULES_FIELD_POSITION_DESC"
 			label="COM_MODULES_FIELD_POSITION_LABEL"
 			maxlength="50"
-			class="required"
 			required="true"
 		/>
 
@@ -97,7 +97,7 @@
 		<field name="content" type="editor"
 			buttons="true"
 			description="COM_MODULES_FIELD_CONTENT_DESC"
-			filter="safehtml"
+			filter="ContentHelper::filterText"
 			label="COM_MODULES_FIELD_CONTENT_LABEL"
 		/>
 

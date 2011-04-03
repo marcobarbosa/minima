@@ -1,9 +1,9 @@
 <?php
 /**
- * @version                $Id: index.php 19882 2010-12-14 21:36:09Z dextercowley $
+ * @version                $Id: index.php 20874 2011-03-03 17:05:10Z dextercowley $
  * @package                Joomla.Site
  * @subpackage        tpl_beez2
- * @copyright        Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright        Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license                GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,25 +19,26 @@ if ($showRightColumn==0 and $showleft==0) {
         $showno = 0;
 }
 
-JHTML::_('behavior.mootools');
+JHTML::_('behavior.framework', true);
 
 // get params
 $color              = $this->params->get('templatecolor');
 $logo               = $this->params->get('logo');
 $navposition        = $this->params->get('navposition');
 $app                = JFactory::getApplication();
+$doc				= JFactory::getDocument();
 $templateparams     = $app->getTemplate(true)->params;
-?>
 
+$doc->addScript($this->baseurl.'/templates/beez_20/javascript/md_stylechanger.js', 'text/javascript', true);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
         <head>
                 <jdoc:include type="head" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
-                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/template.css" type="text/css" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/position.css" type="text/css" media="screen,projection" />
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/layout.css" type="text/css" media="screen,projection" />
-                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/print.css" type="text/css" media="Print" />
+                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/print.css" type="text/css" media="print" />
 <?php
         $files = JHtml::_('stylesheet','templates/beez_20/css/general.css',null,false,true);
         if ($files):
@@ -52,9 +53,12 @@ $templateparams     = $app->getTemplate(true)->params;
         endif;
 ?>
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
-                <?php if ($this->direction == 'rtl') : ?>
+<?php			if ($this->direction == 'rtl') : ?>
                 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/template_rtl.css" type="text/css" />
-                <?php endif; ?>
+<?php				if (file_exists(JPATH_SITE. DS . '/templates/beez_20/css/' . $color . '_rtl.css')) :?>
+                <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo $color ?>_rtl.css" type="text/css" />
+<?php				endif; ?>
+<?php			endif; ?>
                 <!--[if lte IE 6]>
                 <link href="<?php echo $this->baseurl ?>/templates/beez_20/css/ieonly.css" rel="stylesheet" type="text/css" />
 
@@ -81,7 +85,6 @@ $templateparams     = $app->getTemplate(true)->params;
                 <!--[if IE 7]>
                         <link href="<?php echo $this->baseurl ?>/templates/beez_20/css/ie7only.css" rel="stylesheet" type="text/css" />
                 <![endif]-->
-                <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/beez_20/javascript/md_stylechanger.js"></script>
                 <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/beez_20/javascript/hide.js"></script>
 
                 <script type="text/javascript">
@@ -116,10 +119,10 @@ $templateparams     = $app->getTemplate(true)->params;
                                         <img src="<?php echo $this->baseurl ?>/<?php echo htmlspecialchars($logo); ?>"  alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>" />
                                         <?php endif;?>
                                         <?php if (!$logo ): ?>
-                                        <?php echo $templateparams->get('sitetitle');?>
+                                        <?php echo htmlspecialchars($templateparams->get('sitetitle'));?>
                                         <?php endif; ?>
                                         <span class="header1">
-                                        <?php echo $templateparams->get('sitedescription');?>
+                                        <?php echo htmlspecialchars($templateparams->get('sitedescription'));?>
                                         </span></h1>
                                 </div><!-- end logoheader -->
                                         <ul class="skiplinks">
@@ -233,8 +236,6 @@ $templateparams     = $app->getTemplate(true)->params;
                                 </div>
 
 
-                                <jdoc:include type="modules" name="debug" />
-
                         </div>
                                 <?php endif ; ?>
 
@@ -254,6 +255,6 @@ $templateparams     = $app->getTemplate(true)->params;
                         </div>
 
                 </div>
-
+				<jdoc:include type="modules" name="debug" />
         </body>
 </html>

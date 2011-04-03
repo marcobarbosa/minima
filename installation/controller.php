@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: controller.php 17859 2010-06-23 17:55:52Z eddieajau $
+ * @version		$Id: controller.php 20264 2011-01-10 22:38:46Z chdemko $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,7 +38,13 @@ class JInstallationController extends JController
 		$document	= JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getWord('view', 'language');
+		if (file_exists( JPATH_CONFIGURATION . DS . 'configuration.php' ) && (filesize( JPATH_CONFIGURATION . DS . 'configuration.php' ) > 10) && file_exists( JPATH_INSTALLATION . DS . 'index.php' )) {
+			$default_view	= 'remove';
+		} else {
+			$default_view	= 'language';
+		}
+
+		$vName		= JRequest::getWord('view', $default_view);
 		$vFormat	= $document->getType();
 		$lName		= JRequest::getWord('layout', 'default');
 

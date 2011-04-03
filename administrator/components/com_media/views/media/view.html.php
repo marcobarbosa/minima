@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 19670 2010-11-29 10:45:12Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20822 2011-02-21 23:02:52Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -71,9 +71,9 @@ class MediaViewMedia extends JView
 
 			JHtml::_('behavior.uploader', 'upload-flash',
 				array(
-					'onBeforeStart' => 'function(){ Uploader.setOptions({url: $(\'uploadForm\').action + \'&folder=\' + $(\'mediamanager-form\').folder.value}); }',
+					'onBeforeStart' => 'function(){ Uploader.setOptions({url: document.id(\'uploadForm\').action + \'&folder=\' + document.id(\'mediamanager-form\').folder.value}); }',
 					'onComplete' 	=> 'function(){ MediaManager.refreshFrame(); }',
-					'targetURL' 	=> '\\$(\'uploadForm\').action',
+					'targetURL' 	=> '\\document.id(\'uploadForm\').action',
 					'typeFilter' 	=> $typeString,
 					'fileSizeMax'	=> (int) ($config->get('upload_maxsize',0) * 1024 * 1024),
 				)
@@ -100,9 +100,11 @@ class MediaViewMedia extends JView
 		jimport('joomla.client.helper');
 		$ftp = !JClientHelper::hasCredentials('ftp');
 
-		$this->assignRef('session', JFactory::getSession());
+		$session	= JFactory::getSession();
+		$state		= $this->get('state');
+		$this->assignRef('session', $session);
 		$this->assignRef('config', $config);
-		$this->assignRef('state', $this->get('state'));
+		$this->assignRef('state', $state);
 		$this->assign('require_ftp', $ftp);
 		$this->assign('folders_id', ' id="media-tree"');
 		$this->assign('folders', $this->get('folderTree'));

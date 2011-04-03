@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: mod_feed.php 14695 2010-02-07 02:34:42Z infograf768 $
+ * @version		$Id: mod_feed.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -16,7 +16,7 @@ $rssurl	= $params->get('rssurl', '');
 $rssrtl	= $params->get('rssrtl', 0);
 
 //check if cache diretory is writable as cache files will be created for the feed
-$cacheDir = JPATH_BASE.'/cache';
+$cacheDir = JPATH_CACHE;
 if (!is_writable($cacheDir))
 {
 	echo '<div>';

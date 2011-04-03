@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18672 2010-08-27 04:13:12Z eddieajau $
+ * @version		$Id: default.php 20325 2011-01-14 16:59:35Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -14,6 +14,7 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $user	= JFactory::getUser();
 $userId	= $user->get('id');
+$client = $this->state->get('filter.client_id', 0) ? JText::_('JADMINISTRATOR') : JText::_('JSITE');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_languages&view=installed'); ?>" method="post" name="adminForm" id="adminForm">
 
@@ -49,6 +50,9 @@ $userId	= $user->get('id');
 				<th class="title">
 					<?php echo JText::_('COM_LANGUAGES_HEADING_LANGUAGE'); ?>
 				</th>
+				<th class="width-10">
+					<?php echo JText::_('JCLIENT'); ?>
+				</th>
 				<th class="width-5">
 					<?php echo JText::_('COM_LANGUAGES_HEADING_DEFAULT'); ?>
 				</th>
@@ -82,6 +86,9 @@ $userId	= $user->get('id');
 				</td>
 				<td>
 					<?php echo $row->name;?>
+				</td>
+				<td class="center">
+					<?php echo $client;?>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.isdefault', $row->published, $i, 'installed.',  !$row->published && $canChange);?>

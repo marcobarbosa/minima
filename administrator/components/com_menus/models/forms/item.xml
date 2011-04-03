@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: item.xml 19534 2010-11-17 15:00:24Z infograf768 $ -->
+	<!-- $Id: item.xml 20701 2011-02-15 06:05:02Z infograf768 $ -->
 <form>
 	<fieldset>
 		<field
@@ -25,7 +25,7 @@
 			name="alias"
 			type="alias"
 			label="JFIELD_ALIAS_LABEL"
-			description="COM_MENUS_ITEM_FIELD_ALIAS_DESC"
+			description="JFIELD_ALIAS_DESC"
 			class="inputbox"
 			size="40"/>
 
@@ -165,7 +165,7 @@
 			name="language"
 			type="contentlanguage"
 			label="JFIELD_LANGUAGE_LABEL"
-			description="JFIELD_MODULE_LANGUAGE_DESC"
+			description="COM_MENUS_ITEM_FIELD_LANGUAGE_DESC"
 			class="inputbox">
 			<option value="*">JALL</option>
 		</field>

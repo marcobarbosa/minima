@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: simplexml.php 15448 2010-03-20 13:19:13Z hackwar $
+ * @version		$Id: simplexml.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Utilities
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

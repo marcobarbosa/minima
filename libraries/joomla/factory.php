@@ -1,8 +1,8 @@
 <?php
 /**
- * @version   $Id: factory.php 19237 2010-10-28 00:02:30Z eddieajau $
+ * @version   $Id: factory.php 20748 2011-02-18 00:51:07Z dextercowley $
  * @package   Joomla.Framework
- * @copyright Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -446,7 +446,7 @@ abstract class JFactory
 				$classname = 'JDate';
 			}
 		}
-		$key = $time . '-' . $tzOffset;
+		// $key = $time . '-' . $tzOffset;
 
 		//		if (!isset($instances[$classname][$key])) {
 		$tmp = new $classname($time, $tzOffset);
@@ -562,7 +562,7 @@ abstract class JFactory
 	 * @return JMail object
 	 * @since  1.5
 	 */
-	function _createMailer()
+	private static function _createMailer()
 	{
 		jimport('joomla.mail.mail');
 
@@ -660,13 +660,13 @@ abstract class JFactory
 	 * @return	JStream
 	 * @since	1.6
 	 */
-	function getStream($use_prefix=true, $use_network=true,$ua=null, $uamask=false)
+	public static function getStream($use_prefix=true, $use_network=true,$ua=null, $uamask=false)
 	{
 		jimport('joomla.filesystem.stream');
 
 		// Setup the context; Joomla! UA and overwrite
-		$context = Array();
-		$version = new JVersion();
+		$context = array();
+		$version = new JVersion;
 		// set the UA for HTTP and overwrite for FTP
 		$context['http']['user_agent'] = $version->getUserAgent($ua, $uamask);
 		$context['ftp']['overwrite'] = true;

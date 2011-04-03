@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: category.php 16235 2010-04-20 04:13:25Z pasamio $
+ * @version		$Id: category.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

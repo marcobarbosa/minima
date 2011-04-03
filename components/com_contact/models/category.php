@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: category.php 19422 2010-11-09 22:13:54Z chdemko $
+ * @version		$Id: category.php 20648 2011-02-10 09:09:54Z chdemko $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -50,6 +50,30 @@ class ContactModelCategory extends JModelList
 	protected $_categories = null;
 
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'name', 'a.name',
+				'con_position', 'a.con_position',
+				'suburb', 'a.suburb',
+				'state', 'a.state',
+				'country', 'a.country',
+				'ordering', 'a.ordering',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to get a list of items.
 	 *
 	 * @return	mixed	An array of objects on success, false on failure.
@@ -92,12 +116,12 @@ class ContactModelCategory extends JModelList
 		. ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(\':\', a.id, a.alias) ELSE a.id END as slug, '
 		. ' CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(\':\', c.id, c.alias) ELSE c.id END AS catslug ');
 		$query->from('`#__contact_details` AS a');
+		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
 		$query->where('a.access IN ('.$groups.')');
 
 		// Filter by category.
 		if ($categoryId = $this->getState('category.id')) {
 			$query->where('a.catid = '.(int) $categoryId);
-			$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
 			$query->where('c.access IN ('.$groups.')');
 		}
 
@@ -114,7 +138,7 @@ class ContactModelCategory extends JModelList
 			$query->where('(a.publish_up = ' . $nullDate . ' OR a.publish_up <= ' . $nowDate . ')');
 			$query->where('(a.publish_down = ' . $nullDate . ' OR a.publish_down >= ' . $nowDate . ')');
 		}
-		
+
 		// Filter by language
 		if ($this->getState('filter.language')) {
 			$query->where('a.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' . $db->Quote('*') . ')');
@@ -133,7 +157,7 @@ class ContactModelCategory extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication();
@@ -153,19 +177,25 @@ class ContactModelCategory extends JModelList
 		$this->setState('list.start', $limitstart);
 
 		$orderCol	= JRequest::getCmd('filter_order', 'ordering');
+		if (!in_array($orderCol, $this->filter_fields)) {
+			$orderCol = 'ordering';
+		}
 		$this->setState('list.ordering', $orderCol);
 
 		$listOrder	=  JRequest::getCmd('filter_order_Dir', 'ASC');
+		if (!in_array(strtoupper($listOrder), array('ASC', 'DESC', ''))) {
+			$listOrder = 'ASC';
+		}
 		$this->setState('list.direction', $listOrder);
 
 		$id = JRequest::getVar('id', 0, '', 'int');
 		$this->setState('category.id', $id);
 
-		$user = JFactory::getUser();	
+		$user = JFactory::getUser();
 		if ((!$user->authorise('core.edit.state', 'com_contact')) &&  (!$user->authorise('core.edit', 'com_contact'))){
 			// limit to published for people who can't edit or edit.state.
 			$this->setState('filter.published', 1);
-			
+
 			// Filter by start and end dates.
 			$this->setState('filter.publish_date', true);
 		}
@@ -191,7 +221,12 @@ class ContactModelCategory extends JModelList
 			$menu = $app->getMenu();
 			$active = $menu->getActive();
 			$params = new JRegistry();
-			$params->loadJSON($active->params);
+			
+			if($active)
+			{
+				$params->loadJSON($active->params);
+			}
+			
 			$options = array();
 			$options['countItems'] = $params->get('show_cat_items', 1) || $params->get('show_empty_categories', 0);
 			$categories = JCategories::getInstance('Contact', $options);

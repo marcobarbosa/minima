@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 18001 2010-07-02 02:51:34Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20446 2011-01-26 17:18:21Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -60,8 +60,8 @@ class MessagesViewMessages extends JView
 
 		if ($canDo->get('core.edit.state')) {
 			JToolBarHelper::divider();
-			JToolBarHelper::custom('messages.publish', 'publish.png', 'publish_f2.png','COM_MESSAGES_MARK_AS_READ', true);
-			JToolBarHelper::custom('messages.unpublish', 'unpublish.png', 'unpublish_f2.png','COM_MESSAGES_MARK_AS_UNREAD', true);
+			JToolBarHelper::custom('messages.publish', 'publish.png', 'publish_f2.png','COM_MESSAGES_TOOLBAR_MARK_AS_READ', true);
+			JToolBarHelper::custom('messages.unpublish', 'unpublish.png', 'unpublish_f2.png','COM_MESSAGES_TOOLBAR_MARK_AS_UNREAD', true);
 		}
 
 		if ($state->get('filter.state') == -2 && $canDo->get('core.delete')) {

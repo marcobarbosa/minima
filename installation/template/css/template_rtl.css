@@ -1,6 +1,6 @@
 /**
- * @version		$Id: template_rtl.css 19876 2010-12-14 10:57:06Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: template_rtl.css 20415 2011-01-23 15:51:42Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -79,4 +79,54 @@ h3.moofx-toggler-down {
 
 td.item + td {
 	text-align: right;
+}
+
+/* make the radio buttons vertical to make room for long language strings */
+
+fieldset#jform_db_old label {
+	float: right;
+	clear: left;
+}
+
+fieldset#jform_db_old input {
+	float: right;
+	clear: right;
+}
+
+ /* System Messages */
+ 
+ #system-message dd ul { 
+ background-position: 99.5% top;
+ }
+ 
+ /**
+ * System Standard Messages
+ */
+ 
+#system-message dd.message ul {
+	background-color: #C3D2E5;
+	background-image: url(../../../media/system/images/notice-info.png) no-repeat;
+}
+
+/**
+ * System Error Messages
+ */
+#system-message dd.error ul {
+	background-color: #E6C0C0;
+	background-image: url(../../../media/system/images/notice-alert.png) no-repeat;
+}
+
+/**
+ * System Notice Messages
+ */
+
+/* System Warning Messages */
+#system-message dd.warning ul {
+	background-color: #E6C8A6;
+	background-image: url(../../../media/system/images/notice-note.png) no-repeat;
+}
+
+#system-message dd.notice ul {
+	background-color: #EFE7B8;
+	background-image: url(../../../media/system/images/notice-note.png) no-repeat;
 }

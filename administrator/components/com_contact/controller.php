@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controller.php 19281 2010-10-29 10:12:49Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,10 +38,10 @@ class ContactController extends JController
 		require_once JPATH_COMPONENT.'/helpers/contact.php';
 
 		// Load the submenu.
-		ContactHelper::addSubmenu(JRequest::getWord('view', 'contacts'));
+		ContactHelper::addSubmenu(JRequest::getCmd('view', 'contacts'));
 
-		$view	= JRequest::getWord('view', 'contacts');
-		$layout = JRequest::getWord('layout', 'default');
+		$view	= JRequest::getCmd('view', 'contacts');
+		$layout = JRequest::getCmd('layout', 'default');
 		$id		= JRequest::getInt('id');
 
 		// Check for edit form.

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 17855 2010-06-23 17:46:38Z eddieajau $
+ * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_wrapper
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -32,12 +32,22 @@ class WrapperViewWrapper extends JView
 		// right from the menu item itself
 		$title = $params->get('page_title', '');
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
+
+		if ($this->params->get('menu-meta_description'))
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
+
+		if ($this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
 
 		$wrapper = new stdClass();
 		// auto height control
@@ -66,6 +76,9 @@ class WrapperViewWrapper extends JView
 		else {
 			$wrapper->url = $url;
 		}
+
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
 		$this->assignRef('params',	$params);
 		$this->assignRef('wrapper', $wrapper);

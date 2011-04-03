@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controller.php 18212 2010-07-22 06:02:54Z eddieajau $
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,7 +38,7 @@ class ContactController extends JController
 		$document = JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getWord('view', 'categories');
+		$vName		= JRequest::getCmd('view', 'categories');
 		JRequest::setVar('view', $vName);
 
 		$user = JFactory::getUser();

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: articles.php 19853 2010-12-13 00:03:10Z dextercowley $
+ * @version		$Id: articles.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -21,6 +21,39 @@ jimport('joomla.application.component.modellist');
 class ContentModelArticles extends JModelList
 {
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'title', 'a.title',
+				'alias', 'a.alias',
+				'checked_out', 'a.checked_out',
+				'checked_out_time', 'a.checked_out_time',
+				'catid', 'a.catid', 'category_title',
+				'state', 'a.state',
+				'access', 'a.access', 'access_level',
+				'created', 'a.created',
+				'created_by', 'a.created_by',
+				'ordering', 'a.ordering',
+				'featured', 'a.featured',
+				'language', 'a.language',
+				'hits', 'a.hits',
+				'publish_up', 'a.publish_up',
+				'publish_down', 'a.publish_down',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
@@ -28,7 +61,7 @@ class ContentModelArticles extends JModelList
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
@@ -44,7 +77,7 @@ class ContentModelArticles extends JModelList
 
 		$access = $this->getUserStateFromRequest($this->context.'.filter.access', 'filter_access', 0, 'int');
 		$this->setState('filter.access', $access);
-		
+
 		$authorId = $app->getUserStateFromRequest($this->context.'.filter.author_id', 'filter_author_id');
 		$this->setState('filter.author_id', $authorId);
 
@@ -193,7 +226,7 @@ class ContentModelArticles extends JModelList
 		// echo nl2br(str_replace('#__','jos_',$query));
 		return $query;
 	}
-	
+
 	/**
 	 * Build a list of authors
 	 *
@@ -204,18 +237,43 @@ class ContentModelArticles extends JModelList
 		// Create a new query object.
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
-		
+
 		// Construct the query
 		$query->select('u.id AS value, u.name AS text');
 		$query->from('#__users AS u');
 		$query->join('INNER', '#__content AS c ON c.created_by = u.id');
 		$query->group('u.id');
 		$query->order('u.name');
-		
+
 		// Setup the query
 		$db->setQuery($query->__toString());
-		
+
 		// Return the result
 		return $db->loadObjectList();
 	}
+	
+	/**
+	 * Method to get a list of articles.
+	 * Overridden to add a check for access levels.
+	 *
+	 * @return	mixed	An array of data items on success, false on failure.
+	 * @since	1.6.1
+	 */
+	public function getItems()
+	{
+		$items	= parent::getItems();
+		$app	= JFactory::getApplication();
+		if ($app->isSite()) {
+			$user	= JFactory::getUser();
+			$groups	= $user->getAuthorisedViewLevels();
+
+			for ($x = 0; $x < count($items); $x++) {
+				//Check the access level. Remove articles the user shouldn't see
+				if (!in_array($items[$x]->access, $groups)) {
+					unset($items[$x]);
+				}
+			}
+		}
+		return $items;
+	}	
 }

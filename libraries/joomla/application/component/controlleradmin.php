@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controlleradmin.php 19278 2010-10-29 08:40:30Z eddieajau $
+ * @version		$Id: controlleradmin.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -179,8 +179,9 @@ class JControllerAdmin extends JController
 				$this->setMessage(JText::plural($ntext, count($cid)));
 			}
 		}
-
-		$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_list, false));
+		$extension = JRequest::getCmd('extension');
+		$extensionURL = ($extension) ? '&extension=' . JRequest::getCmd('extension') : '';
+		$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_list.$extensionURL, false));
 	}
 
 	/**

@@ -1,14 +1,14 @@
 <?php
 /**
- * @version		$Id: helper.php 19836 2010-12-11 15:03:23Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: helper.php 20541 2011-02-03 21:12:06Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access.
 defined('_JEXEC') or die;
 
-JModel::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_content/models');
+JModel::addIncludePath(JPATH_ADMINISTRATOR.'/components/com_content/models', 'ContentModel');
 
 jimport('joomla.application.categories');
 

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: newsfeed.php 16608 2010-04-30 02:35:55Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: newsfeed.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -22,7 +22,7 @@ class JHtmlNewsfeed
 	 * @param	int $value	The state value
 	 * @param	int $i
 	 */
-	function state($value = 0, $i)
+	public static function state($value = 0, $i)
 	{
 		// Array of image, task, title, action
 		$states	= array(
@@ -43,7 +43,7 @@ class JHtmlNewsfeed
 	 * @return	string			The HTML code for the select tag
 	 * @since	1.6
 	 */
-	function filterstate($selected)
+	public static function filterstate($selected)
 	{
 		// Build the active state filter options.
 		$options	= array();

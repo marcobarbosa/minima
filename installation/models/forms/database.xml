@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: database.xml 18747 2010-09-01 06:38:11Z eddieajau $ -->
+<!-- $Id: database.xml 20111 2011-01-06 02:59:28Z dextercowley $ -->
 <form>
 	<fieldset>
 		<fieldset name="basic">
 			<field name="db_type" type="list" id="db_type" class="inputbox"
 				label="INSTL_DATABASE_TYPE_LABEL"
-				default="mysql"
+				default="mysqli"
 				required="true"
 			>
-				<option value="mysql">MySQL</option>
 				<option value="mysqli">MySQLi</option>
+				<option value="mysql">MySQL</option>
 			</field>
 			<field name="db_host" type="text" id="db_host" class="inputbox"
 				label="INSTL_DATABASE_HOST_LABEL"

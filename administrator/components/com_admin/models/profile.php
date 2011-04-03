@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: profile.php 19516 2010-11-17 06:07:30Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: profile.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -78,7 +78,7 @@ class AdminModelProfile extends UsersModelUser
 	 * @return	mixed	Object on success, false on failure.
 	 * @since	1.6
 	 */
-	public function getItem()
+	public function getItem($pk = null)
 	{
 		$user = JFactory::getUser();
 

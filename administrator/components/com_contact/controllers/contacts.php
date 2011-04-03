@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: contacts.php 19253 2010-10-28 22:25:26Z eddieajau $
+ * @version		$Id: contacts.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -90,9 +90,9 @@ class ContactControllerContacts extends JControllerAdmin
 	 * @return	JModel
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Contact', $prefix = 'ContactModel')
+	public function getModel($name = 'Contact', $prefix = 'ContactModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 
 		return $model;
 	}

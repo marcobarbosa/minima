@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @version		$Id: gmail.php 17959 2010-06-29 12:02:40Z infograf768 $
+ * @version		$Id: gmail.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla
  * @subpackage	JFramework
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

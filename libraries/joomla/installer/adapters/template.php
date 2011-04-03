@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: template.php 19789 2010-12-07 16:14:09Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: template.php 20457 2011-01-27 07:51:58Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -389,7 +389,7 @@ class JInstallerTemplate extends JAdapterInstance
 			$extension->set('element', $template);
 			$extension->set('name', $template);
 			$extension->set('state', -1);
-			$extension->set('manifest_cache', serialize($manifest_details));
+			$extension->set('manifest_cache', json_encode($manifest_details));
 			$results[] = $extension;
 		}
 
@@ -407,7 +407,7 @@ class JInstallerTemplate extends JAdapterInstance
 			$extension->set('element', $template);
 			$extension->set('name', $template);
 			$extension->set('state', -1);
-			$extension->set('manifest_cache', serialize($manifest_details));
+			$extension->set('manifest_cache', json_encode($manifest_details));
 			$results[] = $extension;
 		}
 
@@ -435,7 +435,7 @@ class JInstallerTemplate extends JAdapterInstance
 
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->state = 0;
 		$this->parent->extension->name = $manifest_details['name'];
 		$this->parent->extension->enabled = 1;
@@ -470,4 +470,31 @@ class JInstallerTemplate extends JAdapterInstance
 			return false;
 		}
 	}
+	
+
+	/**
+	 * Refreshes the extension table cache
+	 * @return  boolean result of operation, true if updated, false on failure
+	 * @since	1.6
+	 */
+	public function refreshManifestCache()
+	{
+		// Need to find to find where the XML file is since we don't store this normally
+		$client = JApplicationHelper::getClientInfo($this->parent->extension->client_id);
+		$manifestPath = $client->path.DS.'templates'. DS.$this->parent->extension->element.DS.'templateDetails.xml';
+		$this->parent->manifest = $this->parent->isManifest($manifestPath);
+		$this->parent->setPath('manifest', $manifestPath);
+
+		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
+		$this->parent->extension->name = $manifest_details['name'];
+
+		try {
+			return $this->parent->extension->store();
+		}
+		catch(JException $e) {
+			JError::raiseWarning(101, JText::_('JLIB_INSTALLER_ERROR_TPL_REFRESH_MANIFEST_CACHE'));
+			return false;
+		}
+	}	
 }

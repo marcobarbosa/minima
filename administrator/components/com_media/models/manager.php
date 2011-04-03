@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: manager.php 19670 2010-11-29 10:45:12Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: manager.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,7 +20,7 @@ jimport('joomla.application.component.model');
 class MediaModelManager extends JModel
 {
 
-	function getState($property = null)
+	function getState($property = null, $default = null)
 	{
 		static $set;
 
@@ -28,7 +28,7 @@ class MediaModelManager extends JModel
 			$folder = JRequest::getVar('folder', '', '', 'path');
 			$this->setState('folder', $folder);
 
-			$fieldid = JRequest::getVar('fieldid', '');
+			$fieldid = JRequest::getCmd('fieldid', '');
 			$this->setState('field.id', $fieldid);
 
 			$parent = str_replace("\\", "/", dirname($folder));
@@ -37,7 +37,7 @@ class MediaModelManager extends JModel
 			$set = true;
 		}
 
-		return parent::getState($property);
+		return parent::getState($property, $default);
 	}
 
 	/**

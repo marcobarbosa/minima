@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: route.php 19797 2010-12-08 03:36:18Z dextercowley $
+ * @version		$Id: route.php 20250 2011-01-10 14:27:02Z chdemko $
  * @package		Joomla
  * @subpackage	Weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -57,7 +57,12 @@ abstract class WeblinksHelperRoute
 
 		return $link;
 	}
-	public static function getFormRoute($id)
+
+	/**
+	 * @param	int		$id		The id of the weblink.
+	 * @param	string	$return	The return page variable.
+	 */
+	public static function getFormRoute($id, $return = null)
 	{
 		// Create the link.
 		if ($id) {
@@ -65,6 +70,10 @@ abstract class WeblinksHelperRoute
 		}
 		else {
 			$link = 'index.php?option=com_weblinks&task=weblink.add&w_id=0';
+		}
+
+		if ($return) {
+			$link .= '&return='.$return;
 		}
 
 		return $link;

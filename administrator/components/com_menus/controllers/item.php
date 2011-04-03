@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: item.php 19838 2010-12-12 07:06:55Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: item.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,7 +35,7 @@ class MenusControllerItem extends JControllerForm
 			$app->setUserState($context.'.type',	null);
 			$app->setUserState($context.'.link',	null);
 
-			$menuType = $app->getUserStateFromRequest($this->context.'.filter.menutype', 'menutype', 'mainmenu');
+			$menuType = $app->getUserStateFromRequest($this->context.'.filter.menutype', 'menutype', 'mainmenu', 'cmd');
 
 			$this->setRedirect(JRoute::_('index.php?option=com_menus&view=item&menutype='.$menuType.$this->getRedirectToItemAppend(), false));
 		}
@@ -82,7 +82,7 @@ class MenusControllerItem extends JControllerForm
 	 * @return	void
 	 * @since	1.6
 	 */
-	public function cancel()
+	public function cancel($key = null)
 	{
 		JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
@@ -104,7 +104,7 @@ class MenusControllerItem extends JControllerForm
 	 * @return	void
 	 * @since	1.6
 	 */
-	public function edit()
+	public function edit($key = null, $urlVar = null)
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication();
@@ -125,7 +125,7 @@ class MenusControllerItem extends JControllerForm
 	 * @return	void
 	 * @since	1.6
 	 */
-	public function save()
+	public function save($key = null, $urlVar = null)
 	{
 		// Check for request forgeries.
 		JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));

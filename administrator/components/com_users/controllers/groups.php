@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: groups.php 19518 2010-11-17 10:15:41Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: groups.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -30,10 +30,9 @@ class UsersControllerGroups extends JControllerAdmin
 	 *
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Group', $prefix = 'UsersModel')
+	public function getModel($name = 'Group', $prefix = 'UsersModel')
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
-		return $model;
+		return parent::getModel($name, $prefix, array('ignore_request' => true));
 	}
 
 	/**

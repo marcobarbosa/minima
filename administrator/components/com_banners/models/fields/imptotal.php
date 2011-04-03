@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: imptotal.php 17128 2010-05-17 05:46:33Z severdia $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: imptotal.php 20742 2011-02-17 16:26:27Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -40,6 +40,8 @@ class JFormFieldImpTotal extends JFormField
 		$value		= empty($this->value) ? '' : $this->value;
 		$checked	= empty($this->value) ? ' checked="checked"' : '';
 
-		return '<input type="text" name="'.$this->name.'" id="'.$this->id.'" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'" '.$class.$onchange.' /><input id="'.$this->id.'_unlimited" type="checkbox"'.$checked.$onclick.' /><input style="border:0;" type="text" value="'.JText::_('COM_BANNERS_UNLIMITED').'" readonly="readonly" id="jform-imp"/>';
+		return '<input type="text" name="'.$this->name.'" id="'.$this->id.'" size="9" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'" '.$class.$onchange.' />
+		<fieldset class="checkboxes impunlimited"><input id="'.$this->id.'_unlimited" type="checkbox"'.$checked.$onclick.' />
+		<label for="'.$this->id.'_unlimited" id="jform-imp" type="text">'.JText::_('COM_BANNERS_UNLIMITED').'</label></fieldset>';
 	}
 }

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19746 2010-12-03 16:47:09Z dextercowley $
+ * @version		$Id: edit.php 20549 2011-02-04 15:01:51Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -49,6 +49,7 @@ JHtml::_('behavior.keepalive');
 
 				<li><?php echo $this->form->getLabel('access'); ?>
 				<?php echo $this->form->getInput('access'); ?></li>
+
 				<?php if ($this->canDo->get('core.admin')): ?>
 					<li><span class="faux-label"><?php echo JText::_('JGLOBAL_ACTION_PERMISSIONS_LABEL'); ?></span>
 						<div class="button2-left"><div class="blank">
@@ -58,11 +59,12 @@ JHtml::_('behavior.keepalive');
 						</div></div>
 					</li>
 				<?php endif; ?>
-				<li><?php echo $this->form->getLabel('language'); ?>
-				<?php echo $this->form->getInput('language'); ?></li>
 
 				<li><?php echo $this->form->getLabel('featured'); ?>
 				<?php echo $this->form->getInput('featured'); ?></li>
+
+				<li><?php echo $this->form->getLabel('language'); ?>
+				<?php echo $this->form->getInput('language'); ?></li>
 
 				<li><?php echo $this->form->getLabel('id'); ?>
 				<?php echo $this->form->getInput('id'); ?></li>

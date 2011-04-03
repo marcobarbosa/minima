@@ -6,7 +6,7 @@
 	<author>Andrea Tarr</author>
 	<authorEmail>hathor@tarrconsulting.com</authorEmail>
 	<authorUrl>http://www.tarrconsulting.com</authorUrl>
-	<copyright>Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<version>1.6.0</version>
 	<description>TPL_HATHOR_XML_DESCRIPTION</description>
@@ -27,9 +27,7 @@
 		<folder>html</folder>
 		<folder>images</folder>
 		<folder>js</folder>
-		<!-- For a non-core admin template, the language files could be -->
-		<!-- inside the language/en-GB folder -->
-		<!-- <folder>language</folder>  -->
+		<folder>language</folder>
 	</files>
 
 	<positions>
@@ -56,10 +54,11 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="colourChoice" type="list" default="0" label="TPL_HATHOR_COLOUR_CHOICE_LABEL" description="TPL_HATHOR_COLOUR_CHOICE_DESC">
+				<field name="colourChoice" type="list" default="0" label="TPL_HATHOR_COLOUR_CHOICE_LABEL" description="TPL_HATHOR_COLOUR_CHOICE_DESC"  filter="word">
 					<option value="">TPL_HATHOR_COLOUR_CHOICE_STANDARD</option>
 					<option value="highcontrast">TPL_HATHOR_COLOUR_CHOICE_HIGH_CONTRAST</option>
 					<option value="brown">TPL_HATHOR_COLOUR_CHOICE_BROWN</option>
+					<option value="blue">TPL_HATHOR_COLOUR_CHOICE_BLUE</option>
 				</field>
 				<field name="boldText" type="radio" default="0" label="TPL_HATHOR_BOLD_TEXT_LABEL" description="TPL_HATHOR_BOLD_TEXT_DESC">
 					<option value="0">JNO</option>

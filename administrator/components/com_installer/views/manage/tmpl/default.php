@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18691 2010-08-28 05:43:17Z infograf768 $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -11,8 +11,10 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+JHTML::_('script','system/multiselect.js',false,true);
+
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_installer&view=manage');?>" method="post" name="adminForm" id="adminForm">
 	<?php if ($this->showMessage) : ?>
@@ -70,7 +72,7 @@ $listDirn	= $this->state->get('list.direction');
 		</tfoot>
 		<tbody>
 		<?php foreach ($this->items as $i => $item): ?>
-			<tr class="row<?php echo $i%2;?>" style="<?php if ($item->protected) echo 'color:#999999;';?>">
+			<tr class="row<?php echo $i%2; if ($item->protected) echo ' protected';?>">
 				<td>
 					<?php echo JHtml::_('grid.id', $i, $item->extension_id); ?>
 				</td>

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: application.php 19396 2010-11-08 11:11:40Z chdemko $
+ * @version		$Id: application.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -129,32 +129,41 @@ class JAdministrator extends JApplication
 	 */
 	public function dispatch($component = null)
 	{
-		if ($component === null) {
-			$component = JAdministratorHelper::findOption();
+		try
+		{
+			if ($component === null) {
+				$component = JAdministratorHelper::findOption();
+			}
+
+			$document	= JFactory::getDocument();
+			$user		= JFactory::getUser();
+
+			switch ($document->getType()) {
+				case 'html':
+					$document->setMetaData('keywords', $this->getCfg('MetaKeys'));
+					JHtml::_('behavior.framework', true);
+					break;
+
+				default:
+					break;
+			}
+
+			$document->setTitle($this->getCfg('sitename'). ' - ' .JText::_('JADMINISTRATION'));
+			$document->setDescription($this->getCfg('MetaDesc'));
+
+			$contents = JComponentHelper::renderComponent($component);
+			$document->setBuffer($contents, 'component');
+
+			// Trigger the onAfterDispatch event.
+			JPluginHelper::importPlugin('system');
+			$this->triggerEvent('onAfterDispatch');
 		}
-
-		$document	= JFactory::getDocument();
-		$user		= JFactory::getUser();
-
-		switch ($document->getType()) {
-			case 'html':
-				$document->setMetaData('keywords', $this->getCfg('MetaKeys'));
-				JHtml::_('behavior.framework', true);
-				break;
-
-			default:
-				break;
+		// Mop up any uncaught exceptions.
+		catch (Exception $e)
+		{
+			$code = $e->getCode();
+			JError::raiseError($code ? $code : 500, $e->getMessage());
 		}
-
-		$document->setTitle(htmlspecialchars_decode($this->getCfg('sitename')). ' - ' .JText::_('JADMINISTRATION'));
-		$document->setDescription($this->getCfg('MetaDesc'));
-
-		$contents = JComponentHelper::renderComponent($component);
-		$document->setBuffer($contents, 'component');
-
-		// Trigger the onAfterDispatch event.
-		JPluginHelper::importPlugin('system');
-		$this->triggerEvent('onAfterDispatch');
 	}
 
 	/**
@@ -178,7 +187,7 @@ class JAdministrator extends JApplication
 		$rootUser	= $config->get('root_user');
 		if (property_exists('JConfig', 'root_user') &&
 			(JFactory::getUser()->get('username') == $rootUser || JFactory::getUser()->id === (string) $rootUser)) {
-			JError::raiseNotice(200, JText::_('JWARNING_REMOVE_ROOT_USER'));
+			JError::raiseNotice(200, JText::sprintf('JWARNING_REMOVE_ROOT_USER', 'index.php?option=com_config&task=application.removeroot&'. JUtility::getToken() .'=1'));			
 		}
 
 		$params = array(

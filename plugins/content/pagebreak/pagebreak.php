@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: pagebreak.php 19370 2010-11-06 14:13:06Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: pagebreak.php 20758 2011-02-18 04:43:17Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,6 +27,20 @@ defined('_JEXEC') or die;
  */
 class plgContentPagebreak extends JPlugin
 {
+	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
+
 	/**
 	 * @param	string	The context of the content being passed to the plugin.
 	 * @param	object	The article object.  Note $article->text is also available
@@ -176,7 +190,7 @@ class plgContentPagebreak extends JPlugin
 	        
 			if($this->params->get('article_index_text'))
 	        {
-	        $headingtext=$this->params->get('article_index_text');
+	        	htmlspecialchars($headingtext=$this->params->get('article_index_text'));
 	       	 }
 			$row->toc .='<h3>'.$headingtext.'</h3>';
 		
@@ -186,7 +200,7 @@ class plgContentPagebreak extends JPlugin
 		$row->toc .= '<ul>
 		<li>
 			
-			<a href="'. JRoute::_('&showall=&limitstart=') .'" class="toclink">'
+			<a href="'. JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catid).'&showall=&limitstart=') .'" class="toclink">'
 			. $heading .
 			'</a>
 			
@@ -196,7 +210,7 @@ class plgContentPagebreak extends JPlugin
 		$i = 2;
 
 		foreach ($matches as $bot) {
-			$link = JRoute::_('&showall=&limitstart='. ($i-1));
+			$link = JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catid).'&showall=&limitstart='. ($i-1));
 
 
 			if (@$bot[0]) {
@@ -226,7 +240,7 @@ class plgContentPagebreak extends JPlugin
 		}
 
 		if ($this->params->get('showall')) {
-			$link = JRoute::_('&showall=1&limitstart=');
+			$link = JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catid).'&showall=1&limitstart=');
 			$row->toc .= '
 			<li>
 				

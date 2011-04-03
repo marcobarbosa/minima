@@ -1,7 +1,7 @@
 <?php
 /**
  * @version		$Id:mod_menu.php 2463 2006-02-18 06:05:38Z webImagery $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,7 +29,7 @@ abstract class ModMenuHelper
 		$query->select('a.*, SUM(b.home) AS home');
 		$query->from('#__menu_types AS a');
 		$query->leftJoin('#__menu AS b ON b.menutype = a.menutype');
-		$query->where('b.client_id = 0');
+		$query->where('(b.client_id = 0 OR b.client_id IS NULL)');
 		$query->group('a.id');
 
 		$db->setQuery($query);

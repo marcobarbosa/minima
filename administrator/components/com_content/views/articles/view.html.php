@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 19853 2010-12-13 00:03:10Z dextercowley $
+ * @version		$Id: view.html.php 20814 2011-02-21 21:10:40Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -59,10 +59,10 @@ class ContentViewArticles extends JView
 	protected function addToolbar()
 	{
 		$canDo	= ContentHelper::getActions($this->state->get('filter.category_id'));
-
+		$user		= JFactory::getUser();
 		JToolBarHelper::title(JText::_('COM_CONTENT_ARTICLES_TITLE'), 'article.png');
 
-		if ($canDo->get('core.create')) {
+		if ($canDo->get('core.create') || (count($user->getAuthorisedCategories('com_content', 'core.create'))) > 0 ) {
 			JToolBarHelper::addNew('article.add','JTOOLBAR_NEW');
 		}
 
@@ -74,6 +74,7 @@ class ContentViewArticles extends JView
 			JToolBarHelper::divider();
 			JToolBarHelper::custom('articles.publish', 'publish.png', 'publish_f2.png','JTOOLBAR_PUBLISH', true);
 			JToolBarHelper::custom('articles.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
+			JToolBarHelper::custom('articles.featured', 'featured.png', 'featured_f2.png', 'JFEATURED', true);			
 			JToolBarHelper::divider();
 			JToolBarHelper::archiveList('articles.archive','JTOOLBAR_ARCHIVE');
 			JToolBarHelper::custom('articles.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
@@ -89,7 +90,7 @@ class ContentViewArticles extends JView
 		}
 
 		if ($canDo->get('core.admin')) {
-			JToolBarHelper::preferences('com_content', 550, 800);
+			JToolBarHelper::preferences('com_content');
 			JToolBarHelper::divider();
 		}
 

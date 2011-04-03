@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit_metadata.php 19638 2010-11-25 02:53:32Z ian $
+ * @version		$Id: edit_metadata.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */

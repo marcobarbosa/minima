@@ -3,7 +3,7 @@
  * @version		$Id: default.php 18062 2010-07-09 02:58:04Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_login
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,6 +29,7 @@ JHtml::_('behavior.keepalive');
 	<input type="hidden" name="option" value="com_users" />
 	<input type="hidden" name="task" value="user.logout" />
 	<input type="hidden" name="return" value="<?php echo $return; ?>" />
+	<?php echo JHtml::_('form.token'); ?>	
 </form>
 <?php else : ?>
 <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="form-login" >

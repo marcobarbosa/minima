@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19740 2010-12-03 10:37:49Z infograf768 $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -15,11 +15,36 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
+JHTML::_('script','system/multiselect.js',false,true);
 
-$user = JFactory::getUser();
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$user		= JFactory::getUser();
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
+
+JText::script('COM_USERS_GROUPS_CONFIRM_DELETE');
 ?>
+<script type="text/javascript">
+	Joomla.submitbutton = function(task)
+	{
+		if (task == 'groups.delete')
+		{
+			var f = document.adminForm;
+			var cb='';
+<?php foreach ($this->items as $i=>$item):?>
+<?php if ($item->user_count > 0):?>
+			cb = f['cb'+<?php echo $i;?>];
+			if (cb && cb.checked) {
+				if (confirm(Joomla.JText._('COM_USERS_GROUPS_CONFIRM_DELETE'))) {
+					Joomla.submitform(task);
+				}
+				return;
+			}
+<?php endif;?>
+<?php endforeach;?>
+		}
+		Joomla.submitform(task);
+	}
+</script>
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=groups');?>" method="post" name="adminForm" id="adminForm">
 	<fieldset id="filter-bar">
 		<div class="filter-search fltlft">
@@ -59,11 +84,17 @@ $listDirn	= $this->state->get('list.direction');
 		<?php foreach ($this->items as $i => $item) :
 			$canCreate	= $user->authorise('core.create',		'com_users');
 			$canEdit	= $user->authorise('core.edit',			'com_users');
+			// If this group is super admin and this user is not super admin, $canEdit is false
+			if (!$user->authorise('core.admin') && (JAccess::checkGroup($item->id, 'core.admin'))) {
+				$canEdit = false;
+			}
 			$canChange	= $user->authorise('core.edit.state',	'com_users');
 		?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+					<?php if ($canEdit) : ?>
+						<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+					<?php endif; ?>
 				</td>
 				<td>
 					<?php echo str_repeat('<span class="gi">|&mdash;</span>', $item->level) ?>

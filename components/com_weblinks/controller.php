@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controller.php 19797 2010-12-08 03:36:18Z dextercowley $
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	Weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -40,7 +40,7 @@ class WeblinksController extends JController
 		// Note we are using w_id to avoid collisions with the router and the return page.
 		// Frontend is a bit messier than the backend.
 		$id		= JRequest::getInt('w_id');
-		$vName	= JRequest::getWord('view', 'categories');
+		$vName	= JRequest::getCmd('view', 'categories');
 		JRequest::setVar('view', $vName);
 
 		if ($user->get('id') ||($_SERVER['REQUEST_METHOD'] == 'POST' && $vName = 'categories')) {

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: profile.php 19516 2010-11-17 06:07:30Z eddieajau $
+ * @version		$Id: profile.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,7 +43,7 @@ class AdminControllerProfile extends JControllerForm
 	 * @return	mixed	Boolean or JError.
 	 * @since	1.6
 	 */
-	public function save()
+	public function save($key = null, $urlVar = null)
 	{
 		$data = JRequest::getVar('jform', array(), 'post', 'array');
 
@@ -52,7 +52,7 @@ class AdminControllerProfile extends JControllerForm
 			// Check the passwords match.
 			if ($data['password'] != $data['password2']) {
 				$this->setMessage(JText::_('JLIB_USER_ERROR_PASSWORD_NOT_MATCH'), 'warning');
-				$this->setRedirect(JRoute::_('index.php?option=com_users&view=user&layout=edit', false));
+				$this->setRedirect(JRoute::_('index.php?option=com_admin&view=profile&layout=edit', false));
 				return false;
 			}
 

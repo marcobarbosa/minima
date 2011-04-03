@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: exception.php 16729 2010-05-04 05:36:49Z eddieajau $
+ * @version		$Id: exception.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Error
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
   */
 

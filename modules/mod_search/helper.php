@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 18213 2010-07-22 06:26:25Z eddieajau $
+ * @version		$Id: helper.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_search
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

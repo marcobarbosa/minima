@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: formfield.php 19770 2010-12-04 11:53:16Z chdemko $
+ * @version		$Id: formfield.php 20206 2011-01-09 17:11:35Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -242,6 +242,9 @@ abstract class JFormField
 
 				return $this->label;
 				break;
+			case 'title':
+				return $this->getTitle();
+				break;
 		}
 
 		return null;
@@ -398,6 +401,27 @@ abstract class JFormField
 	abstract protected function getInput();
 
 	/**
+	 * Method to get the field title.
+	 *
+	 * @return	string	The field title.
+	 * @since	1.6
+	 */
+	protected function getTitle()
+	{
+		// Initialise variables.
+		$title = '';
+
+		if ($this->hidden) {
+			return $title;
+		}
+
+		// Get the label text from the XML element, defaulting to the element name.
+		$title = $this->element['label'] ? (string) $this->element['label'] : (string) $this->element['name'];
+		$title = $this->translateLabel ? JText::_($title) : $title;
+		return $title;
+	}
+
+	/**
 	 * Method to get the field label markup.
 	 *
 	 * @return	string	The field label markup.
@@ -429,8 +453,12 @@ abstract class JFormField
 						($this->translateDescription ? JText::_($this->description) : $this->description), ENT_COMPAT, 'UTF-8').'"';
 		}
 
-		// Add the label text and closing tag.
-		$label .= '>'.$text.'</label>';
+	// Add the label text and closing tag.
+		if ($this->required) {
+			$label .= '>'.$text.'<span class="star">&#160;*</span></label>';
+		} else {
+			$label .= '>'.$text.'</label>';
+		}
 
 		return $label;
 	}

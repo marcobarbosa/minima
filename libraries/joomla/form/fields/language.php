@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: language.php 16825 2010-05-05 12:10:37Z louis $
+ * @version		$Id: language.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -42,11 +42,14 @@ class JFormFieldLanguage extends JFormFieldList
 	{
 		// Initialize some field attributes.
 		$client	= (string) $this->element['client'];
+		if ($client != 'site' && $client != 'administrator') {
+			$client = 'site';
+		}
 
 		// Merge any additional options in the XML definition.
 		$options = array_merge(
 			parent::getOptions(),
-			JLanguageHelper::createLanguageList($this->value, constant('JPATH_'.strtoupper($client)), true)
+			JLanguageHelper::createLanguageList($this->value, constant('JPATH_'.strtoupper($client)), true, true)
 		);
 
 		return $options;

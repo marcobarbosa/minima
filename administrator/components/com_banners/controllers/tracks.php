@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: tracks.php 17858 2010-06-23 17:54:28Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: tracks.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -34,7 +34,7 @@ class BannersControllerTracks extends JController
 	 * @return	JModel
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Tracks', $prefix = 'BannersModel')
+	public function &getModel($name = 'Tracks', $prefix = 'BannersModel', $config = array())
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 		return $model;

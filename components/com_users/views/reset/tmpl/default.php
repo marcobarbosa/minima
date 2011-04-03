@@ -1,21 +1,20 @@
 <?php
 /**
- * @version		$Id: default.php 17973 2010-06-30 10:23:05Z ian $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.5
  */
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.mootools');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 ?>
-<div class="reset<?php echo $this->params->get('pageclass_sfx')?>">
+<div class="reset<?php echo $this->pageclass_sfx?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<h1>
 		<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -34,8 +33,10 @@ JHtml::_('behavior.formvalidation');
 			</dl>
 		</fieldset>
 		<?php endforeach; ?>
-
-		<button type="submit"><?php echo JText::_('JSUBMIT'); ?></button>
-		<?php echo JHtml::_('form.token'); ?>
+		
+		<div>
+			<button type="submit"><?php echo JText::_('JSUBMIT'); ?></button>
+			<?php echo JHtml::_('form.token'); ?>
+		</div>
 	</form>
 </div>

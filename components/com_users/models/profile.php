@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: profile.php 19396 2010-11-08 11:11:40Z chdemko $
+ * @version		$Id: profile.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -42,10 +42,7 @@ class UsersModelProfile extends JModelForm
 
 		if ($userId) {
 			// Initialise the table with JUser.
-			$table = JUser::getTable('User', 'JTable');
-
-			// Get the current user object.
-			$user = JFactory::getUser();
+			$table = JTable::getInstance('User');
 
 			// Attempt to check the row in.
 			if (!$table->checkin($userId)) {
@@ -71,7 +68,7 @@ class UsersModelProfile extends JModelForm
 
 		if ($userId) {
 			// Initialise the table with JUser.
-			$table = JUser::getTable('User', 'JTable');
+			$table = JTable::getInstance('User');
 
 			// Get the current user object.
 			$user = JFactory::getUser();
@@ -99,11 +96,9 @@ class UsersModelProfile extends JModelForm
 	{
 		if ($this->data === null) {
 
-			$app	= JFactory::getApplication();
 			$userId = $this->getState('user.id');
 
 			// Initialise the table with JUser.
-			$table	= JUser::getTable('User', 'JTable');
 			$this->data	= new JUser($userId);
 
 			// Set the base user data.
@@ -111,7 +106,7 @@ class UsersModelProfile extends JModelForm
 			$this->data->email2 = $this->data->get('email');
 
 			// Override the base user data with any data in the session.
-			$temp = (array)$app->getUserState('com_users.edit.profile.data', array());
+			$temp = (array)JFactory::getApplication()->getUserState('com_users.edit.profile.data', array());
 			foreach ($temp as $k => $v) {
 				$this->data->$k = $v;
 			}
@@ -181,7 +176,7 @@ class UsersModelProfile extends JModelForm
 	 * @throws	Exception if there is an error in the form event.
 	 * @since	1.6
 	 */
-	protected function preprocessForm(JForm $form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = 'user')
 	{
 		if (JComponentHelper::getParams('com_users')->get('frontend_userparams'))
 		{
@@ -190,7 +185,7 @@ class UsersModelProfile extends JModelForm
 				$form->loadFile('frontend_admin',false);
 			}
 		}
-		parent::preprocessForm($form, $data, 'user');
+		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**
@@ -203,13 +198,11 @@ class UsersModelProfile extends JModelForm
 	protected function populateState()
 	{
 		// Get the application object.
-		$app	= JFactory::getApplication();
-		$user	= JFactory::getUser();
-		$params	= $app->getParams('com_users');
+		$params	= JFactory::getApplication()->getParams('com_users');
 
 		// Get the user id.
-		$userId = $app->getUserState('com_users.edit.profile.id');
-		$userId = !empty($userId) ? $userId : (int)$user->get('id');
+		$userId = JFactory::getApplication()->getUserState('com_users.edit.profile.id');
+		$userId = !empty($userId) ? $userId : (int)JFactory::getUser()->get('id');
 
 		// Set the user id.
 		$this->setState('user.id', $userId);
@@ -229,9 +222,8 @@ class UsersModelProfile extends JModelForm
 	{
 		$userId = (!empty($data['id'])) ? $data['id'] : (int)$this->getState('user.id');
 
-		// Initialise the table with JUser.
-		JUser::getTable('User', 'JTable');
 		$user = new JUser($userId);
+
 		// Prepare the data for the user object.
 		$data['email']		= $data['email1'];
 		$data['password']	= $data['password1'];
@@ -249,7 +241,7 @@ class UsersModelProfile extends JModelForm
 		}
 
 		// Load the users plugin group.
-		JPluginHelper::importPlugin('users');
+		JPluginHelper::importPlugin('user');
 
 		// Null the user groups so they don't get overwritten
 		$user->groups = null;

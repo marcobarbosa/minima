@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: list.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: list.php 20450 2011-01-26 17:51:58Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage		HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -93,13 +93,14 @@ abstract class JHtmlList
 		$options[] = JHtml::_('select.option',  0, '0 '. JText::_('JOPTION_ORDER_FIRST'));
 		for ($i=0, $n=count($items); $i < $n; $i++)
 		{
+			$items[$i]->text = JText::_($items[$i]->text);
 			if (JString::strlen($items[$i]->text) > $chop) {
 				$text = JString::substr($items[$i]->text,0,$chop)."...";
 			} else {
 				$text = $items[$i]->text;
 			}
 
-			$options[] = JHtml::_('select.option',  $items[$i]->value, $items[$i]->value.' ('.$text.')');
+			$options[] = JHtml::_('select.option',  $items[$i]->value, $items[$i]->value.'. '.$text);
 		}
 		$options[] = JHtml::_('select.option',  $items[$i-1]->value+1, ($items[$i-1]->value+1).' '. JText::_('JOPTION_ORDER_LAST'));
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: category.php 19134 2010-10-14 16:48:16Z louis $
+ * @version		$Id: category.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage		HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -125,7 +125,7 @@ abstract class JHtmlCategory
 					self::$items[$hash][] = JHtml::_('select.option', $item->id, $item->title);
 				}
 				// Special "Add to root" option:
-				self::$items[$hash][] = JHtml::_('select.option', $item->parent_id.'.1', JText::_('JLIB_HTML_ADD_TO_ROOT'));
+				self::$items[$hash][] = JHtml::_('select.option', '1', JText::_('JLIB_HTML_ADD_TO_ROOT'));
 		}
 
 		return self::$items[$hash];

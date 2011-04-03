@@ -3,7 +3,7 @@
  * @version		$Id: modal.php 19306 2010-10-31 22:34:29Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,10 +12,11 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
-$function = JRequest::getVar('function', 'jSelectPosition');
-$lang = JFactory::getLanguage();
-$ordering	= $this->state->get('list.ordering');
-$direction	= $this->state->get('list.direction');
+
+$function	= JRequest::getCmd('function', 'jSelectPosition');
+$lang		= JFactory::getLanguage();
+$ordering	= $this->escape($this->state->get('list.ordering'));
+$direction	= $this->escape($this->state->get('list.direction'));
 $clientId	= $this->state->get('filter.client_id');
 $state		= $this->state->get('filter.state');
 $template	= $this->state->get('filter.template');
@@ -44,10 +45,10 @@ $type		= $this->state->get('filter.type');
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('modules.templateStates'), 'value', 'text', $state, true);?>
 			</select>
-			
+
 			<label class="selectlabel" for="filter_type">
 				<?php echo JText::_('COM_MODULES_OPTION_SELECT_TYPE'); ?>
-			</label>		
+			</label>
 			<select name="filter_type" id="filter_type" class="inputbox">
 				<option value=""><?php echo JText::_('COM_MODULES_OPTION_SELECT_TYPE');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('modules.types'), 'value', 'text', $type, true);?>
@@ -60,10 +61,10 @@ $type		= $this->state->get('filter.type');
 				<option value=""><?php echo JText::_('JOPTION_SELECT_TEMPLATE');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('modules.templates', $clientId), 'value', 'text', $template, true);?>
 			</select>
-			
+
 			<button type="button" id="filter-go" onclick="this.form.submit();">
 				<?php echo JText::_('JSUBMIT'); ?></button>
-			
+
 		</div>
 	</fieldset>
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: image.php 19651 2010-11-26 10:02:08Z eddieajau $
+ * @version		$Id: image.php 20813 2011-02-21 21:08:29Z dextercowley $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -20,6 +20,20 @@ jimport('joomla.plugin.plugin');
 class plgButtonImage extends JPlugin
 {
 	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
+
+	/**
 	 * Display the button
 	 *
 	 * @return array A two element array of (imageName, textToInsert)
@@ -31,7 +45,8 @@ class plgButtonImage extends JPlugin
  		$user = JFactory::getUser();
 		if (	$user->authorise('core.edit', $asset)
 			||	$user->authorise('core.create', $asset)
-			|| ($user->authorise('core.edit.own', $asset) && $author==$user->id)) 
+			||  count($user->getAuthorisedCategories($asset, 'core.create')) > 0
+			|| ($user->authorise('core.edit.own', $asset) && $author == $user->id)) 
 		{
 			$link = 'index.php?option=com_media&amp;view=images&amp;tmpl=component&amp;e_name=' . $name . '&amp;asset=' . $asset . '&amp;author=' . $author;
 			JHtml::_('behavior.modal');

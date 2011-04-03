@@ -1,16 +1,16 @@
 <?php
 /**
- * @version		$Id: helper.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: helper.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_categories
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
 
-require_once JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
+require_once JPATH_SITE.'/components/com_content/helpers/route.php';
 jimport('joomla.application.categories');
 
 abstract class modArticlesCategoriesHelper

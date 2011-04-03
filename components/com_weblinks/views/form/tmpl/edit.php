@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19797 2010-12-08 03:36:18Z dextercowley $
+ * @version		$Id: edit.php 20875 2011-03-03 17:07:41Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,7 +29,7 @@ $params = $this->state->get('params');
 		}
 	}
 </script>
-<div class="edit<?php echo $this->escape($this->params->get('pageclass_sfx')); ?>">
+<div class="edit<?php echo $this->pageclass_sfx; ?>">
 <?php if ($this->params->def('show_page_heading', 1)) : ?>
 <h1>
 	<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -42,6 +42,11 @@ $params = $this->state->get('params');
 			<div class="formelm">
 			<?php echo $this->form->getLabel('title'); ?>
 			<?php echo $this->form->getInput('title'); ?>
+			</div>
+
+			<div class="formelm">
+			<?php echo $this->form->getLabel('alias'); ?>
+			<?php echo $this->form->getInput('alias'); ?>
 			</div>
 
 			<div class="formelm">
@@ -76,9 +81,8 @@ $params = $this->state->get('params');
 			</div>
 	</fieldset>
 
+		<input type="hidden" name="return" value="<?php echo $this->return_page;?>" />
 		<input type="hidden" name="task" value="" />
-		<?php echo JHTML::_( 'form.token' ); ?>
-		</div>
-
-</form>
+		<?php echo JHTML::_( 'form.token' ); ?>		
+	</form>
 </div>

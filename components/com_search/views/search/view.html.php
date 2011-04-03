@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 19097 2010-10-13 00:34:00Z eddieajau $
+ * @version		$Id: view.html.php 20873 2011-03-03 17:01:36Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,7 +24,7 @@ class SearchViewSearch extends JView
 {
 	function display($tpl = null)
 	{
-		require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'search.php';
+		require_once JPATH_COMPONENT_ADMINISTRATOR.'/helpers/search.php';
 
 		// Initialise some variables
 		$app	= JFactory::getApplication();
@@ -61,7 +61,7 @@ class SearchViewSearch extends JView
 
 		$title = $params->get('page_title');
 		if ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
 
@@ -86,9 +86,11 @@ class SearchViewSearch extends JView
 		SearchHelper::logSearch($searchword);
 
 		//limit searchword
-
+		$lang = JFactory::getLanguage();
+		$upper_limit = $lang->getUpperLimitSearchWord();
+		$lower_limit = $lang->getLowerLimitSearchWord();
 		if (SearchHelper::limitSearchWord($searchword)) {
-			$error = JText::_('COM_SEARCH_ERROR_SEARCH_MESSAGE');
+			$error = JText::sprintf('COM_SEARCH_ERROR_SEARCH_MESSAGE', $lower_limit, $upper_limit);
 		}
 
 		//sanatise searchword
@@ -151,6 +153,15 @@ class SearchViewSearch extends JView
 				$result->count		= $i + 1;
 			}
 		}
+		
+		// Check for layout override
+		$active = JFactory::getApplication()->getMenu()->getActive();
+		if (isset($active->query['layout'])) {
+			$this->setLayout($active->query['layout']);
+		}	
+
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
 
 		$this->assignRef('pagination',  $pagination);
 		$this->assignRef('results',		$results);

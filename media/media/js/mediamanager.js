@@ -1,6 +1,6 @@
 /**
- * @version		$Id: mediamanager.js 19132 2010-10-14 16:22:09Z louis $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: mediamanager.js 20828 2011-02-22 04:22:21Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,13 +11,13 @@
  * @subpackage  Media
  * @since		1.5
  */
-(function($) {
+(function() {
 var MediaManager = this.MediaManager = {
 
 	initialize: function()
 	{
-		this.folderframe	= $('folderframe');
-		this.folderpath		= $('folderpath');
+		this.folderframe	= document.id('folderframe');
+		this.folderpath		= document.id('folderpath');
 
 		this.updatepaths	= $$('input.update-folder');
 
@@ -27,7 +27,7 @@ var MediaManager = this.MediaManager = {
 
 		this.tree = new MooTreeControl({ div: 'media-tree_tree', mode: 'folders', grid: true, theme: '../media/system/images/mootree.gif', onClick:
 				function(node){
-					target = $chk(node.data.target) ? node.data.target : '_self';
+					target = node.data.target != null ? node.data.target : '_self';
 
 					// Get the current URL.
 				   	uri = this._getUriObject(this.frameurl);
@@ -43,11 +43,11 @@ var MediaManager = this.MediaManager = {
 
 	submit: function(task)
 	{
-		form = window.frames['folderframe'].document.getElementById('mediamanager-form');
+		form = window.frames['folderframe'].document.id('mediamanager-form');
 		form.task.value = task;
-		if ($('username')) {
-			form.username.value = $('username').value;
-			form.password.value = $('password').value;
+		if (document.id('username')) {
+			form.username.value = document.id('username').value;
+			form.password.value = document.id('password').value;
 		}
 		form.submit();
 	},
@@ -73,38 +73,38 @@ var MediaManager = this.MediaManager = {
 			this.tree.select(node, true);
 		}
 
-		$(viewstyle).addClass('active');
+		document.id(viewstyle).addClass('active');
 
-		a = this._getUriObject($('uploadForm').getProperty('action'));
-		q = $H(this._getQueryObject(a.query));
+		a = this._getUriObject(document.id('uploadForm').getProperty('action'));
+		q = new Hash(this._getQueryObject(a.query));
 		q.set('folder', folder);
 		var query = [];
 		q.each(function(v, k){
-			if ($chk(v)) {
+			if (v != null) {
 				this.push(k+'='+v);
 			}
 		}, query);
 		a.query = query.join('&');
 
 		if (a.port) {
-			$('uploadForm').setProperty('action', a.scheme+'://'+a.domain+':'+a.port+a.path+'?'+a.query);
+			document.id('uploadForm').setProperty('action', a.scheme+'://'+a.domain+':'+a.port+a.path+'?'+a.query);
 		} else {
-			$('uploadForm').setProperty('action', a.scheme+'://'+a.domain+a.path+'?'+a.query);
+			document.id('uploadForm').setProperty('action', a.scheme+'://'+a.domain+a.path+'?'+a.query);
 		}
 	},
 
 	oncreatefolder: function()
 	{
-		if ($('foldername').value.length) {
-			$('dirpath').value = this.getFolder();
+		if (document.id('foldername').value.length) {
+			document.id('dirpath').value = this.getFolder();
 			Joomla.submitbutton('createfolder');
 		}
 	},
 
 	setViewType: function(type)
 	{
-		$(type).addClass('active');
-		$(viewstyle).removeClass('active');
+		document.id(type).addClass('active');
+		document.id(viewstyle).removeClass('active');
 		viewstyle = type;
 		var folder = this.getFolder();
 		this._setFrameUrl('index.php?option=com_media&view=mediaList&tmpl=component&folder='+folder+'&layout='+type);
@@ -149,7 +149,7 @@ var MediaManager = this.MediaManager = {
 
 	_setFrameUrl: function(url)
 	{
-		if ($chk(url)) {
+		if (url != null) {
 			this.frameurl = url;
 		}
 		this.frame.location.href = this.frameurl;

@@ -2,10 +2,10 @@
 /**
  * Joomla! Update System
  *
- * @version		$Id: updater.php 17854 2010-06-23 17:43:55Z eddieajau $
+ * @version		$Id: updater.php 20263 2011-01-10 21:12:41Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Updater
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 
@@ -39,12 +39,12 @@ class JUpdater extends JAdapter {
 	 * @static
 	 * @return	object	An installer object
 	 */
-	public function &getInstance()
+	public static function &getInstance()
 	{
 		static $instance;
 
 		if (!isset ($instance)) {
-			$instance = new JUpdater();
+			$instance = new JUpdater;
 		}
 		return $instance;
 	}
@@ -104,7 +104,7 @@ class JUpdater extends JAdapter {
 							{
 								// we have an installed extension, check the update is actually newer
 								$extension->load($eid);
-								$data = unserialize($extension->manifest_cache);
+								$data = json_decode($extension->manifest_cache, true);
 								if(version_compare($current_update->version, $data['version'], '>') == 1)
 								{
 									$current_update->extension_id = $eid;

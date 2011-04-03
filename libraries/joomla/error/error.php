@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: error.php 19466 2010-11-14 02:30:53Z chdemko $
+ * @version		$Id: error.php 20650 2011-02-10 10:14:12Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Error
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -146,7 +146,7 @@ w
 
 		$function = 'handle'.ucfirst($handler['mode']);
 		if (is_callable(array('JError', $function))) {
-			$reference = &call_user_func_array(array('JError',$function), array(&$exception, (isset($handler['options'])) ? $handler['options'] : array()));
+			$reference = call_user_func_array(array('JError',$function), array(&$exception, (isset($handler['options'])) ? $handler['options'] : array()));
 		}
 		else {
 			// This is required to prevent a very unhelpful white-screen-of-death
@@ -583,7 +583,7 @@ w
 
 		// Do not allow cache
 		JResponse::allowCache(false);
-		
+
 		JResponse::setBody($data);
 		echo JResponse::toString();
 		$app->close(0);
@@ -602,7 +602,7 @@ w
 		if (is_array($backtrace)) {
 			ob_start();
 			$j = 1;
-			echo '<table border="0" cellpadding="0" cellspacing="0" class="Table">';
+			echo '<table cellpadding="0" cellspacing="0" class="Table">';
 			echo '		<tr>';
 			echo '				<td colspan="3" class="TD"><strong>Call stack</strong></td>';
 			echo '		</tr>';

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 15672 2010-03-29 03:11:49Z infograf768 $
+ * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_config
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -21,7 +21,7 @@ class ConfigViewComponent extends JView
 	/**
 	 * Display the view
 	 */
-	function display()
+	function display($tpl = null)
 	{
 		$form		= $this->get('Form');
 		$component	= $this->get('Component');
@@ -42,7 +42,7 @@ class ConfigViewComponent extends JView
 
 		$this->document->setTitle(JText::_('JGLOBAL_EDIT_PREFERENCES'));
 
-		parent::display();
+		parent::display($tpl);
 		JRequest::setVar('hidemainmenu', true);
 	}
 }

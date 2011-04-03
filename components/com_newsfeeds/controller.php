@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controller.php 17855 2010-06-23 17:46:38Z eddieajau $
+ * @version		$Id: controller.php 20474 2011-01-28 15:43:23Z chdemko $
  * @package		Joomla.Site
  * @subpackage	Content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,7 +35,8 @@ class NewsfeedsController extends JController
 		$cachable = true;
 
 		// Set the default view name and format from the Request.
-		$vName		= JRequest::getWord('view', 'categories');
+		$vName	= JRequest::getCmd('view', 'categories');
+		JRequest::setVar('view', $vName);
 
 		$user = JFactory::getUser();
 

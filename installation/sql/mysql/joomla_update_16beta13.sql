@@ -1,4 +1,4 @@
-# $Id: joomla.sql 17225 2010-05-24 03:01:15Z dextercowley $
+# $Id: joomla_update_16beta13.sql 20746 2011-02-18 00:41:47Z dextercowley $
 
 #
 # Database updates for 1.6 Beta 12 to Beta 13
@@ -13,6 +13,6 @@ ALTER TABLE `#__menu`
 ALTER TABLE `#__menu`
  ADD UNIQUE `idx_alias_parent_id` (`client_id`,`parent_id`,`alias`);
 
-UPDATE `jos_menu`
+UPDATE TABLE `#__menu`
  SET `menutype` = 'menu', `client_id` = 1
  WHERE `menutype` = '_adminmenu';

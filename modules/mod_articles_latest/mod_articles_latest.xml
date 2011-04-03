@@ -7,7 +7,7 @@
 	<name>mod_articles_latest</name>
 	<author>Joomla! Project</author>
 	<creationDate>July 2004</creationDate>
-	<copyright>Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
@@ -35,9 +35,11 @@
 					extension="com_content"
 					multiple="true"
 					size="10"
+					default=""
 					label="JCATEGORY"
-					description="MOD_LATEST_NEWS_FIELD_CATEGORY_DESC" />
-
+					description="MOD_LATEST_NEWS_FIELD_CATEGORY_DESC" >
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
 				<field
 					name="count"
 					type="text"

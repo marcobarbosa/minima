@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: installation.php 19086 2010-10-11 13:40:55Z chdemko $
+ * @version		$Id: installation.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: style.php 19414 2010-11-09 16:07:28Z infograf768 $
+ * @version		$Id: style.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_templates
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -226,7 +226,7 @@ class TemplatesModelStyle extends JModelAdmin
 	 *
 	 * @return	mixed	Object on success, false on failure.
 	 */
-	public function &getItem($pk = null)
+	public function getItem($pk = null)
 	{
 		// Initialise variables.
 		$pk = (!empty($pk)) ? $pk : (int) $this->getState('style.id');
@@ -247,13 +247,14 @@ class TemplatesModelStyle extends JModelAdmin
 			}
 
 			// Convert to the JObject before adding other data.
-			$this->_cache[$pk] = JArrayHelper::toObject($table->getProperties(1), 'JObject');
+			$properties = $table->getProperties(1);
+			$this->_cache[$pk] = JArrayHelper::toObject($properties, 'JObject');
 
 			// Convert the params field to an array.
 			$registry = new JRegistry;
 			$registry->loadJSON($table->params);
 			$this->_cache[$pk]->params = $registry->toArray();
-			
+
 			// Get the template XML.
 			$client	= JApplicationHelper::getClientInfo($table->client_id);
 			$path	= JPath::clean($client->path.'/templates/'.$table->template.'/templateDetails.xml');
@@ -283,19 +284,12 @@ class TemplatesModelStyle extends JModelAdmin
 	}
 
 	/**
-	 * Prepare and sanitise the table prior to saving.
-	 */
-	protected function prepareTable(&$table)
-	{
-	}
-
-	/**
 	 * @param	object	A form object.
 	 * @param	mixed	The data expected for the form.
 	 * @throws	Exception if there is an error in the form event.
 	 * @since	1.6
 	 */
-	protected function preprocessForm($form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = '')
 	{
 		// Initialise variables.
 		$clientId	= $this->getState('item.client_id');
@@ -347,7 +341,7 @@ class TemplatesModelStyle extends JModelAdmin
 		}
 
 		// Trigger the default form events.
-		parent::preprocessForm($form, $data);
+		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**
@@ -407,7 +401,9 @@ class TemplatesModelStyle extends JModelAdmin
 			$db		= JFactory::getDbo();
 			$user	= JFactory::getUser();
 
-			if (!empty($data['assigned'])) {
+			if (!empty($data['assigned']) && is_array($data['assigned'])) {
+				JArrayHelper::toInteger($data['assigned']);
+
 				// Update the mapping for menu items that this style IS assigned to.
 				$query = $db->getQuery(true);
 				$query->update('#__menu');

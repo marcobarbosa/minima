@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: toolbar.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: toolbar.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -238,13 +238,13 @@ class JToolBar extends JObject
 	}
 
 	/**
-	 * Add a directory where JToolBar should search for button types.
+	 * Add a directory where JToolBar should search for button types in LIFO order.
 	 *
 	 * You may either pass a string or an array of directories.
 	 *
-	 * {@link JParameter} will be searching for an element type in the same order you
+	 * {@link JToolbar} will be searching for an element type in the same order you
 	 * added them. If the parameter type cannot be found in the custom folders,
-	 * it will look in JParameter/types.
+	 * it will look in libraries/joomla/html/toolbar/button.
 	 *
 	 * @access	public
 	 * @param	string|array	directory or directories to search.
@@ -252,10 +252,23 @@ class JToolBar extends JObject
 	 */
 	public function addButtonPath($path)
 	{
-		if (is_array($path)) {
-			$this->_buttonPath = array_merge($this->_buttonPath, $path);
-		} else {
-			array_push($this->_buttonPath, $path);
+		// Just force path to array.
+		settype($path, 'array');
+
+		// Loop through the path directories.
+		foreach ($path as $dir) {
+			// No surrounding spaces allowed!
+			$dir = trim($dir);
+
+			// Add trailing separators as needed.
+			if (substr($dir, -1) != DIRECTORY_SEPARATOR) {
+				// Directory
+				$dir .= DIRECTORY_SEPARATOR;
+			}
+
+			// Add to the top of the search dirs.
+			array_unshift($this->_buttonPath, $dir);
 		}
+
 	}
 }

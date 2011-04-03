@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 19608 2010-11-21 20:42:22Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -48,11 +48,16 @@ class MediaViewMediaList extends JView
 			});
 		});");
 
+		$images = $this->get('images');
+		$documents = $this->get('documents');
+		$folders = $this->get('folders');
+		$state = $this->get('state');
+
 		$this->assign('baseURL', JURI::root());
-		$this->assignRef('images', $this->get('images'));
-		$this->assignRef('documents', $this->get('documents'));
-		$this->assignRef('folders', $this->get('folders'));
-		$this->assignRef('state', $this->get('state'));
+		$this->assignRef('images', $images);
+		$this->assignRef('documents', $documents);
+		$this->assignRef('folders', $folders);
+		$this->assignRef('state', $state);
 
 		parent::display($tpl);
 	}

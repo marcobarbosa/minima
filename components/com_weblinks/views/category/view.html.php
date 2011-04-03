@@ -1,9 +1,9 @@
 <?php
 /**
- * version $Id: view.html.php 19472 2010-11-14 20:18:44Z dextercowley $
+ * version $Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
  * @package		Joomla
  * @subpackage	Weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -70,7 +70,7 @@ class WeblinksViewCategory extends JView
 			$item->slug	= $item->alias ? ($item->id.':'.$item->alias) : $item->id;
 
 			if ($item->params->get('count_clicks', $params->get('count_clicks')) == 1) {
-				$item->link = JRoute::_('index.php?task=weblink.go&&id='. $item->id);
+				$item->link = JRoute::_('index.php?option=com_weblinks&task=weblink.go&&id='. $item->id);
 			}
 			else {
 				$item->link = $item->url;
@@ -88,8 +88,9 @@ class WeblinksViewCategory extends JView
 		$category->params->merge($cparams);
 
 		$children = array($category->id => $children);
+		$maxLevel =  $params->get('maxLevel', -1);
 
-		$this->assignRef('maxLevel',	$params->get('maxLevel', -1));
+		$this->assignRef('maxLevel',	$maxLevel);
 		$this->assignRef('state',		$state);
 		$this->assignRef('items',		$items);
 		$this->assignRef('category',	$category);
@@ -98,10 +99,13 @@ class WeblinksViewCategory extends JView
 		$this->assignRef('parent',		$parent);
 		$this->assignRef('pagination',	$pagination);
 
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
 		// Check for layout override only if this is not the active menu item
 		// If it is the active menu item, then the view and category id will match
 		$active	= $app->getMenu()->getActive();
-		if ((!$active) || ((strpos($active->link, 'view=category') === false) || (strpos($active->link, '&id=' . (string) $this->category->id) === false))) {			
+		if ((!$active) || ((strpos($active->link, 'view=category') === false) || (strpos($active->link, '&id=' . (string) $this->category->id) === false))) {
 			if ($layout = $category->params->get('category_layout')) {
 			$this->setLayout($layout);
 			}
@@ -161,20 +165,30 @@ class WeblinksViewCategory extends JView
 		$title = $this->params->get('page_title', '');
 
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 
 		$this->document->setTitle($title);
 
-		if ($this->category->metadesc) {
+		if ($this->category->metadesc)
+		{
 			$this->document->setDescription($this->category->metadesc);
 		}
+		elseif (!$this->category->metadesc && $this->params->get('menu-meta_description')) 
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
 
-		if ($this->category->metakey) {
+		if ($this->category->metakey)
+		{
 			$this->document->setMetadata('keywords', $this->category->metakey);
+		}
+		elseif (!$this->category->metakey && $this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

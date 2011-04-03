@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 19472 2010-11-14 20:18:44Z dextercowley $
+ * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -48,11 +48,11 @@ class ContactViewCategory extends JView
 		}
 
 		if ($category == false) {
-			return JError::raiseWarning(404, JText::_('JGLOBAL_CATEGORY_NOT_FOUND'));
+			return JError::raiseError(404, JText::_('JGLOBAL_CATEGORY_NOT_FOUND'));
 		}
 
 		if ($parent == false) {
-			return JError::raiseWarning(404, JText::_('JGLOBAL_CATEGORY_NOT_FOUND'));
+			return JError::raiseError(404, JText::_('JGLOBAL_CATEGORY_NOT_FOUND'));
 		}
 
 		// Check whether category access level allows access.
@@ -91,7 +91,8 @@ class ContactViewCategory extends JView
 		$category->params->merge($cparams);
 		$children = array($category->id => $children);
 
-		$this->assignRef('maxLevel',	$params->get('maxLevel', -1));
+		$maxLevel = $params->get('maxLevel', -1);
+		$this->assignRef('maxLevel',	$maxLevel);
 		$this->assignRef('state',		$state);
 		$this->assignRef('items',		$items);
 		$this->assignRef('category',	$category);
@@ -99,6 +100,9 @@ class ContactViewCategory extends JView
 		$this->assignRef('params',		$params);
 		$this->assignRef('parent',		$parent);
 		$this->assignRef('pagination',	$pagination);
+
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
 
 		// Check for layout override only if this is not the active menu item
 		// If it is the active menu item, then the view and category id will match
@@ -162,20 +166,30 @@ class ContactViewCategory extends JView
 		$title = $this->params->get('page_title', '');
 
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 
 		$this->document->setTitle($title);
 
-		if ($this->category->metadesc) {
+		if ($this->category->metadesc)
+		{
 			$this->document->setDescription($this->category->metadesc);
 		}
+		elseif (!$this->category->metadesc && $this->params->get('menu-meta_description')) 
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
 
-		if ($this->category->metakey) {
+		if ($this->category->metakey)
+		{
 			$this->document->setMetadata('keywords', $this->category->metakey);
+		}
+		elseif (!$this->category->metakey && $this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

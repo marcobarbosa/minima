@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: tracks.php 19753 2010-12-03 19:47:09Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: tracks.php 20267 2011-01-11 03:44:44Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,6 +19,29 @@ jimport('joomla.application.component.modellist');
 class BannersModelTracks extends JModelList
 {
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'name', 'b.name',
+				'cl.name', 'client_name',
+				'cat.title', 'category_title',
+				'track_type', 'a.track_type',
+				'count', 'a.count',
+				'track_date', 'a.track_date',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * @since	1.6
 	 */
 	protected $basename;
@@ -30,7 +53,7 @@ class BannersModelTracks extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');
@@ -398,19 +421,20 @@ class BannersModelTracks extends JModelList
 			}
 
 			if ($this->getState('compressed')) {
+				$app = JFactory::getApplication('administrator');
 
 				$files = array();
 				$files['track']=array();
 				$files['track']['name'] = $this->getBasename() . '.csv';
 				$files['track']['data'] = $this->content;
 				$files['track']['time'] = time();
-				$ziproot = JPATH_ROOT . '/tmp/' . uniqid('banners_tracks_') . '.zip';
+				$ziproot = $app->getCfg('tmp_path').'/' . uniqid('banners_tracks_') . '.zip';
 
 				// run the packager
 				jimport('joomla.filesystem.folder');
 				jimport('joomla.filesystem.file');
 				jimport('joomla.filesystem.archive');
-				$delete = JFolder::files(JPATH_ROOT . '/tmp/', 'banners_tracks_',false,true);
+				$delete = JFolder::files($app->getCfg('tmp_path').'/', uniqid('banners_tracks_'),false,true);
 
 				if (!empty($delete)) {
 					if (!JFile::delete($delete)) {

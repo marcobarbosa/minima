@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @version		$Id: default_items.php 18829 2010-09-10 12:17:05Z infograf768 $
+ * @version		$Id: default_items.php 20788 2011-02-20 05:54:44Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,7 +35,7 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 		<?php endif; ?>
         <?php endif; ?>
 		<?php if ($this->params->get('show_cat_num_articles_cat') == 1) :?>
-			<dl class="article-count"><dt>
+			<dl><dt>
 				<?php echo JText::_('COM_CONTENT_NUM_ITEMS'); ?></dt>
 				<dd><?php echo $item->numitems; ?></dd>
 			</dl>

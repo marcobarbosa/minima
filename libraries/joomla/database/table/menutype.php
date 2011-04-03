@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: menutype.php 17154 2010-05-17 13:05:56Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: menutype.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,7 +43,7 @@ class JTableMenuType extends JTable
 			$this->title = $this->menutype;
 		}
 
-		$db	= &$this->getDbo();
+		$db	= $this->getDbo();
 
 		// Check for unique menutype.
 		$db->setQuery(

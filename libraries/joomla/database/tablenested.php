@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: tablenested.php 19463 2010-11-13 11:12:03Z infograf768 $
+ * @version		$Id: tablenested.php 20747 2011-02-18 00:47:36Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Database
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -232,7 +232,7 @@ class JTableNested extends JTable
 	 * @since	1.0
 	 * @link	http://docs.joomla.org/JTable/move
 	 */
-	public function move($delta, $where)
+	public function move($delta, $where = '')
 	{
 		// Initialise variables.
 		$k = $this->_tbl_key;
@@ -1357,6 +1357,9 @@ class JTableNested extends JTable
 			$this->setError($e);
 			return false;
 		}
+
+		// Update the current record's path to the new one:
+		$this->path = $path;
 
 		return true;
 	}

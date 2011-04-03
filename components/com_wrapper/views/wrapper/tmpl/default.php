@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19751 2010-12-03 17:02:44Z dextercowley $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_wrapper
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -22,7 +22,7 @@ function iFrameHeight() {
 	}
 }
 </script>
-<div class="contentpane<?php echo $this->params->get('pageclass_sfx'); ?>">
+<div class="contentpane<?php echo $this->pageclass_sfx; ?>">
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<h2>
 		<?php if ($this->escape($this->params->get('page_heading'))) :?>
@@ -35,11 +35,11 @@ function iFrameHeight() {
 <iframe <?php echo $this->wrapper->load; ?>
 	id="blockrandom"
 	name="iframe"
-	src="<?php echo $this->wrapper->url; ?>"
-	width="<?php echo $this->params->get('width'); ?>"
-	height="<?php echo $this->params->get('height'); ?>"
-	scrolling="<?php echo $this->params->get('scrolling'); ?>"
-	class="wrapper<?php echo $this->params->get('pageclass_sfx'); ?>">
+	src="<?php echo $this->escape($this->wrapper->url); ?>"
+	width="<?php echo $this->escape($this->params->get('width')); ?>"
+	height="<?php echo $this->escape($this->params->get('height')); ?>"
+	scrolling="<?php echo $this->escape($this->params->get('scrolling')); ?>"
+	class="wrapper<?php echo $this->pageclass_sfx; ?>">
 	<?php echo JText::_('COM_WRAPPER_NO_IFRAMES'); ?>
 </iframe>
 </div>

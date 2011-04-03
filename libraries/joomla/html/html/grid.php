@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: grid.php 19313 2010-11-01 13:24:57Z chdemko $
+ * @version		$Id: grid.php 20650 2011-02-10 10:14:12Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -187,7 +187,7 @@ abstract class JHtmlGrid
 
 		$href = '
 		<a href="javascript:void(0);" onclick="return listItemTask(\'cb'. $i .'\',\''. $prefix.$task .'\')" title="'. $action .'">'.
-		JHTML::_('image','admin/'.$img, $alt, array('border' => 0), true).'</a>'
+		JHTML::_('image','admin/'.$img, $alt, NULL, true).'</a>'
 		;
 
 		return $href;

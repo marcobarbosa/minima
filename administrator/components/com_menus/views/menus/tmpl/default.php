@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19281 2010-10-29 10:12:49Z eddieajau $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,13 +14,14 @@ JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers'.DS.'html');
 
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
+JHTML::_('script','system/multiselect.js',false,true);
 
-$uri	= JFactory::getUri();
-$return	= base64_encode($uri);
-$user	= JFactory::getUser();
-$userId	= $user->get('id');
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$uri		= JFactory::getUri();
+$return		= base64_encode($uri);
+$user		= JFactory::getUser();
+$userId		= $user->get('id');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 <script type="text/javascript">
 	Joomla.submitbutton = function(task) {
@@ -99,7 +100,7 @@ $listDirn	= $this->state->get('list.direction');
 						<?php echo $item->count_unpublished; ?></a>
 				</td>
 				<td class="center btns">
-					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=2');?>">
+					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=-2');?>">
 						<?php echo $item->count_trashed; ?></a>
 				</td>
 				<td class="left">

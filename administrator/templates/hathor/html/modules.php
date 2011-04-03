@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: modules.php 16708 2010-05-03 20:00:47Z eddieajau $
+ * @version		$Id: modules.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -32,7 +32,7 @@ function modChrome_xhtmlid($module, &$params, &$attribs)
 {
 	if ($module->content) {
 		?>
-		<div id="<?php echo $attribs['id'] ?>">
+		<div id="<?php echo (int)$attribs['id'] ?>">
 
 				<?php echo $module->content; ?>
 				<div class="clr"></div>

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: folder.php 19670 2010-11-29 10:45:12Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: folder.php 20808 2011-02-21 19:55:35Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -176,7 +176,7 @@ class MediaControllerFolder extends JController
 				JFile::write($path.DS."index.html", $data);
 
 				// Trigger the onContentAfterSave event.
-				$dispatcher->trigger('onContentAfterSave', array('com_media.folder', &$object_file));
+				$dispatcher->trigger('onContentAfterSave', array('com_media.folder', &$object_file, true));
 				$this->setMessage(JText::sprintf('COM_MEDIA_CREATE_COMPLETE', substr($path, strlen(COM_MEDIA_BASE))));
 			}
 			JRequest::setVar('folder', ($parent) ? $parent.'/'.$folder : $folder);

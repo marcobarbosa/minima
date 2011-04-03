@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: modal.php 19306 2010-10-31 22:34:29Z chdemko $
+ * @version		$Id: modal.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_modules
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,10 +12,11 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
-$function = JRequest::getVar('function', 'jSelectPosition');
-$lang = JFactory::getLanguage();
-$ordering	= $this->state->get('list.ordering');
-$direction	= $this->state->get('list.direction');
+
+$function	= JRequest::getCmd('function', 'jSelectPosition');
+$lang		= JFactory::getLanguage();
+$ordering	= $this->escape($this->state->get('list.ordering'));
+$direction	= $this->escape($this->state->get('list.direction'));
 $clientId	= $this->state->get('filter.client_id');
 $state		= $this->state->get('filter.state');
 $template	= $this->state->get('filter.template');

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: links.php 18004 2010-07-02 09:51:45Z infograf768 $
+ * @version		$Id: links.php 20230 2011-01-10 01:43:49Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_redirect
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -36,14 +36,18 @@ class RedirectControllerLinks extends JControllerAdmin
 
 		if (empty($ids)) {
 			JError::raiseWarning(500, JText::_('COM_REDIRECT_NO_ITEM_SELECTED'));
-		} else {
+		}
+		else {
 			// Get the model.
 			$model = $this->getModel();
+
+			JArrayHelper::toInteger($ids);
 
 			// Remove the items.
 			if (!$model->activate($ids, $newUrl, $comment)) {
 				JError::raiseWarning(500, $model->getError());
-			} else {
+			}
+			else {
 				$this->setMessage(JText::plural('COM_REDIRECT_N_LINKS_UPDATED', count($ids)));
 			}
 		}
@@ -55,9 +59,10 @@ class RedirectControllerLinks extends JControllerAdmin
 	 * Proxy for getModel.
 	 * @since	1.6
 	 */
-	public function &getModel($name = 'Link', $prefix = 'RedirectModel')
+	public function getModel($name = 'Link', $prefix = 'RedirectModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
+
 		return $model;
 	}
 }

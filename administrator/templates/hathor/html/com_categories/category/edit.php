@@ -1,9 +1,9 @@
 <?php
 /**
- * @version	 $Id: edit.php 19316 2010-11-01 17:40:16Z infograf768 $
+ * @version	 $Id: edit.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -57,11 +57,12 @@ JHtml::_('behavior.keepalive');
 					<li><?php echo $this->form->getLabel('access'); ?>
 					<?php echo $this->form->getInput('access'); ?></li>
 					
-					
+					<?php if ($this->canDo->get('core.admin')): ?>
 					<li><span class="faux-label"><?php echo JText::_('JGLOBAL_ACTION_PERMISSIONS_LABEL'); ?></span>
       					<button type="button" onclick="document.location.href='#access-rules';">
       					<?php echo JText::_('JGLOBAL_PERMISSIONS_ANCHOR'); ?></button>
     				</li>
+    				<?php endif; ?>	
 
 					<li><?php echo $this->form->getLabel('language'); ?>
 					<?php echo $this->form->getInput('language'); ?></li>
@@ -93,6 +94,8 @@ JHtml::_('behavior.keepalive');
 		<?php echo JHtml::_('sliders.end'); ?>
 		</div>
 		<div class="clr"></div>
+		
+		<?php if ($this->canDo->get('core.admin')): ?>
 		<div  class="col rules-section">
 
 			<?php echo JHtml::_('sliders.start','permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
@@ -105,7 +108,9 @@ JHtml::_('behavior.keepalive');
 			</fieldset>
 				
 			<?php echo JHtml::_('sliders.end'); ?>
-
+		</div>
+	<?php endif; ?>
+	<div>	
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 	</div>

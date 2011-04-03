@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 17071 2010-05-15 08:03:01Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -53,7 +53,10 @@ class MessagesViewMessage extends JView
 			JToolBarHelper::help('JHELP_COMPONENTS_MESSAGING_WRITE');
 		} else {
 			JToolBarHelper::title(JText::_('COM_MESSAGES_VIEW_PRIVATE_MESSAGE'), 'inbox.png');
-			JToolBarHelper::custom('message.reply', 'restore.png', 'restore_f2.png', 'COM_MESSAGES_TOOLBAR_REPLY', false);
+			$sender = JUser::getInstance($this->item->user_id_from);
+			if ($sender->authorise('core.admin') || $sender->authorise('core.manage','com_messages') && $sender->authorise('core.login.admin')) {
+				JToolBarHelper::custom('message.reply', 'restore.png', 'restore_f2.png', 'COM_MESSAGES_TOOLBAR_REPLY', false);
+			}
 			JToolBarHelper::cancel('message.cancel');
 			JToolBarHelper::help('JHELP_COMPONENTS_MESSAGING_READ');
 		}

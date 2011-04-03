@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19744 2010-12-03 15:43:27Z infograf768 $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -15,10 +15,11 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
+JHTML::_('script','system/multiselect.js',false,true);
 
-$canDo = UsersHelper::getActions();
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$canDo		= UsersHelper::getActions();
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 $loggeduser = JFactory::getUser();
 ?>
 
@@ -66,7 +67,7 @@ $loggeduser = JFactory::getUser();
 					<?php echo JHtml::_('grid.sort', 'JGLOBAL_USERNAME', 'a.username', $listDirn, $listOrder); ?>
 				</th>
 				<th class="nowrap" width="5%">
-					<?php echo JHtml::_('grid.sort', 'JENABLED', 'a.block', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_ENABLED', 'a.block', $listDirn, $listOrder); ?>
 				</th>
 				<th class="nowrap" width="5%">
 					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_ACTIVATED', 'a.activation', $listDirn, $listOrder); ?>
@@ -96,14 +97,24 @@ $loggeduser = JFactory::getUser();
 			</tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->items as $i => $item) : ?>
+		<?php foreach ($this->items as $i => $item) :
+			$canEdit	= $canDo->get('core.edit');
+			$canChange	= $loggeduser->authorise('core.edit.state',	'com_users');
+			// If this group is super admin and this user is not super admin, $canEdit is false
+			if ((!$loggeduser->authorise('core.admin')) && JAccess::check($item->id, 'core.admin')) {
+				$canEdit	= false;
+				$canChange	= false;
+			}
+		?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+					<?php if ($canEdit) : ?>
+						<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+					<?php endif; ?>
 				</td>
 				<td>
-					<?php if ($canDo->get('core.edit')) : ?>
-					<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_USERS_EDIT_USER', $item->name); ?>">
+					<?php if ($canEdit) : ?>
+					<a href="<?php echo JRoute::_('index.php?option=com_users&task=user.edit&id='.(int) $item->id); ?>" title="<?php echo JText::sprintf('COM_USERS_EDIT_USER', $this->escape($item->name)); ?>">
 						<?php echo $this->escape($item->name); ?></a>
 					<?php else : ?>
 						<?php echo $this->escape($item->name); ?>
@@ -117,17 +128,25 @@ $loggeduser = JFactory::getUser();
 					<?php echo $this->escape($item->username); ?>
 				</td>
 				<td class="center">
-					<?php if ($loggeduser->id != $item->id) : ?>
-						<?php echo JHtml::_('grid.boolean', $i, !$item->block, 'users.unblock', 'users.block'); ?>
+					<?php if ($canChange) : ?>
+						<?php if ($loggeduser->id != $item->id) : ?>
+							<?php echo JHtml::_('grid.boolean', $i, !$item->block, 'users.unblock', 'users.block'); ?>
+						<?php else : ?>
+							<?php echo JHtml::_('grid.boolean', $i, !$item->block, 'users.block', null); ?>
+						<?php endif; ?>
 					<?php else : ?>
-						<?php echo JHtml::_('grid.boolean', $i, !$item->block, 'users.block', null); ?>
+						<?php echo JText::_($item->block ? 'JNO' : 'JYES'); ?>
 					<?php endif; ?>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('grid.boolean', $i, !$item->activation, 'users.activate', null); ?>
 				</td>
 				<td class="center">
-					<?php echo nl2br($item->group_names); ?>
+					<?php if (substr_count($item->group_names,"\n") > 1) : ?>
+						<span class="hasTip" title="<?php echo JText::_('COM_USERS_HEADING_GROUPS').'::'.nl2br($item->group_names); ?>"><?php echo JText::_('COM_USERS_USERS_MULTIPLE_GROUPS'); ?></span>
+					<?php else : ?>
+						<?php echo nl2br($item->group_names); ?>
+					<?php endif; ?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->email); ?>

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: plugin.php 19801 2010-12-08 03:51:53Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: plugin.php 20820 2011-02-21 21:59:44Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -132,7 +132,7 @@ class JInstallerPlugin extends JAdapterInstance
 		}
 		$group = (string)$xml->attributes()->group;
 		if (!empty ($element) && !empty($group)) {
-			$this->parent->setPath('extension_root', JPATH_ROOT.DS.'plugins'.DS.$group.DS.$element);
+			$this->parent->setPath('extension_root', JPATH_PLUGINS.DS.$group.DS.$element);
 		}
 		else
 		{
@@ -314,11 +314,13 @@ class JInstallerPlugin extends JAdapterInstance
 				return false;
 			}
 			$row->load($id);
+			$row->name = $this->get('name');
+			$row->manifest_cache = $this->parent->generateManifestCache();
+			$row->store(); // update the manifest cache and name
 		}
 		else
 		{
 			// Store in the extensions table (1.6)
-
 			$row->name = $this->get('name');
 			$row->type = 'plugin';
 			$row->ordering = 0;
@@ -486,13 +488,13 @@ class JInstallerPlugin extends JAdapterInstance
 		}
 
 		// Set the plugin root path
-		if (is_dir(JPATH_ROOT.DS.'plugins'.DS.$row->folder.DS.$row->element)) {
+		if (is_dir(JPATH_PLUGINS.DS.$row->folder.DS.$row->element)) {
 			// Use 1.6 plugins
-			$this->parent->setPath('extension_root', JPATH_ROOT.DS.'plugins'.DS.$row->folder.DS.$row->element);
+			$this->parent->setPath('extension_root', JPATH_PLUGINS.DS.$row->folder.DS.$row->element);
 		}
 		else {
 			// Use Legacy 1.5 plugins
-			$this->parent->setPath('extension_root', JPATH_ROOT.DS.'plugins'.DS.$row->folder);
+			$this->parent->setPath('extension_root', JPATH_PLUGINS.DS.$row->folder);
 		}
 
 		// Because plugins don't have their own folders we cannot use the standard method of finding an installation manifest
@@ -657,7 +659,7 @@ class JInstallerPlugin extends JAdapterInstance
 				$extension->set('folder', $folder);
 				$extension->set('name', $file);
 				$extension->set('state', -1);
-				$extension->set('manifest_cache', serialize($manifest_details));
+				$extension->set('manifest_cache', json_encode($manifest_details));
 				$results[] = $extension;
 			}
 			$folder_list = JFolder::folders(JPATH_SITE.DS.'plugins'.DS.$folder);
@@ -676,7 +678,7 @@ class JInstallerPlugin extends JAdapterInstance
 					$extension->set('folder', $folder);
 					$extension->set('name', $file);
 					$extension->set('state', -1);
-					$extension->set('manifest_cache', serialize($manifest_details));
+					$extension->set('manifest_cache', json_encode($manifest_details));
 					$results[] = $extension;
 				}
 			}
@@ -714,10 +716,10 @@ class JInstallerPlugin extends JAdapterInstance
 		}
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($manifestPath);
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->state = 0;
 		$this->parent->extension->name = $manifest_details['name'];
-		$this->parent->extension->enabled = 1;
+		$this->parent->extension->enabled = ('editors' == $this->parent->extension->folder) ? 1 : 0;
 		$this->parent->extension->params = $this->parent->getParams();
 		if ($this->parent->extension->store()) {
 			return $this->parent->extension->get('extension_id');
@@ -729,7 +731,12 @@ class JInstallerPlugin extends JAdapterInstance
 		}
 	}
 
-	function refreshManifestCache()
+	/**
+	 * Refreshes the extension table cache
+	 * @return  boolean result of operation, true if updated, false on failure
+	 * @since	1.6
+	 */
+	public function refreshManifestCache()
 	{
 		// Plugins use the extensions table as their primary store
 		// Similar to modules and templates, rather easy
@@ -739,7 +746,7 @@ class JInstallerPlugin extends JAdapterInstance
 		$this->parent->manifest = $this->parent->isManifest($manifestPath);
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 
 		$this->parent->extension->name = $manifest_details['name'];
 		if ($this->parent->extension->store()) {

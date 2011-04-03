@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19524 2010-11-17 11:45:07Z eddieajau $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -16,8 +16,8 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
 
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=debuggroup&user_id='.(int) $this->state->get('filter.user_id'));?>" method="post" name="adminForm" id="adminForm">
@@ -32,7 +32,7 @@ $listDirn	= $this->state->get('list.direction');
 		<div class="filter-select fltrt">
 			<select name="filter_component" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('COM_USERS_OPTION_SELECT_COMPONENT');?></option>
-				<?php if (!empty($this->components)) { 
+				<?php if (!empty($this->components)) {
 					echo JHtml::_('select.options', $this->components, 'value', 'text', $this->state->get('filter.component'));
 				}?>
 			</select>
@@ -113,7 +113,7 @@ $listDirn	= $this->state->get('list.direction');
 						$text	= '-';
 					else :
 						$class	= '';
-						$text	= '&nbsp;';
+						$text	= '&#160;';
 					endif;
 					?>
 				<td class="center <?php echo $class;?>">

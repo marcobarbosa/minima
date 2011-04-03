@@ -1,15 +1,15 @@
 <?php
 /**
- * @version		$Id: index.php 19012 2010-09-29 05:56:19Z severdia $
+ * @version		$Id: index.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 /* The following line loads the MooTools JavaScript Library */
-JHTML::_('behavior.mootools');
+JHTML::_('behavior.framework', true);
 
 /* The following line gets the application object for things like displaying the site name */
 $app = JFactory::getApplication();

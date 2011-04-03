@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: menus.php 17095 2010-05-16 11:56:19Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: menus.php 20267 2011-01-11 03:44:44Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,6 +19,26 @@ jimport('joomla.application.component.modellist');
  */
 class MenusModelMenus extends JModelList
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'title', 'a.title',
+				'menutype', 'a.menutype',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
 	/**
 	 * Method to build an SQL query to load the list data.
 	 *
@@ -63,7 +83,7 @@ class MenusModelMenus extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');

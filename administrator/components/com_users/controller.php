@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controller.php 19518 2010-11-17 10:15:41Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -61,10 +61,10 @@ class UsersController extends JController
 		require_once JPATH_COMPONENT.'/helpers/users.php';
 
 		// Load the submenu.
-		UsersHelper::addSubmenu(JRequest::getWord('view', 'users'));
+		UsersHelper::addSubmenu(JRequest::getCmd('view', 'users'));
 
-		$view		= JRequest::getWord('view', 'users');
-		$layout 	= JRequest::getWord('layout', 'default');
+		$view		= JRequest::getCmd('view', 'users');
+		$layout 	= JRequest::getCmd('layout', 'default');
 		$id			= JRequest::getInt('id');
 
 		if (!$this->canView($view)) {

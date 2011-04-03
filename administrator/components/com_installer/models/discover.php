@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: discover.php 16459 2010-04-26 00:12:15Z eddieajau $
+ * @version		$Id: discover.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -32,7 +32,7 @@ class InstallerModelDiscover extends InstallerModel
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
 		$this->setState('message',$app->getUserState('com_installer.message'));
@@ -71,23 +71,26 @@ class InstallerModelDiscover extends InstallerModel
 		$results	= $installer->discover();
 
 		// Get all templates, including discovered ones
-		$query = 'SELECT *,'
-				.' CASE WHEN CHAR_LENGTH(folder) THEN CONCAT_WS(":", folder, element) ELSE element END as elementkey'
-				.' FROM #__extensions';
+		$query = 'SELECT extension_id, element, folder, client_id, type FROM #__extensions';
 		$dbo = JFactory::getDBO();
 		$dbo->setQuery($query);
-		$installed = $dbo->loadObjectList('elementkey');
+		$installedtmp = $dbo->loadObjectList();
+		$extensions = Array();
+	
+		foreach($installedtmp as $install)
+		{
+			$key = implode(':', Array($install->type, $install->element, $install->folder, $install->client_id));
+			$extensions[$key] = $install;
+		}
+		unset($installedtmp);
+				
+		
 		foreach($results as $result) {
 			// check if we have a match on the element
-			if ($result->get('type') != 'plugin' && !array_key_exists($result->get('element'), $installed)) {
-				// since the element doesn't exist, its definitely new
+			$key = implode(':', Array($result->type, $result->element, $result->folder, $result->client_id));				
+			if(!array_key_exists($key, $extensions))
+			{
 				$result->store(); // put it into the table
-			} elseif($result->get('type') == 'plugin' && !array_key_exists($result->get('folder').':'.$result->get('element'), $installed)) {
-				// since the element doesn't exist, its definitely new
-				$result->store(); // put it into the table
-			} else {
-				// TODO: Add extra checks here to add entries that have conflicting elements
-				// an element exists that matches this
 			}
 		}
 	}

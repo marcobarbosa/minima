@@ -14,7 +14,7 @@
 			required="true" />
 
 		<field name="alias" type="text" label="JFIELD_ALIAS_LABEL"
-			description="COM_NEWSFEEDS_FIELD_ALIAS_DESC" class="inputbox"
+			description="JFIELD_ALIAS_DESC" class="inputbox"
 			size="45" />
 
 		<field name="published" type="list"
@@ -43,7 +43,7 @@
 			<option value="*">JALL</option>
 		</field>
 
-		<field name="link" type="Text" class="inputbox"
+		<field name="link" type="url" class="inputbox"
 			size="60" label="COM_NEWSFEEDS_FIELD_LINK_LABEL"
 			description="COM_NEWSFEEDS_FIELD_LINK_DESC" required="true" />
 
@@ -58,10 +58,10 @@
 			required="true" />
 
 		<field name="ordering" type="ordering" class="inputbox"
-			label="JGLOBAL_FIELD_FIELD_ORDERING_LABEL" description="COM_NEWSFEEDS_FIELD_ORDERING_DESC" />
+			label="JFIELD_ORDERING_LABEL" description="JFIELD_ORDERING_DESC" />
 
 		<field name="rtl" type="list" class="inputbox"
-			default="1" label="COM_NEWSFEEDS_FIELD_RTL_LABEL"
+			default="0" label="COM_NEWSFEEDS_FIELD_RTL_LABEL"
 			description="COM_NEWSFEEDS_FIELD_RTL_DESC"
 		>
 			<option value="0">COM_NEWSFEEDS_FIELD_VALUE_SITE
@@ -85,7 +85,7 @@
 			class="inputbox" size="20" />
 
 		<field name="modified" type="calendar" class="readonly"
-			label="JGLOBAL_FIELD_Modified_Label" description="JGLOBAL_FIELD_MODIFIED_DESC"
+			label="JGLOBAL_FIELD_Modified_Label" description="COM_NEWSFEEDS_FIELD_MODIFIED_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 
 		<field name="modified_by" type="user"

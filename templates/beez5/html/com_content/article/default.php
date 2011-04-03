@@ -3,7 +3,7 @@
  * @version		$Id: default.php 17137 2010-05-17 07:00:07Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,7 +24,7 @@ if ($templateparams->get('html5') != 1) :
 else :
 	JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers');
 ?>
-<article class="item-page<?php echo $params->get('pageclass_sfx')?>">
+<article class="item-page<?php echo $this->pageclass_sfx?>">
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
 
 <?php if ($this->params->get('show_page_heading', 1) And $params->get('show_title')) :?>

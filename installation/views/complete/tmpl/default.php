@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: default.php 18997 2010-09-28 10:19:01Z infograf768 $
+ * @version		$Id: default.php 20542 2011-02-04 07:06:15Z infograf768 $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -90,6 +90,17 @@ JHtml::_('script', 'installation/template/js/installation.js', true, false, fals
 									</td>
 								</tr>
 								<tr>
+									<td><input class="button" type="button" name="instDefault" value="<?php echo JText::_('INSTL_COMPLETE_REMOVE_FOLDER'); ?>" onclick="Install.removeFolder(this);"/></td>
+								</tr>
+								<tr class="message inlineError" id="theDefaultError" style="display: none">
+									<td>
+										<dl>
+											<dt class="error"><?php echo JText::_('JERROR'); ?></dt>
+											<dd id="theDefaultErrorMessage"></dd>
+										</dl>
+									</td>
+								<tr>
+								<tr>
 									<td>
 										<h3>
 										<?php echo JText::_('INSTL_COMPLETE_ADMINISTRATION_LOGIN_DETAILS'); ?>
@@ -98,7 +109,7 @@ JHtml::_('script', 'installation/template/js/installation.js', true, false, fals
 								</tr>
 								<tr>
 									<td class="notice">
-										<?php echo JText::_('JUSERNAME'); ?>: <?php echo $this->options['admin_user']; ?>
+										<?php echo JText::_('JUSERNAME'); ?> : <strong><?php echo $this->options['admin_user']; ?></strong>
 									</td>
 								</tr>
 								<tr>
@@ -110,7 +121,7 @@ JHtml::_('script', 'installation/template/js/installation.js', true, false, fals
 											<div>
 												<div class="icon">
 													<p>
-													<a href="http://help.joomla.org/content/view/1651/243/" target="_blank">
+													<a href="http://community.joomla.org/translations/joomla-16-translations.html" target="_blank">
 													<b><?php echo JText::_('INSTL_COMPLETE_LANGUAGE_1'); ?></b>
 													<br />
 													<?php echo JText::_('INSTL_COMPLETE_LANGUAGE_2'); ?>

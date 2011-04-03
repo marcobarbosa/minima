@@ -3,7 +3,7 @@
  * @version		$Id: error.php 17229 2010-05-24 05:48:04Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.bluestork
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -26,15 +26,9 @@ $app = JFactory::getApplication();
 		<link href="templates/<?php echo  $this->template ?>/css/template_rtl.css" rel="stylesheet" type="text/css" />
 	<?php endif; ?>
 
-	<?php if ($this->direction == 'rtl') : ?>
-	<link href="templates/<?php echo  $this->template ?>/css/template_rtl.css" rel="stylesheet" type="text/css" />
-	<?php endif; ?>
-
 	<!--[if gte IE 7]>
 	<link href="templates/<?php echo  $this->template ?>/css/ie7.css" rel="stylesheet" type="text/css" />
 	<![endif]-->
-
-
 </head>
 <body id="minwidth-body">
 	<div id="border-top" class="h_blue">

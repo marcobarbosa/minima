@@ -88,7 +88,7 @@
 </fieldset>
 
 <fieldset name="category" label="JGLOBAL_CATEGORY_OPTIONS">
-			<field name="spacer3" type="spacer" class="spacer"
+			<field name="spacer3" type="spacer" class="text"
 			label="JGLOBAL_SUBSLIDER_DRILL_CATEGORIES_LABEL"
 			/>
 
@@ -172,7 +172,7 @@
 
 </fieldset>
 <fieldset name="blog" label="JGLOBAL_BLOG_LAYOUT_OPTIONS">
-				<field name="spacer4" type="spacer" class="spacer"
+				<field name="spacer4" type="spacer" class="text"
 				label="JGLOBAL_SUBSLIDER_DRILL_CATEGORIES_LABEL"
 			/>
 
@@ -211,6 +211,26 @@
 				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JGLOBAL_DOWN</option>
 				<option value="1">JGLOBAL_ACROSS</option>
+			</field>
+
+			<field name="subcategories" type="spacer" class="spacer"
+					label="JGLOBAL_SUBSLIDER_BLOG_EXTENDED_LABEL"
+			/>			
+		
+		<field name="show_subcategory_content" type="list"
+				
+				description="JGLOBAL_SHOW_SUBCATEGORY_CONTENT_DESC"
+				label="JGLOBAL_SHOW_SUBCATEGORY_CONTENT_LABEL"
+			>
+
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="0">JNONE</option>
+				<option value="-1">JALL</option>
+				<option value="1">J1</option>
+				<option value="2">J2</option>
+				<option value="3">J3</option>
+				<option value="4">J4</option>
+				<option value="5">J5</option>
 			</field>
 
 			<field
@@ -281,7 +301,7 @@
 
 
 <fieldset name="advanced" label="JGLOBAL_LIST_LAYOUT_OPTIONS" >
-			<field name="spacer6" type="spacer" class="spacer"
+			<field name="spacer6" type="spacer" class="text"
 					label="JGLOBAL_SUBSLIDER_DRILL_CATEGORIES_LABEL"
 			/>
 
@@ -367,9 +387,24 @@
 				<option value="0">JHIDE</option>
 				<option value="1">JSHOW</option>
 		</field>
+		<field name="display_num" type="list"
+				default="10"
+				description="JGLOBAL_NUMBER_ITEMS_LIST_DESC"
+				label="JGLOBAL_NUMBER_ITEMS_LIST_LABEL">
+				<option value="5">J5</option>
+				<option value="10">J10</option>
+				<option value="15">J15</option>
+				<option value="20">J20</option>
+				<option value="25">J25</option>
+				<option value="30">J30</option>
+				<option value="50">J50</option>
+				<option value="100">J100</option>
+				<option value="0">JALL</option>
+		</field>
+		
 	</fieldset>
 
-	<fieldset name="article">
+	<fieldset name="article" label="COM_CONTENT_ATTRIBS_FIELDSET_LABEL">
 			<field name="show_title" type="list"
 				description="JGLOBAL_SHOW_TITLE_DESC"
 				label="JGLOBAL_SHOW_TITLE_LABEL"
@@ -447,8 +482,8 @@
 				label="JGLOBAL_Link_Author_Label"
 			>
 				<option value="">JGLOBAL_USE_GLOBAL</option>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
+				<option value="0">JNo</option>
+				<option value="1">JYes</option>
 			</field>
 
 			<field name="show_create_date" type="list"

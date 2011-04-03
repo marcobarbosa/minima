@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: application.php 19741 2010-12-03 10:56:59Z chdemko $
+ * @version		$Id: application.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_config
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -82,6 +82,18 @@ class ConfigModelApplication extends JModelForm
 		{
 			jimport('joomla.access.rules');
 			$rules	= new JRules($data['rules']);
+				
+			// Check that we aren't removing our Super User permission
+			// Need to get groups from database, since they might have changed
+			$myGroups = JAccess::getGroupsByUser(JFactory::getUser()->get('id'));
+			$myRules = $rules->getData();
+			$hasSuperAdmin = $myRules['core.admin']->allow($myGroups);
+			if (!$hasSuperAdmin) {
+				$this->setError(JText::_('COM_CONFIG_ERROR_REMOVING_SUPER_ADMIN'));
+				return false;
+			}
+			
+			
 			$asset	= JTable::getInstance('asset');
 			if ($asset->loadByName('root.1'))
 			{
@@ -93,7 +105,7 @@ class ConfigModelApplication extends JModelForm
 			}
 			else
 			{
-				$this->setError('COM_CONFIG_ERROR_ROOT_ASSET_NOT_FOUND');
+				$this->setError(JText::_('COM_CONFIG_ERROR_ROOT_ASSET_NOT_FOUND'));
 				return false;
 			}
 			unset($data['rules']);
@@ -111,17 +123,17 @@ class ConfigModelApplication extends JModelForm
 		 */
 		// Escape the sitename if present.
 		if (isset($data['sitename'])) {
-			$data['sitename'] = htmlspecialchars($data['sitename'], ENT_COMPAT, 'UTF-8');
+			$data['sitename'] = $data['sitename'];
 		}
 
 		// Escape the MetaDesc if present.
 		if (isset($data['MetaDesc'])) {
-			$data['MetaDesc'] = htmlspecialchars($data['MetaDesc'], ENT_COMPAT, 'UTF-8');
+			$data['MetaDesc'] = $data['MetaDesc'];
 		}
 
 		// Escape the MetaKeys if present.
 		if (isset($data['MetaKeys'])) {
-			$data['MetaKeys'] = htmlspecialchars($data['MetaKeys'], ENT_COMPAT, 'UTF-8');
+			$data['MetaKeys'] = $data['MetaKeys'];
 		}
 
 		// Escape the offline message if present.
@@ -177,7 +189,8 @@ class ConfigModelApplication extends JModelForm
 		}
 
 		// Attempt to write the configuration file as a PHP class named JConfig.
-		if (!JFile::write($file, $config->toString('PHP', 'config', array('class' => 'JConfig', 'closingtag' => false)))) {
+		$configString = $config->toString('PHP', array('class' => 'JConfig', 'closingtag' => false));
+		if (!JFile::write($file, $configString)) {
 			$this->setError(JText::_('COM_CONFIG_ERROR_WRITE_FAILED'));
 			return false;
 		}
@@ -245,7 +258,7 @@ class ConfigModelApplication extends JModelForm
 		}
 
 		// Attempt to write the configuration file as a PHP class named JConfig.
-		if (!JFile::write($file, $config->toString('PHP', 'config', array('class' => 'JConfig', 'closingtag' => false)))) {
+		if (!JFile::write($file, $config->toString('PHP', array('class' => 'JConfig', 'closingtag' => false)))) {
 			$this->setError(JText::_('COM_CONFIG_ERROR_WRITE_FAILED'));
 			return false;
 		}

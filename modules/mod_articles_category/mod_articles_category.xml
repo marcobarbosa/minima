@@ -5,7 +5,7 @@
 	<name>mod_articles_category</name>
 	<author>Joomla! Project</author>
 	<creationDate>February 2010</creationDate>
-	<copyright>Copyright (C) 2005 - 2010 Open Source Matters.
+	<copyright>Copyright (C) 2005 - 2011 Open Source Matters.
 		All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see
 		LICENSE.txt</license>
@@ -264,7 +264,7 @@
 					</option>
 					<option value="month_year">MOD_ARTICLES_CATEGORY_OPTION_MONTHYEAR_VALUE
 					</option>
-					<option value="author_name">JAUTHOR
+					<option value="author">JAUTHOR
 					</option>
 					<option value="category_title">JCATEGORY
 					</option>

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: icon.php 19637 2010-11-25 02:45:49Z ian $
+ * @version		$Id: icon.php 20484 2011-01-30 16:27:23Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,7 +24,7 @@ class JHTMLIcon
 	{
 		$uri = JFactory::getURI();
 
-		$url = 'index.php?option=com_content&task=article.add&return='.base64_encode($uri).'&id=0';
+		$url = 'index.php?option=com_content&task=article.add&return='.base64_encode($uri).'&a_id=0';
 
 		if ($params->get('show_icons')) {
 			$text = JHTML::_('image','system/new.png', JText::_('JNEW'), NULL, true);
@@ -33,18 +33,19 @@ class JHTMLIcon
 		}
 
 		$button =  JHTML::_('link',JRoute::_($url), $text);
-		
+
 		$output = '<span class="hasTip" title="'.JText::_('COM_CONTENT_CREATE_ARTICLE').'">'.$button.'</span>';
 		return $output;
 	}
 
 	static function email($article, $params, $attribs = array())
 	{
+		require_once(JPATH_SITE.DS.'components'.DS.'com_mailto'.DS.'helpers'.DS.'mailto.php');
 		$uri	= JURI::getInstance();
 		$base	= $uri->toString(array('scheme', 'host', 'port'));
 		$template = JFactory::getApplication()->getTemplate();
 		$link	= $base.JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid) , false);
-		$url	= 'index.php?option=com_mailto&tmpl=component&template='.$template.'&link='.base64_encode($link);
+		$url	= 'index.php?option=com_mailto&tmpl=component&template='.$template.'&link='.MailToHelper::addLink($link);
 
 		$status = 'width=400,height=350,menubar=yes,resizable=yes';
 
@@ -93,7 +94,7 @@ class JHTMLIcon
 
 		JHtml::_('behavior.tooltip');
 
-		$url	= 'index.php?task=article.edit&id='.$article->id.'&return='.base64_encode($uri);
+		$url	= 'index.php?task=article.edit&a_id='.$article->id.'&return='.base64_encode($uri);
 		$icon	= $article->state ? 'edit.png' : 'edit_unpublished.png';
 		$text	= JHTML::_('image','system/'.$icon, JText::_('JGLOBAL_EDIT'), NULL, true);
 

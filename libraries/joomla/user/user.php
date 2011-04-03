@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: user.php 19796 2010-12-08 02:33:50Z dextercowley $
+ * @version		$Id: user.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	User
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -107,7 +107,7 @@ class JUser extends JObject
 	public $params = null;
 
 	/**
-	 * Associative array of user group ids => names.
+	 * Associative array of user names => group ids
 	 *
 	 * @since	1.6
 	 * @var		array
@@ -125,6 +125,12 @@ class JUser extends JObject
 	 * @var object
 	 */
 	protected $_params	= null;
+
+	/**
+	 * Authorised access groups
+	 * @var array
+	 */
+	protected $_authGroups	= null;
 
 	/**
 	 * Authorised access levels
@@ -287,7 +293,7 @@ class JUser extends JObject
 			}
 			else {
 				// Get all groups against which the user is mapped.
-				$identities = JAccess::getGroupsByUser($this->id);
+				$identities = $this->getAuthorisedGroups();
 				array_unshift($identities, $this->id * -1);
 
 				if (JAccess::getAssetRules(1)->allow('core.admin', $identities)) {
@@ -307,7 +313,7 @@ class JUser extends JObject
 	{
 		return $this->getAuthorisedViewLevels();
 	}
-	
+
 	/**
 	 * Method to return a list of all categories that a user has permission for a given action
 	 *
@@ -332,11 +338,11 @@ class JUser extends JObject
 		$allowedCategories = array();
 		foreach ($allCategories as $category) {
 			if ($this->authorise($action, $category->asset_name)) {
-				$allowedCategories[] = (int) $category->id;	
+				$allowedCategories[] = (int) $category->id;
 			}
 		}
 		return $allowedCategories;
-	}	
+	}
 
 	/**
 	 * Gets an array of the authorised access levels for the user
@@ -356,7 +362,24 @@ class JUser extends JObject
 
 		return $this->_authLevels;
 	}
-	
+	/**
+	 * Gets an array of the authorised user groups
+	 *
+	 * @return	array
+	 * @since	1.6
+	 */
+	public function getAuthorisedGroups()
+	{
+		if ($this->_authGroups === null) {
+			$this->_authGroups = array();
+		}
+
+		if (empty($this->_authGroups)) {
+			$this->_authGroups = JAccess::getGroupsByUser($this->id);
+		}
+
+		return $this->_authGroups;
+	}
 	/**
 	 * Pass through method to the table for setting the last visit date
 	 *
@@ -441,7 +464,7 @@ class JUser extends JObject
 	 * @return	object	The user table object
 	 * @since	1.5
 	 */
-	public function getTable($type = null, $prefix = 'JTable')
+	public static function getTable($type = null, $prefix = 'JTable')
 	{
 		static $tabletype;
 
@@ -532,7 +555,7 @@ class JUser extends JObject
 		}
 
 		// TODO: this will be deprecated as of the ACL implementation
-		$db = JFactory::getDbo();
+//		$db = JFactory::getDbo();
 
 		if (array_key_exists('params', $array)) {
 			$params	= '';
@@ -611,13 +634,13 @@ class JUser extends JObject
 			// To add additional business rules, use a user plugin and throw an Exception with onUserBeforeSave.
 
 			// Check if I am a Super Admin
-			$iAmSuperAdmin	= JAccess::check($my->id, 'core.admin');
+			$iAmSuperAdmin	= $my->authorise('core.admin');
 
 			// We are only worried about edits to this account if I am not a Super Admin.
 			if ($iAmSuperAdmin != true) {
 				if ($isNew) {
 					// Check if the new user is being put into a Super Admin group.
-					foreach (array_keys($this->groups) as $groupId)
+					foreach ($this->groups as $key => $groupId)
 					{
 						if (JAccess::checkGroup($groupId, 'core.admin')) {
 							throw new Exception(JText::_('JLIB_USER_ERROR_NOT_SUPERADMIN'));
@@ -632,7 +655,7 @@ class JUser extends JObject
 
 					if ($this->groups != null) {
 					// I am not a Super Admin and I'm trying to make one.
-						foreach (array_keys($this->groups) as $groupId)
+						foreach ($this->groups as $groupId)
 						{
 							if (JAccess::checkGroup($groupId, 'core.admin')) {
 								throw new Exception(JText::_('JLIB_USER_ERROR_NOT_SUPERADMIN'));

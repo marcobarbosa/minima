@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 19794 2010-12-07 21:34:27Z chdemko $
+ * @version		$Id: helper.php 20541 2011-02-03 21:12:06Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_latest
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -14,7 +14,7 @@ require_once JPATH_SITE.'/components/com_content/helpers/route.php';
 
 jimport('joomla.application.component.model');
 
-JModel::addIncludePath(JPATH_SITE.'/components/com_content/models');
+JModel::addIncludePath(JPATH_SITE.'/components/com_content/models', 'ContentModel');
 
 abstract class modArticlesNewsHelper
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: mod_weblinks.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: mod_weblinks.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_related_items
  * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
@@ -11,11 +11,14 @@
 defined('_JEXEC') or die;
 
 // Include the weblinks functions only once
-require_once dirname(__FILE__).DS.'helper.php';
+require_once dirname(__FILE__).'/helper.php';
 
 $list = modWeblinksHelper::getList($params);
 
 if (!count($list)) {
 	return;
 }
+
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+
 require JModuleHelper::getLayoutPath('mod_weblinks',$params->get('layout', 'default'));

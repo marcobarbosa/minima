@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: helper.php 19594 2010-11-20 05:06:08Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: helper.php 20805 2011-02-21 19:41:07Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -51,6 +51,7 @@ class modMenuHelper
 					|| ($end && $item->level > $end)
 					|| (!$showAll && $item->level > 1 && !in_array($item->parent_id, $path))
 					|| ($maxdepth && $item->level > $maxdepth)
+					|| ($start > 1 && !in_array($item->tree[0], $path))
 				) {
 					unset($items[$i]);
 					continue;
@@ -65,6 +66,8 @@ class modMenuHelper
 					$items[$lastitem]->shallower	= ($item->level < $items[$lastitem]->level);
 					$items[$lastitem]->level_diff	= ($items[$lastitem]->level - $item->level);
 				}
+				
+				$item->parent = (boolean) $menu->getItems('parent_id', (int) $item->id, true);
 
 				$lastitem			= $i;
 				$item->active		= false;
@@ -105,6 +108,11 @@ class modMenuHelper
 				else {
 					$item->flink = JRoute::_($item->flink);
 				}
+				
+				$item->title = htmlspecialchars($item->title);
+				$item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''));
+				$item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''));
+				$item->menu_image = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', '')) : '';
 			}
 
 			if (isset($items[$lastitem])) {

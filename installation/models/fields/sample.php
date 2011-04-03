@@ -2,7 +2,7 @@
 /**
  * @version		$Id$
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -61,5 +61,26 @@ class JFormFieldSample extends JFormFieldList
 		$options = array_merge(parent::getOptions(), $options);
 
 		return $options;
+	}
+
+	/**
+	 * Method to get the field input markup.
+	 *
+	 * @return	string	The field input markup.
+	 * @since	1.6
+	 */
+	protected function getInput()
+	{
+		if (!$this->value)
+		{
+			$conf = JFactory::getConfig();
+			if ($conf->get('sampledata')) {
+				$this->value = $conf->get('sampledata');
+			}
+			else {
+				$this->value = 'sample_data.sql';
+			}
+		}
+		return parent::getInput();
 	}
 }

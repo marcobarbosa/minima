@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: observable.php 19544 2010-11-17 17:03:13Z chdemko $
+ * @version		$Id: observable.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Base
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

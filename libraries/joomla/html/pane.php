@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: pane.php 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: pane.php 20828 2011-02-22 04:22:21Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -254,8 +254,8 @@ class JPaneSliders extends JPane
 		$document = JFactory::getDocument();
 
 		$options = '{';
-		$opt['onActive']	= 'function(toggler, i) { toggler.addClass(\'pane-toggler-down\'); toggler.removeClass(\'pane-toggler\'); }';
-		$opt['onBackground'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler\'); toggler.removeClass(\'pane-toggler-down\'); }';
+		$opt['onActive']	= 'function(toggler, i) { toggler.addClass(\'pane-toggler-down\'); toggler.removeClass(\'pane-toggler\');i.addClass(\'pane-down\');i.removeClass(\'pane-hide\'); }';
+		$opt['onBackground'] = 'function(toggler, i) { toggler.addClass(\'pane-toggler\'); toggler.removeClass(\'pane-toggler-down\');i.addClass(\'pane-hide\');i.removeClass(\'pane-down\'); }';
 		$opt['duration']	= (isset($params['duration'])) ? (int)$params['duration'] : 300;
 		$opt['display']		= (isset($params['startOffset']) && ($params['startTransition'])) ? (int)$params['startOffset'] : null ;
 		$opt['show']		= (isset($params['startOffset']) && (!$params['startTransition'])) ? (int)$params['startOffset'] : null ;
@@ -272,7 +272,7 @@ class JPaneSliders extends JPane
 		}
 		$options .= '}';
 
-		$js = '	window.addEvent(\'domready\', function(){ new Accordion($$(\'.panel h3.pane-toggler\'), $$(\'.panel div.pane-slider\'), '.$options.'); });';
+		$js = '	window.addEvent(\'domready\', function(){ new Fx.Accordion($$(\'.panel h3.pane-toggler\'), $$(\'.panel div.pane-slider\'), '.$options.'); });';
 
 		$document->addScriptDeclaration($js);
 	}

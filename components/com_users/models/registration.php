@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: registration.php 18935 2010-09-17 14:27:40Z infograf768 $
+ * @version		$Id: registration.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -57,7 +57,7 @@ class UsersModelRegistration extends JModelForm
 		}
 
 		// Load the users plugin group.
-		JPluginHelper::importPlugin('users');
+		JPluginHelper::importPlugin('user');
 
 		// Activate the user.
 		$user = JFactory::getUser($userId);
@@ -196,7 +196,7 @@ class UsersModelRegistration extends JModelForm
 			// Get the default new user group, Registered if not specified.
 			$system	= $params->get('new_usertype', 2);
 
-			$this->data->groups[$system] = null;
+			$this->data->groups[] = $system;
 
 			// Unset the passwords.
 			unset($this->data->password1);
@@ -204,7 +204,7 @@ class UsersModelRegistration extends JModelForm
 
 			// Get the dispatcher and load the users plugins.
 			$dispatcher	= JDispatcher::getInstance();
-			JPluginHelper::importPlugin('users');
+			JPluginHelper::importPlugin('user');
 
 			// Trigger the data preparation event.
 			$results = $dispatcher->trigger('onContentPrepareData', array('com_users.registration', $this->data));
@@ -260,9 +260,9 @@ class UsersModelRegistration extends JModelForm
 	 * @throws	Exception if there is an error in the form event.
 	 * @since	1.6
 	 */
-	protected function preprocessForm(JForm $form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = 'user')
 	{
-		parent::preprocessForm($form, $data, 'user');
+		parent::preprocessForm($form, $data, $group);
 	}
 
 	/**
@@ -295,16 +295,13 @@ class UsersModelRegistration extends JModelForm
 		$params = JComponentHelper::getParams('com_users');
 
 		// Initialise the table with JUser.
-		JUser::getTable('User', 'JTable');
-		$user = new JUser();
+		$user = new JUser;
 		$data = (array)$this->getData();
 
 		// Merge in the registration data.
-		foreach ($data as $k => $v) {
-			$temp[$k] = $v;
+		foreach ($temp as $k => $v) {
+			$data[$k] = $v;
 		}
-
-		$data = $temp;
 
 		// Prepare the data for the user object.
 		$data['email']		= $data['email1'];
@@ -325,7 +322,7 @@ class UsersModelRegistration extends JModelForm
 		}
 
 		// Load the users plugin group.
-		JPluginHelper::importPlugin('users');
+		JPluginHelper::importPlugin('user');
 
 		// Store the data.
 		if (!$user->save()) {
@@ -408,7 +405,7 @@ class UsersModelRegistration extends JModelForm
 		// Check for an error.
 		if ($return !== true) {
 			$this->setError(JText::_('COM_USERS_REGISTRATION_SEND_MAIL_FAILED'));
-			
+
 			// Send a system message to administrators receiving system mails
 			$db = JFactory::getDBO();
 			$q = "SELECT id

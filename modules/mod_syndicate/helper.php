@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 17852 2010-06-23 17:40:30Z eddieajau $
+ * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	mod_syndicate
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class modSyndicateHelper
 {
-	function getLink(&$params)
+	static function getLink(&$params)
 	{
 		$document = JFactory::getDocument();
 

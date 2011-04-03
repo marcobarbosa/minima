@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 17852 2010-06-23 17:40:30Z eddieajau $
+ * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	mod_whosonline
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 class modWhosonlineHelper
 {
 	// show online count
-	function getOnlineCount() {
+	static function getOnlineCount() {
 		$db		= JFactory::getDbo();
 		$sessions = null;
 		// calculate number of guests and users
@@ -51,7 +51,7 @@ class modWhosonlineHelper
 	}
 
 	// show online member names
-	function getOnlineUserNames() {
+	static function getOnlineUserNames() {
 		$db		= JFactory::getDbo();
 		$result	= null;
 		$query	= $db->getQuery(true);

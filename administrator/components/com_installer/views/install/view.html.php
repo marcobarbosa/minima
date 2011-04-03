@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 16836 2010-05-05 22:50:00Z louis $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.5
  */
@@ -27,9 +27,10 @@ class InstallerViewInstall extends InstallerViewDefault
 	{
 		$paths = new stdClass();
 		$paths->first = '';
+		$state = $this->get('state');
 
 		$this->assignRef('paths', $paths);
-		$this->assignRef('state', $this->get('state'));
+		$this->assignRef('state', $state);
 
 		parent::display($tpl);
 	}

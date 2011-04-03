@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: category.php 19795 2010-12-07 21:39:47Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: category.php 20802 2011-02-21 19:29:26Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -177,9 +177,9 @@ class CategoriesModelCategory extends JModelAdmin
 			$extension	= $data['extension'];
 			$parts		= explode('.',$extension);
 
-			$this->setState('category.extension', $extension);
-			$this->setState('category.component', $parts[0]);
-			$this->setState('category.section', $parts[1]);
+			$this->setState('category.extension',	$extension);
+			$this->setState('category.component',	$parts[0]);
+			$this->setState('category.section',		@$parts[1]);
 		}
 
 		// Get the form.
@@ -246,7 +246,7 @@ class CategoriesModelCategory extends JModelAdmin
 	 * @throws	Exception if there is an error loading the form.
 	 * @since	1.6
 	 */
-	protected function preprocessForm($form, $data)
+	protected function preprocessForm(JForm $form, $data, $groups = '')
 	{
 		jimport('joomla.filesystem.path');
 
@@ -331,14 +331,15 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		// Alter the title for save as copy
-		if (!$isNew && $data['id'] == 0 && $table->parent_id == $data['parent_id']) {
-			$m = null;
-			$data['alias'] = '';
-			if (preg_match('#\((\d+)\)$#', $table->title, $m)) {
-				$data['title'] = preg_replace('#\(\d+\)$#', '('.($m[1] + 1).')', $table->title);
-			}
-			else {
-				$data['title'] .= ' (2)';
+		if (JRequest::getVar('task') == 'save2copy') {
+			$orig_data	= JRequest::getVar('jform', array(), 'post', 'array');
+			$orig_table = clone($this->getTable());
+			$orig_table->load( (int) $orig_data['id']);
+
+			if (((int) $data['parent_id'] === (int) $orig_table->parent_id) 
+			 && ($data['alias'] == $orig_table->alias)) {
+				$data['title'] .= ' (copy)';	
+				$data['alias'] .= '-copy';
 			}
 		}
 
@@ -361,7 +362,7 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		// Trigger the onContentBeforeSave event.
-		$result = $dispatcher->trigger($this->event_before_save, array($this->option.'.'.$this->name, $table, $isNew));
+		$result = $dispatcher->trigger($this->event_before_save, array($this->option.'.'.$this->name, &$table, $isNew));
 		if (in_array(false, $result, true)) {
 			$this->setError($table->getError());
 			return false;
@@ -374,10 +375,16 @@ class CategoriesModelCategory extends JModelAdmin
 		}
 
 		// Trigger the onContentAfterSave event.
-		$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, $table, $isNew));
+		$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, &$table, $isNew));
 
-		// Rebuild the tree path.
+		// Rebuild the path for the category:
 		if (!$table->rebuildPath($table->id)) {
+			$this->setError($table->getError());
+			return false;
+		}
+
+		// Rebuild the paths of the category's children:
+		if (!$table->rebuild($table->id, $table->lft, $table->level, $table->path)) {
 			$this->setError($table->getError());
 			return false;
 		}
@@ -687,9 +694,7 @@ class CategoriesModelCategory extends JModelAdmin
 	 */
 	protected function batchMove($value, $pks)
 	{
-		// $value comes as {parent_id}
-		$parts		= explode('.', $value);
-		$parentId	= (int) JArrayHelper::getValue($parts, 0, 1);
+		$parentId	= (int) $value;
 
 		$table	= $this->getTable();
 		$db		= $this->getDbo();

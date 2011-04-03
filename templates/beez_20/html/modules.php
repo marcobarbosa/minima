@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: modules.php 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: modules.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	tpl_beez2
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,7 +19,7 @@ function modChrome_beezDivision($module, &$params, &$attribs)
 {
 	$headerLevel = isset($attribs['headerLevel']) ? (int) $attribs['headerLevel'] : 3;
 	if (!empty ($module->content)) { ?>
-<div class="moduletable<?php echo $params->get('moduleclass_sfx'); ?>">
+<div class="moduletable<?php echo htmlspecialchars($params->get('moduleclass_sfx')); ?>">
 <?php if ($module->showtitle) { ?> <h<?php echo $headerLevel; ?>><span
 	class="backh"><span class="backh2"><span class="backh3"><?php echo $module->title; ?></span></span></span></h<?php echo $headerLevel; ?>>
 <?php }; ?> <?php echo $module->content; ?></div>
@@ -39,14 +39,14 @@ function modChrome_beezHide($module, &$params, &$attribs)
 	if (!empty ($module->content)) { ?>
 
 <div
-	class="moduletable_js <?php echo $params->get('moduleclass_sfx');?>"><?php if ($module->showtitle) : ?>
+	class="moduletable_js <?php echo htmlspecialchars($params->get('moduleclass_sfx'));?>"><?php if ($module->showtitle) : ?>
 <h<?php echo $headerLevel; ?> class="js_heading"><span class="backh"> <span
 	class="backh1"><?php echo $module->title; ?> <a href="#"
 	title="<?php echo JText::_('TPL_BEEZ2_CLICK'); ?>"
 	onclick="auf('module_<?php echo $module->id; ?>'); return false"
 	class="opencloselink" id="link_<?php echo $module->id?>"> <span
 	class="no"><img src="templates/beez_20/images/plus.png"
-	alt="<?php if ($state == 1) { echo JText::_('TPL_BEEZ2_ALTOPEN');} else {echo JText::_('TPL_BEEZ2_ALTCLOSED');} ?>" />
+	alt="<?php if ($state == 1) { echo JText::_('TPL_BEEZ2_ALTOPEN');} else {echo JText::_('TPL_BEEZ2_ALTCLOSE');} ?>" />
 </span></a></span></span></h<?php echo $headerLevel; ?>> <?php endif; ?>
 <div class="module_content <?php if ($state==1){echo "open";} ?>"
 	id="module_<?php echo $module->id; ?>" tabindex="-1"><?php echo $module->content; ?></div>

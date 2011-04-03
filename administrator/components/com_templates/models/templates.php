@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: templates.php 19753 2010-12-03 19:47:09Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: templates.php 20442 2011-01-26 08:09:30Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +18,34 @@ jimport('joomla.application.component.modellist');
  */
 class TemplatesModelTemplates extends JModelList
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'name', 'a.name',
+				'folder', 'a.folder',
+				'element', 'a.element',
+				'checked_out', 'a.checked_out',
+				'checked_out_time', 'a.checked_out_time',
+				'state', 'a.state',
+				'enabled', 'a.enabled',
+				'access', 'a.access', 'access_level',
+				'ordering', 'a.ordering',
+				'client_id', 'a.client_id',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
 	/**
 	 * Override parent getItems to add extra XML metadata.
 	 *
@@ -71,14 +99,13 @@ class TemplatesModelTemplates extends JModelList
 				$query->where('a.id = '.(int) substr($search, 3));
 			} else {
 				$search = $db->Quote('%'.$db->getEscaped($search, true).'%');
-				$query->where('a.element LIKE '.$search.' OR a.name LIKE '.$search);
+				$query->where('(a.element LIKE '.$search.' OR a.name LIKE '.$search.')');
 			}
 		}
 
 		// Add the list ordering clause.
 		$query->order($db->getEscaped($this->getState('list.ordering', 'a.folder')).' '.$db->getEscaped($this->getState('list.direction', 'ASC')));
 
-		//echo nl2br(str_replace('#__','jos_',$query));
 		return $query;
 	}
 
@@ -109,7 +136,7 @@ class TemplatesModelTemplates extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');

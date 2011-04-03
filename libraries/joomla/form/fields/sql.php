@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: sql.php 16825 2010-05-05 12:10:37Z louis $
+ * @version		$Id: sql.php 20812 2011-02-21 20:07:52Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -45,6 +45,7 @@ class JFormFieldSQL extends JFormFieldList
 		// Initialize some field attributes.
 		$key	= $this->element['key_field'] ? (string) $this->element['key_field'] : 'value';
 		$value	= $this->element['value_field'] ? (string) $this->element['value_field'] : (string) $this->element['name'];
+		$translate = $this->element['translate'] ? (string) $this->element['translate'] : false;
 		$query	= (string) $this->element['query'];
 
 		// Get the database object.
@@ -61,9 +62,14 @@ class JFormFieldSQL extends JFormFieldList
 		}
 
 		// Build the field options.
+
 		if (!empty($items)) {
 			foreach($items as $item) {
-				$options[] = JHtml::_('select.option', $item->$key, $item->$value);
+ 				if ($translate == true) {
+					$options[] = JHtml::_('select.option', $item->$key, JText::_($item->$value));
+				} else {
+					$options[] = JHtml::_('select.option', $item->$key, $item->$value);
+				}
 			}
 		}
 

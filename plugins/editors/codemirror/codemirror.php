@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: codemirror.php 19651 2010-11-26 10:02:08Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: codemirror.php 20826 2011-02-21 23:19:46Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -32,7 +32,8 @@ class plgEditorCodemirror extends JPlugin
 	public function onInit()
 	{
 		JHtml::_('core');
-		JHTML::_('script',$this->_basePath . 'js/codemirror.js', false, false, false, false);
+		$uncompressed	= JFactory::getApplication()->getCfg('debug') ? '-uncompressed' : '';
+		JHTML::_('script',$this->_basePath . 'js/codemirror'.$uncompressed.'.js', false, false, false, false);
 		JHTML::_('stylesheet',$this->_basePath . 'css/codemirror.css');
 
 		return '';
@@ -237,8 +238,9 @@ class plgEditorCodemirror extends JPlugin
 					$modal		= ($button->get('modal')) ? 'class="modal-button"' : null;
 					$href		= ($button->get('link')) ? 'href="'.JURI::base().$button->get('link').'"' : null;
 					$onclick	= ($button->get('onclick')) ? 'onclick="'.$button->get('onclick').'"' : null;
+					$title      = ($button->get('title')) ? $button->get('title') : $button->get('text');
 					$html[] = '<div class="button2-left"><div class="'.$button->get('name').'">';
-					$html[] = '<a '.$modal.' title="'.$button->get('text').'" '.$href.' '.$onclick.' rel="'.$button->get('options').'">';
+					$html[] = '<a '.$modal.' title="'.$title.'" '.$href.' '.$onclick.' rel="'.$button->get('options').'">';
 					$html[] = $button->get('text').'</a></div></div>';
 				}
 			}

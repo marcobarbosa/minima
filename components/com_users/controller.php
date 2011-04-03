@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controller.php 18553 2010-08-21 03:10:46Z ian $
+ * @version		$Id: controller.php 20553 2011-02-06 06:32:09Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,9 +35,9 @@ class UsersController extends JController
 		$document	= JFactory::getDocument();
 
 		// Set the default view name and format from the Request.
-		$vName	 = JRequest::getWord('view', 'login');
+		$vName	 = JRequest::getCmd('view', 'login');
 		$vFormat = $document->getType();
-		$lName	 = JRequest::getWord('layout', 'default');
+		$lName	 = JRequest::getCmd('layout', 'default');
 
 		if ($view = $this->getView($vName, $vFormat)) {
 			// Do any specific processing by view.
@@ -101,10 +101,6 @@ class UsersController extends JController
 						return;
 					}
 
-					$model = $this->getModel($vName);
-					break;
-
-				case 'profile':
 					$model = $this->getModel($vName);
 					break;
 

@@ -1,24 +1,24 @@
 <?php
 /**
- * @version		$Id: default.php 19834 2010-12-11 14:39:40Z chdemko $
+ * @version		$Id: default.php 20816 2011-02-21 21:25:24Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_category
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<ul class="category-module<?php echo $params->get('moduleclass_sfx'); ?>">
+<ul class="category-module<?php echo $moduleclass_sfx; ?>">
 <?php if ($grouped) : ?>
 	<?php foreach ($list as $group_name => $group) : ?>
 	<li>
-		<h<?php echo $params->get('item_heading'); ?>><?php echo $group_name; ?></h>
+		<h<?php echo $item_heading; ?>><?php echo $group_name; ?></h<?php echo $item_heading; ?>>
 		<ul>
 			<?php foreach ($group as $item) : ?>
 				<li>
-					<h<?php echo $params->get('item_heading')+1; ?>>
+					<h<?php echo $item_heading+1; ?>>
 					   	<?php if ($params->get('link_titles') == 1) : ?>
 						<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
 						<?php echo $item->title; ?>
@@ -33,11 +33,11 @@ defined('_JEXEC') or die;
 				            (<?php echo $item->displayHits; ?>)  </span>
 				        <?php endif; ?></a>
 				            <?php endif; ?>
-			        </h>
+			        </h<?php echo $item_heading+1; ?>>
 
 
 				<?php if ($params->get('show_author')) :?>
-            		<span class="mod-articles-category-writtenby">
+					<span class="mod-articles-category-writtenby">
 					<?php echo $item->displayAuthorName; ?>
 					</span>
 				<?php endif;?>
@@ -64,12 +64,15 @@ defined('_JEXEC') or die;
 					elseif ($readmore = $item->alternative_readmore) :
 						echo $readmore;
 						echo JHTML::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						if ($params->get('show_readmore_title', 0) != 0) :
+							echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+						endif;
 					elseif ($params->get('show_readmore_title', 0) == 0) :
 						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');	
 					else :
 						
 						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+						echo JHTML::_('string.truncate', ($item->title), $params->get('readmore_limit'));
 					endif; ?>
 	        </a>
 			</p>
@@ -82,7 +85,7 @@ defined('_JEXEC') or die;
 <?php else : ?>
 	<?php foreach ($list as $item) : ?>
 	    <li>
-	   	<h<?php echo $params->get('item_heading'); ?>>
+	   	<h<?php echo $item_heading; ?>>
 	   	<?php if ($params->get('link_titles') == 1) : ?>
 		<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
 		<?php echo $item->title; ?>
@@ -97,7 +100,7 @@ defined('_JEXEC') or die;
             (<?php echo $item->displayHits; ?>)  </span>
         <?php endif; ?></a>
             <?php endif; ?>
-        </h>
+        </h<?php echo $item_heading; ?>>
 
        	<?php if ($params->get('show_author')) :?>
        		<span class="mod-articles-category-writtenby">

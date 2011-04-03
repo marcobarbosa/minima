@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: mod_whosonline.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: mod_whosonline.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_whosonline
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 // Include the whosonline functions only once
-require_once dirname(__FILE__).DS.'helper.php';
+require_once dirname(__FILE__).'/helper.php';
 
 $showmode = $params->get('showmode', 0);
 
@@ -23,4 +23,6 @@ if ($showmode > 0) {
 	$names	= modWhosonlineHelper::getOnlineUserNames();
 }
 $linknames = $params->get('linknames', 0);
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+
 require JModuleHelper::getLayoutPath('mod_whosonline', $params->get('layout', 'default'));

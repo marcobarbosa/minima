@@ -1,16 +1,16 @@
 <?php
 /**
- * @version		$Id: category.php 19422 2010-11-09 22:13:54Z chdemko $
+ * @version		$Id: category.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.modelitem');
+jimport('joomla.application.component.modellist');
 
 /**
  * This models supports retrieving a category, the articles associated with the category,
@@ -20,7 +20,7 @@ jimport('joomla.application.component.modelitem');
  * @subpackage	com_content
  * @since		1.5
  */
-class ContentModelCategory extends JModelItem
+class ContentModelCategory extends JModelList
 {
 	/**
 	 * Category items data
@@ -61,6 +61,40 @@ class ContentModelCategory extends JModelItem
 	protected $_categories = null;
 
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'title', 'a.title',
+				'alias', 'a.alias',
+				'checked_out', 'a.checked_out',
+				'checked_out_time', 'a.checked_out_time',
+				'catid', 'a.catid', 'category_title',
+				'state', 'a.state',
+				'access', 'a.access', 'access_level',
+				'created', 'a.created',
+				'created_by', 'a.created_by',
+				'ordering', 'a.ordering',
+				'featured', 'a.featured',
+				'language', 'a.language',
+				'hits', 'a.hits',
+				'publish_up', 'a.publish_up',
+				'publish_down', 'a.publish_down',
+				'author', 'a.author'
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
@@ -68,7 +102,7 @@ class ContentModelCategory extends JModelItem
 	 * return	void
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initiliase variables.
 		$app	= JFactory::getApplication('site');
@@ -118,10 +152,18 @@ class ContentModelCategory extends JModelItem
 
 		// filter.order
 		$itemid = JRequest::getInt('id', 0) . ':' . JRequest::getInt('Itemid', 0);
-		$this->setState('list.ordering', $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order', 'filter_order', '',
-			'string'));
-		$this->setState('list.direction', $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order_Dir',
-			'filter_order_Dir', '', 'cmd'));
+		$orderCol = $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order', 'filter_order', '', 'string');
+		if (!in_array($orderCol, $this->filter_fields)) {
+			$orderCol = 'a.ordering';
+		}
+		$this->setState('list.ordering', $orderCol);
+
+		$listOrder = $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order_Dir',
+			'filter_order_Dir', '', 'cmd');
+		if (!in_array(strtoupper($listOrder), array('ASC', 'DESC', ''))) {
+			$listOrder = 'ASC';
+		}
+		$this->setState('list.direction', $listOrder);
 
 		$this->setState('list.start', JRequest::getVar('limitstart', 0, '', 'int'));
 
@@ -140,12 +182,11 @@ class ContentModelCategory extends JModelItem
 		$showSubcategories = $params->get('show_subcategory_content', '0');
 
 		if ($showSubcategories) {
-			$this->setState('filter.max_category_levels', $params->get('max_levels', '1'));
-		}
-
-		if ($showSubcategories == 'all_articles') {
+			$this->setState('filter.max_category_levels', $params->get('show_subcategory_content', '1'));
 			$this->setState('filter.subcategories', true);
 		}
+
+
 
 		$this->setState('filter.language',$app->getLanguageFilter());
 
@@ -212,15 +253,24 @@ class ContentModelCategory extends JModelItem
 	 */
 	protected function _buildContentOrderBy()
 	{
-		$app	= JFactory::getApplication('site');
-		$params	= $this->state->params;
-		$itemid	= JRequest::getInt('id', 0) . ':' . JRequest::getInt('Itemid', 0);
-		$filter_order = $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order', 'filter_order', '', 'string');
-		$filter_order_Dir = $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order_Dir', 'filter_order_Dir', '', 'cmd');
-		$orderby = ' ';
+		$app		= JFactory::getApplication('site');
+		$db			= $this->getDbo();
+		$params		= $this->state->params;
+		$itemid		= JRequest::getInt('id', 0) . ':' . JRequest::getInt('Itemid', 0);
+		$orderCol	= $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order', 'filter_order', '', 'string');
+		$orderDirn	= $app->getUserStateFromRequest('com_content.category.list.' . $itemid . '.filter_order_Dir', 'filter_order_Dir', '', 'cmd');
+		$orderby	= ' ';
 
-		if ($filter_order && $filter_order_Dir) {
-			$orderby .= $filter_order . ' ' . $filter_order_Dir . ', ';
+		if (!in_array($orderCol, $this->filter_fields)) {
+			$orderCol = null;
+		}
+
+		if (!in_array(strtoupper($orderDirn), array('ASC', 'DESC', ''))) {
+			$orderDirn = 'ASC';
+		}
+
+		if ($orderCol && $orderDirn) {
+			$orderby .= $db->getEscaped($orderCol) . ' ' . $db->getEscaped($orderDirn) . ', ';
 		}
 
 		$articleOrderby		= $params->get('orderby_sec', 'rdate');
@@ -229,7 +279,7 @@ class ContentModelCategory extends JModelItem
 		$secondary			= ContentHelperQuery::orderbySecondary($articleOrderby, $articleOrderDate) . ', ';
 		$primary			= ContentHelperQuery::orderbyPrimary($categoryOrderby);
 
-		$orderby .= $primary . ' ' . $secondary . ' a.created ';
+		$orderby .= $db->getEscaped($primary) . ' ' . $db->getEscaped($secondary) . ' a.created ';
 
 		return $orderby;
 	}
@@ -256,7 +306,7 @@ class ContentModelCategory extends JModelItem
 			if( isset( $this->state->params ) ) {
 				$params = $this->state->params;
 				$options = array();
-				$options['countItems'] = $params->get('show_cat_num_articles', 1);
+				$options['countItems'] = $params->get('show_cat_num_articles', 1) || !$params->get('show_empty_categories_cat', 0);
 			}
 			else {
 				$options['countItems'] = 0;

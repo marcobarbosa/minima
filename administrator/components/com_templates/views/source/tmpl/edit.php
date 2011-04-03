@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19281 2010-10-29 10:12:49Z eddieajau $
+ * @version		$Id: edit.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_templates
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -28,12 +28,11 @@ JHtml::_('behavior.keepalive');
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit'); ?>" method="post" name="adminForm" id="source-form" class="form-validate">
+	<?php if ($this->ftp) : ?>
+		<?php echo $this->loadTemplate('ftp'); ?>
+	<?php endif; ?>
 	<fieldset class="adminform">
 		<legend><?php echo JText::sprintf('COM_TEMPLATES_TEMPLATE_FILENAME', $this->source->filename, $this->template->element); ?></legend>
-
-		<?php if ($this->ftp) : ?>
-		<?php $this->loadTemplate('ftp'); ?>
-		<?php endif; ?>
 
 		<?php echo $this->form->getLabel('source'); ?>
 		<div class="clr"></div>

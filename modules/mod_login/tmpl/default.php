@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19657 2010-11-27 08:06:35Z chdemko $
+ * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_login
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 ?>
 <?php if ($type == 'logout') : ?>
-<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" name="form-login" id="login-form">
+<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form">
 <?php if ($params->get('greeting')) : ?>
 	<div class="login-greeting">
 	<?php if($params->get('name') == 0) : {
@@ -24,17 +24,19 @@ JHtml::_('behavior.keepalive');
 <?php endif; ?>
 	<div class="logout-button">
 		<input type="submit" name="Submit" class="button" value="<?php echo JText::_('JLOGOUT'); ?>" />
+		<input type="hidden" name="option" value="com_users" />
+		<input type="hidden" name="task" value="user.logout" />
+		<input type="hidden" name="return" value="<?php echo $return; ?>" />
+		<?php echo JHtml::_('form.token'); ?>		
 	</div>
-
-	<input type="hidden" name="option" value="com_users" />
-	<input type="hidden" name="task" value="user.logout" />
-	<input type="hidden" name="return" value="<?php echo $return; ?>" />
 </form>
 <?php else : ?>
-<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" name="form-login" id="login-form" >
-	<div class="pretext">
-	<?php echo $params->get('pretext'); ?>
-	</div>
+<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" >
+	<?php if ($params->get('pretext')): ?>
+		<div class="pretext">
+		<p><?php echo $params->get('pretext'); ?></p>
+		</div>
+	<?php endif; ?>
 	<fieldset class="userdata">
 	<p id="form-login-username">
 		<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
@@ -74,8 +76,10 @@ JHtml::_('behavior.keepalive');
 		</li>
 		<?php endif; ?>
 	</ul>
-	<div class="posttext">
-	<?php echo $params->get('posttext'); ?>
-	</div>
+	<?php if ($params->get('posttext')): ?>
+		<div class="posttext">
+		<p><?php echo $params->get('posttext'); ?></p>
+		</div>
+	<?php endif; ?>
 </form>
 <?php endif; ?>

@@ -1,9 +1,9 @@
 <?php
 /**
-* @version		$Id: update.php 19594 2010-11-20 05:06:08Z ian $
+* @version		$Id: update.php 20196 2011-01-09 02:40:25Z ian $
 * @package		Joomla.Framework
 * @subpackage	Table
-* @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+* @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
 * @license		GNU General Public License, see LICENSE.php
 */
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: tinymce.php 19651 2010-11-26 10:02:08Z eddieajau $
+ * @version		$Id: tinymce.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -25,6 +25,21 @@ class plgEditorTinymce extends JPlugin
 	 * Base path for editor files
 	 */
 	protected $_basePath = 'media/editors/tinymce/jscripts/tiny_mce';
+
+	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
+
 
 	/**
 	 * Initialises the Editor.
@@ -59,7 +74,7 @@ class plgEditorTinymce extends JPlugin
 				$skin = "skin : \"default\",";
 		}
 
-		$compressed			= $this->params->def('compressed', 0);
+		$compressed		= 0;
 		$cleanup_startup	= $this->params->def('cleanup_startup', 0);
 		$cleanup_save		= $this->params->def('cleanup_save', 2);
 		$entity_encoding	= $this->params->def('entity_encoding', 'raw');
@@ -181,11 +196,11 @@ class plgEditorTinymce extends JPlugin
 
 		if ($newlines) {
 			// br
-			$forcenewline = "force_br_newlines : \"true\", force_p_newlines : \"false\", forced_root_block : '',";
+			$forcenewline = "force_br_newlines : true, force_p_newlines : false, forced_root_block : '',";
 		}
 		else {
 			// p
-			$forcenewline = "force_br_newlines : \"false\", force_p_newlines : \"true\", forced_root_block : 'p',";
+			$forcenewline = "force_br_newlines : false, force_p_newlines : true, forced_root_block : 'p',";
 		}
 
 		$invalid_elements	= $this->params->def('invalid_elements', 'script,applet,iframe');
@@ -616,6 +631,8 @@ class plgEditorTinymce extends JPlugin
 					theme_advanced_toolbar_align : \"$toolbar_align\",
 					theme_advanced_source_editor_height : \"$html_height\",
 					theme_advanced_source_editor_width : \"$html_width\",
+					theme_advanced_resizing : $resizing,
+					theme_advanced_resize_horizontal : $resize_horizontal,
 					$element_path,
 					theme_advanced_buttons1_add_before : \"$buttons1_add_before\",
 					theme_advanced_buttons2_add_before : \"$buttons2_add_before\",
@@ -768,7 +785,8 @@ class plgEditorTinymce extends JPlugin
 					$modal		= ($button->get('modal')) ? 'class="modal-button"' : null;
 					$href		= ($button->get('link')) ? 'href="'.JURI::base().$button->get('link').'"' : null;
 					$onclick	= ($button->get('onclick')) ? 'onclick="'.$button->get('onclick').'"' : 'onclick="IeCursorFix(); return false;"';
-					$return .= "<div class=\"button2-left\"><div class=\"".$button->get('name')."\"><a ".$modal." title=\"".$button->get('text')."\" ".$href." ".$onclick." rel=\"".$button->get('options')."\">".$button->get('text')."</a></div></div>\n";
+					$title      = ($button->get('title')) ? $button->get('title') : $button->get('text');
+					$return .= "<div class=\"button2-left\"><div class=\"".$button->get('name')."\"><a ".$modal." title=\"".$title."\" ".$href." ".$onclick." rel=\"".$button->get('options')."\">".$button->get('text')."</a></div></div>\n";
 				}
 			}
 

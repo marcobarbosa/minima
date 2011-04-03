@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: menu.php 19838 2010-12-12 07:06:55Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: menu.php 20741 2011-02-17 12:23:06Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,13 +43,17 @@ class JTableMenu extends JTableNested
 	public function bind($array, $ignore = '')
 	{
 		// Verify that the default home menu is not unset
-		if ($this->home=='1' && $this->language=='*' && ($array['home']=='0' || $array['language']!='*')) {
+		if ($this->home=='1' && $this->language=='*' && ($array['home']=='0')) {
+			$this->setError(JText::_('JLIB_DATABASE_ERROR_MENU_CANNOT_UNSET_DEFAULT_DEFAULT'));
+			return false;
+		}
+		//Verify that the default home menu set to "all" languages" is not unset
+		if ($this->home=='1' && $this->language=='*' && ($array['language']!='*')) {
 			$this->setError(JText::_('JLIB_DATABASE_ERROR_MENU_CANNOT_UNSET_DEFAULT'));
 			return false;
 		}
-
 		// Verify that the default home menu is not unpublished
-		if ($this->home=='1' && $this->language=='*' && $array['published']=='0') {
+		if ($this->home=='1' && $this->language=='*' && $array['published'] !='1') {
 			$this->setError(JText::_('JLIB_DATABASE_ERROR_MENU_UNPUBLISH_DEFAULT_HOME'));
 			return false;
 		}
@@ -75,7 +79,7 @@ class JTableMenu extends JTableNested
 	{
 		// If the alias field is empty, set it to the title.
 		$this->alias = trim($this->alias);
-		if (empty($this->alias)) {
+		if ((empty($this->alias)) && ($this->type != 'alias')) {
 			$this->alias = $this->title;
 		}
 

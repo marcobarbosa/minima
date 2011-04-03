@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: banner.php 18212 2010-07-22 06:02:54Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: banner.php 20703 2011-02-15 06:10:42Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -170,6 +170,13 @@ class BannersTableBanner extends JTable
 				$this->setError($oldrow->getError());
 			}
 
+			// Verify that the alias is unique
+			$table = JTable::getInstance('Banner', 'BannersTable');
+			if ($table->load(array('alias'=>$this->alias,'catid'=>$this->catid)) && ($table->id != $this->id || $this->id==0)) {
+				$this->setError(JText::_('COM_BANNERS_ERROR_UNIQUE_ALIAS'));
+				return false;
+			}
+			
 			// Store the new row
 			parent::store($updateNulls);
 

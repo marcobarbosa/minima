@@ -1,18 +1,13 @@
 <?php
 /**
- * @version		$Id: index.php 19779 2010-12-06 06:47:13Z infograf768 $
+ * @version		$Id: index.php 20828 2011-02-22 04:22:21Z dextercowley $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-$script = "\n\t".'function validateForm(frm, task) {';
-$script .= "\n\t\t".'Joomla.submitform(task, frm);';
-$script .= "\n\t".'}';
-
-JFactory::getDocument()->addScriptDeclaration($script);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
@@ -24,9 +19,17 @@ JFactory::getDocument()->addScriptDeclaration($script);
 		<?php if ($this->direction == 'rtl') : ?>
 			<link href="template/css/template_rtl.css" rel="stylesheet" type="text/css" />
 		<?php endif; ?>
+		
+		<!--[if IE 7]>
+			<link href="template/css/ie7.css" rel="stylesheet" type="text/css" />
+		<![endif]-->
 
+		<?php
+			jimport('joomla.html.html');
+			JHtml::_('behavior.framework', true);
+		?>
 		<script type="text/javascript">
-			window.addEvent('domready', function(){ new Accordion($$('h3.moofx-toggler'), $$('div.moofx-slider'), {onActive: function(toggler, i) { toggler.addClass('moofx-toggler-down'); },onBackground: function(toggler, i) { toggler.removeClass('moofx-toggler-down'); },duration: 300,opacity: false, alwaysHide:true, show: 1}); });
+			window.addEvent('domready', function(){ new Fx.Accordion($$('h3.moofx-toggler'), $$('div.moofx-slider'), {onActive: function(toggler, i) { toggler.addClass('moofx-toggler-down'); },onBackground: function(toggler, i) { toggler.removeClass('moofx-toggler-down'); },duration: 300,opacity: false, alwaysHide:true, show: 1}); });
 		</script>
 	</head>
 	<body>

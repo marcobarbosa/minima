@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: users.php 19849 2010-12-12 23:38:16Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: users.php 20267 2011-01-11 03:44:44Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,6 +19,32 @@ jimport('joomla.application.component.modellist');
 class UsersModelUsers extends JModelList
 {
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'name', 'a.name',
+				'username', 'a.username',
+				'email', 'a.email',
+				'block', 'a.block',
+				'sendEmail', 'a.sendEmail',
+				'registerDate', 'a.registerDate',
+				'lastvisitDate', 'a.lastvisitDate',
+				'activation', 'a.activation',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
@@ -26,7 +52,7 @@ class UsersModelUsers extends JModelList
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');
@@ -220,6 +246,7 @@ class UsersModelUsers extends JModelList
 		$groups = $this->getState('filter.groups');
 		if ($groupId || isset($groups)) {
 			$query->join('LEFT', '#__user_usergroup_map AS map2 ON map2.user_id = a.id');
+			$query->group('a.id');
 			if ($groupId) {
 				$query->where('map2.group_id = '.(int) $groupId);
 			}

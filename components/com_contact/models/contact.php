@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: contact.php 19798 2010-12-08 03:39:51Z dextercowley $
+ * @version		$Id: contact.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -241,7 +241,7 @@ class ContactModelContact extends JModelItem
 
 			//get the profile information for the linked user
 			if ($result) {
-					require_once JPATH_ADMINISTRATOR.DS.'components'.DS.'com_users'.DS.'models'.DS.'user.php';
+					require_once JPATH_ADMINISTRATOR.'/components/com_users/models/user.php';
 					$userModel = JModel::getInstance('User','UsersModel',array('ignore_request' => true));
 						$data = $userModel->getItem((int)$result->user_id);
 			

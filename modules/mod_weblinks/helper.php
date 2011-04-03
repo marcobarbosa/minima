@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 19068 2010-10-09 13:29:01Z chdemko $
+ * @version		$Id: helper.php 20541 2011-02-03 21:12:06Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_related_items
  * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
@@ -11,11 +11,11 @@
 defined('_JEXEC') or die;
 
 require_once JPATH_SITE.DS.'components'.DS.'com_weblinks'.DS.'helpers'.DS.'route.php';
-JModel::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_weblinks'.DS.'models');
+JModel::addIncludePath(JPATH_SITE.DS.'components'.DS.'com_weblinks'.DS.'models', 'WeblinksModel');
 
 class modWeblinksHelper
 {
-	function getList($params)
+	static function getList($params)
 	{
 
 		// Get an instance of the generic articles model
@@ -69,7 +69,7 @@ class modWeblinksHelper
 		for ($i =0; $i < count($items); $i++) {
 			$item = &$items[$i];
 			if ($item->params->get('count_clicks', $params->get('count_clicks')) == 1) {
-				$item->link	= JRoute::_('index.php?task=weblink.go&catid='.$item->catslug.'&id='. $item->slug);
+				$item->link	= JRoute::_('index.php?option=com_weblinks&task=weblink.go&catid='.$item->catslug.'&id='. $item->slug);
 			} else {
 				$item->link = $item->url;
 			}

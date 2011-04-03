@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: remind.php 18675 2010-08-27 04:53:20Z eddieajau $
+ * @version		$Id: remind.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -48,9 +48,9 @@ class UsersModelRemind extends JModelForm
 	 * @throws	Exception if there is an error in the form event.
 	 * @since	1.6
 	 */
-	protected function preprocessForm(JForm $form)
+	protected function preprocessForm(JForm $form, $data, $group = 'user')
 	{
-		parent::preprocessForm($form, 'user');
+		parent::preprocessForm($form, $data, 'user');
 	}
 
 	/**

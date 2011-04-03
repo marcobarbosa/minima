@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: router.php 19706 2010-11-30 19:00:51Z chdemko $
+ * @version		$Id: router.php 20757 2011-02-18 04:38:02Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -114,7 +114,7 @@ class JRouterSite extends JRouter
 		$vars	= array();
 		$app	= JFactory::getApplication();
 		$menu	= $app->getMenu(true);
-
+		 
 		//Handle an empty URL (special case)
 		if (!$uri->getVar('Itemid') && !$uri->getVar('option')) {
 			$item = $menu->getDefault(JFactory::getLanguage()->getTag());
@@ -141,8 +141,9 @@ class JRouterSite extends JRouter
 		//Get the itemid, if it hasn't been set force it to null
 		$this->setVar('Itemid', JRequest::getInt('Itemid', null));
 
-		// Only an Itemid ? Get the full information from the itemid
-		if (count($this->getVars()) == 1) {
+		// Only an Itemid  OR if filter language plugin set? Get the full information from the itemid
+		if (count($this->getVars()) == 1 || ( $app->getLanguageFilter() && count( $this->getVars()) == 2 )) {
+			
 			$item = $menu->getItem($this->getVar('Itemid'));
 			if ($item !== NULL && is_array($item->query)) {
 				$vars = $vars + $item->query;
@@ -256,7 +257,8 @@ class JRouterSite extends JRouter
 				}
 
 				require_once $path;
-				$function =  substr($component, 4).'ParseRoute';
+				$function = substr($component, 4).'ParseRoute';
+				$function = str_replace(array("-", "."), "", $function);
 				$vars =  $function($segments);
 
 				$this->setVars($vars);
@@ -304,6 +306,7 @@ class JRouterSite extends JRouter
 		if (file_exists($path) && !empty($query)) {
 			require_once $path;
 			$function	= substr($component, 4).'BuildRoute';
+			$function   = str_replace(array("-", "."), "", $function);
 			$parts		= $function($query);
 
 			// encode the route segments

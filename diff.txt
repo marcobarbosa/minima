@@ -1,0 +1,256 @@
+1c1
+< # $Id: joomla.sql 19867 2010-12-13 15:58:32Z dextercowley $
+---
+> # $Id: joomla.sql 20506 2011-01-31 23:05:39Z dextercowley $
+21c21
+< ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+---
+> ) DEFAULT CHARSET=utf8;
+35,36c35,36
+< 	(7,1,13,16,1,'com_contact','com_contact','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+< 	(8,1,17,20,1,'com_content','com_content','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1}}'),
+---
+> 	(7,1,13,16,1,'com_contact','com_contact','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+> 	(8,1,17,20,1,'com_content','com_content','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
+38c38
+< 	(10,1,23,24,1,'com_installer','com_installer','{"core.admin":{"7":1},"core.manage":{"7":1},"core.create":[],"core.delete":[],"core.edit.state":[]}'),
+---
+> 	(10,1,23,24,1,'com_installer','com_installer','{"core.admin":{"7":1},"core.manage":{"7":1},"core.delete":[],"core.edit.state":[]}'),
+43c43
+< 	(15,1,33,34,1,'com_media','com_media','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":{"5":1},"core.edit":[],"core.edit.state":[]}'),
+---
+> 	(15,1,33,34,1,'com_media','com_media','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":{"5":1}}'),
+47c47
+< 	(19,1,41,44,1,'com_newsfeeds','com_newsfeeds','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+---
+> 	(19,1,41,44,1,'com_newsfeeds','com_newsfeeds','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+53c53
+< 	(25,1,55,58,1,'com_weblinks','com_weblinks','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1}}'),
+---
+> 	(25,1,55,58,1,'com_weblinks','com_weblinks','{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}'),
+55c55
+< 	(27, 8, 18, 19, 2, 'com_content.category.2', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+---
+> 	(27, 8, 18, 19, 2, 'com_content.category.2', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+57,59c57,59
+< 	(29, 7, 14, 15, 2, 'com_contact.category.4', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+< 	(30, 19, 42, 43, 2, 'com_newsfeeds.category.5', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
+< 	(31, 25, 56, 57, 2, 'com_weblinks.category.6', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}');
+---
+> 	(29, 7, 14, 15, 2, 'com_contact.category.4', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+> 	(30, 19, 42, 43, 2, 'com_newsfeeds.category.5', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+> 	(31, 25, 56, 57, 2, 'com_weblinks.category.6', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}');
+103c103
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> ) DEFAULT CHARSET=utf8;
+129c129
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+138c138
+<   `track_date` DATE NOT NULL,
+---
+>   `track_date` DATETIME NOT NULL,
+146c146
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+171c171
+<   `params` varchar(2048) NOT NULL default '',
+---
+>   `params` TEXT NOT NULL, 
+189c189
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+257c257
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+309c309
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+321c321
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+335c335
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+346c346
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+377c377
+< ) TYPE=MyISAM AUTO_INCREMENT=10000 CHARACTER SET `utf8`;
+---
+> ) AUTO_INCREMENT=10000 CHARACTER SET utf8;
+411,412c411,412
+< (102, 'Bitfolge', 'library', 'simplepie', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (103, 'phputf8', 'library', 'simplepie', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+---
+> (102, 'phputf8', 'library', 'phputf8', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+> (103, 'Joomla! Web Application Framework', 'library', 'joomla', '', 0, 1, 1, 1, '{"legacy":false,"name":"Joomla! Web Application Framework","type":"library","creationDate":"2008","author":"Joomla","copyright":"Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"http:\\/\\/www.joomla.org","version":"1.6.0","description":"The Joomla! Web Application Framework is the Core of the Joomla! Content Management System","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+456,458c456
+< (313, 'mod_unread', 'module', 'mod_unread', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (314, 'mod_mypanel', 'module', 'mod_mypanel', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (315, 'mod_myshortcuts', 'module', 'mod_myshortcuts', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+---
+> (313, 'mod_unread', 'module', 'mod_unread', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+468c466
+< (406, 'plg_content_loadmodule', 'plugin', 'loadmodule', 'content', 0, 1, 1, 0, '', '{"style":"rounded"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+---
+> (406, 'plg_content_loadmodule', 'plugin', 'loadmodule', 'content', 0, 1, 1, 0, '', '{"style":"none"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+502,508c500,504
+< (500, 'atomic', 'template', 'atomic', '', 0, 1, 1, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (501, 'rhuk_milkyway', 'template', 'rhuk_milkyway', '', 0, 1, 1, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (502, 'bluestork', 'template', 'bluestork', '', 1, 1, 1, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (503, 'beez_20', 'template', 'beez_20', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (504, 'hathor', 'template', 'hathor', '', 1, 1, 1, 0, 'a:11:{s:6:"legacy";b:1;s:4:"name";s:6:"Hathor";s:4:"type";s:8:"template";s:12:"creationDate";s:10:"March 2010";s:6:"author";s:11:"Andrea Tarr";s:9:"copyright";s:72:"Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.";s:11:"authorEmail";s:25:"hathor@tarrconsulting.com";s:9:"authorUrl";s:29:"http://www.tarrconsulting.com";s:7:"version";s:5:"1.6.0";s:11:"description";s:33:"Accessible Administrator Template";s:5:"group";s:0:"";}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (505, 'Beez5', 'template', 'beez5', '', 0, 1, 1, 0, 'a:11:{s:6:"legacy";b:1;s:4:"name";s:5:"Beez5";s:4:"type";s:8:"template";s:12:"creationDate";s:11:"21 May 2010";s:6:"author";s:12:"Angie Radtke";s:9:"copyright";s:72:"Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.";s:11:"authorEmail";s:23:"a.radtke@derauftritt.de";s:9:"authorUrl";s:26:"http://www.der-auftritt.de";s:7:"version";s:5:"1.6.0";s:11:"description";s:22:"A Easy Version of Beez";s:5:"group";s:0:"";}', '{"wrapperSmall":"53","wrapperLarge":"72","sitetitle":"BEEZ 2.0","sitedescription":"Your site name","navposition":"center","html5":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (506, 'minima', 'template', 'minima', '', 1, 1, 1, 1, '', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+---
+> (500, 'atomic', 'template', 'atomic', '', 0, 1, 1, 0, '{"legacy":false,"name":"atomic","type":"template","creationDate":"10\\/10\\/09","author":"Ron Severdia","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"contact@kontentdesign.com","authorUrl":"http:\\/\\/www.kontentdesign.com","version":"1.6.0","description":"TPL_ATOMIC_XML_DESCRIPTION","group":""}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+> (502, 'bluestork', 'template', 'bluestork', '', 1, 1, 1, 0, '{"legacy":false,"name":"bluestork","type":"template","creationDate":"07\\/02\\/09","author":"Ron Severdia","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"contact@kontentdesign.com","authorUrl":"http:\\/\\/www.kontentdesign.com","version":"1.6.0","description":"TPL_BLUESTORK_XML_DESCRIPTION","group":""}', '{"useRoundedCorners":"1","showSiteName":"0","textBig":"0","highContrast":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+> (503, 'beez_20', 'template', 'beez_20', '', 0, 1, 1, 0, '{"legacy":false,"name":"beez_20","type":"template","creationDate":"25 November 2009","author":"Angie Radtke","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"a.radtke@derauftritt.de","authorUrl":"http:\\/\\/www.der-auftritt.de","version":"1.6.0","description":"TPL_BEEZ2_XML_DESCRIPTION","group":""}', '{"wrapperSmall":"53","wrapperLarge":"72","sitetitle":"","sitedescription":"","navposition":"center","templatecolor":"nature"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+> (504, 'hathor', 'template', 'hathor', '', 1, 1, 1, 0, '{"legacy":false,"name":"hathor","type":"template","creationDate":"May 2010","author":"Andrea Tarr","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"hathor@tarrconsulting.com","authorUrl":"http:\\/\\/www.tarrconsulting.com","version":"1.6.0","description":"TPL_HATHOR_XML_DESCRIPTION","group":""}', '{"showSiteName":"0","colourChoice":"0","boldText":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+> (505, 'beez5', 'template', 'beez5', '', 0, 1, 1, 0, '{"legacy":false,"name":"beez5","type":"template","creationDate":"21 May 2010","author":"Angie Radtke","copyright":"Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.","authorEmail":"a.radtke@derauftritt.de","authorUrl":"http:\\/\\/www.der-auftritt.de","version":"1.6.0","description":"TPL_BEEZ5_XML_DESCRIPTION","group":""}', '{"wrapperSmall":"53","wrapperLarge":"72","sitetitle":"","sitedescription":"","navposition":"center","html5":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+513,515c509
+< (601, 'English (United Kingdom)', 'language', 'en-GB', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (604, 'XXTestLang', 'language', 'xx-XX', '', 1, 1, 1, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+< (605, 'XXTestLang', 'language', 'xx-XX', '', 0, 1, 1, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+---
+> (601, 'English (United Kingdom)', 'language', 'en-GB', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+539c533
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+543,544c537
+< (1, 'en-GB', 'English (UK)', 'English (UK)', 'en', 'en', '', '', '', 1),
+< (3, 'xx-XX', 'xx (Test)', 'xx (Test)', 'xx', 'br', '', '', '', 1);
+---
+> (1, 'en-GB', 'English (UK)', 'English (UK)', 'en', 'en', '', '', '', 1);
+569c562
+<   `params` varchar(10240) NOT NULL COMMENT 'JSON encoded data for the menu item.',
+---
+>   `params` TEXT NOT NULL COMMENT 'JSON encoded data for the menu item.',
+583c576
+< ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+---
+> )   DEFAULT CHARSET=utf8;
+622c615
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+644c637
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+656c649
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+678c671
+<   `params` varchar(5120) NOT NULL DEFAULT '',
+---
+>   `params` TEXT NOT NULL,
+685c678
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+691,692c684,685
+< (3, 'Popular Articles', '', '', 3, 'widgets-last', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{"count":"5","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+< (4, 'Recently Added Articles', '', '', 4, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{"count":"5","ordering":"c_dsc","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+---
+> (3, 'Popular Articles', '', '', 3, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{"count":"5","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+> (4, 'Recently Added Articles', '', '', 4, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{"count":"5","ordering":"c_dsc","catid":"","user_id":"0","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+697c690
+< (10, 'Logged-in Users', '', '', 2, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{"count":"5","name":"1","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+---
+> (10, 'Logged-in Users', '', '', 2, 'cpanel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{"count":"5","name":"1","layout":"_:default","moduleclass_sfx":"","cache":"0","automatic_title":"1"}', 1, '*'),
+705,706d697
+< #(19, 'Shortcuts', '', '', 1, 'shortcuts', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_myshortcuts', 3, 1, '{"show_add_link":"0"}', 1, '*'),
+< #(20, 'Panel list', '', '', 1, 'panel', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_mypanel', 3, 1, '', 1, '*');
+718c709
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+741,742d731
+< #(19,0),
+< #(20,0);
+788c777
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+808c797
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+821c810
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+841c830
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+862c851
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Available Updates';
+---
+> )  DEFAULT CHARSET=utf8 COMMENT='Available Updates';
+871c860
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Update Sites';
+---
+> )  DEFAULT CHARSET=utf8 COMMENT='Update Sites';
+895c884
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Update Categories';
+---
+> )  DEFAULT CHARSET=utf8 COMMENT='Update Categories';
+910c899
+<   `params` varchar(10240) NOT NULL DEFAULT '',
+---
+>   `params` TEXT NOT NULL,
+914c903
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+---
+> )  DEFAULT CHARSET=utf8 ;
+916,917c905
+< INSERT INTO `#__template_styles` VALUES (1, 'rhuk_milkyway', '0', '0', 'Milkyway - Default', '{"colorVariation":"blue","backgroundVariation":"blue","widthStyle":"fmax"}');
+< INSERT INTO `#__template_styles` VALUES (2, 'bluestork', '1', '0', 'Bluestork - Default', '{"useRoundedCorners":"1","showSiteName":"0"}');
+---
+> INSERT INTO `#__template_styles` VALUES (2, 'bluestork', '1', '1', 'Bluestork - Default', '{"useRoundedCorners":"1","showSiteName":"0"}');
+919c907
+< INSERT INTO `#__template_styles` VALUES (4, 'beez_20', 0, 1, 'Beez2 - Default', '{"wrapperSmall":"53","wrapperLarge":"72","logo":"images\\/joomla_black.gif","sitetitle":"Joomla!","sitedescription":"Open Source Content Management Beta","navposition":"left","templatecolor":"personal","html5":"0"}');
+---
+> INSERT INTO `#__template_styles` VALUES (4, 'beez_20', 0, 1, 'Beez2 - Default', '{"wrapperSmall":"53","wrapperLarge":"72","logo":"images\\/joomla_black.gif","sitetitle":"Joomla!","sitedescription":"Open Source Content Management","navposition":"left","templatecolor":"personal","html5":"0"}');
+922c910
+< INSERT INTO `#__template_styles` VALUES (7, 'minima', '1', '1', 'Minima - Default', '{"templateLogo":"logo_minima.png","templateColor":"#2A94C8", "darkerColor": "#247eaa"}');
+---
+> 
+932c920
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+951c939
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+989c977
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+999c987
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Simple user profile storage table';
+---
+> )  DEFAULT CHARSET=utf8 COMMENT='Simple user profile storage table';
+1046c1034
+< ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+---
+> )  DEFAULT CHARSET=utf8;
+1060c1048
+< ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+---
+> )   DEFAULT CHARSET=utf8;

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19751 2010-12-03 17:02:44Z dextercowley $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_admin
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,7 +17,7 @@ jimport('joomla.language.help');
 	<fieldset class="adminform">
 		<legend><?php echo JText::_('COM_ADMIN_SEARCH'); ?></legend>
 		<input class="textarea" type="hidden" name="option" value="com_admin" />
-		<input type="text" name="helpsearch" size="40"  value="<?php echo $this->help_search;?>" class="inputbox" />
+		<input type="text" name="helpsearch" size="40"  value="<?php echo $this->escape($this->help_search);?>" class="inputbox" />
 		<input type="submit" value="<?php echo JText::_('COM_ADMIN_GO'); ?>" class="button" />
 		<input type="button" value="<?php echo JText::_('COM_ADMIN_CLEAR_RESULTS'); ?>" class="button" onclick="f=document.adminForm;f.helpsearch.value='';f.submit()" />
 	</fieldset>

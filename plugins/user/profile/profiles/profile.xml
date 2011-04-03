@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: profile.xml 19353 2010-11-05 07:57:29Z infograf768 $ -->
+	<!-- $Id: profile.xml 20156 2011-01-07 13:10:16Z eddieajau $ -->
 <form>
 	<fields name="profile">
 		<fieldset name="profile"
@@ -73,7 +73,7 @@
 
 			<field
 				name="phone"
-				type="text"
+				type="tel"
 				id="phone"
 				description="PLG_USER_PROFILE_FIELD_PHONE_DESC"
 				filter="string"
@@ -84,7 +84,7 @@
 
 			<field
 				name="website"
-				type="text"
+				type="url"
 				id="website"
 				description="PLG_USER_PROFILE_FIELD_WEB_SITE_DESC"
 				filter="string"

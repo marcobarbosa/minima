@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: methods.php 19416 2010-11-09 18:00:12Z infograf768 $
+ * @version		$Id: methods.php 20815 2011-02-21 21:22:03Z dextercowley $
  * @package		Joomla.Framework
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -68,7 +68,7 @@ class JRoute
 			}
 
 			// Determine which scheme we want.
-			$scheme	= ($ssl === 1) ? 'https' : 'http';
+			$scheme	= ((int)$ssl === 1) ? 'https' : 'http';
 
 			// Make sure our URL path begins with a slash.
 			if (!preg_match('#^/#', $url)) {

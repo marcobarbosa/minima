@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: router.php 19621 2010-11-23 00:39:46Z eddieajau $
+ * @version		$Id: router.php 20250 2011-01-10 14:27:02Z chdemko $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,11 +29,12 @@ function WeblinksBuildRoute(&$query)
 	$segments = array();
 
 	// get a menu item based on Itemid or currently active
-	$app	= JFactory::getApplication();
-	$menu	= $app->getMenu();
-	$params	= JComponentHelper::getParams('com_weblinks');
-	$advanced = $params->get('sef_advanced_link', 0);
+	$app		= JFactory::getApplication();
+	$menu		= $app->getMenu();
+	$params		= JComponentHelper::getParams('com_weblinks');
+	$advanced	= $params->get('sef_advanced_link', 0);
 
+	// we need a menu item.  Either the one specified in the query, or the current active one if none specified
 	if (empty($query['Itemid'])) {
 		$menuItem = $menu->getActive();
 	}
@@ -141,7 +142,7 @@ function WeblinksParseRoute($segments)
 	$vars = array();
 
 	//Get the active menu item.
-	$app 	= JFactory::getApplication();
+	$app	= JFactory::getApplication();
 	$menu	= $app->getMenu();
 	$item	= $menu->getActive();
 	$params = JComponentHelper::getParams('com_weblinks');

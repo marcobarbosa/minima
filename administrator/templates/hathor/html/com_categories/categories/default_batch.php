@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_batch.php 19734 2010-12-02 16:37:10Z infograf768 $
+ * @version		$Id: default_batch.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */

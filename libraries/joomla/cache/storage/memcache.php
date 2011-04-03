@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: memcache.php 17854 2010-06-23 17:43:55Z eddieajau $
+ * @version		$Id: memcache.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	Cache
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -97,7 +97,7 @@ class JCacheStorageMemcache extends JCacheStorage
 	 * @return	mixed	Boolean false on failure or a cached data string
 	 * @since	1.5
 	 */
-	public function get($id, $group, $checkTime)
+	public function get($id, $group, $checkTime = true)
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		$back = self::$_db->get($cache_id);
@@ -225,7 +225,7 @@ class JCacheStorageMemcache extends JCacheStorage
 	 * @return	boolean	True on success, false otherwise
 	 * @since	1.5
 	 */
-	public function clean($group, $mode)
+	public function clean($group, $mode = null)
 	{
 		if (!$this->lockindex()) {
 			return false;

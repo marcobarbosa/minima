@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 17855 2010-06-23 17:46:38Z eddieajau $
+ * @version		$Id: view.html.php 20873 2011-03-03 17:01:36Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -51,6 +51,15 @@ class UsersViewProfile extends JView
 			return false;
 		}
 
+		// Check for layout override
+		$active = JFactory::getApplication()->getMenu()->getActive();
+		if (isset($active->query['layout'])) {
+			$this->setLayout($active->query['layout']);
+		}		
+		
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx'));
+
 		$this->prepareDocument();
 
 		parent::display($tpl);
@@ -80,10 +89,10 @@ class UsersViewProfile extends JView
 
 		$title = $this->params->get('page_title', '');
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
 	}

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: blog.php 18695 2010-08-28 17:18:48Z infograf768 $
+ * @version		$Id: blog.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,10 +12,8 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
-$pageClass = $this->params->get('pageclass_sfx');
 ?>
-
-<div class="blog<?php echo $pageClass;?>">
+<div class="blog<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
 	<h1>
 		<?php echo $this->escape($this->params->get('page_heading')); ?>

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: user.php 19537 2010-11-17 15:14:15Z chdemko $
+ * @version		$Id: user.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,9 +43,7 @@ class UsersControllerUser extends JControllerForm
 		// Check if this person is a Super Admin
 		if (JAccess::check($data[$key], 'core.admin')) {
 			// If I'm not a Super Admin, then disallow the edit.
-			$my = JFactory::getUser();
-
-			if (!JAccess::check($my->id, 'core.admin')) {
+			if (!JFactory::getUser()->authorise('core.admin')) {
 				return false;
 			}
 		}
@@ -59,7 +57,7 @@ class UsersControllerUser extends JControllerForm
 	 * @return	mixed	Boolean or JError.
 	 * @since	1.6
 	 */
-	public function save()
+	public function save($key = null, $urlVar = null)
 	{
 		$data = JRequest::getVar('jform', array(), 'post', 'array');
 

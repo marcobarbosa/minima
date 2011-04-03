@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: response.php 19241 2010-10-28 05:31:28Z eddieajau $
+ * @version		$Id: response.php 20261 2011-01-10 19:52:34Z ian $
  * @package		Joomla.Framework
  * @subpackage	Environment
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -276,7 +276,7 @@ class JResponse
 		$gzdata = gzencode($data, $level);
 
 		self::setHeader('Content-Encoding', $encoding);
-		self::setHeader('X-Content-Encoded-By', 'Joomla! 1.5');
+		self::setHeader('X-Content-Encoded-By', 'Joomla! 1.6');
 
 		return $gzdata;
 	}

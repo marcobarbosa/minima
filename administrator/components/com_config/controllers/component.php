@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: component.php 19529 2010-11-17 14:13:43Z chdemko $
+ * @version		$Id: component.php 20756 2011-02-18 04:34:38Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_config
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -50,7 +50,7 @@ class ConfigControllerComponent extends JController
 		$form	= $model->getForm();
 		$data	= JRequest::getVar('jform', array(), 'post', 'array');
 		$id		= JRequest::getInt('id');
-		$option	= JRequest::getWord('component');
+		$option	= JRequest::getCmd('component');
 
 		// Check if the user is authorized to do this.
 		if (!JFactory::getUser()->authorise('core.admin', $option))

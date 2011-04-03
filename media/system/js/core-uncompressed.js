@@ -1,6 +1,6 @@
 /**
- * @version		$Id: core-uncompressed.js 19229 2010-10-27 03:34:39Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: core-uncompressed.js 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -235,12 +235,15 @@ function getSelectedValue(frmName, srcListName) {
  * @param	string	An alternative field name
  */
 function checkAll(checkbox, stub) {
+	if (!stub) {
+			stub = 'cb';
+	}
 	if (checkbox.form) {
 		var c = 0;
 		for (var i = 0, n = checkbox.form.elements.length; i < n; i++) {
 			var e = checkbox.form.elements[i];
 			if (e.type == checkbox.type) {
-				if ((stub && e.name.indexOf(stub) == 0) || !stub) {
+				if ((stub && e.id.indexOf(stub) == 0) || !stub) {
 					e.checked = checkbox.checked;
 					c += (e.checked == true ? 1 : 0);
 				}
@@ -250,12 +253,8 @@ function checkAll(checkbox, stub) {
 			checkbox.form.boxchecked.value = c;
 		}
 		return true;
-	}
-	else {
+	} else {
 		// The old way of doing it
-		if (!stub) {
-			stub = 'cb';
-		}
 		var f = document.adminForm;
 		var c = f.toggle.checked;
 		var n = checkbox;

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: templatestyle.php 16113 2010-04-15 18:56:21Z eddieajau $
+ * @version		$Id: templatestyle.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Parameter
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 

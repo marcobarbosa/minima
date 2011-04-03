@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: editor.php 19651 2010-11-26 10:02:08Z eddieajau $
+ * @version		$Id: editor.php 20654 2011-02-10 13:45:18Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -281,7 +281,6 @@ class JEditor extends JObservable
 
 			if (class_exists($className)) {
 				$plugin = new $className($this, (array)$plugin);
-				$plugin->loadLanguage();
 			}
 
 			// Try to authenticate
@@ -317,7 +316,7 @@ class JEditor extends JObservable
 		if (!JFile::exists($path)) {
 			$path = JPATH_PLUGINS.'/editors/'.$name.'/'.$name.'.php';
 			if (!JFile::exists($path)) {
-				$message = JText::_('Cannot load the editor');
+				$message = JText::_('JLIB_HTML_EDITOR_CANNOT_LOAD');
 				JError::raiseWarning(500, $message);
 				return false;
 			}
@@ -328,13 +327,6 @@ class JEditor extends JObservable
 
 		// Get the plugin
 		$plugin		= JPluginHelper::getPlugin('editors', $this->_name);
-		$className	= 'plgEditor'.$plugin->name;
-
-		if (class_exists($className)) {
-			$plugin = new $className($this, (array)$plugin);
-			$plugin->loadLanguage();
-		}
-
 		$params = new JRegistry;
 		$params->loadJSON($plugin->params);
 		$params->loadArray($config);

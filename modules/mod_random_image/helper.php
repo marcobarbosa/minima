@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	mod_random_image
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class modRandomImageHelper
 {
-	function getRandomImage(&$params, $images)
+	static function getRandomImage(&$params, $images)
 	{
 		$width	= $params->get('width');
 		$height	= $params->get('height');
@@ -50,7 +50,7 @@ class modRandomImageHelper
 		return $image;
 	}
 
-	function getImages(&$params, $folder)
+	static function getImages(&$params, $folder)
 	{
 		$type		= $params->get('type', 'jpg');
 
@@ -77,6 +77,8 @@ class modRandomImageHelper
 				if (!is_dir($dir .DS. $img))
 				{
 					if (preg_match('/'.$type.'/', $img)) {
+						$images[$i] = new stdClass;
+						
 						$images[$i]->name	= $img;
 						$images[$i]->folder	= $folder;
 						$i++;
@@ -88,7 +90,7 @@ class modRandomImageHelper
 		return $images;
 	}
 
-	function getFolder(&$params)
+	static function getFolder(&$params)
 	{
 		$folder	= $params->get('folder');
 

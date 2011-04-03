@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_items.php 19841 2010-12-12 09:48:41Z infograf768 $
+ * @version		$Id: default_items.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Site
  * @subpackage	com_contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,8 +12,8 @@ defined('_JEXEC') or die;
 
 JHtml::core();
 
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 ?>
 <?php if (empty($this->items)) : ?>
 	<p> <?php echo JText::_('COM_CONTACT_NO_ARTICLES'); ?>	 </p>
@@ -23,7 +23,7 @@ $listDirn	= $this->state->get('list.direction');
 <?php if ($this->params->get('show_pagination_limit')) : ?>
 	<fieldset class="filters">
 	<legend class="hidelabeltxt"><?php echo JText::_('JGLOBAL_FILTER_LABEL'); ?></legend>
-	
+
 		<div class="display-limit">
 			<?php echo JText::_('JGLOBAL_DISPLAY_NUM'); ?>&#160;
 			<?php echo $this->pagination->getLimitBox(); ?>
@@ -33,7 +33,7 @@ $listDirn	= $this->state->get('list.direction');
 	<table class="category">
 		<?php if ($this->params->get('show_headings')) : ?>
 		<thead><tr>
-			
+
 			<th class="item-title">
 				<?php echo JHtml::_('grid.sort', 'COM_CONTACT_CONTACT_EMAIL_NAME', 'a.name', $listDirn, $listOrder); ?>
 			</th>

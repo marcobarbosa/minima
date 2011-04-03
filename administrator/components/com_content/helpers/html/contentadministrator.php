@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: contentadministrator.php 19674 2010-11-29 16:26:39Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: contentadministrator.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,7 +18,7 @@ abstract class JHtmlContentAdministrator
 	 * @param	int $value	The state value
 	 * @param	int $i
 	 */
-	function featured($value = 0, $i, $canChange = true)
+	static function featured($value = 0, $i, $canChange = true)
 	{
 		// Array of image, task, title, action
 		$states	= array(

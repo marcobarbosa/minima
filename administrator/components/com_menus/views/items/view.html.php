@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 19413 2010-11-09 15:57:44Z dextercowley $
+ * @version		$Id: view.html.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -112,7 +112,7 @@ class MenusViewItems extends JView
 												}
 											}
 											if (!empty($layout[0]->message[0])) {
-												$items->item_type_desc = JText::_(trim((string) $layout[0]->message[0]));
+												$item->item_type_desc = JText::_(trim((string) $layout[0]->message[0]));
 											}
 										}
 									}

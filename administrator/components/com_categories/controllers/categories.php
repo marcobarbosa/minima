@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: categories.php 18157 2010-07-15 17:12:36Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: categories.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,9 +27,9 @@ class CategoriesControllerCategories extends JControllerAdmin
 	 * @return	object	The model.
 	 * @since	1.6
 	 */
-	function &getModel($name = 'Category', $prefix = 'CategoriesModel')
+	function getModel($name = 'Category', $prefix = 'CategoriesModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
 

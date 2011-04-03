@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 19651 2010-11-26 10:02:08Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20828 2011-02-22 04:22:21Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -26,6 +26,7 @@ class MediaViewImages extends JView
 		$lang	= JFactory::getLanguage();
 		$append = '';
 
+		JHtml::_('behavior.framework', true);
 		JHTML::_('script','media/popup-imagemanager.js', true, true);
 		JHTML::_('stylesheet','media/popup-imagemanager.css', array(), true);
 
@@ -58,9 +59,9 @@ class MediaViewImages extends JView
 
 			JHtml::_('behavior.uploader', 'upload-flash',
 				array(
-					'onBeforeStart' => 'function(){ Uploader.setOptions({url: $(\'uploadForm\').action + \'&folder=\' + $(\'imageForm\').folderlist.value}); }',
+					'onBeforeStart' => 'function(){ Uploader.setOptions({url: document.id(\'uploadForm\').action + \'&folder=\' + document.id(\'imageForm\').folderlist.value}); }',
 					'onComplete' 	=> 'function(){ window.frames[\'imageframe\'].location.href = window.frames[\'imageframe\'].location.href; }',
-					'targetURL' 	=> '\\$(\'uploadForm\').action',
+					'targetURL' 	=> '\\document.id(\'uploadForm\').action',
 					'typeFilter' 	=> $typeString,
 					'fileSizeMax'	=> (int) ($config->get('upload_maxsize',0) * 1024 * 1024),
 				)

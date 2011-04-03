@@ -3,7 +3,7 @@
  * @version		$Id: index.php 17268 2010-05-25 20:32:21Z a.radtke $
  * @package		Joomla.Site
  * @subpackage	tpl_beez5
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,14 +19,17 @@ if ($showRightColumn==0 and $showleft==0) {
 	$showno = 0;
 }
 
-JHTML::_('behavior.mootools');
+JHTML::_('behavior.framework', true);
 
 // get params
 $color			= $this->params->get('templatecolor');
 $logo			= $this->params->get('logo');
 $navposition	= $this->params->get('navposition');
 $app			= JFactory::getApplication();
+$doc			= JFactory::getDocument();
 $templateparams	= $app->getTemplate(true)->params;
+
+$doc->addScript($this->baseurl.'/templates/beez5/javascript/md_stylechanger.js', 'text/javascript', true);
 ?>
 <?php if(!$templateparams->get('html5', 0)): ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -68,7 +71,6 @@ $templateparams	= $app->getTemplate(true)->params;
 			<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/beez5/javascript/html5.js"></script>
 		<![endif]-->
 <?php } ?>
-		<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/beez5/javascript/md_stylechanger.js"></script>
 		<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/beez5/javascript/hide.js"></script>
 
 		<script type="text/javascript">
@@ -103,14 +105,13 @@ $templateparams	= $app->getTemplate(true)->params;
 				<div class="logoheader">
 					<h1 id="logo">
 
-					<?php if ($logo != '-1' ): ?>
+					<?php if ($logo != null ): ?>
 					<img src="<?php echo $this->baseurl ?>/<?php echo htmlspecialchars($logo); ?>" alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>" />
-					<?php endif;?>
-					<?php if ($logo == '-1' ): ?>
-					<?php echo $templateparams->get('sitetitle');?>
+					<?php else: ?>
+					<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>
 					<?php endif; ?>
 					<span class="header1">
-					<?php echo $templateparams->get('sitedescription');?>
+					<?php echo htmlspecialchars($templateparams->get('sitedescription'));?>
 					</span></h1>
 				</div><!-- end logoheader -->
 
@@ -131,7 +132,7 @@ $templateparams	= $app->getTemplate(true)->params;
 					</div> <!-- end line -->
 		<div id="header-image">
 			<jdoc:include type="modules" name="position-15" />
-			<?php if ($this->countModules('position-01')==0): ?>
+			<?php if ($this->countModules('position-15')==0): ?>
 				<img src="<?php echo $this->baseurl ?>/templates/beez5/images/fruits.jpg"  alt="<?php echo JText::_('TPL_BEEZ5_LOGO'); ?>" />
 			<?php endif; ?>
 		</div>
@@ -287,6 +288,6 @@ $templateparams	= $app->getTemplate(true)->params;
 			</div>
 
 		</div>
-			<jdoc:include type="modules" name="debug" />
+		<jdoc:include type="modules" name="debug" />
 	</body>
 </html>

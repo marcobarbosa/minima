@@ -1,11 +1,12 @@
 <?php
 /**
- * @version		$Id: profile.php 19731 2010-12-02 13:10:17Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: profile.php 20762 2011-02-18 04:49:10Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
+jimport('joomla.utilities.date');
 
 /**
  * An example custom profile plugin.
@@ -27,11 +28,12 @@ class plgUserProfile extends JPlugin
 	function onContentPrepareData($context, $data)
 	{
 		// Check we are manipulating a valid form.
-		if (!in_array($context, array('com_users.profile', 'com_users.registration', 'com_admin.profile'))) {
+		if (!in_array($context, array('com_users.profile','com_users.user', 'com_users.registration', 'com_admin.profile'))) {
 			return true;
 		}
 
-		if (is_object($data)){
+		if (is_object($data))
+		{
 			$userId = isset($data->id) ? $data->id : 0;
 
 			// Load the profile data from the database.
@@ -44,7 +46,8 @@ class plgUserProfile extends JPlugin
 			$results = $db->loadRowList();
 
 			// Check for a database error.
-			if ($db->getErrorNum()) {
+			if ($db->getErrorNum())
+			{
 				$this->_subject->setError($db->getErrorMsg());
 				return false;
 			}
@@ -52,13 +55,60 @@ class plgUserProfile extends JPlugin
 			// Merge the profile data.
 			$data->profile = array();
 
-			foreach ($results as $v) {
+			foreach ($results as $v)
+			{
 				$k = str_replace('profile.', '', $v[0]);
 				$data->profile[$k] = $v[1];
+			}
+			if (!JHtml::isRegistered('users.url')) {
+				JHtml::register('users.url', array(__CLASS__, 'url'));
+			}
+			if (!JHtml::isRegistered('users.calendar')) {
+				JHtml::register('users.calendar', array(__CLASS__, 'calendar'));
+			}
+			if (!JHtml::isRegistered('users.tos')) {
+				JHtml::register('users.tos', array(__CLASS__, 'tos'));
 			}
 		}
 
 		return true;
+	}
+
+	public static function url($value)
+	{
+		if (empty($value))
+		{
+			return JHtml::_('users.value', $value);
+		}
+		else
+		{
+			$value = htmlspecialchars($value);
+			if(substr ($value, 0, 4) == "http") {
+				return '<a href="'.$value.'">'.$value.'</a>';
+			}
+			else {
+				return '<a href="http://'.$value.'">'.$value.'</a>';
+			}
+		}
+	}
+
+	public static function calendar($value)
+	{
+		if (empty($value)) {
+			return JHtml::_('users.value', $value);
+		} else {
+			return JHtml::_('date', $value);
+		}
+	}
+
+	public static function tos($value)
+	{
+		if ($value) {
+			return JText::_('JYES');
+		}
+		else {
+			return JText::_('JNO');
+		}
 	}
 
 	/**
@@ -74,13 +124,14 @@ class plgUserProfile extends JPlugin
 		$lang = JFactory::getLanguage();
 		$lang->load('plg_user_profile', JPATH_ADMINISTRATOR);
 
-		if (!($form instanceof JForm)) {
+		if (!($form instanceof JForm))
+		{
 			$this->_subject->setError('JERROR_NOT_A_FORM');
 			return false;
 		}
 
 		// Check we are manipulating a valid form.
-		if (!in_array($form->getName(), array('com_admin.profile', 'com_users.registration','com_users.profile'))) {
+		if (!in_array($form->getName(), array('com_admin.profile','com_users.user', 'com_users.registration','com_users.profile'))) {
 			return true;
 		}
 
@@ -191,9 +242,16 @@ class plgUserProfile extends JPlugin
 	{
 		$userId	= JArrayHelper::getValue($data, 'id', 0, 'int');
 
-		if ($userId && $result && isset($data['profile']) && (count($data['profile']))) {
+		if ($userId && $result && isset($data['profile']) && (count($data['profile'])))
+		{
 			try
 			{
+				//Sanitize the date
+				if (!empty($data['profile']['dob'])) {
+					$date = new JDate($data['profile']['dob']);
+					$data['profile']['dob'] = $date->toFormat('%Y-%m-%d');
+				}
+
 				$db = JFactory::getDbo();
 				$db->setQuery(
 					'DELETE FROM #__user_profiles WHERE user_id = '.$userId .
@@ -246,8 +304,8 @@ class plgUserProfile extends JPlugin
 
 		$userId	= JArrayHelper::getValue($user, 'id', 0, 'int');
 
-		if ($userId) {
-
+		if ($userId)
+		{
 			try
 			{
 				$db = JFactory::getDbo();
@@ -259,7 +317,6 @@ class plgUserProfile extends JPlugin
 				if (!$db->query()) {
 					throw new Exception($db->getErrorMsg());
 				}
-
 			}
 			catch (JException $e)
 			{

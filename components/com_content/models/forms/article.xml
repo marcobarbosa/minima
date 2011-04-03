@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: article.xml 19670 2010-11-29 10:45:12Z chdemko $ -->
+<!-- $Id: article.xml 20658 2011-02-10 22:26:27Z dextercowley $ -->
 <form>
 	<fieldset>
 		<field
@@ -34,34 +34,18 @@
 			label="JFIELD_ALIAS_LABEL"
 			description="JFIELD_ALIAS_DESC"
 			class="inputbox"
-			size="45"
-			filter="unset" />
-		<!-- this is for rendering -->
+			size="45" />
+
 		<field
-			name="text"
+			name="articletext"
 			type="editor"
 			buttons="true"
-			label="Content_Text_Label"
-			description="Content_Text_Desc"
+			label="CONTENT_TEXT_LABEL"
+			description="CONTENT_TEXT_DESC"
 			class="inputbox"
-			filter="unset"
+			filter="ContentHelper::filterText"
 			asset_id="com_content"
 		/>
-
-		<!-- and these two are for saving -->
-		<field
-			id="introtext"
-			name="introtext"
-			label="COM_CONTENT_INTROTEXT"
-			type="editor"
-			filter="safehtml"
-			required="true" />
-
-		<field
-			id="fulltext"
-			name="fulltext"
-			type="editor"
-			filter="safehtml" />
 
 		<field
 			id="state"

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: vote.php 18838 2010-09-11 02:11:21Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: vote.php 20727 2011-02-16 10:51:28Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +18,20 @@ jimport('joomla.plugin.plugin');
  */
 class plgContentVote extends JPlugin
 {
+	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
+
 	/**
 	* @since	1.6
 	*/
@@ -44,29 +58,29 @@ class plgContentVote extends JPlugin
 				$img .= $starImageOff;
 			}
 			$html .= '<span class="content_rating">';
-			$html .= JText::_( 'PLG_VOTE_USER_RATING' ) .':'. $img .'&nbsp;/&nbsp;';
-			$html .= $rating_count;
+			$html .= JText::sprintf( 'PLG_VOTE_USER_RATING', $img, $rating_count );
 			$html .= "</span>\n<br />\n";
 
 			if ( $view == 'article' && $row->state == 1)
 			{
-				$uri = &JFactory::getURI();
+				$uri = JFactory::getURI();
 				$uri->setQuery($uri->getQuery().'&hitcount=0');
 
 				$html .= '<form method="post" action="' . $uri->toString() . '">';
-				$html .= '<span class="content_vote">';
+				$html .= '<div class="content_vote">';
 				$html .= JText::_( 'PLG_VOTE_POOR' );
-				$html .= '<input type="radio" alt="vote 1 star" name="user_rating" value="1" />';
-				$html .= '<input type="radio" alt="vote 2 star" name="user_rating" value="2" />';
-				$html .= '<input type="radio" alt="vote 3 star" name="user_rating" value="3" />';
-				$html .= '<input type="radio" alt="vote 4 star" name="user_rating" value="4" />';
-				$html .= '<input type="radio" alt="vote 5 star" name="user_rating" value="5" checked="checked" />';
+				$html .= '<input type="radio" title="'.JText::sprintf('PLG_VOTE_VOTE', '1').'" name="user_rating" value="1" />';
+				$html .= '<input type="radio" title="'.JText::sprintf('PLG_VOTE_VOTE', '2').'" name="user_rating" value="2" />';
+				$html .= '<input type="radio" title="'.JText::sprintf('PLG_VOTE_VOTE', '3').'" name="user_rating" value="3" />';
+				$html .= '<input type="radio" title="'.JText::sprintf('PLG_VOTE_VOTE', '4').'" name="user_rating" value="4" />';
+				$html .= '<input type="radio" title="'.JText::sprintf('PLG_VOTE_VOTE', '5').'" name="user_rating" value="5" checked="checked" />';
 				$html .= JText::_( 'PLG_VOTE_BEST' );
-				$html .= '&nbsp;<input class="button" type="submit" name="submit_vote" value="'. JText::_( 'PLG_VOTE_RATE' ) .'" />';
-				$html .= '<input type="hidden" name="task" value="vote" />';
+				$html .= '&#160;<input class="button" type="submit" name="submit_vote" value="'. JText::_( 'PLG_VOTE_RATE' ) .'" />';
+				$html .= '<input type="hidden" name="task" value="article.vote" />';
 				$html .= '<input type="hidden" name="hitcount" value="0" />';
 				$html .= '<input type="hidden" name="url" value="'.  $uri->toString() .'" />';
-				$html .= '</span>';
+				$html .= JHtml::_('form.token');
+				$html .= '</div>';
 				$html .= '</form>';
 			}
 		}

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<!--
-		$Id: weblink.xml 19648 2010-11-25 12:00:06Z infograf768 $
+		$Id: weblink.xml 20740 2011-02-17 10:28:57Z infograf768 $
 	-->
 <form>
 	<fieldset>
 		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" 
-			readonly="true" class="readonly" />
+			readonly="true" class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="title" type="text" class="inputbox"
 			size="40" label="JGLOBAL_TITLE"
@@ -21,7 +22,7 @@
 		>
 		</field>
 
-		<field name="url" type="text" class="inputbox"
+		<field name="url" type="url" class="inputbox"
 			size="40" label="COM_WEBLINKS_FIELD_URL_LABEL"
 			description="COM_WEBLINKS_FIELD_URL_DESC" required="true" />
 
@@ -60,12 +61,12 @@
 			<option
 				value="-3">COM_WEBLINKS_FIELD_VALUE_REPORTED</option>
 			<option
-				value="-2">JTRASH</option>
+				value="-2">JTRASHED</option>
 		</field>
 
 		<field name="ordering" type="Ordering" class="inputbox"
-			label="COM_WEBLINKS_FIELD_ORDERING_LABEL"
-			description="COM_WEBLINKS_FIELD_ORDERING_DESC" />
+			label="JFIELD_ORDERING_LABEL"
+			description="JFIELD_ORDERING_DESC" />
 
 		<field name="access" type="accesslevel" label="JFIELD_ACCESS_LABEL"
 			description="JFIELD_ACCESS_DESC" class="inputbox" size="1" />
@@ -99,7 +100,7 @@
 			class="inputbox" size="20" />
 
 		<field name="modified" type="calendar" class="readonly"
-			label="JGLOBAL_FIELD_MODIFIED_LABEL" description="JGLOBAL_FIELD_MODIFIED_DESC"
+			label="JGLOBAL_FIELD_MODIFIED_LABEL" description="COM_WEBLINKS_FIELD_MODIFIED_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc" />
 
@@ -136,7 +137,15 @@
 				<option value="2">JBROWSERTARGET_POPUP</option>
 				<option value="3">JBROWSERTARGET_MODAL</option>
 			</field>
+			
+			<field name="width" type="text"
+				class="inputbox validate-numeric" label="COM_WEBLINKS_FIELD_WIDTH_LABEL"
+				description="COM_WEBLINKS_FIELD_WIDTH_DESC" />
 
+			<field name="height" type="text"
+				class="inputbox validate-numeric" label="COM_WEBLINKS_FIELD_HEIGHT_LABEL"
+				description="COM_WEBLINKS_FIELD_HEIGHT_DESC" />
+				
 			<field name="count_clicks" type="list"
 				label="COM_WEBLINKS_FIELD_COUNTCLICKS_LABEL"
 				description="COM_WEBLINKS_FIELD_COUNTCLICKS_DESC"

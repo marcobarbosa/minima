@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: item.php 19839 2010-12-12 08:55:19Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: item.php 20546 2011-02-04 14:25:40Z chdemko $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -560,7 +560,7 @@ class MenusModelItem extends JModelAdmin
 	 * @return	mixed	Menu item data object on success, false on failure.
 	 * @since	1.6
 	 */
-	public function &getItem($pk = null)
+	public function getItem($pk = null)
 	{
 		// Initialise variables.
 		$pk = (!empty($pk)) ? $pk : (int)$this->getState('item.id');
@@ -648,7 +648,8 @@ class MenusModelItem extends JModelAdmin
 		$this->setState('item.type', $table->type);
 
 		// Convert to the JObject before adding the params.
-		$result = JArrayHelper::toObject($table->getProperties(1), 'JObject');
+		$properties = $table->getProperties(1);
+		$result = JArrayHelper::toObject($properties, 'JObject');
 
 		// Convert the params field to an array.
 		$registry = new JRegistry;
@@ -795,7 +796,7 @@ class MenusModelItem extends JModelAdmin
 	 * @since	1.6
 	 * @throws	Exception if there is an error in the form event.
 	 */
-	protected function preprocessForm($form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = 'content')
 	{
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
@@ -816,6 +817,7 @@ class MenusModelItem extends JModelAdmin
 
 			// Confirm that the option is defined.
 			$option = '';
+			$base = '';
 			if (isset($args['option'])) {
 				// The option determines the base path to work with.
 				$option = $args['option'];
@@ -856,11 +858,22 @@ class MenusModelItem extends JModelAdmin
 				}
 			}
 
-			// TODO: Now check for a view manifest file
-			// TODO: Now check for a component manifest file
+			//Now check for a view manifest file
+			if (!$formFile) {
+				$path = JPath::clean($base.'/views/metadata.xml');
+				if (JFile::exists($path)) {
+					$formFile = $path;
+				} else {
+					//Now check for a component manifest file
+					$path = JPath::clean($base.'/metadata.xml');
+					if (JFile::exists($path)) {
+						$formFile = $path;
+					}						
+				}			
+			}	
 		}
 
-			if ($formFile) {
+		if ($formFile) {
 			// If an XML file was found in the component, load it first.
 			// We need to qualify the full path to avoid collisions with component file names.
 
@@ -875,7 +888,7 @@ class MenusModelItem extends JModelAdmin
 
 			// Get the help data from the XML file if present.
 			$help = $xml->xpath('/metadata/layout/help');
-				if (!empty($help)) {
+			if (!empty($help)) {
 				$helpKey = trim((string) $help[0]['key']);
 				$helpURL = trim((string) $help[0]['url']);
 				$helpLoc = trim((string) $help[0]['local']);
@@ -896,7 +909,7 @@ class MenusModelItem extends JModelAdmin
 			$path='null';
 		}
 
-			if (JFile::exists($path)) {
+		if (JFile::exists($path)) {
 			// Add the component params last of all to the existing form.
 			if (!$form->load($path, true, '/config')) {
 				throw new Exception(JText::_('JERROR_LOADFILE_FAILED'));

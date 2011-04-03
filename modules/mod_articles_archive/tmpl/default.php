@@ -1,16 +1,16 @@
 <?php
 /**
- * @version		$Id: default.php 14276 2010-01-18 14:20:28Z louis $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_articles_archive
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<ul class="archive-module<?php echo $params->get('moduleclass_sfx'); ?>">
+<ul class="archive-module<?php echo $moduleclass_sfx; ?>">
 	<?php foreach ($list as $item) : ?>
 	<li>
 		<a href="<?php echo $item->link; ?>">

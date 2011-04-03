@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 17024 2010-05-13 12:47:15Z hackwar $
+ * @version		$Id: default.php 19979 2010-12-25 04:08:13Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_weblinks
  * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 ?>
-<ul class="weblinks<?php echo $params->get('moduleclass_sfx'); ?>">
+<ul class="weblinks<?php echo $moduleclass_sfx; ?>">
 <?php foreach ($list as $item) :	?>
 <li>
 	<?php

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: update.php 19712 2010-12-01 16:38:00Z infograf768 $
+ * @version		$Id: update.php 20803 2011-02-21 19:32:48Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,13 +24,37 @@ jimport('joomla.updater.update');
 class InstallerModelUpdate extends JModelList
 {
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'name',
+				'client_id',
+				'type',
+				'folder',
+				'extension_id',
+				'update_id',
+				'update_site_id',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication('administrator');
 		$this->setState('message',$app->getUserState('com_installer.message'));
@@ -110,9 +134,14 @@ class InstallerModelUpdate extends JModelList
 			$update->loadFromXML($instance->detailsurl);
 			// install sets state and enqueues messages
 			$res = $this->install($update);
+
+			if ($res) {
+				$this->purge();
+			}
+
 			$result = $res & $result;
 		}
-
+		
 		// Set the final state
 		$this->setState('result', $result);
 	}

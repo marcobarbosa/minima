@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 19665 2010-11-29 01:48:41Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,8 +19,10 @@ jimport('joomla.application.component.view');
  */
 class ContentViewForm extends JView
 {
-	protected $state;
+	protected $form;
 	protected $item;
+	protected $return_page;
+	protected $state;
 
 	public function display($tpl = null)
 	{
@@ -29,15 +31,16 @@ class ContentViewForm extends JView
 		$user		= JFactory::getUser();
 
 		// Get model data.
-		$state	= $this->get('State');
-		$item	= $this->get('Item');
-		$form	= $this->get('Form');
+		$this->state		= $this->get('State');
+		$this->item			= $this->get('Item');
+		$this->form			= $this->get('Form');
+		$this->return_page	= $this->get('ReturnPage');
 
-		if (empty($item->id)) {
+		if (empty($this->item->id)) {
 			$authorised = $user->authorise('core.create', 'com_content') || (count($user->getAuthorisedCategories('com_content', 'core.create')));
 		}
 		else {
-			$authorised = $item->params->get('access-edit');
+			$authorised = $this->item->params->get('access-edit');
 		}
 
 		if ($authorised !== true) {
@@ -45,8 +48,8 @@ class ContentViewForm extends JView
 			return false;
 		}
 
-		if (!empty($item)) {
-			$form->bind($item);
+		if (!empty($this->item)) {
+			$this->form->bind($this->item);
 		}
 
 		// Check for errors.
@@ -56,13 +59,13 @@ class ContentViewForm extends JView
 		}
 
 		// Create a shortcut to the parameters.
-		$params	= &$state->params;
+		$params	= &$this->state->params;
 
-		$this->assignRef('state',	$state);
-		$this->assignRef('params',	$params);
-		$this->assignRef('item',	$item);
-		$this->assignRef('form',	$form);
-		$this->assignRef('user',	$user);
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
+		$this->params	= $params;
+		$this->user		= $user;
 
 		$this->_prepareDocument();
 		parent::display($tpl);
@@ -90,7 +93,7 @@ class ContentViewForm extends JView
 
 		$title = $this->params->def('page_title', JText::_('COM_CONTENT_FORM_EDIT_ARTICLE'));
 		if ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
 

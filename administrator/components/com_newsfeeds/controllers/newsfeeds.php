@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: newsfeeds.php 16402 2010-04-24 00:34:07Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: newsfeeds.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -22,9 +22,9 @@ class NewsfeedsControllerNewsfeeds extends JControllerAdmin
 	/**
 	 * Proxy for getModel.
 	 */
-	public function &getModel($name = 'Newsfeed', $prefix = 'NewsfeedsModel')
+	public function getModel($name = 'Newsfeed', $prefix = 'NewsfeedsModel', $config = array('ignore_request' => true))
 	{
-		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
 }

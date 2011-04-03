@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 19068 2010-10-09 13:29:01Z chdemko $
+ * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	mod_articles_archive
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class modArchiveHelper
 {
-	function getList(&$params)
+	static function getList(&$params)
 	{
 		//get database
 		$db		= JFactory::getDbo();
@@ -40,12 +40,15 @@ class modArchiveHelper
 		foreach ($rows as $row) {
 			$date = JFactory::getDate($row->created);
 
-			$created_month	= $date->format("n");
-			$month_name		= $date->format("F");
-			$created_year	= $date->format("Y");
+			$created_month	= $date->format('n');
+			$month_name	= $date->format('F');
+			$created_year	= $date->format('Y');
 
+			$lists[$i] = new stdClass;
+			
 			$lists[$i]->link	= JRoute::_('index.php?option=com_content&view=archive&year='.$created_year.'&month='.$created_month.$itemid);
 			$lists[$i]->text	= JText::sprintf('MOD_ARTICLES_ARCHIVE_DATE',$month_name,$created_year);
+			
 			$i++;
 		}
 		return $lists;

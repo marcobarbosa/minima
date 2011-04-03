@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: blog_item.php 19834 2010-12-11 14:39:40Z chdemko $
+ * @version		$Id: blog_item.php 20488 2011-01-30 18:56:00Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -146,7 +146,9 @@ JHtml::core();
 						echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
 					elseif ($readmore = $this->item->alternative_readmore) :
 						echo $readmore;
-						echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+						if ($params->get('show_readmore_title', 0) != 0) :
+						    echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+						endif;
 					elseif ($params->get('show_readmore_title', 0) == 0) :
 						echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');	
 					else :

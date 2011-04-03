@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: user.php 18212 2010-07-22 06:02:54Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: user.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,7 +17,7 @@ defined('JPATH_BASE') or die;
 class JTableUser extends JTable
 {
 	/**
-	 * Associative array of user group ids => names.
+	 * Associative array of user names => group ids
 	 *
 	 * @access	public
 	 * @since	1.6
@@ -46,7 +46,7 @@ class JTableUser extends JTable
 	 * @return	boolean		True on success, false on failure.
 	 * @since	1.0
 	 */
-	function load($userId = null)
+	function load($userId = null, $reset = true)
 	{
 		// Get the id to load.
 		if ($userId !== null) {
@@ -93,23 +93,14 @@ class JTableUser extends JTable
 				' JOIN #__user_usergroup_map AS m ON m.group_id = g.id' .
 				' WHERE m.user_id = '.(int) $userId
 			);
-			$result = $this->_db->loadObjectList();
-			$groups	= array();
+			// Add the groups to the user data.
+			$this->groups = $this->_db->loadAssocList('title','id');
 
 			// Check for an error message.
 			if ($this->_db->getErrorNum()) {
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-
-			// Create an array of groups.
-			for ($i = 0, $n = count($result); $i < $n; $i++)
-			{
-				$groups[$result[$i]->id] = $result[$i]->title;
-			}
-
-			// Add the groups to the user data.
-			$this->groups = $groups;
 		}
 
 		return $return;
@@ -140,25 +131,20 @@ class JTableUser extends JTable
 		{
 			// Set the group ids.
 			JArrayHelper::toInteger($this->groups);
-			$this->groups = array_fill_keys(array_values($this->groups), null);
 
 			// Get the titles for the user groups.
 			$this->_db->setQuery(
 				'SELECT `id`, `title`' .
 				' FROM `#__usergroups`' .
-				' WHERE `id` = '.implode(' OR `id` = ', array_keys($this->groups))
+				' WHERE `id` = '.implode(' OR `id` = ', $this->groups)
 			);
-			$results = $this->_db->loadObjectList();
+			// Set the titles for the user groups.
+			$this->groups = $this->_db->loadAssocList('title','id');
 
 			// Check for a database error.
 			if ($this->_db->getErrorNum()) {
 				$this->setError($this->_db->getErrorMsg());
 				return false;
-			}
-
-			// Set the titles for the user groups.
-			for ($i = 0, $n = count($results); $i < $n; $i++) {
-				$this->groups[$results[$i]->id] = $results[$i]->title;
 			}
 		}
 
@@ -299,7 +285,7 @@ class JTableUser extends JTable
 			// Set the new user group maps.
 			$this->_db->setQuery(
 				'INSERT INTO `#__user_usergroup_map` (`user_id`, `group_id`)' .
-				' VALUES ('.$this->id.', '.implode('), ('.$this->id.', ', array_keys($this->groups)).')'
+				' VALUES ('.$this->id.', '.implode('), ('.$this->id.', ', $this->groups).')'
 			);
 			$this->_db->query();
 

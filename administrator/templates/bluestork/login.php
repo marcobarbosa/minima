@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: login.php 19779 2010-12-06 06:47:13Z infograf768 $
+ * @version		$Id: login.php 20544 2011-02-04 08:03:31Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.bluestork
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,10 +27,6 @@ JHtml::_('behavior.noframes');
 
 <!--[if IE 7]>
 <link href="templates/<?php echo  $this->template ?>/css/ie7.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-
-<!--[if lte IE 6]>
-<link href="templates/<?php echo  $this->template ?>/css/ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
 <?php  if ($this->params->get('useRoundedCorners')) : ?>

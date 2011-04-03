@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: user.php 19796 2010-12-08 02:33:50Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: user.php 20653 2011-02-10 10:30:31Z chdemko $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -147,6 +147,21 @@ class UsersModelUser extends JModelAdmin
 			return false;
 		}
 
+		// Make sure that we are not removing ourself from Super Admin group
+		$iAmSuperAdmin = $my->authorise('core.admin');
+		if ($iAmSuperAdmin && $my->get('id') == $pk) {
+			// Check that at least one of our new groups is Super Admin
+			$stillSuperAdmin = false;
+			$myNewGroups = $data['groups'];
+			foreach ($myNewGroups as $group) {
+				$stillSuperAdmin = ($stillSuperAdmin) ? ($stillSuperAdmin) : JAccess::checkGroup($group, 'core.admin');
+			}
+			if (!$stillSuperAdmin) {
+				$this->setError(JText::_('COM_USERS_USERS_ERROR_CANNOT_DEMOTE_SELF'));
+				return false;
+			}
+		}
+
 		// Bind the data.
 		if (!$user->bind($data)) {
 			$this->setError($user->getError());
@@ -179,6 +194,9 @@ class UsersModelUser extends JModelAdmin
 		$table	= $this->getTable();
 		$pks	= (array) $pks;
 
+        // Check if I am a Super Admin
+		$iAmSuperAdmin	= $user->authorise('core.admin');
+
 		// Trigger the onUserBeforeSave event.
 		JPluginHelper::importPlugin('user');
 		$dispatcher = JDispatcher::getInstance();
@@ -194,10 +212,12 @@ class UsersModelUser extends JModelAdmin
 			if ($table->load($pk)) {
 				// Access checks.
 				$allow = $user->authorise('core.delete', 'com_users');
+				// Don't allow non-super-admin to delete a super admin
+				$allow = (!$iAmSuperAdmin && JAccess::check($pk, 'core.admin')) ? false : $allow;
 
 				if ($allow) {
-					// Get user data for the user to delete.
-					$user = JFactory::getUser($pk);
+					// Get users data for the users to delete.
+					$user_to_delete = JFactory::getUser($pk);
 
 					// Fire the onUserBeforeDelete event.
 					$dispatcher->trigger('onUserBeforeDelete', array($table->getProperties()));
@@ -207,7 +227,7 @@ class UsersModelUser extends JModelAdmin
 						return false;
 					} else {
 						// Trigger the onUserAfterDelete event.
-						$dispatcher->trigger('onUserAfterDelete', array($user->getProperties(), true, $this->getError()));
+						$dispatcher->trigger('onUserAfterDelete', array($user_to_delete->getProperties(), true, $this->getError()));
 					}
 				}
 				else {
@@ -240,6 +260,8 @@ class UsersModelUser extends JModelAdmin
 		$app		= JFactory::getApplication();
 		$dispatcher	= JDispatcher::getInstance();
 		$user		= JFactory::getUser();
+        // Check if I am a Super Admin
+		$iAmSuperAdmin	= $user->authorise('core.admin');
 		$table		= $this->getTable();
 		$pks		= (array) $pks;
 
@@ -257,6 +279,8 @@ class UsersModelUser extends JModelAdmin
 			else if ($table->load($pk)) {
 				$old	= $table->getProperties();
 				$allow	= $user->authorise('core.edit.state', 'com_users');
+				// Don't allow non-super-admin to delete a super admin
+				$allow = (!$iAmSuperAdmin && JAccess::check($pk, 'core.admin')) ? false : $allow;
 
 				// Prepare the logout options.
 				$options = array(
@@ -332,6 +356,8 @@ class UsersModelUser extends JModelAdmin
 		// Initialise variables.
 		$dispatcher	= JDispatcher::getInstance();
 		$user		= JFactory::getUser();
+        // Check if I am a Super Admin
+		$iAmSuperAdmin	= $user->authorise('core.admin');
 		$table		= $this->getTable();
 		$pks		= (array) $pks;
 
@@ -341,6 +367,8 @@ class UsersModelUser extends JModelAdmin
 			if ($table->load($pk)) {
 				$old	= $table->getProperties();
 				$allow	= $user->authorise('core.edit.state', 'com_users');
+				// Don't allow non-super-admin to delete a super admin
+				$allow = (!$iAmSuperAdmin && JAccess::check($pk, 'core.admin')) ? false : $allow;
 
 				if (empty($table->activation)) {
 					// Ignore activated accounts.
@@ -411,6 +439,7 @@ class UsersModelUser extends JModelAdmin
 			// Only run operations if a config array is present.
 			// Ensure there is a valid group.
 			$group_id = JArrayHelper::getValue($config, 'group_id', 0, 'int');
+			JArrayHelper::toInteger($user_ids);
 
 			if ($group_id < 1) {
 				$this->setError(JText::_('COM_USERS_ERROR_INVALID_GROUP'));
@@ -531,7 +560,7 @@ class UsersModelUser extends JModelAdmin
 			$result = array();
 			$config = JComponentHelper::getParams('com_users');
 			if ($groupId = $config->get('new_usertype')) {
-				$result[$groupId] = null;
+				$result[] = $groupId;
 			}
 		}
 		else {

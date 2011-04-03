@@ -1,7 +1,7 @@
 <?php
 /**
  * @version		$Id: article.php 17217 2010-05-22 09:30:00Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
 
-require_once dirname(__FILE__).DS.'article.php';
+require_once dirname(__FILE__).'/article.php';
 
 /**
  * Feature model.
@@ -40,7 +40,7 @@ class ContentModelFeature extends ContentModelArticle
 	 * @return	array	An array of conditions to add to add to ordering queries.
 	 * @since	1.6
 	 */
-	protected function getReorderConditions($table = null)
+	protected function getReorderConditions($table)
 	{
 		$condition = array();
 		return $condition;

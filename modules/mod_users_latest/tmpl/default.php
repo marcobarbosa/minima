@@ -1,15 +1,15 @@
 <?php
 /**
- * @version		$Id: default.php 18117 2010-07-13 18:09:01Z infograf768 $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_users_latest
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 // no direct access
 defined('_JEXEC') or die;
 ?>
-	<ul  class="latestusers<?php echo $params->get('moduleclass_sfx') ?>" >
+	<ul  class="latestusers<?php echo $moduleclass_sfx ?>" >
 <?php foreach($names as $name) : ?>
 
 		<li>

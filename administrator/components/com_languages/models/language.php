@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: language.php 19293 2010-10-30 04:03:45Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: language.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -25,7 +25,7 @@ class LanguagesModelLanguage extends JModelAdmin
 	 * @return	JTable
 	 * @since	1.6
 	 */
-	public function getTable()
+	public function getTable($name='', $prefix='', $options = array())
 	{
 		return JTable::getInstance('Language');
 	}
@@ -77,7 +77,8 @@ class LanguagesModelLanguage extends JModelAdmin
 			return $false;
 		}
 
-		$value = JArrayHelper::toObject($table->getProperties(1), 'JObject');
+		$properties = $table->getProperties(1);
+		$value = JArrayHelper::toObject($properties, 'JObject');
 
 		return $value;
 	}

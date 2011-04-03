@@ -1,16 +1,15 @@
 <?php
 /**
- * @version		$Id: edit.php 17973 2010-06-30 10:23:05Z ian $
+ * @version		$Id: edit.php 20206 2011-01-09 17:11:35Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.mootools');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
@@ -18,7 +17,7 @@ JHtml::_('behavior.formvalidation');
 $lang = JFactory::getLanguage();
 $lang->load( 'plg_user_profile', JPATH_ADMINISTRATOR );
 ?>
-<div class="profile-edit<?php echo $this->params->get('pageclass_sfx')?>">
+<div class="profile-edit<?php echo $this->pageclass_sfx?>">
 <?php if ($this->params->get('show_page_heading')) : ?>
 	<h1><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 <?php endif; ?>
@@ -38,7 +37,7 @@ $lang->load( 'plg_user_profile', JPATH_ADMINISTRATOR );
 			<?php else:?>
 				<dt>
 					<?php echo $field->label; ?>
-					<?php if (!$field->required): ?>
+					<?php if (!$field->required && $field->type!='Spacer'): ?>
 					<span class="optional"><?php echo JText::_('COM_USERS_OPTIONAL'); ?></span>
 					<?php endif; ?>
 				</dt>
@@ -50,11 +49,11 @@ $lang->load( 'plg_user_profile', JPATH_ADMINISTRATOR );
 	<?php endif;?>
 <?php endforeach;?>
 
-	<button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
-<?php echo JText::_('COM_USERS_OR'); ?>
-	<a href="<?php echo JRoute::_(''); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
-
 		<div>
+			<button type="submit" class="validate"><span><?php echo JText::_('JSUBMIT'); ?></span></button>
+			<?php echo JText::_('COM_USERS_OR'); ?>
+			<a href="<?php echo JRoute::_(''); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
+		
 			<input type="hidden" name="option" value="com_users" />
 			<input type="hidden" name="task" value="profile.save" />
 			<?php echo JHtml::_('form.token'); ?>

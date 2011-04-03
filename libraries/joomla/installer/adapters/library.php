@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: library.php 18650 2010-08-26 13:28:49Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: library.php 20457 2011-01-27 07:51:58Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,6 +43,7 @@ class JInstallerLibrary extends JAdapterInstance
 		||	$lang->load($extension . '.sys', $source, $lang->getDefault(), false, false)
 		||	$lang->load($extension . '.sys', JPATH_SITE, $lang->getDefault(), false, false);
 	}
+	
 	/**
 	 * Custom install method
 	 *
@@ -50,7 +51,7 @@ class JInstallerLibrary extends JAdapterInstance
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
-	function install()
+	public function install()
 	{
 		// Get the extension manifest object
 		$this->manifest = $this->parent->getManifest();
@@ -105,7 +106,7 @@ class JInstallerLibrary extends JAdapterInstance
 		}
 		else
 		{
-			$this->parent->setPath('extension_root', JPATH_ROOT.DS.'libraries'.DS.implode(DS,explode('/',$group)));
+			$this->parent->setPath('extension_root', JPATH_LIBRARIES.DS.implode(DS,explode('/',$group)));
 		}
 
 		/**
@@ -144,6 +145,7 @@ class JInstallerLibrary extends JAdapterInstance
 
 		// Parse optional tags
 		$this->parent->parseLanguages($this->manifest->languages);
+		$this->parent->parseMedia($this->manifest->media);
 
 		/**
 		 * ---------------------------------------------------------------------------------------------
@@ -194,7 +196,7 @@ class JInstallerLibrary extends JAdapterInstance
 	 * @return boolean True on success
 	 * @since  1.5
 	 */
-	function update()
+	public function update()
 	{
 		// since this is just files, an update removes old files
 		// Get the extension manifest object
@@ -232,7 +234,7 @@ class JInstallerLibrary extends JAdapterInstance
 	 * @return	boolean	True on success
 	 * @since	1.5
 	 */
-	function uninstall($id)
+	public function uninstall($id)
 	{
 		// Initialise variables.
 		$retval = true;
@@ -261,7 +263,7 @@ class JInstallerLibrary extends JAdapterInstance
 		{
 			$manifest = new JLibraryManifest($manifestFile);
 			// Set the plugin root path
-			$this->parent->setPath('extension_root', JPATH_ROOT.DS.'libraries'.DS.$manifest->libraryname);
+			$this->parent->setPath('extension_root', JPATH_LIBRARIES.DS.$manifest->libraryname);
 
 			$xml = JFactory::getXML($manifestFile);
 
@@ -324,7 +326,7 @@ class JInstallerLibrary extends JAdapterInstance
 	 * @return array(JExtension) list of extensions available
 	 * @since 1.6
 	 */
-	function discover()
+	public function discover()
 	{
 		$results = Array();
 		$file_list = JFolder::files(JPATH_MANIFESTS.DS.'libraries','\.xml$');
@@ -338,7 +340,7 @@ class JInstallerLibrary extends JAdapterInstance
 			$extension->set('element', $file);
 			$extension->set('name', $file);
 			$extension->set('state', -1);
-			$extension->set('manifest_cache', serialize($manifest_details));
+			$extension->set('manifest_cache', json_encode($manifest_details));
 			$results[] = $extension;
 		}
 		return $results;
@@ -352,7 +354,7 @@ class JInstallerLibrary extends JAdapterInstance
 	 * @return void
 	 * @since 1.6
 	 */
-	function discover_install()
+	public function discover_install()
 	{
 		/* Libraries are a strange beast, they are actually references to files
 		 * There are two parts to a library which are disjunct in their locations
@@ -369,7 +371,7 @@ class JInstallerLibrary extends JAdapterInstance
 		$this->parent->manifest = $this->parent->isManifest($manifestPath);
 		$this->parent->setPath('manifest', $manifestPath);
 		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
-		$this->parent->extension->manifest_cache = serialize($manifest_details);
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
 		$this->parent->extension->state = 0;
 		$this->parent->extension->name = $manifest_details['name'];
 		$this->parent->extension->enabled = 1;
@@ -380,6 +382,31 @@ class JInstallerLibrary extends JAdapterInstance
 		else
 		{
 			JError::raiseWarning(101, JText::_('JLIB_INSTALLER_ERROR_LIB_DISCOVER_STORE_DETAILS'));
+			return false;
+		}
+	}
+	
+	/**
+	 * Refreshes the extension table cache
+	 * @return  boolean result of operation, true if updated, false on failure
+	 * @since	1.6
+	 */
+	public function refreshManifestCache()
+	{
+		// Need to find to find where the XML file is since we don't store this normally
+		$manifestPath = JPATH_MANIFESTS.DS.'libraries'. DS.$this->parent->extension->element.'.xml';
+		$this->parent->manifest = $this->parent->isManifest($manifestPath);
+		$this->parent->setPath('manifest', $manifestPath);
+
+		$manifest_details = JApplicationHelper::parseXMLInstallFile($this->parent->getPath('manifest'));
+		$this->parent->extension->manifest_cache = json_encode($manifest_details);
+		$this->parent->extension->name = $manifest_details['name'];
+
+		try {
+			return $this->parent->extension->store();
+		}
+		catch(JException $e) {
+			JError::raiseWarning(101, JText::_('JLIB_INSTALLER_ERROR_LIB_REFRESH_MANIFEST_CACHE'));
 			return false;
 		}
 	}

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: module.php 19366 2010-11-06 03:08:16Z eddieajau $
+ * @version		$Id: module.php 20880 2011-03-03 22:02:26Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	Modules
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -155,7 +155,9 @@ class ModulesModelModule extends JModelAdmin
 				else {
 					$table->title .= ' (2)';
 				}
-
+				// Unpublish duplicate module
+				$table->published = 0;
+				
 				if (!$table->check() || !$table->store()) {
 					throw new Exception($table->getError());
 				}
@@ -348,7 +350,8 @@ class ModulesModelModule extends JModelAdmin
 			}
 
 			// Convert to the JObject before adding other data.
-			$this->_cache[$pk] = JArrayHelper::toObject($table->getProperties(1), 'JObject');
+			$properties = $table->getProperties(1);
+			$this->_cache[$pk] = JArrayHelper::toObject($properties, 'JObject');
 
 			// Convert the params field to an array.
 			$registry = new JRegistry;
@@ -460,7 +463,7 @@ class ModulesModelModule extends JModelAdmin
 	 * @throws	Exception if there is an error loading the form.
 	 * @since	1.6
 	 */
-	protected function preprocessForm($form, $data)
+	protected function preprocessForm(JForm $form, $data, $group = '')
 	{
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
@@ -503,7 +506,22 @@ class ModulesModelModule extends JModelAdmin
 		}
 
 		// Trigger the default form events.
-		parent::preprocessForm($form, $data);
+		parent::preprocessForm($form, $data, $group);
+	}
+
+	/**
+	 * Loads ContentHelper for filters before validating data.
+	 *
+	 * @param	object		$form		The form to validate against.
+	 * @param	array		$data		The data to validate.
+	 * @return	mixed		Array of filtered data if valid, false otherwise.
+	 * @since	1.1
+	 */
+	function validate($form, $data)
+	{
+		require_once(JPATH_ADMINISTRATOR.'/components/com_content/helpers/content.php');
+
+		return parent::validate($form, $data);
 	}
 
 	/**
@@ -530,6 +548,18 @@ class ModulesModelModule extends JModelAdmin
 			$table->load($pk);
 			$isNew = false;
 		}
+		
+		// Alter the title and published state for Save as Copy
+		if (JRequest::getVar('task') == 'save2copy') {
+			$orig_data	= JRequest::getVar('jform', array(), 'post', 'array');
+			$orig_table = clone($this->getTable());
+			$orig_table->load( (int) $orig_data['id']);
+
+			if ($data['title'] == $orig_table->title) {
+				$data['title'] .= ' (copy)';
+				$data['published'] = 0;
+			}
+		}
 
 		// Bind the data.
 		if (!$table->bind($data)) {
@@ -545,7 +575,8 @@ class ModulesModelModule extends JModelAdmin
 			$this->setError($table->getError());
 			return false;
 		}
-
+		
+		
 		// Trigger the onExtensionBeforeSave event.
 		$result = $dispatcher->trigger('onExtensionBeforeSave', array('com_modules.module', &$table, $isNew));
 		if (in_array(false, $result, true)) {
@@ -672,7 +703,7 @@ class ModulesModelModule extends JModelAdmin
 	 * @return	array	An array of conditions to add to add to ordering queries.
 	 * @since	1.6
 	 */
-	protected function getReorderConditions($table = null)
+	protected function getReorderConditions($table)
 	{
 		$condition = array();
 		$condition[] = 'client_id = '.(int) $table->client_id;

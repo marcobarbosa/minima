@@ -1,9 +1,9 @@
 <?php
 /**
- * version $Id: view.html.php 19825 2010-12-11 11:21:17Z infograf768 $
+ * version $Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
  * @package		Joomla
  * @subpackage	Newsfeeds
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  *
  */
@@ -81,10 +81,10 @@ class NewsfeedsViewNewsfeed extends JView
 		$item->parent_slug = $item->category_alias ? ($item->parent_id . ':' . $item->parent_alias) : $item->parent_id;
 
 		// check if cache directory is writeable
-		$cacheDir = JPATH_BASE.DS.'cache'.DS;
+		$cacheDir = JPATH_CACHE.DS;
 
 		if (!is_writable($cacheDir)) {
-			echo JText::_('CACHE_DIRECTORY_UNWRITABLE');
+			JError::raiseNotice('0', JText::_('COM_NEWSFEEDS_CACHE_DIRECTORY_UNWRITABLE'));
 			return;
 		}
 
@@ -192,6 +192,9 @@ class NewsfeedsViewNewsfeed extends JView
 		// feed elements
 		$newsfeed->items = array_slice($newsfeed->items, 0, $newsfeed->numarticles);
 
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
 		$this->assignRef('params'  , $params  );
 		$this->assignRef('newsfeed', $newsfeed);
 		$this->assignRef('state', $state);
@@ -254,22 +257,32 @@ class NewsfeedsViewNewsfeed extends JView
 		}
 
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		else if ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		if (empty($title)) {
 			$title = $this->item->name;
 		}
 		$this->document->setTitle($title);		
 
-		if ($this->item->metadesc) {
+		if ($this->item->metadesc)
+		{
 			$this->document->setDescription($this->item->metadesc);
 		}
+		elseif (!$this->item->metadesc && $this->params->get('menu-meta_description')) 
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
 
-		if ($this->item->metakey) {
+		if ($this->item->metakey)
+		{
 			$this->document->setMetadata('keywords', $this->item->metakey);
+		}
+		elseif (!$this->item->metakey && $this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

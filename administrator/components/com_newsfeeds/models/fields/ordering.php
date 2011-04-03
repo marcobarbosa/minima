@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: ordering.php 16675 2010-05-02 23:28:28Z eddieajau $
+ * @version		$Id: ordering.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -62,7 +62,7 @@ class JFormFieldOrdering extends JFormField
 		// Create a read-only list (no name) with a hidden input to store the value.
 		if ((string) $this->element['readonly'] == 'true') {
 			$html[] = JHtml::_('list.ordering', '', $query, trim($attr), $this->value, $newsfeedId ? 0 : 1);
-			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'"/>';
+			$html[] = '<input type="hidden" name="'.$this->name.'" value="'.htmlspecialchars($this->value).'"/>';
 		}
 		// Create a regular list.
 		else {

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: language.php 19874 2010-12-14 10:29:00Z chdemko $
+ * @version		$Id: language.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Language
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -28,6 +28,7 @@ jimport('joomla.filesystem.stream');
  */
 class JLanguage extends JObject
 {
+	protected static $languages = array();
 	/**
 	 * Debug language, If true, highlights if string isn't found
 	 *
@@ -256,7 +257,10 @@ class JLanguage extends JObject
 	 */
 	public static function getInstance($lang, $debug=false)
 	{
-		return new JLanguage($lang, $debug);
+		if (!isset(self::$languages[$lang.$debug])) {
+			self::$languages[$lang.$debug] = new JLanguage($lang, $debug);
+		}
+		return self::$languages[$lang.$debug];
 	}
 
 	/**

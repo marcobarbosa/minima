@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: logout.php 19527 2010-11-17 13:58:55Z chdemko $
+ * @version		$Id: logout.php 20240 2011-01-10 05:46:24Z dextercowley $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,7 +27,7 @@ class plgSystemLogout extends JPlugin
 	 * @param	object	The object to observe -- event dispatcher.
 	 * @param	object	The configuration object for the plugin.
 	 * @return	void
-	 * @since	1.0
+	 * @since	1.5
 	 */
 	function __construct(&$subject, $config)
 	{
@@ -78,11 +78,7 @@ class plgSystemLogout extends JPlugin
 		// Make sure the error is a 403 and we are in the frontend.
 		if ($error->getCode() == 403 and $app->isSite()) {
 			// Redirect to the home page
-			$lang = JFactory::getLanguage();
-			$lang->load('plg_system_logout', JPATH_ADMINISTRATOR, null, false, false)
-		||	$lang->load('plg_system_logout', JPath::clean(JPATH_PLUGINS . "/system/logout"), null, false, false)
-		||	$lang->load('plg_system_logout', JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
-		||	$lang->load('plg_system_logout', JPath::clean(JPATH_PLUGINS . "/system/logout"), $lang->getDefault(), false, false);
+			$this->loadLanguage();
 			$app->redirect('index.php', JText::_('PLG_SYSTEM_LOGOUT_REDIRECT'), null, true, false);
 		}
 		else {

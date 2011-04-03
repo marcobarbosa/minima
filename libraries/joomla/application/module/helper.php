@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: helper.php 19598 2010-11-20 09:26:00Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: helper.php 20472 2011-01-28 15:03:58Z chdemko $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -170,8 +170,8 @@ abstract class JModuleHelper
 			$chrome = array();
 		}
 
-		require_once JPATH_BASE.'/templates/system/html/modules.php';
-		$chromePath = JPATH_BASE.'/templates/'.$app->getTemplate().'/html/modules.php';
+		require_once JPATH_THEMES.'/system/html/modules.php';
+		$chromePath = JPATH_THEMES.'/'.$app->getTemplate().'/html/modules.php';
 		if (!isset($chrome[$chromePath]))
 		{
 			if (file_exists($chromePath)) {
@@ -224,7 +224,7 @@ abstract class JModuleHelper
 	{
 		$template = JFactory::getApplication()->getTemplate();
 		$defaultLayout = $layout;
-		if (strpos($layout, ':') !== false ) 
+		if (strpos($layout, ':') !== false )
 		{
 			// Get the template and file name from the string
 			$temp = explode(':', $layout);
@@ -234,7 +234,7 @@ abstract class JModuleHelper
 		}
 
 		// Build the template and base path for the layout
-		$tPath = JPATH_BASE.'/templates/'.$template.'/html/'.$module.'/'.$layout.'.php';
+		$tPath = JPATH_THEMES.'/'.$template.'/html/'.$module.'/'.$layout.'.php';
 		$bPath = JPATH_BASE.'/modules/'.$module.'/tmpl/'.$defaultLayout.'.php';
 
 		// If the template has a layout override use it
@@ -259,99 +259,98 @@ abstract class JModuleHelper
 			return $clean;
 		}
 
-		$Itemid = JRequest::getInt('Itemid');
-		$app	= JFactory::getApplication();
-		$user	= JFactory::getUser();
-		$groups	= implode(',', $user->getAuthorisedViewLevels());
-		$db		= JFactory::getDbo();
+		$Itemid 	= JRequest::getInt('Itemid');
+		$app		= JFactory::getApplication();
+		$user		= JFactory::getUser();
+		$groups		= implode(',', $user->getAuthorisedViewLevels());
+		$lang 		= JFactory::getLanguage()->getTag();
+		$clientId 	= (int) $app->getClientId();
 
-		$query = new JDatabaseQuery;
-		$query->select('id, title, module, position, content, showtitle, params, mm.menuid');
-		$query->from('#__modules AS m');
-		$query->join('LEFT','#__modules_menu AS mm ON mm.moduleid = m.id');
-		$query->where('m.published = 1');
+		$cache 		= JFactory::getCache ('com_modules', '');
+		$cacheid 	= md5(serialize(array($Itemid, $groups, $clientId, $lang)));
 
-		$date = JFactory::getDate();
-		$now = $date->toMySQL();
-		$nullDate = $db->getNullDate();
-		$query->where('(m.publish_up = '.$db->Quote($nullDate).' OR m.publish_up <= '.$db->Quote($now).')');
-		$query->where('(m.publish_down = '.$db->Quote($nullDate).' OR m.publish_down >= '.$db->Quote($now).')');
+		if (!($clean = $cache->get($cacheid))) {
+			$db	= JFactory::getDbo();
 
-		$clientid = (int) $app->getClientId();
+			$query = new JDatabaseQuery;
+			$query->select('id, title, module, position, content, showtitle, params, mm.menuid');
+			$query->from('#__modules AS m');
+			$query->join('LEFT','#__modules_menu AS mm ON mm.moduleid = m.id');
+			$query->where('m.published = 1');
 
-		if (!$user->authorise('core.admin',1)) {
+			$date = JFactory::getDate();
+			$now = $date->toMySQL();
+			$nullDate = $db->getNullDate();
+			$query->where('(m.publish_up = '.$db->Quote($nullDate).' OR m.publish_up <= '.$db->Quote($now).')');
+			$query->where('(m.publish_down = '.$db->Quote($nullDate).' OR m.publish_down >= '.$db->Quote($now).')');
+
 			$query->where('m.access IN ('.$groups.')');
-		}
-		$query->where('m.client_id = '. $clientid);
-		if (isset($Itemid)) {
+			$query->where('m.client_id = '. $clientId);
 			$query->where('(mm.menuid = '. (int) $Itemid .' OR mm.menuid <= 0)');
-		}
-		$query->order('position, ordering');
 
-		// Filter by language
-		if ($app->isSite() && $app->getLanguageFilter()) {
-			$query->where('m.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' . $db->Quote('*') . ')');
-		}
+			// Filter by language
+			if ($app->isSite() && $app->getLanguageFilter()) {
+				$query->where('m.language IN (' . $db->Quote($lang) . ',' . $db->Quote('*') . ')');
+			}
 
-		// Set the query
-		$db->setQuery($query);
+			$query->order('position, ordering');
 
-		$cache 		= JFactory::getCache ('com_modules', 'callback');
-		$cacheid 	= md5(serialize(array($Itemid, $groups, $clientid, JFactory::getLanguage()->getTag())));
+			// Set the query
+			$db->setQuery($query);
+			$modules = $db->loadObjectList();
+			$clean	= array();
 
-		$modules = $cache->get(array($db, 'loadObjectList'), null, $cacheid, false);
-		if (null === $modules)
-		{
-			JError::raiseWarning('SOME_ERROR_CODE', JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $db->getErrorMsg()));
-			$return = false;
-			return $return;
-		}
+			if($db->getErrorNum()){
+				JError::raiseWarning(500, JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $db->getErrorMsg()));
+				return $clean;
+			}
 
-		// Apply negative selections and eliminate duplicates
-		$negId	= $Itemid ? -(int)$Itemid : false;
-		$dupes	= array();
-		$clean	= array();
-		for ($i = 0, $n = count($modules); $i < $n; $i++)
-		{
-			$module = &$modules[$i];
-
-			// The module is excluded if there is an explicit prohibition, or if
-			// the Itemid is missing or zero and the module is in exclude mode.
-			$negHit	= ($negId === (int) $module->menuid)
-					|| (!$negId && (int)$module->menuid < 0);
-
-			if (isset($dupes[$module->id]))
+			// Apply negative selections and eliminate duplicates
+			$negId	= $Itemid ? -(int)$Itemid : false;
+			$dupes	= array();
+			for ($i = 0, $n = count($modules); $i < $n; $i++)
 			{
-				// If this item has been excluded, keep the duplicate flag set,
-				// but remove any item from the cleaned array.
-				if ($negHit) {
-					unset($clean[$module->id]);
+				$module = &$modules[$i];
+
+				// The module is excluded if there is an explicit prohibition, or if
+				// the Itemid is missing or zero and the module is in exclude mode.
+				$negHit	= ($negId === (int) $module->menuid)
+						|| (!$negId && (int)$module->menuid < 0);
+
+				if (isset($dupes[$module->id]))
+				{
+					// If this item has been excluded, keep the duplicate flag set,
+					// but remove any item from the cleaned array.
+					if ($negHit) {
+						unset($clean[$module->id]);
+					}
+					continue;
 				}
-				continue;
-			}
-			$dupes[$module->id] = true;
+				$dupes[$module->id] = true;
 
-			// Only accept modules without explicit exclusions.
-			if (!$negHit)
-			{
-				//determine if this is a custom module
-				$file				= $module->module;
-				$custom				= substr($file, 0, 4) == 'mod_' ?  0 : 1;
-				$module->user		= $custom;
-				// Custom module name is given by the title field, otherwise strip off "com_"
-				$module->name		= $custom ? $module->title : substr($file, 4);
-				$module->style		= null;
-				$module->position	= strtolower($module->position);
-				$clean[$module->id]	= $module;
+				// Only accept modules without explicit exclusions.
+				if (!$negHit)
+				{
+					//determine if this is a custom module
+					$file				= $module->module;
+					$custom				= substr($file, 0, 4) == 'mod_' ?  0 : 1;
+					$module->user		= $custom;
+					// Custom module name is given by the title field, otherwise strip off "com_"
+					$module->name		= $custom ? $module->title : substr($file, 4);
+					$module->style		= null;
+					$module->position	= strtolower($module->position);
+					$clean[$module->id]	= $module;
+				}
 			}
+			unset($dupes);
+			// Return to simple indexing that matches the query order.
+			$clean = array_values($clean);
+
+			$cache->store($clean, $cacheid);
 		}
-		unset($dupes);
-		// Return to simple indexing that matches the query order.
-		$clean = array_values($clean);
 
 		return $clean;
 	}
-
 
 	/**
 	* Module cache helper

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: mod_footer.php 18629 2010-08-25 04:46:03Z eddieajau $
+ * @version		$Id: mod_footer.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_footer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -28,5 +28,7 @@ if (JString::strpos($line1, '%sitename%')) {
 else {
 	$lineone = $line1;
 }
+
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 require JModuleHelper::getLayoutPath('mod_footer', $params->get('layout', 'default'));

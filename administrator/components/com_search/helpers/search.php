@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: search.php 18650 2010-08-26 13:28:49Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: search.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -49,7 +49,7 @@ class SearchHelper
 		return $result;
 	}
 
-	function santiseSearchWord(&$searchword, $searchphrase)
+	static function santiseSearchWord(&$searchword, $searchphrase)
 	{
 		$ignored = false;
 
@@ -89,7 +89,7 @@ class SearchHelper
 		return $ignored;
 	}
 
-	function limitSearchWord(&$searchword)
+	static function limitSearchWord(&$searchword)
 	{
 		$restriction = false;
 
@@ -111,7 +111,7 @@ class SearchHelper
 		return $restriction;
 	}
 
-	function logSearch($search_term)
+	static function logSearch($search_term)
 	{
 		$db = JFactory::getDbo();
 
@@ -151,7 +151,7 @@ class SearchHelper
 	 * @param string The searchword to select around
 	 * @return string
 	 */
-	function prepareSearchContent($text, $searchword)
+	public static function prepareSearchContent($text, $searchword)
 	{
 		// strips tags won't remove the actual jscript
 		$text = preg_replace("'<script[^>]*>.*?</script>'si", "", $text);
@@ -160,7 +160,7 @@ class SearchHelper
 		// replace line breaking tags with whitespace
 		$text = preg_replace("'<(br[^/>]*?/|hr[^/>]*?/|/(div|h[1-6]|li|p|td))>'si", ' ', $text);
 
-		return SearchHelper::_smartSubstr(strip_tags($text), $searchword);
+		return self::_smartSubstr(strip_tags($text), $searchword);
 	}
 
 	/**
@@ -171,7 +171,7 @@ class SearchHelper
 	 * @param array List of object variables to check against
 	 * @returns boolean True if searchTerm is in object, false otherwise
 	 */
-	function checkNoHtml($object, $searchTerm, $fields)
+	public static function checkNoHtml($object, $searchTerm, $fields)
 	{
 		$searchRegex = array(
 				'#<script[^>]*>.*?</script>#si',
@@ -204,7 +204,7 @@ class SearchHelper
 	 * @param string The searchword to select around
 	 * @return string
 	 */
-	function _smartSubstr($text, $searchword)
+	static function _smartSubstr($text, $searchword)
 	{
 		$lang = JFactory::getLanguage();
 		$length = $lang->getSearchDisplayedCharactersNumber();

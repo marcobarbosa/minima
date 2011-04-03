@@ -12,7 +12,7 @@
 	<!-- Add fields to the parameters object for the layout. -->
 <fields name="params">
 <fieldset name="advanced" label="COM_MENUS_LAYOUT_FEATURED_OPTIONS">
-			<field name="bloglayout" type="spacer" class="spacer"
+			<field name="bloglayout" type="spacer" class="text"
 					label="JGLOBAL_SUBSLIDER_BLOG_LAYOUT_LABEL"
 			/>
 
@@ -109,7 +109,7 @@
 
 </fieldset>
 
-<fieldset name="article">
+<fieldset name="article" label="COM_CONTENT_ATTRIBS_FIELDSET_LABEL">
 			<field name="show_title" type="list"
 				description="JGLOBAL_SHOW_TITLE_DESC"
 				label="JGLOBAL_SHOW_TITLE_LABEL"
@@ -196,8 +196,8 @@
 			>
 				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="use_article">COM_CONTENT_FIELD_VALUE_USE_ARTICLE_SETTINGS</option>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
+				<option value="0">JNo</option>
+				<option value="1">JYes</option>
 			</field>
 
 			<field name="show_create_date" type="list"

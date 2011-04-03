@@ -3,7 +3,7 @@
  * @version		$Id:storage.php 6961 2007-03-15 16:06:53Z tcp $
  * @package		Joomla.Framework
  * @subpackage	Cache
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,7 +19,7 @@ defined('JPATH_BASE') or die;
  * @subpackage	Cache
  * @since		1.5
  */
-class JCacheStorage extends JObject
+class JCacheStorage
 {
 	/**
 	 * @since	1.6
@@ -137,7 +137,7 @@ class JCacheStorage extends JObject
 	 * @return	mixed	Boolean false on failure or a cached data object
 	 * @since	1.5
 	 */
-	public function get($id, $group, $checkTime)
+	public function get($id, $group, $checkTime = true)
 	{
 		return false;
 	}
@@ -151,7 +151,7 @@ class JCacheStorage extends JObject
 	public function getAll()
 	{
 		if (!class_exists('JCacheStorageHelper', false)) {
-			require_once JPATH_ROOT.DS.'libraries'.DS.'joomla'.DS.'cache'.DS.'storage'.DS.'helpers'.DS.'helper.php';
+			require_once JPATH_LIBRARIES.'/joomla/cache/storage/helpers/helper.php';
 		}
 		return;
 	}
@@ -194,7 +194,7 @@ class JCacheStorage extends JObject
 	 * @return	boolean	True on success, false otherwise
 	 * @since	1.5
 	 */
-	public function clean($group, $mode)
+	public function clean($group, $mode = null)
 	{
 		return true;
 	}
@@ -241,7 +241,7 @@ class JCacheStorage extends JObject
 	 * @return	boolean	True on success, false otherwise.
 	 * @since	1.6
 	 */
-	public function unlock($id,$group)
+	public function unlock($id, $group = null)
 	{
 		return false;
 	}

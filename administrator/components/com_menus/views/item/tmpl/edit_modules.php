@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit_modules.php 19089 2010-10-12 09:06:57Z infograf768 $
+ * @version		$Id: edit_modules.php 20795 2011-02-21 07:17:28Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -30,13 +30,13 @@ defined('_JEXEC') or die;
 
 				</td>
 				<td class="center">
-				<?php if (is_null($module->menuid)) : ?>
-					<?php echo JText::_('JNONE'); ?>
-				<?php elseif ($module->menuid != 0) : ?>
-					<?php echo JText::_('COM_MENUS_MODULE_SHOW_VARIES'); ?>
-				<?php else : ?>
-					<?php echo JText::_('JALL'); ?>
-				<?php endif; ?>
+					<?php if (is_null($module->menuid)) : ?>
+						<?php echo JText::_('JNO'); ?>
+					<?php elseif ($module->menuid != 0) : ?>
+						<?php echo JText::_('JYES'); ?>
+					<?php else : ?>
+						<?php echo JText::_('JALL'); ?>
+					<?php endif; ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

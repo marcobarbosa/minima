@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: profile.xml 19516 2010-11-17 06:07:30Z eddieajau $ -->
+	<!-- $Id: profile.xml 20081 2011-01-05 00:40:30Z eddieajau $ -->
 <form>
 	<fieldset name="user_details">
 		<field name="name" type="text"
@@ -36,8 +36,8 @@
 			size="30"
 		/>
 	
-		<field name="email" type="text"
-			class="inputbox validate-email"
+		<field name="email" type="email"
+			class="inputbox"
 			description="COM_ADMIN_USER_FIELD_EMAIL_DESC"
 			label="JGLOBAL_EMAIL"
 			required="true"

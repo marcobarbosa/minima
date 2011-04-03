@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: cache.php 18650 2010-08-26 13:28:49Z ian $
+ * @version		$Id: cache.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Cache
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -51,7 +51,7 @@ class JCache extends JObject
 		$conf = JFactory::getConfig();
 
 		$this->_options = array(
-			'cachebase'		=> $conf->get('cache_path', JPATH_ROOT.DS.'cache'),
+			'cachebase'		=> $conf->get('cache_path', JPATH_CACHE),
 			'lifetime'		=> (int)$conf->get('cachetime'),
 			'language'		=> $conf->get('language', 'en-GB'),
 			'storage'		=> $conf->get('cache_handler',''),

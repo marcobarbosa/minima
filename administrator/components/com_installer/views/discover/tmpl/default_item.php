@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_item.php 17769 2010-06-20 01:50:48Z dextercowley $
+ * @version		$Id: default_item.php 20650 2011-02-10 10:14:12Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -25,7 +25,7 @@ defined('_JEXEC') or die;
 		<?php if (!$this->item->element) : ?>
 		<strong>X</strong>
 		<?php else : ?>
-		<a href="index.php?option=com_installer&amp;type=manage&amp;task=<?php echo $this->item->task; ?>&amp;eid[]=<?php echo $this->item->extension_id; ?>&amp;limitstart=<?php echo $this->pagination->limitstart; ?>&amp;<?php echo JUtility::getToken();?>=1"><?php echo JHTML::_('image','images/'.$this->item->img, $this->item->alt, array( 'border' => 0, 'title' => $this->item->action)); ?></a>
+		<a href="index.php?option=com_installer&amp;type=manage&amp;task=<?php echo $this->item->task; ?>&amp;eid[]=<?php echo $this->item->extension_id; ?>&amp;limitstart=<?php echo $this->pagination->limitstart; ?>&amp;<?php echo JUtility::getToken();?>=1"><?php echo JHTML::_('image','images/'.$this->item->img, $this->item->alt, array('title' => $this->item->action)); ?></a>
 		<?php endif; ?>
 	</td>
 	<td class="center"><?php echo @$this->item->folder != '' ? $this->item->folder : 'N/A'; ?></td>

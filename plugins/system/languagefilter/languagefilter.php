@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: languagefilter.php 19865 2010-12-13 11:01:26Z chdemko $
+ * @version		$Id: languagefilter.php 20655 2011-02-10 15:34:13Z infograf768 $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,14 +35,14 @@ class plgSystemLanguageFilter extends JPlugin
 	{
 		$app = JFactory::getApplication();
 		$router = $app->getRouter();
-
-		// setup language data
-		self::$mode_sef 	= ($router->getMode() == JROUTER_MODE_SEF) ? true : false;
-		self::$sefs 		= JLanguageHelper::getLanguages('sef');
-		self::$lang_codes 	= JLanguageHelper::getLanguages('lang_code');
-		self::$default_lang = JComponentHelper::getParams('com_languages')->get('site', 'en-GB');
-		self::$default_sef 	= self::$lang_codes[self::$default_lang]->sef;
 		if ($app->isSite()) {
+			// setup language data
+			self::$mode_sef 	= ($router->getMode() == JROUTER_MODE_SEF) ? true : false;
+			self::$sefs 		= JLanguageHelper::getLanguages('sef');
+			self::$lang_codes 	= JLanguageHelper::getLanguages('lang_code');
+			self::$default_lang = JComponentHelper::getParams('com_languages')->get('site', 'en-GB');
+			self::$default_sef 	= self::$lang_codes[self::$default_lang]->sef;
+
 			$app->setLanguageFilter(true);
 			$uri = JFactory::getURI();
 			if (self::$mode_sef) {
@@ -160,6 +160,10 @@ class plgSystemLanguageFilter extends JPlugin
 	public function parseRule(&$router, &$uri)
 	{
 		$array = array();
+		$lang_code = JRequest::getString(JUtility::getHash('language'), null ,'cookie');
+		if (!$lang_code) {
+			$lang_code = JLanguageHelper::detectLanguage();
+		}
 		if (self::$mode_sef) {
 			$path = $uri->getPath();
 			$parts = explode('/', $path);
@@ -167,14 +171,15 @@ class plgSystemLanguageFilter extends JPlugin
 			$sef = $parts[0];
 
 			if (!isset(self::$sefs[$sef])) {
-				$sef = self::$default_sef;
+				$sef = isset(self::$lang_codes[$lang_code]) ? self::$lang_codes[$lang_code]->sef : self::$default_sef;
+				$uri->setPath($sef . '/' . $path);
 				
 				$app = JFactory::getApplication();
 				if ($app->getCfg('sef_rewrite')) {
-					$app->redirect(JURI::base(true).'/'.$sef.'/'.$path );
+					$app->redirect($uri->base().$uri->toString(array('path', 'query', 'fragment')));
 				}
 				else {
-					$app->redirect(JURI::base(true).'/index.php/'.$sef.'/'.$path );
+					$app->redirect($uri->base().'index.php/'.$uri->toString(array('path', 'query', 'fragment')));
 				}
 			}
 			$lang_code = self::$sefs[$sef]->lang_code;
@@ -186,7 +191,7 @@ class plgSystemLanguageFilter extends JPlugin
 		else {
 			$sef = $uri->getVar('lang');
 			if (!isset(self::$sefs[$sef])) {
-				$sef = self::$default_sef;
+				$sef = isset(self::$lang_codes[$lang_code]) ? self::$lang_codes[$lang_code]->sef : self::$default_sef;
 				$uri->setVar('lang', $sef);
 				$app = JFactory::getApplication();
 				$app->redirect(JURI::base(true).'/index.php?'.$uri->getQuery());

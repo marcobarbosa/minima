@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 /**
- * @version		$Id: template.css 19821 2010-12-10 23:08:35Z infograf768 $
+ * @version		$Id: template.css 20742 2011-02-17 16:26:27Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  *
@@ -60,7 +60,7 @@ body {
 	height: 100%;
 }
 
-body,td,th {
+body,td,th,span,a {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -118,6 +118,10 @@ a:hover {
 	text-decoration: underline;
 }
 
+a:focus {
+	text-decoration: underline;
+}
+
 iframe {
 	border: 0;
 }
@@ -157,8 +161,8 @@ span.unwritable		{ color: #a20000;}
 }
 
 #header h1.title {
-	font-size: 1.6em;
-	font-weight: bold;
+	font-size: 1.5em;
+	font-weight: normal;
 	line-height: 25px;
 	margin: 0;
 	padding: 0 0 0 120px;
@@ -265,7 +269,6 @@ span.note {
 }
 
 div.checkin-tick {
-	background: url(../images/admin/tick.png) 20px 50% no-repeat;
 	text-indent: -9999px;
 }
 
@@ -328,6 +331,14 @@ div.configuration {
 }
 
 div.toolbar-box {
+}
+
+div.toolbar-box h3 {
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	padding:0;
+	margin:0;
 }
 
 div.toolbar-list {
@@ -425,6 +436,11 @@ textarea#mm_message {
 	border: 0 none;
 }
 
+h3.pane-toggler-down a:focus,
+h3.pane-toggler a:focus {
+	outline: none;
+}
+
 .pane-toggler  span {
 	padding-left: 20px;
 }
@@ -436,13 +452,25 @@ textarea#mm_message {
 .pane-toggler-down {
 }
 
-/* for hiding the unseen panel (problems in ie including 8) */
-/* .pane-toggler + div {display: none;} */
+/* The following line hides the unseen panel (prevents the mouse from activating in IE, so overridden in the ie css files) */
+/*.pane-toggler + div.pane-slider {display: none;}*/
+.pane-slider.pane-hide {
+	display: none;
+}
 
 input#jformparams_link_titles1,
 input#jformparams_show_title1,
 input#jformparams_link_category1 {
 
+}
+
+div#position-icon.pane-sliders div.pane-down div.icon-wrapper {
+	margin: 5px 0 5px 0;
+}
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+	padding: 5px 0 5px 10px;
+	margin: 0;
 }
 
 /**
@@ -512,6 +540,24 @@ div.current fieldset.radio label {
 	margin: 3px 0 0 2px;
 }
 
+div.current fieldset.checkboxes {
+	float:left;
+	clear: right;
+}
+
+div.current fieldset.checkboxes input {
+	clear:left;
+	min-width: 15px;
+	float:left;
+	margin: 3px 0 0 2px;
+}
+
+div.current fieldset.checkboxes label {
+	clear:right;
+	min-width: 45px;
+	margin: 3px 0 0 2px;
+}
+
 div.current input,
 div.current span.faux-input,
 div.current textarea,
@@ -525,6 +571,12 @@ div.current select { margin-bottom: 15px;}
 div.current table#acl-config th.acl-groups {
 	text-align: left;
 }
+
+div.current table#filter-config th.acl-groups {
+	text-align: left;
+}
+
+div.current table#filter-config select { margin-bottom: 0px;}
 
 li.acl-editgroups,
 li.acl-resetbtn {
@@ -743,6 +795,10 @@ div.col {
 	float: left;
 }
 
+div.options-section.col {
+	float: right;
+}
+
 div.col1 {
 	float: left;
 	width: 45%;
@@ -785,14 +841,14 @@ div.main-section {
 }
 
 div.options-section {
-	width: 39%;
-	margin-top: 10px;
+	width: 38%;
+	margin: 10px 10px 10px 0;
 }
 
 /* for bluestork style html */
 div.width-40.fltrt {
-	width: 39.5%;
-	margin: 10px 3px 10px 0;
+	width: 38%;
+	margin: 10px 10px 10px 0;
 }
 
 div.rules-section {
@@ -875,6 +931,19 @@ fieldset.panelform fieldset.checkboxes span.faux-label {
 }
 
 /* end checkboxes */
+
+/* spacer */
+div.current span.spacer > span.before,
+fieldset.adminform span.spacer > span.before,
+fieldset.panelform span.spacer > span.before {
+	clear: both;
+	overflow: hidden;
+	height: 0;
+	display: block;
+}
+
+/* end spacer */
+
 
 fieldset.panelform-legacy label,
 fieldset.adminform-legacy label,
@@ -979,10 +1048,9 @@ input.readonly, span.faux-input {
 input.required {
 }
 
-label.required:after {
-	content:" *";
-	/* content:url(../images/required.png);
-	vertical-align: middle; */
+.star {
+	color:#cc0000;
+	font-size:1.2em;
 }
 
 input.disabled {
@@ -1010,7 +1078,9 @@ div.extdescript {
 	margin-left: 10px;
 }
 
-input[type="button"] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
 	font-family: Arial, Helvetica, sans-serif;
 	padding: 1px 6px;
 	font-size: 1.2em;
@@ -1448,7 +1518,7 @@ ul#new-modules-list {
 }
 
 .menu-module-list {
-	list-position: inside;
+	list-style-position: inside;
 	padding-left: 10px;
 	margin-left: 5px;
 }
@@ -1512,6 +1582,8 @@ button {
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	margin-right: 3px;
+	margin-left: 3px;
 }
 
 button:hover,button:focus {
@@ -1649,8 +1721,8 @@ div.pagination {
 
 .pagination div.limit select {
 	font-size: 100%;
-	height: 1.8em;
-	line-height: 1.8em;
+	/*height: 1.8em;
+	line-height: 1.8em;*/
 
 }
 
@@ -1660,77 +1732,6 @@ div.pagination {
 	height: 1.8em;
 	line-height: 1.8em;
 	margin-right: 20px;
-}
-
-div.pagination .button2-right, div.pagination .button2-left {
-	font-size: 1.2em;
-	height: 1.6em;
-	line-height: 1.6em;
-}
-
-	/* Style if pagination is part of the table (old style) */
-table.adminlist .pagination {
-	display: table;
-	padding: 0;
-	margin: 0 auto;
-	font-size: .8em;
-}
-
-table.adminlist .pagination button {
-	font-size: 1.2em;
-	height: 1.6em;
-	line-height: 1.5em;
-	margin-right: 20px;
-}
-
-/**
- * Pagination styles
- */
-
-	/* Normal pagination styles */
-div.containerpg {
-	position: relative;
-	left: 50%;
-	float: left;
-	clear: left;
-}
-
-div.pagination {
-	position: relative;
-	left: -50%;
-	margin: 0 auto;
-	padding: .5em;
-}
-
-.pagination div.limit {
-	float: left;
-	margin: 0 10px;
-	font-size: 1.2em;
-	height: 1.6em;
-	line-height: 1.6em;
-
-}
-
-.pagination div.limit label {
-	font-size: 100%;
-	height: 1.6em;
-	line-height: 1.6em;
-}
-
-.pagination div.limit select {
-	font-size: 100%;
-	height: 1.6em;
-	line-height: 1.6em;
-	padding: 0;
-}
-
-	/* The Go submittal button */
-.pagination button {
-	font-size: 100%;
-	height: 1.6em;
-	line-height: 1.6em;
-	margin-right: 20px;
-	padding-bottom: 5px;
 }
 
 div.pagination .button2-right, div.pagination .button2-left {
@@ -1758,7 +1759,7 @@ table.adminlist .pagination button {
  * MCE Editor
  */
 div.toggle-editor {
-	margin-top: -15px;
+	margin: -15px;
 }
 
 /**
@@ -1825,7 +1826,7 @@ a.jgrid:hover {
  */
 div.message {
 	text-align: center;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1.2em;
 	padding: 3px;
 	margin-bottom: 10px;
@@ -1876,7 +1877,8 @@ h2.modal-title {
 	margin-left: 15px;
 	margin-bottom:0;
 	margin-top: 5px;
-	font-size: 1.5em;
+	font-size: 1.8em;
+	padding-bottom: .5em;
 }
 
 ul.menu_types {
@@ -1923,6 +1925,24 @@ dl.menu_type dd ul li {
 /* dl.menu_type dd ul {
 	margin-left: -40px;
 } */
+
+ul#new-modules-list {
+	padding: 5px 0 0 15px;
+	width:95%;
+	margin: 0;
+	list-style: none;
+}
+ul#new-modules-list li {
+	list-style: none;
+	display: block;
+	float:left;
+	margin: 0 20px 0 0;
+	width: 47%;
+}
+ul#new-modules-list li a {
+	font-size: 1em;
+	line-height: 1.5em;
+}
 
 body.contentpane #filter-bar {
 	font-size: 80%;
@@ -1974,6 +1994,19 @@ body.contentpane input, body.contentpane select {
 	padding-right: 20px;
 }
 
+	/* Hide overlayed controls so that keyboarders can get to the modal */
+.body-overlayed a,
+.body-overlayed input,
+.body-overlayed button {
+	visibility: hidden;
+}
+
+.body-overlayed #sbox-window a,
+.body-overlayed #sbox-window input,
+.body-overlayed #sbox-window button {
+	visibility: visible;
+}
+
 /**
  * Admin Form Styles
  */
@@ -1992,6 +2025,8 @@ body.contentpane input, body.contentpane select {
 	height: 0;
 	overflow: hidden;
 	position: absolute;
+	padding:0;
+	margin:0;
 }
 
 	/* Firefox has issues styling legend so this is a universal fix
@@ -2020,6 +2055,7 @@ fieldset.panelform span.faux-label {
 	min-width: 12em;
 	float:left;
 	margin-left: 10px;
+	margin-right: 5px;
 }
 
 fieldset.adminform.long label,
@@ -2044,20 +2080,40 @@ fieldset.panelform input, fieldset.panelform span.faux-input, fieldset.panelform
 	width:auto;
 }
 
+/* -------- Batch Section ---------- */
+fieldset.batch {
+	margin: 20px 10px 10px 10px;
+	padding: 10px;
+}
 fieldset.batch label {
-	line-height: 2em;
-	float:left;
+	margin: 5px;
+	min-width: 40px;
+}
+fieldset.batch button {
+	margin: 3px;
+}
+fieldset#batch-choose-action {
+	clear: left;
+	border: 0 none;
+}
+fieldset.batch label {
+	float: left;
+	clear: none;
+}
+fieldset label#batch-choose-action-lbl {
+	clear: left;
+	margin-top: 15px;
+}
+
+fieldset.batch select, fieldset.batch input, fieldset.batch img, fieldset.batch button {
+	float: left;
+}
+
+select#batch-menu-id {
+	margin-right: 30px;
+}
+label#batch-access-lbl {
 	margin-right: 10px;
-}
-
-fieldset.batch input, fieldset.batch textarea, fieldset.batch select, fieldset.batch img {
-	float:left;
-	margin:5px 25px 5px 0;
-	width:auto;
-}
-
-fieldset.batch input[type="radio"] {
-	margin-right: 5px;
 }
 
 div#jform_ordering {
@@ -2070,8 +2126,9 @@ div#jform_ordering {
 	width:30px;
 }
 
-fieldset.adminform input#jform-imp {
-	width:5em;
+fieldset.panelform label#jform-imp {
+	min-width:3em;
+	font-size: 1.091em;
 }
 
 fieldset.adminform input#jform_clickurl {
@@ -2322,10 +2379,16 @@ table#acl-config td select {
 label#jform_rules-lbl {
 	float: none;
 	white-space: nowrap;
+	display:none;
+	visibility:hidden;
 }
 
-/* Disabled until verified */
-label#jform_rules-lbl {display:none;}
+label#jform_filters-lbl {
+	float: none;
+	white-space: nowrap;
+	display: none;
+	visibility:hidden;
+}
 
 /**
 * Mod_rewrite Warning
@@ -2348,7 +2411,9 @@ ul.config-option-list fieldset {
 	padding-right: 0;
 }
 
-/* CSS Rules Permission Angie with changes for Hathor */
+/* *
+* Permission Rules
+*/
 
 #permissions-sliders ul#rules,
 #permissions-sliders ul#rules ul
@@ -2356,19 +2421,12 @@ ul.config-option-list fieldset {
     margin:0 0 0 0px !important;
     padding:0 0 0 0px !important;
     list-style-type:none;
-  
 }
 
 #permissions-sliders ul#rules li
 {
 	margin:0px 0 0 0%;
-	/*padding:0 0 0 1%;*/
 	padding:0;
-}
-
-#permissions-sliders ul#rules .mypanel
-{
-	width:99%;
 }
 
 ul#rules li .pane-sliders .panel h3.title
@@ -2377,18 +2435,10 @@ ul#rules li .pane-sliders .panel h3.title
 
 #permissions-sliders ul#rules .pane-slider
 {
-    padding:0px;
-    position:absolute; 
-    top:0px;
-    right:0 ;
-    background:none;
-    width:60%; 
 }
 
 #permissions-sliders ul#rules li h3
 {
-	font-size:1.10em;
-	font-weight:normal;
 }
 
 #permissions-sliders ul#rules li h3.pane-toggler-down a
@@ -2407,24 +2457,12 @@ ul#rules li .pane-sliders .panel h3.title
 #permissions-sliders ul#rules .group-kind
 {
 }
-            
+           
 #permissions-sliders ul#rules table.group-rules
 {
     border-collapse:collapse;
-     width:100%
-}
-
-#permissions-sliders ul#rules table.group-rules caption
-{
-	padding:5px; 
-	font-weight:bold;
-	text-align:left;
-}
-
-#permissions-sliders ul#rules table.group-rules caption span
-{
-	font-weight:normal;
-	font-size: .9em;
+   	margin: 5px;
+    width:100%
 }
 
 #permissions-sliders ul#rules table.group-rules td
@@ -2447,13 +2485,23 @@ ul#rules li .pane-sliders .panel h3.title
     margin-bottom: 3px;
     margin-left:0;
     border:0;
-    margin-right:60.5%; 
 }
+
+#permissions-sliders p.rule-desc
+{
+	font-size: 1.1em;
+}
+
+#permissions-sliders div.rule-notes
+{
+	font-size: 1.1em;
+}
+
 
 ul#rules table.aclmodify-table
 {
 }
-	
+
 ul#rules table.group-rules td label
 {
 	margin:0 !important;
@@ -2479,7 +2527,6 @@ table.group-rules td select
 #permissions-sliders ul#rules .mypanel
 {
 	padding:0px; 
-	width:100%;
 	line-height: 1.3em;
 }
 
@@ -2490,7 +2537,6 @@ table.group-rules td select
 
 #permissions-sliders ul#rules 
 {	
-	min-height:45em ;
 	padding:5px;
 }
 
@@ -2503,20 +2549,23 @@ table.group-rules td select
 {
 }
 
-#permissions-sliders span.level
-{
+#permissions-sliders ul#rules table.group-rules td label {
+	min-width: 1em;
 }
 
 #permissions-sliders .pane-toggler span
 {
-	padding-left:5px;
+	padding-left:20px;
 }
 
 #permissions-sliders .pane-toggler-down span {
+	padding-left: 20px
 }
 
-#permissions-sliders .pane-toggler-down span {
-	padding-left:5px
+#permissions-sliders .pane-toggler-down span.level,
+#permissions-sliders .pane-toggler span.level
+{
+	padding: 0;
 }
 
 #permissions-sliders ul#rules .panel h3	{
@@ -2525,10 +2574,12 @@ table.group-rules td select
 /* global_config permissions */
 
 #page-permissions fieldset ul#rules .pane-slider
-	{width:60%;}
+{
+}
 
 #permissions-sliders
-	{ min-height:35em; width:100%; }
+{
+}
 
 /*
  * Debug styles
@@ -2543,6 +2594,17 @@ table.group-rules td select
 dl.tabs dt h3 {
 	padding: 0;
 	font-size:100%;
+}
+
+/**
+ * Helpmenus
+ */
+ul.helpmenu li {
+	float: right;
+	margin: 10px;
+	padding: 0;
+	list-style-type: none;
+	font-weight: bold;
 }
 
  /* CSS file for Accessible Admin Menu
@@ -2748,4 +2810,17 @@ dl.tabs dt h3 {
 #submenu a.active, #submenu span.nolink.active {
 	cursor: default;
 	text-decoration: none;
+}
+
+/* -- CUSTOM LANG STRINGS STYLES  ----------- */
+
+.red {
+	font-weight: bold;
+	color: #c00;
+}
+
+/* -- OTHER STYLES  ----------- */
+
+.pre_message {
+	font-size: 1.3em;
 }

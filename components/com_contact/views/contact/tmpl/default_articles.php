@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_articles.php 19193 2010-10-21 22:01:55Z chdemko $
+ * @version		$Id: default_articles.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

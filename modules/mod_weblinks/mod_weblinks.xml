@@ -7,7 +7,7 @@
 	<name>mod_weblinks</name>
 	<author>Joomla! Project</author>
 	<creationDate>July 2009</creationDate>
-	<copyright>Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
@@ -96,9 +96,9 @@
 					label="MOD_WEBLINKS_FIELD_DESCRIPTION_LABEL"
 					description="MOD_WEBLINKS_FIELD_DESCRIPTION_DESC">
 					<option
-						value="1">JYES</option>
+						value="1">JSHOW</option>
 					<option
-						value="0">JNO</option>
+						value="0">JHIDE</option>
 				</field>
 				<field
 					name="hits"
@@ -107,9 +107,9 @@
 					label="MOD_WEBLINKS_FIELD_HITS_LABEL"
 					description="MOD_WEBLINKS_FIELD_HITS_DESC">
 					<option
-						value="1">JYES</option>
+						value="1">JSHOW</option>
 					<option
-						value="0">JNO</option>
+						value="0">JHIDE</option>
 				</field>
 
 				<field

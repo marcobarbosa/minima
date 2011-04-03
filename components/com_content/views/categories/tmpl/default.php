@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 17130 2010-05-17 05:52:36Z eddieajau $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,10 +12,8 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
-// If the page class is defined, wrap the whole output in a div.
-$pageClass = $this->params->get('pageclass_sfx');
 ?>
-<div class="categories-list<?php echo $pageClass;?>">
+<div class="categories-list<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading', 1)) : ?>
 <h1>
 	<?php echo $this->escape($this->params->get('page_heading')); ?>

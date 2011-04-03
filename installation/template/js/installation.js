@@ -1,8 +1,8 @@
 /**
- * @version		$Id: installation.js 19213 2010-10-23 08:57:56Z infograf768 $
+ * @version		$Id: installation.js 20754 2011-02-18 04:30:40Z dextercowley $
  * @package		Joomla.Installation
  * @subpackage	JavaScript
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,62 +11,55 @@ if (typeof(Install) === 'undefined') {
 	var Install = {};
 };
 
+Install.submitform = function(task) {
+	var form = document.id('adminForm');
+	Joomla.submitform(task, form);
+}
+
 /**
  * Method to install sample data via AJAX request.
  */
 Install.sampleData = function(el, filename) {
 	// make the ajax call
-	el = $(el);
-	filename = $(filename);
-	var req = new Request({
+	el = document.id(el);
+	filename = document.id(filename);
+	var req = new Request.JSON({
 		method: 'get',
 		url: 'index.php?'+document.id(el.form).toQueryString(),
 		data: {'task':'setup.loadSampleData', 'format':'json'},
 		onRequest: function() {
 			el.set('disabled', 'disabled');
 			filename.set('disabled', 'disabled');
-			$('theDefaultError').setStyle('display','none');
+			document.id('theDefaultError').setStyle('display','none');
 		},
-		onComplete: function(response) {
-			try {
-				var r = JSON.decode(response);
-			} catch(e) {
-				var r = false;
-			}
-
-			if (r)
-			{
+		onSuccess: function(r) {
+			if (r) {
 				Joomla.replaceTokens(r.token);
 				if (r.error == false) {
 					el.set('value', r.data.text);
 					el.set('onclick','');
 					el.set('disabled', 'disabled');
 					filename.set('disabled', 'disabled');
-					$('jform_sample_installed').set('value','1');
-				}
-				else
-				{
-					$('theDefaultError').setStyle('display','block');
-					$('theDefaultErrorMessage').set('html', r.message);
+					document.id('jform_sample_installed').set('value','1');
+				} else {
+					document.id('theDefaultError').setStyle('display','block');
+					document.id('theDefaultErrorMessage').set('html', r.message);
 					el.set('disabled', '');
 					filename.set('disabled', '');
 				}
-			}
-			else
-			{
-				$('theDefaultError').setStyle('display','block');
-				$('theDefaultErrorMessage').set('html', response );
+			} else {
+				document.id('theDefaultError').setStyle('display','block');
+				document.id('theDefaultErrorMessage').set('html', response );
 				el.set('disabled', 'disabled');
 				filename.set('disabled', 'disabled');
 			}
 		},
 		onFailure: function(xhr) {
 			var r = JSON.decode(xhr.responseText);
-			if (r)
-			{
+			if (r) {
 				Joomla.replaceTokens(r.token);
-				$('theDefaultError').setStyle('display','block');
-				$('theDefaultErrorMessage').set('html', r.message);
+				document.id('theDefaultError').setStyle('display','block');
+				document.id('theDefaultErrorMessage').set('html', r.message);
 			}
 			el.set('disabled', '');
 			filename.set('disabled', '');
@@ -79,33 +72,27 @@ Install.sampleData = function(el, filename) {
  */
 Install.detectFtpRoot = function(el) {
 	// make the ajax call
-	el = $(el);
-	var req = new Request({
+	el = document.id(el);
+	var req = new Request.JSON({
 		method: 'get',
 		url: 'index.php?'+document.id(el.form).toQueryString(),
 		data: {'task':'setup.detectFtpRoot', 'format':'json'},
 		onRequest: function() { el.set('disabled', 'disabled'); },
 		onFailure: function(xhr) {
 			var r = JSON.decode(xhr.responseText);
-			if (r)
-			{
+			if (r) {
 				Joomla.replaceTokens(r.token)
 				alert(xhr.status+': '+r.message);
-			}
-			else
-			{
+			} else {
 				alert(xhr.status+': '+xhr.statusText);
 			}				
 		},
-		onComplete: function(response) {
-			var r = JSON.decode(response);
-			if (r)
-			{
+		onSuccess: function(r) {
+			if (r) {
 				Joomla.replaceTokens(r.token)
 				if (r.error == false) {
 					document.id('jform_ftp_root').set('value', r.data.root);
-				}
-				else {
+				} else {
 					alert(r.message);
 				}
 			}
@@ -119,33 +106,27 @@ Install.detectFtpRoot = function(el) {
  */
 Install.verifyFtpSettings = function(el) {
 	// make the ajax call
-	el = $(el);
-	var req = new Request({
+	el = document.id(el);
+	var req = new Request.JSON({
 		method: 'get',
 		url: 'index.php?'+document.id(el.form).toQueryString(),
 		data: {'task':'setup.verifyFtpSettings', 'format':'json'},
 		onRequest: function() { el.set('disabled', 'disabled'); },
 		onFailure: function(xhr) {
 			var r = JSON.decode(xhr.responseText);
-			if (r)
-			{
+			if (r) {
 				Joomla.replaceTokens(r.token)
 				alert(xhr.status+': '+r.message);
-			}
-			else
-			{
+			} else {
 				alert(xhr.status+': '+xhr.statusText);
 			}				
 		},
-		onComplete: function(response) {
-			var r = JSON.decode(response);
-			if (r)
-			{
+		onSuccess: function(r) {
+			if (r) {
 				Joomla.replaceTokens(r.token)
 				if (r.error == false) {
 					alert(Joomla.JText._('INSTL_FTP_SETTINGS_CORRECT'));
-				}
-				else {
+				} else {
 					alert(r.message);
 				}
 			}
@@ -153,6 +134,49 @@ Install.verifyFtpSettings = function(el) {
 		},
 		onError: function(response) {
 			alert('error');
+		}
+	}).send();
+};
+
+/**
+ * Method to remove the installation Folder after a successful installation.
+ */
+Install.removeFolder = function(el) {
+	el = document.id(el);
+	var req = new Request.JSON({
+		method: 'get',
+		url: 'index.php?'+document.id(el.form).toQueryString(),
+		data: {'task':'setup.removeFolder', 'format':'json'},
+		onRequest: function() {
+			el.set('disabled', 'disabled');
+			document.id('theDefaultError').setStyle('display','none');
+		},
+		onComplete: function(r) {
+			if (r) {
+				Joomla.replaceTokens(r.token);
+				if (r.error == false) {
+					el.set('value', r.data.text);
+					el.set('onclick','');
+					el.set('disabled', 'disabled');
+				} else {
+					document.id('theDefaultError').setStyle('display','block');
+					document.id('theDefaultErrorMessage').set('html', r.message);
+					el.set('disabled', '');
+				}
+			} else {
+				document.id('theDefaultError').setStyle('display','block');
+				document.id('theDefaultErrorMessage').set('html', response );
+				el.set('disabled', 'disabled');
+			}
+		},
+		onFailure: function(xhr) {
+			var r = JSON.decode(xhr.responseText);
+			if (r) {
+				Joomla.replaceTokens(r.token);
+				document.id('theDefaultError').setStyle('display','block');
+				document.id('theDefaultErrorMessage').set('html', r.message);
+			}
+			el.set('disabled', '');
 		}
 	}).send();
 };

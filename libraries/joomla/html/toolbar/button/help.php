@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: help.php 19053 2010-10-05 21:32:38Z chdemko $
+ * @version		$Id: help.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -54,12 +54,10 @@ class JButtonHelp extends JButton
 	 *
 	 * Redefined from JButton class
 	 *
-	 * @param		string	$name	Button name
-	 *
 	 * @return		string	Button CSS Id
 	 * @since		1.5
 	 */
-	public function fetchId($name)
+	public function fetchId()
 	{
 		return $this->_parent->getName().'-'."help";
 	}

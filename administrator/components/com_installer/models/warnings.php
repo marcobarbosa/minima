@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: warnings.php 17858 2010-06-23 17:54:28Z eddieajau $
+ * @version		$Id: warnings.php 20422 2011-01-24 10:13:55Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -65,6 +65,13 @@ class InstallerModelWarnings extends JModelList
 			return $messages;
 		}
 		$messages = Array();
+		$file_uploads = ini_get('file_uploads');
+		if(!$file_uploads)
+		{
+			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_FILEUPLOADSDISABLED'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_FILEUPLOADISDISABLEDDESC'));
+		}
+
+
 		$upload_dir = ini_get('upload_tmp_dir');
 		if (!$upload_dir) {
 			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_PHPUPLOADNOTSET'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_PHPUPLOADNOTSETDESC'));
@@ -84,12 +91,33 @@ class InstallerModelWarnings extends JModelList
 			}
 		}
 
-		$bytes = $this->return_bytes(ini_get('memory_limit'));
-		if ($bytes < (8 * 1024 * 1024)) {
+		$memory_limit = $this->return_bytes(ini_get('memory_limit'));
+		if ($memory_limit < (8 * 1024 * 1024)) { // 8MB
 			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_LOWMEMORYWARN'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_LOWMEMORYDESC'));
-		} else if ($bytes < (16 * 1024 * 1024)) {
+		} else if ($memory_limit < (16 * 1024 * 1024)) { //16MB
 			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_MEDMEMORYWARN'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_MEDMEMORYDESC'));
 		}
+
+
+		$post_max_size = $this->return_bytes(ini_get('post_max_size'));
+		$upload_max_filesize = $this->return_bytes(ini_get('upload_max_filesize'));
+		
+		if($post_max_size < $upload_max_filesize)
+		{
+			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_UPLOADBIGGERTHANPOST'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_UPLOADBIGGERTHANPOSTDESC'));
+		}
+			
+		if($post_max_size < (4 * 1024 * 1024)) // 4MB
+		{
+			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_SMALLPOSTSIZE'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_SMALLPOSTSIZEDESC'));
+		}
+
+		if($upload_max_filesize < (4 * 1024 * 1024)) // 4MB
+		{
+			$messages[] = Array('message'=>JText::_('COM_INSTALLER_MSG_WARNINGS_SMALLUPLOADSIZE'), 'description'=>JText::_('COM_INSTALLER_MSG_WARNINGS_SMALLUPLOADSIZEDESC'));
+		}
+	
+	
 		return $messages;
 	}
 }

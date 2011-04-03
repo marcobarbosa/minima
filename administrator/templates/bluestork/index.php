@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: index.php 19779 2010-12-06 06:47:13Z infograf768 $
+ * @version		$Id: index.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	templates.bluestork
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -68,7 +68,7 @@ $app = JFactory::getApplication();
 				if ($task == 'edit' || $task == 'editA' || JRequest::getInt('hidemainmenu')) {
 					$logoutLink = '';
 				} else {
-					$logoutLink = JRoute::_('index.php?option=com_login&task=logout');
+					$logoutLink = JRoute::_('index.php?option=com_login&task=logout&'. JUtility::getToken() .'=1');
 				}
 				$hideLinks	= JRequest::getBool('hidemainmenu');
 				$output = array();

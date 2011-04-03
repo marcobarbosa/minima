@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_login.php 19713 2010-12-01 17:01:50Z infograf768 $
+ * @version		$Id: default_login.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.5
  */
@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 JHtml::_('behavior.keepalive');
 ?>
-<div class="login<?php echo $this->params->get('pageclass_sfx')?>">
+<div class="login<?php echo $this->pageclass_sfx?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<h1>
 		<?php echo $this->escape($this->params->get('page_heading')); ?>
@@ -27,7 +27,7 @@ JHtml::_('behavior.keepalive');
 		<?php endif; ?>
 
 		<?php if (($this->params->get('login_image')!='')) :?>
-			<img src="<?php echo $this->params->get('login_image'); ?>" class="login-image" alt="<?php echo JTEXT::_('COM_USER_LOGIN_IMAGE_ALT')?>"/>
+			<img src="<?php echo $this->escape($this->params->get('login_image')); ?>" class="login-image" alt="<?php echo JTEXT::_('COM_USER_LOGIN_IMAGE_ALT')?>"/>
 		<?php endif; ?>
 
 	<?php if ($this->params->get('logindescription_show') == 1 || $this->params->get('login_image') != '') : ?>
@@ -43,9 +43,9 @@ JHtml::_('behavior.keepalive');
 					<?php echo $field->input; ?></div>
 				<?php endif; ?>
 			<?php endforeach; ?>
+			<button type="submit" class="button"><?php echo JText::_('JLOGIN'); ?></button>
+			<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url',$this->form->getValue('return'))); ?>" />
+			<?php echo JHtml::_('form.token'); ?>
 		</fieldset>
-		<button type="submit" class="button"><?php echo JText::_('JLOGIN'); ?></button>
-		<input type="hidden" name="return" value="<?php echo base64_encode($this->params->get('login_redirect_url',$this->form->getValue('return'))); ?>" />
-		<?php echo JHtml::_('form.token'); ?>
 	</form>
 </div>

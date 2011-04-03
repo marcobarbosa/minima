@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controller.php 19281 2010-10-29 10:12:49Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,10 +38,10 @@ class RedirectController extends JController
 		require_once JPATH_COMPONENT.'/helpers/redirect.php';
 
 		// Load the submenu.
-		RedirectHelper::addSubmenu(JRequest::getWord('view', 'links'));
+		RedirectHelper::addSubmenu(JRequest::getCmd('view', 'links'));
 
-		$view		= JRequest::getWord('view', 'links');
-		$layout 	= JRequest::getWord('layout', 'default');
+		$view		= JRequest::getCmd('view', 'links');
+		$layout 	= JRequest::getCmd('layout', 'default');
 		$id			= JRequest::getInt('id');
 
 		// Check for edit form.

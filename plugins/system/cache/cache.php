@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: cache.php 17851 2010-06-23 17:39:31Z eddieajau $
+ * @version		$Id: cache.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -60,7 +60,7 @@ class plgSystemCache extends JPlugin
 			return;
 		}
 
-		if (!$user->get('guest') && $_SERVER['REQUEST_METHOD'] == 'GET') {
+		if ($user->get('guest') && $_SERVER['REQUEST_METHOD'] == 'GET') {
 			$this->_cache->setCaching(true);
 		}
 
@@ -91,7 +91,7 @@ class plgSystemCache extends JPlugin
 		}
 
 		$user = JFactory::getUser();
-		if (!$user->get('guest')) {
+		if ($user->get('guest')) {
 			//We need to check again here, because auto-login plugins have not been fired before the first aid check
 			$this->_cache->store();
 		}

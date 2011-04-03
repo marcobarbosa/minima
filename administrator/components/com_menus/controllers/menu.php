@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: menu.php 19743 2010-12-03 15:17:12Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: menu.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -37,7 +37,7 @@ class MenusControllerMenu extends JControllerForm
 	 *
 	 * @return	void
 	 */
-	public function save()
+	public function save($key = null, $urlVar = null)
 	{
 		// Check for request forgeries.
 		JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -59,7 +59,7 @@ class MenusControllerMenu extends JControllerForm
 		}
 
 		// Make sure we are not trying to modify an administrator menu.
-		if ($data['client_id'] == 1){
+		if (isset($data['client_id']) && $data['client_id'] == 1){
 			JError::raiseNotice(0, JText::_('COM_MENUS_MENU_TYPE_NOT_ALLOWED'));
 
 			// Redirect back to the edit screen.
@@ -129,7 +129,7 @@ class MenusControllerMenu extends JControllerForm
 				$this->holdEditId($context, $recordId);
 
 				// Redirect back to the edit screen.
-				$this->setRedirect(JRoute::_('index.php?option=com_menus&view=menu&layout=edit', false));
+				$this->setRedirect(JRoute::_('index.php?option=com_menus&view=menu&layout=edit'.$this->getRedirectToItemAppend($recordId), false));
 				break;
 
 			case 'save2new':

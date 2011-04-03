@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_results.php 18829 2010-09-10 12:17:05Z infograf768 $
+ * @version		$Id: default_results.php 20244 2011-01-10 10:23:58Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	com_search
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 ?>
 
-<dl class="search-results<?php echo $this->params->get('pageclass_sfx'); ?>">
+<dl class="search-results<?php echo $this->pageclass_sfx; ?>">
 <?php foreach($this->results as $result) : ?>
 	<dt class="result-title">
 		<?php echo $this->pagination->limitstart + $result->count.'. ';?>
@@ -25,7 +25,7 @@ defined('_JEXEC') or die;
 	</dt>
 	<?php if ($result->section) : ?>
 		<dd class="result-category">		
-			<span class="small<?php echo $this->params->get('pageclass_sfx'); ?>">
+			<span class="small<?php echo $this->pageclass_sfx; ?>">
 				(<?php echo $this->escape($result->section); ?>)
 			</span>
 		</dd>
@@ -34,7 +34,7 @@ defined('_JEXEC') or die;
 		<?php echo $result->text; ?>
 	</dd>
 	<?php if ($this->params->get('show_date')) : ?>
-		<dd class="result-created<?php echo $this->params->get('pageclass_sfx'); ?>">
+		<dd class="result-created<?php echo $this->pageclass_sfx; ?>">
 			<?php echo JText::sprintf('JGLOBAL_CREATED_DATE_ON', $result->created); ?>
 		</dd>
 	<?php endif; ?>

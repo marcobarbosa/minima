@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.feed.php 17855 2010-06-23 17:46:38Z eddieajau $
+ * @version		$Id: view.feed.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	Weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

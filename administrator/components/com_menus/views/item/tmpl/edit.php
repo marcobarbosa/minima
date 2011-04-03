@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19281 2010-10-29 10:12:49Z eddieajau $
+ * @version		$Id: edit.php 20822 2011-02-21 23:02:52Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -37,7 +37,7 @@ JHTML::_('behavior.modal');
 				var idReversed = field.id.split("").reverse().join("");
 				var separatorLocation = idReversed.indexOf('_');
 				var name = idReversed.substr(separatorLocation).split("").reverse().join("")+'name';
-				$(name).addClass('invalid');
+				document.id(name).addClass('invalid');
 			});
 		}
 	}
@@ -61,10 +61,12 @@ JHTML::_('behavior.modal');
 					<?php $this->form->setFieldAttribute('link','readonly','false');?>
 					<li><?php echo $this->form->getLabel('link'); ?>
 					<?php echo $this->form->getInput('link'); ?></li>
-				<?php endif ?>
+				<?php endif; ?>
 
-				<li><?php echo $this->form->getLabel('alias'); ?>
-				<?php echo $this->form->getInput('alias'); ?></li>
+				<?php if ($this->item->type != 'alias'): ?>
+					<li><?php echo $this->form->getLabel('alias'); ?>
+					<?php echo $this->form->getInput('alias'); ?></li>
+				<?php endif; ?>
 
 				<li><?php echo $this->form->getLabel('note'); ?>
 				<?php echo $this->form->getInput('note'); ?></li>

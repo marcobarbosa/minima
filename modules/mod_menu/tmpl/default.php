@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19594 2010-11-20 05:06:08Z ian $
+ * @version		$Id: default.php 20805 2011-02-21 19:41:07Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_menu
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 
-<ul class="menu<?php echo $params->get('class_sfx');?>"<?php
+<ul class="menu<?php echo $class_sfx;?>"<?php
 	$tag = '';
 	if ($params->get('tag_id')!=NULL) {
 		$tag = $params->get('tag_id').'';
@@ -32,6 +32,10 @@ foreach ($list as $i => &$item) :
 	}
 
 	if ($item->deeper) {
+		$class .= 'deeper ';
+	}
+	
+	if ($item->parent) {
 		$class .= 'parent ';
 	}
 

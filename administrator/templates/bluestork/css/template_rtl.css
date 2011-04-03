@@ -1,8 +1,8 @@
 /**
- * @version		$Id: template_rtl.css 19876 2010-12-14 10:57:06Z infograf768 $
+ * @version		$Id: template_rtl.css 20455 2011-01-27 07:30:15Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.bluestork
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -123,6 +123,10 @@ body{
 
 #module-status {
 	float:left;
+}
+
+#module-status *{
+	float:right!important;
 }
 
 #module-status span {
@@ -365,6 +369,17 @@ li#jform_access_label {
 	clear: right;
 }
 
+fieldset.adminform label, 
+fieldset.adminform span.faux-label {
+	padding: 0 0 0 5px;
+}
+
+fieldset.panelform label,
+fieldset.panelform div.paramrow label,
+fieldset.panelform span.faux-label {
+	padding: 0 0 0 5px;
+}
+
 fieldset.adminform fieldset.radio,
 fieldset.panelform fieldset.radio,
 fieldset.adminform-legacy fieldset.radio {
@@ -407,6 +422,11 @@ fieldset.panelform fieldset.checkboxes span.faux-label {
 	clear: left;
 }
 /* end checkboxes */
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+	padding: 5px 10px 5px 0;
+	margin: 0;
+}
 
 dl.tabs {
 	float: right;
@@ -477,7 +497,9 @@ span.icon-16-locked {
 }
 
 
-/* CSS Rules Permission Angie with changes for RTL */
+/**
+* Permission Rules
+*/
 
 #permissions-sliders ul#rules,
 #permissions-sliders ul#rules ul
@@ -489,27 +511,20 @@ span.icon-16-locked {
 #permissions-sliders ul#rules li
 {
 	margin:0px 0 0 0%;
-	/*padding:0 0 0 1%;*/
 	padding:0;
 }
 
-#permissions-sliders ul#rules .pane-slider
+#permissions-sliders ul#rules li h3
 {
-    padding:0px;
-    top:0px;
-	right: 40%;
-    left: 0;
 }
 
-#permissions-sliders ul#rules li h3.pane-toggler -down a
+#permissions-sliders ul#rules li h3.pane-toggler-down a
 {	
 	border:solid 0px;
 }
 
-#permissions-sliders ul#rules table.group-rules caption
+#permissions-sliders ul#rules li h3.pane-toggler-down
 {
-	padding:5px; 
-	text-align:right;
 }
 
 #permissions-sliders ul#rules table.group-rules td
@@ -521,10 +536,6 @@ span.icon-16-locked {
 
 #permissions-sliders .panel 
 {
-    margin-bottom: 3px;
-    margin-left: 60.5%;
-    border:0;
-    margin-right:0; 
 }
 
 ul#rules table.group-rules td label
@@ -553,26 +564,25 @@ table.group-rules td select
     padding:4px;
 }
 
-#permissions-sliders .pane-toggler  span
+#permissions-sliders .pane-toggler span
 {
-	/* padding-left:5px; */
-	padding-right: 5px;
+	padding-right: 20px;
+	padding-left: 0;
 }
 
 #permissions-sliders .pane-toggler-down span
 {
-	/* padding-left:5px */
-	padding-right: 5px;
+	padding-right: 20px;
+	padding-left: 0;
 }
 
 div.current #permissions-sliders select {
-float:right;
-margin:3px 2px 0 2px;
+	float:right;
+	margin:3px 2px 0 2px;
 }
 
 #permissions-sliders ul#rules .panel h3
 {
-	background:#f5f5f5 url(../images/j_arrow_left.png) center left no-repeat
 }
 
 /* Additional RTL fixes for forms */
@@ -596,6 +606,22 @@ div.current fieldset.radio input {
 
 div.current fieldset.radio label {
 	float: right;
+	margin: 3px 5px 0 0;
+}
+
+div.current fieldset.checkboxes {
+	float: right;
+	clear: left;
+}
+
+div.current fieldset.checkboxes input {
+	clear: right;
+	float: right;
+	margin: 3px 2px 0 0;
+}
+
+div.current fieldset.checkboxes label {
+	clear: left;
 	margin: 3px 5px 0 0;
 }
 
@@ -637,4 +663,54 @@ div#menu-assignment ul.menu-links li.menu-link input {
 */
 #jform_sef_rewrite-lbl {
 	background: url(../images/admin/icon-16-notice-note.png) left top no-repeat;
+}
+
+/* -- MODAL STYLES ----------- */
+
+div#sbox-window {
+	text-align: right;
+}
+
+h2.modal-title {
+	margin: 5px 15px 0 0;
+}
+
+ul.menu_types {
+	padding: 0 15px 0 0;
+	margin: 0;
+}
+
+ul.menu_types li,
+dl.menu_type dd ul li {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0;
+}
+dl.menu_type dt {
+	float: right;
+	margin: 13px 0 5px 0;
+}
+
+dl.menu_type dd {
+	clear: right;
+	margin: 0;
+}
+
+dl.menu_type dd ul li {
+	margin: 0;
+}
+
+dl.menu_type dd ul {
+	margin-left: 0;
+	margin-right: -40px;
+}
+
+ul#new-modules-list {
+	padding: 5px 15px 0 0;
+	margin: 0;
+}
+ul#new-modules-list li {
+	float:right;
+	margin: 0 0 0 20px;
+	font-size: 1.091em;
 }

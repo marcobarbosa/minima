@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: controller.php 18675 2010-08-27 04:53:20Z eddieajau $
+ * @version		$Id: controller.php 20484 2011-01-30 16:27:23Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	MailTo
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -60,10 +60,10 @@ class MailtoController extends JController
 		$MailFrom	= $app->getCfg('mailfrom');
 		$FromName	= $app->getCfg('fromname');
 
-		$link		= base64_decode(JRequest::getVar('link', '', 'post', 'base64'));
+		$link		= MailtoHelper::validateHash(JRequest::getCMD('link', '', 'post')); 
 
 		// Verify that this is a local link
-		if (!JURI::isInternal($link)) {
+		if (!$link || !JURI::isInternal($link)) {
 			//Non-local url...
 			JError::raiseNotice(500, JText:: _ ('COM_MAILTO_EMAIL_NOT_SENT'));
 			return $this->mailto();

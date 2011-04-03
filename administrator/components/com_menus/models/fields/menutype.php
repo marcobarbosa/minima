@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: menutype.php 19856 2010-12-13 00:25:01Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: menutype.php 20804 2011-02-21 19:38:29Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -71,21 +71,15 @@ class JFormFieldMenuType extends JFormFieldList
 				$value	= JText::_(JArrayHelper::getValue($this->_rlu, MenusHelper::getLinkKey($link)));
 				break;
 		}
-		// Load the javascript and css
+		// Load the javascript
 		JHtml::_('behavior.framework');
-		JHTML::_('script','system/modal.js', false, true);
-		JHTML::_('stylesheet','system/modal.css', array(), true);
+		JHtml::_('behavior.modal', 'input.modal');
 
-		// Attach modal behavior to document
 		$document = JFactory::getDocument();
 		$document->addScriptDeclaration("
 		window.addEvent('domready', function() {
 			var div = new Element('div').setStyle('display', 'none').injectBefore(document.id('menu-types'));
 			document.id('menu-types').injectInside(div);
-			SqueezeBox.initialize();
-			SqueezeBox.assign($$('input.modal'), {
-				parse: 'rel'
-			});
 		});");
 
 		$html[] = '<input type="text" readonly="readonly" disabled="disabled" value="'.$value.'"'.$size.$class.'>';

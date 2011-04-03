@@ -3,7 +3,7 @@
  * @version		$Id: weblinks.php 16731 2010-05-04 05:40:37Z eddieajau $
  * @package		Joomla.Plugin
  * @subpackage	Extension.Joomla
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -32,6 +32,20 @@ class plgExtensionJoomla extends JPlugin
 	 * @since	1.6
 	 */
 	private $installer = null;
+
+	/**
+	 * Constructor
+	 *
+	 * @access      protected
+	 * @param       object  $subject The object to observe
+	 * @param       array   $config  An array that holds the plugin configuration
+	 * @since       1.5
+	 */
+	public function __construct(& $subject, $config)
+	{
+		parent::__construct($subject, $config);
+		$this->loadLanguage();
+	}
 
 	/**
 	 * Adds an update site to the table if it doesn't exist.

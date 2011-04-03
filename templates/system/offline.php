@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: offline.php 19466 2010-11-14 02:30:53Z chdemko $
+ * @version		$Id: offline.php 20717 2011-02-15 16:50:33Z infograf768 $
  * @package		Joomla.Site
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,7 +29,7 @@ $app = JFactory::getApplication();
 	<p>
 		<?php echo $app->getCfg('offline_message'); ?>
 	</p>
-	<form action="index.php" method="post" name="login" id="form-login">
+	<form action="<?php echo JRoute::_('index.php', true); ?>" method="post" id="form-login">
 	<fieldset class="input">
 		<p id="form-login-username">
 			<label for="username"><?php echo JText::_('JGLOBAL_USERNAME') ?></label>

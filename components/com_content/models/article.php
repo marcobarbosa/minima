@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: article.php 19422 2010-11-09 22:13:54Z chdemko $
+ * @version		$Id: article.php 20810 2011-02-21 20:01:22Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -104,8 +104,8 @@ class ContentModelArticle extends JModelItem
 				// Join on contact table
 				$query->select('contact.id as contactid' ) ;
 				$query->join('LEFT','#__contact_details AS contact on contact.user_id = a.created_by');
-				
-				
+
+
 				// Join over the categories to get parent category titles
 				$query->select('parent.title as parent_title, parent.id as parent_id, parent.path as parent_route, parent.alias as parent_alias');
 				$query->join('LEFT', '#__categories as parent ON parent.id = c.parent_id');
@@ -148,12 +148,12 @@ class ContentModelArticle extends JModelItem
 				}
 
 				if (empty($data)) {
-					throw new JException(JText::_('COM_CONTENT_ERROR_ARTICLE_NOT_FOUND'), 404);
+					return JError::raiseError(404,JText::_('COM_CONTENT_ERROR_ARTICLE_NOT_FOUND'));
 				}
 
 				// Check for published state if filter set.
 				if (((is_numeric($published)) || (is_numeric($archived))) && (($data->state != $published) && ($data->state != $archived))) {
-					throw new JException(JText::_('COM_CONTENT_ERROR_ARTICLE_NOT_FOUND'), 404);
+					return JError::raiseError(404,JText::_('COM_CONTENT_ERROR_ARTICLE_NOT_FOUND'));
 				}
 
 				// Convert parameter fields to objects.
@@ -209,8 +209,14 @@ class ContentModelArticle extends JModelItem
 			}
 			catch (JException $e)
 			{
-				$this->setError($e);
-				$this->_item[$pk] = false;
+				if ($e->getCode() == 404) {
+					// Need to go thru the error handler to allow Redirect to work.
+					JError::raiseError(404, $e->getMessage());
+				}
+				else {
+					$this->setError($e);
+					$this->_item[$pk] = false;
+				}
 			}
 		}
 
@@ -294,7 +300,7 @@ class ContentModelArticle extends JModelItem
             }
             return true;
         }
-        JError::raiseWarning( 'SOME_ERROR_CODE', 'Article Rating:: Invalid Rating:' .$rate, "JModelArticle::storeVote($rate)");
+        JError::raiseWarning( 'SOME_ERROR_CODE', JText::sprintf('COM_CONTENT_INVALID_RATING', $rate), "JModelArticle::storeVote($rate)");
         return false;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: featured.php 18650 2010-08-26 13:28:49Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: featured.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -10,7 +10,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 
-require_once dirname(__FILE__).DS.'articles.php';
+require_once dirname(__FILE__).'/articles.php';
 
 /**
  * @package		Joomla.Administrator

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default_items.php 18829 2010-09-10 12:17:05Z infograf768 $
+ * @version		$Id: default_items.php 20789 2011-02-20 05:58:55Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_newsfeeds
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -36,7 +36,7 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
         <?php endif; ?>
         
 		<?php if ($this->params->get('show_cat_items_cat') == 1) :?>
-			<dl class="contact-count"><dt>
+			<dl><dt>
 				<?php echo JText::_('COM_CONTACT_COUNT'); ?></dt>
 				<dd><?php echo $item->numitems; ?></dd>
 			</dl>

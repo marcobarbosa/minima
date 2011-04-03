@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: feed.php 18963 2010-09-20 16:34:10Z dextercowley $
+ * @version		$Id: feed.php 20219 2011-01-09 22:14:54Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	Document
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -202,7 +202,7 @@ class JDocumentFeed extends JDocument
 		 */
 		$cache		= 0;
 		$cache_time = 3600;
-		$cache_path = JPATH_BASE.DS.'cache';
+		$cache_path = JPATH_CACHE;
 
 		// set filename for rss feeds
 		$file = strtolower(str_replace('.', '', $type));
@@ -364,7 +364,7 @@ class JFeedItem extends JObject
 	 * @var		string
 	 * @access	public
 	 */
-	 var $pubDate;
+	 var $date;
 
 	 /**
 	 * Source element

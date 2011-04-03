@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: category.php 19575 2010-11-19 08:30:21Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: category.php 20648 2011-02-10 09:09:54Z chdemko $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -35,6 +35,27 @@ class WeblinksModelCategory extends JModelList
 	protected $_parent = null;
 
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'title', 'a.title',
+				'hits', 'a.hits',
+				'ordering', 'a.ordering',
+			);
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * The category that applies.
 	 *
 	 * @access	protected
@@ -55,18 +76,17 @@ class WeblinksModelCategory extends JModelList
 	 *
 	 * @return	mixed	An array of objects on success, false on failure.
 	 */
-	public function &getItems()
+	public function getItems()
 	{
 		// Invoke the parent getItems method to get the main list
-		$items = &parent::getItems();
+		$items = parent::getItems();
 
 		// Convert the params field into an object, saving original in _params
 		for ($i = 0, $n = count($items); $i < $n; $i++) {
-			$item = &$items[$i];
 			if (!isset($this->_params)) {
-				$params = new JRegistry();
-				$params->loadJSON($item->params);
-				$item->params = $params;
+				$params = new JRegistry;
+				$params->loadJSON($items[$i]->params);
+				$items[$i]->params = $params;
 			}
 		}
 
@@ -107,15 +127,15 @@ class WeblinksModelCategory extends JModelList
 		}
 		// Join over the users for the author and modified_by names.
 		$query->select("CASE WHEN a.created_by_alias > ' ' THEN a.created_by_alias ELSE ua.name END AS author");
- 
+
 		$query->join('LEFT', '#__users AS ua ON ua.id = a.created_by');
 		$query->join('LEFT', '#__users AS uam ON uam.id = a.modified_by');
 
 		// Filter by state
 
-		$state = $this->getState('filter.state');		
+		$state = $this->getState('filter.state');
 		if (is_numeric($state)) {
-			$query->where('a.state = '.(int) $state);	
+			$query->where('a.state = '.(int) $state);
 		}
 
 		// Filter by start and end dates.
@@ -126,7 +146,7 @@ class WeblinksModelCategory extends JModelList
 			$query->where('(a.publish_up = ' . $nullDate . ' OR a.publish_up <= ' . $nowDate . ')');
 			$query->where('(a.publish_down = ' . $nullDate . ' OR a.publish_down >= ' . $nowDate . ')');
 		}
-		
+
 		// Filter by language
 		if ($this->getState('filter.language')) {
 			$query->where('a.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' . $db->Quote('*') . ')');
@@ -145,7 +165,7 @@ class WeblinksModelCategory extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication();
@@ -159,19 +179,25 @@ class WeblinksModelCategory extends JModelList
 		$this->setState('list.start', $limitstart);
 
 		$orderCol	= JRequest::getCmd('filter_order', 'ordering');
+		if (!in_array($orderCol, $this->filter_fields)) {
+			$orderCol = 'ordering';
+		}
 		$this->setState('list.ordering', $orderCol);
 
 		$listOrder	=  JRequest::getCmd('filter_order_Dir', 'ASC');
+		if (!in_array(strtoupper($listOrder), array('ASC', 'DESC', ''))) {
+			$listOrder = 'ASC';
+		}
 		$this->setState('list.direction', $listOrder);
 
 		$id = JRequest::getVar('id', 0, '', 'int');
 		$this->setState('category.id', $id);
 
-		$user = JFactory::getUser();	
+		$user = JFactory::getUser();
 		if ((!$user->authorise('core.edit.state', 'com_weblinks')) &&  (!$user->authorise('core.edit', 'com_weblinks'))){
 			// limit to published for people who can't edit or edit.state.
 			$this->setState('filter.state',	1);
-			
+
 			// Filter by start and end dates.
 			$this->setState('filter.publish_date', true);
 		}
@@ -198,7 +224,12 @@ class WeblinksModelCategory extends JModelList
 			$menu = $app->getMenu();
 			$active = $menu->getActive();
 			$params = new JRegistry();
-			$params->loadJSON($active->params);
+			
+			if($active)
+			{
+				$params->loadJSON($active->params);
+			}
+			
 			$options = array();
 			$options['countItems'] = $params->get('show_cat_num_links_cat', 1) || $params->get('show_empty_categories', 0);
 			$categories = JCategories::getInstance('Weblinks', $options);

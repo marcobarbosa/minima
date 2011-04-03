@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: helper.php 14276 2010-01-18 14:20:28Z louis $
+ * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	mod_wrapper
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 class modWrapperHelper
 {
-	function getParams(&$params)
+	static function getParams(&$params)
 	{
 		$params->def('url', '');
 		$params->def('scrolling', 'auto');

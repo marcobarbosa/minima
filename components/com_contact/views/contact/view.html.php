@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: view.html.php 19825 2010-12-11 11:21:17Z infograf768 $
+ * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -143,6 +143,9 @@ class ContactViewContact extends JView
 
 		JHtml::_('behavior.formvalidation');
 
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($params->get('pageclass_sfx'));
+
 		$this->assignRef('contact',		$item);
 		$this->assignRef('params',		$params);
 		$this->assignRef('return',		$return);
@@ -220,10 +223,10 @@ class ContactViewContact extends JView
 		}
 
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 
 		if (empty($title)) {
@@ -231,12 +234,22 @@ class ContactViewContact extends JView
 		}
 		$this->document->setTitle($title);		
 
-		if ($this->item->metadesc) {
+		if ($this->item->metadesc)
+		{
 			$this->document->setDescription($this->item->metadesc);
 		}
+		elseif (!$this->item->metadesc && $this->params->get('menu-meta_description')) 
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
 
-		if ($this->item->metakey) {
+		if ($this->item->metakey)
+		{
 			$this->document->setMetadata('keywords', $this->item->metakey);
+		}
+		elseif (!$this->item->metakey && $this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

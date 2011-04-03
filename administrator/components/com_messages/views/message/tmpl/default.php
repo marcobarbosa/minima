@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18611 2010-08-24 02:17:02Z ian $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_messages
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
 		<?php echo $this->item->subject;?></li>
 
 		<li><?php echo JText::_('COM_MESSAGES_FIELD_MESSAGE_LABEL'); ?>
-		<pre><?php echo $this->escape($this->item->message);?></pre></li>
+		<pre class="pre_message"><?php echo $this->escape($this->item->message);?></pre></li>
 		</ul>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="reply_id" value="<?php echo $this->item->message_id; ?>" />

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: configuration.php 19620 2010-11-22 13:32:05Z chdemko $
+ * @version		$Id: configuration.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -72,7 +72,6 @@ class JInstallationModelConfiguration extends JModel
 		$registry->set('gzip', 0);
 		$registry->set('error_reporting', -1);
 		$registry->set('helpurl', 'http://help.joomla.org/proxy/index.php?option=com_help&amp;keyref=Help{major}{minor}:{keyref}');
-		$registry->set('xmlrpc_server', 0);
 		$registry->set('ftp_host', $options->ftp_host);
 		$registry->set('ftp_port', $options->ftp_port);
 		$registry->set('ftp_user', $options->ftp_save ? $options->ftp_user : '');
@@ -123,7 +122,7 @@ class JInstallationModelConfiguration extends JModel
 		$registry->set('session_handler', 'database');
 
 		// Generate the configuration class string buffer.
-		$buffer = $registry->toString('PHP', null, array('class'=>'JConfig', 'closingtag' => false));
+		$buffer = $registry->toString('PHP', array('class'=>'JConfig', 'closingtag' => false));
 
 
 		// Build the configuration file path.

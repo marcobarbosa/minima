@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: text.php 14575 2010-02-04 07:10:09Z eddieajau $
+ * @version		$Id: text.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Parameter
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -34,10 +34,8 @@ class JElementText extends JElement
 		$class = ($node->attributes('class') ? 'class="'.$node->attributes('class').'"' : 'class="text_area"');
 
 		// Required to avoid a cycle of encoding &
-		// html_entity_decode was used in place of htmlspecialchars_decode because
-		// htmlspecialchars_decode is not compatible with PHP 4
 
-		$value = htmlspecialchars(html_entity_decode($value, ENT_QUOTES), ENT_QUOTES, 'UTF-8');
+		$value = htmlspecialchars(htmlspecialchars_decode($value, ENT_QUOTES), ENT_QUOTES, 'UTF-8');
 
 		return '<input type="text" name="'.$control_name.'['.$name.']" id="'.$control_name.$name.'" value="'.$value.'" '.$class.' '.$size.' />';
 	}

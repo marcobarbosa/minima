@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: database.php 18650 2010-08-26 13:28:49Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: database.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -243,7 +243,7 @@ abstract class JDatabase extends JObject
 			$class = 'JDatabase'.ucfirst($name);
 
 			if (!class_exists($class)) {
-				require_once dirname(__FILE__).DS.'database'.DS.$name.'.php';
+				require_once dirname(__FILE__).'/database/'.$name.'.php';
 			}
 
 			if (call_user_func_array(array(trim($class), 'test'), array())) {

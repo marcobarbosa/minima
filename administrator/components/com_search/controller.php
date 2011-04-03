@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controller.php 18615 2010-08-24 02:40:15Z ian $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -39,7 +39,7 @@ class SearchController extends JController
 		require_once JPATH_COMPONENT.'/helpers/search.php';
 
 		// Load the submenu.
-		SearchHelper::addSubmenu(JRequest::getWord('view', 'searches'));
+		SearchHelper::addSubmenu(JRequest::getCmd('view', 'searches'));
 		
 		parent::display();
 	}

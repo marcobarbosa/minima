@@ -3,7 +3,7 @@
  * @version		$Id:mod_menu.php 2463 2006-02-18 06:05:38Z webImagery $
  * @package		Joomla.Administrator
  * @subpackage	mod_menu
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -43,7 +43,14 @@ if ($user->authorise('core.manage', 'com_content'))
 //
 // Components Submenu
 //
-$menu->addChild(new JMenuNode(JText::_('MOD_MENU_COMPONENTS'),  null, 'disabled'));
+
+// Get the authorised components and sub-menus.
+$components = ModMenuHelper::getComponents( true );
+
+// Check if there are any components, otherwise, don't display the components menu item
+if ($components) {
+	$menu->addChild(new JMenuNode(JText::_('MOD_MENU_COMPONENTS'),  null, 'disabled'));
+}
 
 //
 // Extensions Submenu

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: media.php 19670 2010-11-29 10:45:12Z chdemko $
+ * @version		$Id: media.php 20813 2011-02-21 21:08:29Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	Massmail
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +18,7 @@ $author = JRequest::getCmd('author');
 if (!$asset or
 		!$user->authorise('core.edit', $asset)
 	&&	!$user->authorise('core.create', $asset)
+	&& 	count($user->getAuthorisedCategories($asset, 'core.create')) == 0
 	&&	!($user->id==$author && $user->authorise('core.edit.own', $asset)))
 {
 	return JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
@@ -34,7 +35,7 @@ $lang = JFactory::getLanguage();
 ||	$lang->load($option, JPATH_COMPONENT_ADMINISTRATOR, $lang->getDefault(), false, false);
 
 // Load the admin HTML view
-require_once JPATH_COMPONENT_ADMINISTRATOR.DS.'helpers'.DS.'media.php';
+require_once JPATH_COMPONENT_ADMINISTRATOR.'/helpers/media.php';
 
 // Require the base controller
 require_once JPATH_COMPONENT.'/controller.php';

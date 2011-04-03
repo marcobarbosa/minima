@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: controller.php 17858 2010-06-23 17:54:28Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: controller.php 20899 2011-03-07 20:56:09Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 
@@ -74,6 +74,8 @@ class LoginController extends JController
 	 */
 	public function logout()
 	{
+		JRequest::checkToken('default') or jexit(JText::_('JInvalid_Token'));
+				
 		$app = JFactory::getApplication();
 
 		$userid = JRequest::getInt('uid', null);

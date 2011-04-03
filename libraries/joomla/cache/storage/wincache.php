@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: wincache.php 18212 2010-07-22 06:02:54Z eddieajau $
+ * @version		$Id: wincache.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	Cache
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -37,7 +37,7 @@ class JCacheStorageWincache extends JCacheStorage
 	 * @return	mixed	Boolean false on failure or a cached data string
 	 * @since	1.6
 	 */
-	public function get($id, $group, $checkTime)
+	public function get($id, $group, $checkTime = true)
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		$cache_content = wincache_ucache_get($cache_id);
@@ -122,7 +122,7 @@ class JCacheStorageWincache extends JCacheStorage
 	 * @return	boolean	True on success, false otherwise
 	 * @since	1.6
 	 */
-	public function clean($group, $mode)
+	public function clean($group, $mode = null)
 	{
 		$allinfo 	= wincache_ucache_info();
 		$keys 		= $allinfo['cache_entries'];
@@ -151,7 +151,7 @@ class JCacheStorageWincache extends JCacheStorage
 
 		foreach ($keys as $key) {
 			if (strpos($key['key_name'], $secret.'-cache-')) {
-				wincache_ucache_get($cache_id);
+				wincache_ucache_get($key['key_name']);
 			}
 		}
 	}

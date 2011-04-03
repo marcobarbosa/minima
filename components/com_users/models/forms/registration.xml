@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: registration.xml 17148 2010-05-17 10:48:25Z infograf768 $ -->
+	<!-- $Id: registration.xml 20117 2011-01-06 14:06:26Z chdemko $ -->
 <form>
 	<fieldset name="default"
 		label="COM_USERS_REGISTRATION_DEFAULT_LABEL"
 	>
+
+		<field name="spacer" type="spacer" class="text"
+				label="COM_USERS_REGISTER_REQUIRED"
+			/>
 
 		<field name="name" type="text"
 			description="COM_USERS_REGISTER_NAME_DESC"
@@ -44,13 +48,12 @@
 			description="COM_USERS_REGISTER_PASSWORD2_DESC"
 			filter="raw"
 			label="COM_USERS_REGISTER_PASSWORD2_LABEL"
-			message="COM_USERS_REGISTER_PASSWORD2_DESC"
+			message="COM_USERS_REGISTER_PASSWORD2_MESSAGE"
 			required="required"
 			size="30"
 		/>
 
-		<field name="email1" type="text"
-			class="validate-email"
+		<field name="email1" type="email"
 			description="COM_USERS_REGISTER_EMAIL1_DESC"
 			field="id"
 			filter="string"
@@ -62,8 +65,7 @@
 			validate="email"
 		/>
 
-		<field name="email2" type="text"
-			class="validate-email"
+		<field name="email2" type="email"
 			description="COM_USERS_REGISTER_EMAIL2_DESC"
 			field="email1"
 			filter="string"

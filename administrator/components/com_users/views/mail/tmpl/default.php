@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 19073 2010-10-09 15:44:28Z chdemko $
+ * @version		$Id: default.php 20417 2011-01-23 16:47:27Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,6 +27,8 @@ $script .= "\t\t\t".'Joomla.submitform(pressbutton);'."\n";
 $script .= "\t\t".'}'."\n";
 $script .= "\t\t".'}'."\n";
 
+// Load the tooltip behavior.
+JHtml::_('behavior.tooltip');
 
 JFactory::getDocument()->addScriptDeclaration($script);
 ?>

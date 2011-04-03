@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18117 2010-07-13 18:09:01Z infograf768 $
+ * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Site
  * @subpackage	mod_whosonline
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,7 +19,7 @@ if ($showmode == 0 || $showmode == 2) :
 endif;
 
 if (($showmode > 0) && count($names)) : ?>
-	<ul  class="whosonline<?php echo $params->get('moduleclass_sfx') ?>" >
+	<ul  class="whosonline<?php echo $moduleclass_sfx ?>" >
 <?php foreach($names as $name) : ?>
 
 		<li>

@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: eaccelerator.php 17405 2010-05-31 04:53:19Z infograf768 $
+ * @version		$Id: eaccelerator.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	Cache
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,7 +38,7 @@ class JCacheStorageEaccelerator extends JCacheStorage
 	 * @return	mixed	Boolean false on failure or a cached data string
 	 * @since	1.5
 	 */
-	public function get($id, $group, $checkTime)
+	public function get($id, $group, $checkTime = true)
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		$cache_content = eaccelerator_get($cache_id);
@@ -127,7 +127,7 @@ class JCacheStorageEaccelerator extends JCacheStorage
 	 * @return	boolean	True on success, false otherwise
 	 * @since	1.5
 	 */
-	public function clean($group, $mode)
+	public function clean($group, $mode = null)
 	{
 		$keys = eaccelerator_list_keys();
 
@@ -219,7 +219,7 @@ class JCacheStorageEaccelerator extends JCacheStorage
 	 * @return	boolean	True on success, false otherwise.
 	 * @since	1.6
 	 */
-	public function unlock($id,$group)
+	public function unlock($id, $group = null)
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		return eaccelerator_unlock($cache_id);

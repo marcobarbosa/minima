@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: file.json.php 19670 2010-11-29 10:45:12Z chdemko $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: file.json.php 20808 2011-02-21 19:55:35Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -126,7 +126,7 @@ class MediaControllerFile extends JController
 			else
 			{
 				// Trigger the onContentAfterSave event.
-				$dispatcher->trigger('onContentAfterSave', array('com_media.file', &$object_file));
+				$dispatcher->trigger('onContentAfterSave', array('com_media.file', &$object_file, true));
 				$log->addEntry(array('comment' => $folder));
 				$response = array(
 					'status' => '1',

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: module.php 18214 2010-07-22 06:32:52Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: module.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -64,7 +64,7 @@ class ModulesControllerModule extends JControllerForm
 	/**
 	 * Override parent cancel method to reset the add module state.
 	 */
-	public function cancel()
+	public function cancel($key = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
@@ -77,7 +77,7 @@ class ModulesControllerModule extends JControllerForm
 	/**
 	 * Override parent allowSave method.
 	 */
-	protected function allowSave(&$data, $key = 'id')
+	protected function allowSave($data, $key = 'id')
 	{
 		// use custom position if selected
 		if (empty($data['position'])) {
@@ -97,7 +97,7 @@ class ModulesControllerModule extends JControllerForm
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function postSaveHook(JModel &$model)
+	protected function postSaveHook(JModel &$model, $validData = array())
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication();

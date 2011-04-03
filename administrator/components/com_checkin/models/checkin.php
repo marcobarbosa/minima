@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: checkin.php 19753 2010-12-03 19:47:09Z dextercowley $
+ * @version		$Id: checkin.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	Checkin
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -29,7 +29,7 @@ class CheckinModelCheckin extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
 		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');

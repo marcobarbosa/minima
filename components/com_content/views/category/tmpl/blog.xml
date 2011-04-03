@@ -114,7 +114,7 @@
 
 <fieldset name="advanced" label="JGLOBAL_BLOG_LAYOUT_OPTIONS">
 	
-			<field name="bloglayout" type="spacer" class="spacer"
+			<field name="bloglayout" type="spacer" class="text"
 					label="JGLOBAL_SUBSLIDER_BLOG_LAYOUT_LABEL"
 			/>
 
@@ -150,6 +150,24 @@
 				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="0">JGLOBAL_DOWN</option>
 				<option value="1">JGLOBAL_ACROSS</option>
+			</field>
+			<field name="subcategories" type="spacer" class="spacer"
+					label="JGLOBAL_SUBSLIDER_BLOG_EXTENDED_LABEL"
+			/>		
+
+		<field name="show_subcategory_content" type="list"
+			
+				description="JGLOBAL_SHOW_SUBCATEGORY_CONTENT_DESC"
+				label="JGLOBAL_SHOW_SUBCATEGORY_CONTENT_LABEL"
+			>
+				<option value="">JGLOBAL_USE_GLOBAL</option>
+				<option value="0">JNONE</option>
+				<option value="-1">JALL</option>
+				<option value="1">J1</option>
+				<option value="2">J2</option>
+				<option value="3">J3</option>
+				<option value="4">J4</option>
+				<option value="5">J5</option>
 			</field>
 
 			<field
@@ -217,7 +235,7 @@
 
 </fieldset>
 
-<fieldset name="article">
+<fieldset name="article" label="COM_CONTENT_ATTRIBS_FIELDSET_LABEL">
 			<field name="show_title" type="list"
 				description="JGLOBAL_SHOW_TITLE_DESC"
 				label="JGLOBAL_SHOW_TITLE_LABEL"
@@ -304,8 +322,8 @@
 			>
 				<option value="">JGLOBAL_USE_GLOBAL</option>
 				<option value="use_article">COM_CONTENT_FIELD_VALUE_USE_ARTICLE_SETTINGS</option>
-				<option value="0">JHIDE</option>
-				<option value="1">JSHOW</option>
+				<option value="0">JNo</option>
+				<option value="1">JYes</option>
 			</field>
 
 			<field name="show_create_date" type="list"

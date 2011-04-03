@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: installed.php 19753 2010-12-03 19:47:09Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: installed.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -50,9 +50,9 @@ class LanguagesModelInstalled extends JModelList
 	protected $total = null;
 
 	/**
-	 * @var array languages folders
+	 * @var int total number pf languages installed
 	 */
-	protected $folders = null;
+	protected $langlist = null;
 
 	/**
 	 * @var string language path
@@ -67,7 +67,7 @@ class LanguagesModelInstalled extends JModelList
 	 * @return	void
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');
@@ -81,7 +81,7 @@ class LanguagesModelInstalled extends JModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.title', 'asc');
+		parent::populateState('a.name', 'asc');
 	}
 
 	/**
@@ -157,18 +157,20 @@ class LanguagesModelInstalled extends JModelList
 	public function &getData()
 	{
 		if (is_null($this->data)) {
+
 			// Get information
-			$folders	= $this->getFolders();
 			$path		= $this->getPath();
 			$client		= $this->getClient();
+			$langlist   = $this->getLanguageList();
 
 			// Compute all the languages
 			$data	= array ();
-			foreach ($folders as $folder) {
-				$file = $path.DS.$folder.DS.$folder.'.xml';
+
+			foreach($langlist as $lang){
+				$file = $path.DS.$lang.DS.$lang.'.xml';
 				$info = JApplicationHelper::parseXMLLangMetaFile($file);
 				$row = new JObject();
-				$row->language = $folder;
+				$row->language = $lang;
 
 				if (!is_array($info)) {
 					continue;
@@ -191,7 +193,7 @@ class LanguagesModelInstalled extends JModelList
 				$row->checked_out = 0;
 				$data[] = $row;
 			}
-			usort($data,array('LanguagesModelInstalled','compareLanguages'));
+			usort($data,array($this,'compareLanguages'));
 
 			// Prepare data
 			$limit = $this->getState('list.limit');
@@ -220,7 +222,41 @@ class LanguagesModelInstalled extends JModelList
 				$this->data[] = & $data[$i];
 			}
 		}
+
 		return $this->data;
+	}
+
+	/**
+	 * Method to get installed languages data.
+	 *
+	 * @return	string	An SQL query
+	 * @since	1.6
+	 */
+	protected function getLanguageList()
+	{
+		// Create a new db object.
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+		$client = $this->getState('filter.client_id');
+		$type = "language";
+		// Select field element from the extensions table.
+		$query->select($this->getState('list.select', 'a.element'));
+		$query->from('`#__extensions` AS a');
+
+		$type = $db->Quote($type);
+		$query->where('(a.type = '.$type.')');
+
+		$query->where('state = 0');
+		$query->where('enabled = 1');
+
+		$query->where('client_id=' . intval($client));
+
+		// for client_id = 1 do we need to check language table also ?
+		$db->setQuery($query);
+
+		$this->langlist = $db->loadResultArray();
+
+		return $this->langlist;
 	}
 
 	/**
@@ -229,11 +265,11 @@ class LanguagesModelInstalled extends JModelList
 	 * @return	integer
 	 * @since	1.6
 	 */
-	public function &getTotal()
+	public function getTotal()
 	{
 		if (is_null($this->total)) {
-			$folders = $this->getFolders();
-			$this->total = count($folders);
+			$langlist = $this->getLanguageList();
+			$this->total = count($langlist);
 		}
 
 		return $this->total;

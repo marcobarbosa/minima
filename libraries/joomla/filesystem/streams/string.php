@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: string.php 19490 2010-11-16 03:54:17Z eddieajau $
+ * @version		$Id: string.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	FileSystem
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 

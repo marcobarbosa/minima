@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: helper.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Administrator
  * @subpackage	mod_logged
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
@@ -49,7 +49,7 @@ abstract class modLoggedHelper
 			if($user->authorise('core.manage', 'com_users'))
 			{
 				$results[$k]->editLink = JRoute::_('index.php?option=com_users&task=user.edit&id='.$result->id);
-				$results[$k]->logoutLink = JRoute::_('index.php?option=com_login&task=logout&uid='.$result->id);
+				$results[$k]->logoutLink = JRoute::_('index.php?option=com_login&task=logout&uid='.$result->id .'&'. JUtility::getToken() .'=1');
 			}
 			if($params->get('name', 1) == 0) {
 				$results[$k]->name = $results[$k]->username;

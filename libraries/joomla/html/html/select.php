@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: select.php 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: select.php 20640 2011-02-10 06:26:40Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	HTML
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -672,7 +672,8 @@ abstract class JHtmlSelect
 			$html .= "\n\t" .'<input type="radio" name="' . $name . '"'
 				. ' id="' . $id_text . $k . '" value="' . $k .'"'
 				. ' ' . $extra . ' ' . $attribs . '/>'
-				. "\n\t" . '<label for="' . $id_text . $k . '" id="' . $id_text . $k . '-lbl" class="radiobtn-'.strtolower($obj->$optText).'">'. $t .'</label>';
+				. "\n\t" . '<label for="' . $id_text . $k . '"'
+				. ' id="' . $id_text . $k . '-lbl" class="radiobtn">'.$t.'</label>';
 		}
 		$html .= "\n";
 		return $html;

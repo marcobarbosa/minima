@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: edit.php 19648 2010-11-25 12:00:06Z infograf768 $
+ * @version		$Id: edit.php 20549 2011-02-04 15:01:51Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_weblinks
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -41,17 +41,17 @@ JHtml::_('behavior.formvalidation');
 			<li><?php echo $this->form->getLabel('url'); ?>
 			<?php echo $this->form->getInput('url'); ?></li>
 
-			<li><?php echo $this->form->getLabel('state'); ?>
-			<?php echo $this->form->getInput('state'); ?></li>
-
 			<li><?php echo $this->form->getLabel('catid'); ?>
 			<?php echo $this->form->getInput('catid'); ?></li>
 
-			<li><?php echo $this->form->getLabel('ordering'); ?>
-			<?php echo $this->form->getInput('ordering'); ?></li>
+			<li><?php echo $this->form->getLabel('state'); ?>
+			<?php echo $this->form->getInput('state'); ?></li>			
 
 			<li><?php echo $this->form->getLabel('access'); ?>
 			<?php echo $this->form->getInput('access'); ?></li>
+
+			<li><?php echo $this->form->getLabel('ordering'); ?>
+			<?php echo $this->form->getInput('ordering'); ?></li>
 
 			<li><?php echo $this->form->getLabel('language'); ?>
 			<?php echo $this->form->getInput('language'); ?></li>

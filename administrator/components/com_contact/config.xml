@@ -212,7 +212,7 @@
 		<field name="show_profile"
 			type="radio"
 			default="1"
-			label="COM_CONTACT_FIELD_PROFILE_SHOW_LABEL" description="COM_CONTACT_FIELD_PROFILE_SHOW_LABEL"
+			label="COM_CONTACT_FIELD_PROFILE_SHOW_LABEL" description="COM_CONTACT_FIELD_PROFILE_SHOW_DESC"
 		>
 			<option value="0">JHIDE</option>
 			<option value="1">JSHOW</option>
@@ -556,7 +556,7 @@
 		<field name="show_state_headings"
 			type="radio"
 			default="0"
-			label="JGLOBAL_STATE"
+			label="COM_CONTACT_FIELD_CONFIG_STATE_LABEL"
 			description="COM_CONTACT_FIELD_CONFIG_STATE_DESC"
 		>
 			

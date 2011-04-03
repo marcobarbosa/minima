@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: stream.php 19489 2010-11-16 03:46:17Z eddieajau $
+ * @version		$Id: stream.php 20806 2011-02-21 19:44:59Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	FileSystem
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -123,7 +123,7 @@ class JStream extends JObject
 	 * @return	boolean
 	 * @since	1.6
 	 */
-	function open($filename, $mode='r', $use_include_path=false, $context=null, $use_prefix=true, $relative=false, $detectprocessingmode=false)
+	function open($filename, $mode='r', $use_include_path=false, $context=null, $use_prefix=false, $relative=false, $detectprocessingmode=false)
 	{
 		$filename = $this->_getFilename($filename, $mode, $use_prefix, $relative);
 
@@ -141,7 +141,7 @@ class JStream extends JObject
 		if (isset($url['scheme'])) {
 			// if we're dealing with a Joomla! stream, load it
 			if (JFilesystemHelper::isJoomlaStream($url['scheme'])) {
-				require_once dirname(__FILE__).DS.'streams'.DS.$url['scheme'].'.php';
+				require_once dirname(__FILE__).'/streams/'.$url['scheme'].'.php';
 			}
 
 			// we have a scheme! force the method to be f

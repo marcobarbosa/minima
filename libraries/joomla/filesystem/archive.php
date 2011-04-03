@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: archive.php 19496 2010-11-16 06:57:48Z eddieajau $
+ * @version		$Id: archive.php 20228 2011-01-10 00:52:54Z eddieajau $
  * @package		Joomla.Framework
  * @subpackage	FileSystem
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -27,7 +27,7 @@ class JArchive
 	 * @return	boolean	True for success
 	 * @since	1.5
 	 */
-	function extract($archivename, $extractdir)
+	public static function extract($archivename, $extractdir)
 	{
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
@@ -149,7 +149,7 @@ class JArchive
 	 * @return	JObject
 	 * @since	1.5
 	 */
-	function getAdapter($type)
+	public static function getAdapter($type)
 	{
 		static $adapters;
 

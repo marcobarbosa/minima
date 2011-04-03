@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: jgrid.php 19326 2010-11-02 13:12:52Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: jgrid.php 20740 2011-02-17 10:28:57Z infograf768 $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -234,7 +234,7 @@ abstract class JHtmlJGrid
 			$options[]	= JHtml::_('select.option', '2', 'JARCHIVED');
 		}
 		if (!array_key_exists('trash', $config) || $config['trash']) {
-			$options[]	= JHtml::_('select.option', '-2', 'JTRASH');
+			$options[]	= JHtml::_('select.option', '-2', 'JTRASHED');
 		}
 		if (!array_key_exists('all', $config) || $config['all']) {
 			$options[]	= JHtml::_('select.option', '*', 'JALL');

@@ -1,6 +1,6 @@
 /**
- * @version		$Id: validate.js 18678 2010-08-27 05:17:19Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: validate.js 19871 2010-12-14 01:53:28Z ian $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -63,8 +63,8 @@ var JFormValidator = new Class({
 	attachToForm: function(form)
 	{
 		// Iterate through the form object and attach the validate method to all input fields.
-		form.getElements('fieldset').concat($A(form.elements)).each(function(el){
-			if (($(el).get('tag') == 'input' || $(el).get('tag') == 'button') && $(el).get('type') == 'submit') {
+		form.getElements('input,textarea,select').each(function(el){
+			if ((document.id(el).get('tag') == 'input' || document.id(el).get('tag') == 'button') && document.id(el).get('type') == 'submit') {
 				if (el.hasClass('validate')) {
 					el.onclick = function(){return document.formvalidator.isValid(this.form);};
 				}
@@ -76,7 +76,7 @@ var JFormValidator = new Class({
 
 	validate: function(el)
 	{
-		var el = $(el);
+		el = document.id(el);
     
 		// Ignore the element if its currently disabled, because are not submitted for the http-request. For those case return always true.
 		if(el.get('disabled')) {

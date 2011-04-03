@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: user.php 17855 2010-06-23 17:46:38Z eddieajau $
+ * @version		$Id: user.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -73,6 +73,8 @@ class UsersControllerUser extends UsersController
 	 */
 	public function logout()
 	{
+		JRequest::checkToken('default') or jexit(JText::_('JInvalid_Token'));
+
 		$app = JFactory::getApplication();
 
 		// Perform the log in.

@@ -1,7 +1,7 @@
 <?php
 /**
- * @version		$Id: view.html.php 19825 2010-12-11 11:21:17Z infograf768 $
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @version		$Id: view.html.php 20817 2011-02-21 21:48:16Z dextercowley $
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -102,21 +102,12 @@ class ContentViewArticle extends JView
 		$offset = $this->state->get('list.offset');
 
 		// Check the view access to the article (the model has already computed the values).
-		if ($item->params->get('access-view') != true) {
-			// TODO: This curtails the ability for a layout to show teaser information!!!
-			// If a guest user, they may be able to log in to view the full article
-			if (($this->params->get('show_noauth')) AND ($user->get('guest'))) {
-				// Redirect to login
-				$uri = JFactory::getURI();
-				$app->redirect('index.php?option=com_users&view=login&return=' . base64_encode($uri), JText::_('COM_CONTENT_ERROR_LOGIN_TO_VIEW_ARTICLE'));
+		if ($item->params->get('access-view') != true && (($item->params->get('show_noauth') != true &&  $user->get('guest') ))) {
+
+						JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
 
 				return;
-			}
-			else {
-				JError::raiseWarning(403, JText::_('JERROR_ALERTNOAUTHOR'));
-
-				return;
-			}
+			
 		}
 
 		if ($item->params->get('show_intro','1')=='1') {
@@ -150,6 +141,9 @@ class ContentViewArticle extends JView
 			$model = $this->getModel();
 			$model->hit();
 		}
+
+		//Escape strings for HTML output
+		$this->pageclass_sfx = htmlspecialchars($this->item->params->get('pageclass_sfx'));
 
 		$this->_prepareDocument();
 
@@ -205,10 +199,10 @@ class ContentViewArticle extends JView
 
 		// Check for empty title and add site name if param is set
 		if (empty($title)) {
-			$title = htmlspecialchars_decode($app->getCfg('sitename'));
+			$title = $app->getCfg('sitename');
 		}
 		elseif ($app->getCfg('sitename_pagetitles', 0)) {
-			$title = JText::sprintf('JPAGETITLE', htmlspecialchars_decode($app->getCfg('sitename')), $title);
+			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		if (empty($title)) {
 			$title = $this->item->title;
@@ -219,10 +213,18 @@ class ContentViewArticle extends JView
 		{
 			$this->document->setDescription($this->item->metadesc);
 		}
+		elseif (!$this->item->metadesc && $this->params->get('menu-meta_description')) 
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
 
 		if ($this->item->metakey)
 		{
 			$this->document->setMetadata('keywords', $this->item->metakey);
+		}
+		elseif (!$this->item->metakey && $this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1')

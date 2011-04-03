@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: CREDITS 18868 2010-09-13 09:54:11Z infograf768 $
+ * @version		$Id: CREDITS 20800 2011-02-21 17:33:07Z infograf768 $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -10,11 +10,103 @@
 defined('_JEXEC') or die;
 ?>
 
+-----Please save file as UTF8
+
 -------------------- Joomla! 1.6 Credits ---------------------
 
 Code contributors:
 ------------------
-
+Adrian Louter
+Adrian Victor III Onod
+Airton Torres
+Akarawuth Tamrareang
+Amy Stephen
+Andrea Tarr
+Andrew Eddie
+Andy Capiau
+Angie Radtke
+Anja Hage
+Anthony Ferrara
+Anthony McLin
+Antonio Escobar Tizon
+Artyom Bisyarin
+Benjamin Trenkle
+Bill Richardson
+Birger Lehner
+Boris Baddenoff
+Brian Teeman
+C. Tapuscrine
+Cherif Gouiaa
+Chris Davenport
+Christophe Demko
+Christopher Garvis
+Cristina Solana
+CY Lee
+Dennis Hermacki
+Elin Waring
+Ercan Ozkaya
+Franklin Tse
+Gergő Erdősi
+Gobezu Sewu
+Hannes Papenberg
+Harry Reinhardt
+Ian MacLennan
+Iszak Bryan
+Jacob Waisner
+Janich Rasmussen
+Jason Pettett
+Jean-Marie Simonet
+Jen Kramer
+Jennifer Marriott
+Jeremy Wilken
+Jonatas Braganca
+Jonnathan S. Lima
+Joseph LeBlanc
+Kevin Devine
+Klas Berlič
+Louis Landry
+Loyd Headrick
+Marijke Stuivenberg
+Marius van Rijnsoever
+Mark Dexter
+Martijn Maandag
+Mathavan Jeyadev
+Matt Thomas
+Michael Babker
+Navid Zeraati
+Nicholas Dionysopoulos
+Nikolai Plath
+Ole Bang Ottosen
+Omar Ramos
+Peter Osipof
+Phani Kalluri
+Phil Snell
+Prasit Gebsaap
+Radek Suski
+Ramindu Deshapriya
+Rob Joyce
+Rob Schley
+Robert Deutz
+Roland Dalmulder
+Ron Severdia
+Ronald de Vries
+Ronald Pijpers
+Rouven Weßling
+Rune Sjøen
+Samuel Moffatt
+Sander Potjer
+Selene Feigl
+Sergio Iglesias
+Stefania Gaianigo
+Steve Burge
+Sudhi Seshachala
+Thierry Bela
+Tim Plummer
+Tore Krudtaa
+Troy Hall
+Tudor Mazilu
+Viet Hoang Vu
+Zachary Draper.
 
 
 
@@ -26,7 +118,61 @@ Documentation Contributors:
 
 Translation Contributors:
 -------------------------
-
+Afrikaans (af-ZA) - Gerrit Hoekstra
+Albanian (sq-AL) - Albanian Translation Team
+Arabic Unitag (ar-AA) - Arabic Unitag Translation Team - Mahmood Alhaj Kassem
+Belarusian (be-BY) - Dennis Hermacki
+Bengali (bn-BD) – Kamal Sikder
+Brazilian Portuguese (pt-BR) - Joomla! Brasil - FaBMak
+Bulgarian (bg-BG) - Bulgarian Translation Team - Yuriy Boev
+Catalan (ca-ES) - Catalan Translation Team - Damià Verger
+Chinese Traditional (zh-TW) - Traditional Chinese Translation Team - Eddy Chang
+Chinese Simplified (zh-CN) - Simplified Chinese Translation Team - Jonathan Chang
+Czech (cs-CZ) - Czech Translation Team
+Danish (da-DK) - Danish Translation Team - Ronny Buelund, Mikael Winther, Ole Bang Ottosen
+Dutch (nl-NL) - Dutch Translation Team - Marijke Stuivenberg, Martijn Maandag, Marco Corrò
+English (en-AU) - AU Australian Translation Team - Leonard Fitzgerald
+English (en-US) - US English Translation Team - Jennifer Marriott
+Esperanto (eo-XX) - Esperanto Translation Team - Cindy McKee, Fabien Tschudy
+Estonian (et-EE) - Estonian Translation Team - Rivo Zängov
+Flemish (nl-BE) - Dutch (BE) Translation Team - Frank Joris
+Finnish (fi-FI) - Finnish Translation Team - Markku Suominen
+French (fr-FR) - French Translation Team - joomla.fr
+Galician (gl-ES) - Galician Translation Team - damufo
+Georgian (ka-GE) - Georgian Translation Project - Manana Gedevanishvili
+German (de-DE)/(de-CH)/(de-AT) - J!German - Jan Erik Zassenhaus, Wolfgang Korn, Steffen Werner, Christian Reinhart
+Greek (el-GR) - Greek Joomla Community - Aris Ntatsis
+Gujarati (gu-IN) - Gujarati Translation Team - Ronak Bhagdev
+Hebrew (he-IL) - Hebrew Translation Team - Yair Lahav, Ofer Cohen
+Hungarian (hu-HU) - Magyar Joomla! Felhasznalok Nemzetkozi Egyesulete - Jozsef Tamas Herczeg, Annamaria Ban
+Indonesian (id-ID) - Hanacaraka Team - Andy Sikumbang
+Italian (it-IT) - Italian Translation Team - Stefania Gaianigo, Alessandro Rossi
+Japanese (ja-JP) - Japanese Translation Team - Noriaki Koide, Hiroko Hirano
+Khmer (Cambodia) (km-KH) - Khmer Translation Team - Sovann Heng, Kunthea Thy, Vathana Savuth
+Kurdish - Soranî (cbk-IQ) - Kurdish Soranî Translation team - Chalak s. Kareem
+Latvian (lv-LV) - Latvian Translation Team - Edgars Piruška, Aivars Ostrovskis
+Laotian (lo-LA) - Joomla LaiLao Team (LaoOpenSource) - Akarawuth Tamrareang , Viengsakhone phanthanousy , Outhai Saioudom
+Lithuanian (lt-LT) - Lithuanian Translation Team - Stasys Svabas
+Malayalam - India (ml-IN) - Sujith Kumar
+Macedonian (mk-MK) - Macedonian Translation Team - Ilija Iliev Strumjan
+Mongolian (mn-MN) - Mongolian Translation Team, Altansukh T.
+Norwegian Bokmål (nb-NO) - Joomla! i Norge - Rune Rasmussen, Roar Jystad, Jens-Christian Skibakk
+Norwegian Nynorsk (nn-NO) - Joomla! i Norge - Toyni Tobekk (based on nb-NO translations)
+Persian (fa-IR) - Persian Translation Team - Mostafa Alavi nik , joomfa team
+Polish (pl-PL) - Polskie Centrum Joomla! - Maciej Słojewski, Stefan Wajda
+Portuguese (pt-PT) - Comunidade Joomla! Portugal - Paulo Izidoro
+Romanian (ro-RO) - Romanian Joomla! Community - Cosmin Lebu
+Russian (ru-RU) - Russian Translation Team (joomlaportal.ru) - Sergey Litvinov, Sergey Brovin, Alexey Brin
+Serbian (sr-RS) and Serbian (sr-YU)- Joomla! Serbia team - Svetlana Zec, Nenad Antic, Marko Milenovic
+Slovak (sk-SK) - Slovak Translation Team - Peter Michnica
+Spanish (es-ES) - Spanish Translation Team - Gustavo Raúl Aragón, Rafael Gómez, Leonel Cantón.
+Swedish (sv-SE) - Swedish Translation Team (SvenskJoomla!) - Sune Hultman, Olle Zettergren, Stefan Gagner, Christer Gerhardsson
+Syriac (sy-IQ) - East Syriac Translation Team - Pauls Dinka
+Laotian (lo-LA) - Joomlalaolao Team (LaoOpenSource) - Akarawuth Tamrareang , Viengsakhone phanthanousy , Outhai Saioudom, Chittavong Keomanyvong
+Tamil India (ta-IN) - Ilagnayeru 'MIG' Manickam, Elango Samy Manim
+Turkish (tr-TR) - Joomla! Turkiye - Ümit Kenan Gönüllü
+Ukrainian (uk-UA) - Ukrainian Translation Team - Denys Nosov
+Vietnamese (vi-VN) - Viet Nam Translation Team
 
 
 

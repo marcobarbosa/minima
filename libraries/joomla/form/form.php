@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: form.php 19816 2010-12-10 11:47:49Z infograf768 $
+ * @version		$Id: form.php 20755 2011-02-18 04:32:36Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Form
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -642,7 +642,7 @@ class JForm
 				$groups	= array_map('strval', $attrs ? $attrs : array());
 
 				// Check to see if the field exists in the current form.
-				if ($current = & $this->findField((string) $field['name'], implode('.', $groups))) {
+				if ($current = $this->findField((string) $field['name'], implode('.', $groups))) {
 
 					// If set to replace found fields remove it from the current definition.
 					if ($replace) {
@@ -1440,7 +1440,7 @@ class JForm
 				{
 					$debug = $lang->setDebug(false);
 					$default = JText::_($default);
-					$lang->setDebug($default);
+					$lang->setDebug($debug);
 				}
 				else
 				{

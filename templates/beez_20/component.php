@@ -1,9 +1,9 @@
 <?php
 /**
- * @version                $Id: component.php 19532 2010-11-17 14:48:49Z chdemko $
+ * @version                $Id: component.php 20196 2011-01-09 02:40:25Z ian $
  * @package                Joomla.Site
  * @subpackage        tpl_beez2
- * @copyright        Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright        Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license                GNU General Public License version 2 or later; see LICENSE.txt
  */
 

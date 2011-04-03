@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: language.php 17591 2010-06-10 08:29:02Z infograf768 $
+ * @version		$Id: language.php 20436 2011-01-25 12:02:39Z infograf768 $
  * @package		Joomla.Installation
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -47,10 +47,10 @@ class JFormFieldLanguage extends JFormFieldList
 			$native = 'en-GB';
 		}
 
-		// Get a forced language if it exists.
+	// Get a forced language if it exists.
 		$forced = $app->getLocalise();
-		if (!empty($forced['lang'])) {
-			$native = $forced['lang'];
+		if (!empty($forced['language'])) {
+			$native = $forced['language'];
 		}
 
 		// If a language is already set in the session, use this instead

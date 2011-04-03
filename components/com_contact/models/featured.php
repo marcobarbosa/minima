@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: featured.php 19422 2010-11-09 22:13:54Z chdemko $
+ * @version		$Id: featured.php 20267 2011-01-11 03:44:44Z eddieajau $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -48,6 +48,30 @@ class ContactModelFeatured extends JModelList
 	 * @var		array
 	 */
 	protected $_categories = null;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = array(
+				'id', 'a.id',
+				'name', 'a.name',
+				'con_position', 'a.con_position',
+				'suburb', 'a.suburb',
+				'state', 'a.state',
+				'country', 'a.country',
+				'ordering', 'a.ordering',
+			);
+		}
+
+		parent::__construct($config);
+	}
 
 	/**
 	 * Method to get a list of items.
@@ -98,7 +122,7 @@ class ContactModelFeatured extends JModelList
 		if ($categoryId = $this->getState('category.id')) {
 			$query->where('a.catid = '.(int) $categoryId);
 		}
-		
+
 		// Join to check for category published state in parent categories up the tree
 		$query->select('c.published, CASE WHEN badcats.id is null THEN c.published ELSE 0 END AS parents_published');
 		$subquery = 'SELECT cat.id as id FROM #__categories AS cat JOIN #__categories AS parent ';
@@ -115,7 +139,7 @@ class ContactModelFeatured extends JModelList
 		$state = $this->getState('filter.published');
 		if (is_numeric($state)) {
 			$query->where('a.published = '.(int) $state);
-			
+
 			// Filter by start and end dates.
 			$nullDate = $db->Quote($db->getNullDate());
 			$nowDate = $db->Quote(JFactory::getDate()->toMySQL());
@@ -125,7 +149,7 @@ class ContactModelFeatured extends JModelList
 		}
 
 
-		
+
 		// Filter by language
 		if ($this->getState('filter.language')) {
 			$query->where('a.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' . $db->Quote('*') . ')');
@@ -144,7 +168,7 @@ class ContactModelFeatured extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	protected function populateState()
+	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication();
@@ -158,19 +182,25 @@ class ContactModelFeatured extends JModelList
 		$this->setState('list.start', $limitstart);
 
 		$orderCol	= JRequest::getCmd('filter_order', 'ordering');
+		if (!in_array($orderCol, $this->filter_fields)) {
+			$orderCol = 'ordering';
+		}
 		$this->setState('list.ordering', $orderCol);
 
 		$listOrder	=  JRequest::getCmd('filter_order_Dir', 'ASC');
+		if (!in_array(strtoupper($listOrder), array('ASC', 'DESC', ''))) {
+			$listOrder = 'ASC';
+		}
 		$this->setState('list.direction', $listOrder);
 
 		$user = JFactory::getUser();
 		if ((!$user->authorise('core.edit.state', 'com_contact')) &&  (!$user->authorise('core.edit', 'com_contact'))){
 			// limit to published for people who can't edit or edit.state.
 			$this->setState('filter.published', 1);
-				
+
 			// Filter by start and end dates.
 			$this->setState('filter.publish_date', true);
-		}		
+		}
 
 		$this->setState('filter.language',$app->getLanguageFilter());
 

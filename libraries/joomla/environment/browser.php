@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: browser.php 19837 2010-12-11 16:09:30Z chdemko $
+ * @version		$Id: browser.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Framework
  * @subpackage	Environment
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

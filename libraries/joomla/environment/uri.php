@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: uri.php 19862 2010-12-13 10:26:27Z chdemko $
+ * @version		$Id: uri.php 20899 2011-03-07 20:56:09Z ian $
  * @package		Joomla.Framework
  * @subpackage	Environment
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -152,7 +152,19 @@ class JURI extends JObject
 				}
 
 				// Now we need to clean what we got since we can't trust the server var
-				$theURI = urldecode($theURI);
+				// Need to check that the URI is fully decoded in case of multiple-encoded attack vectors.
+				$halt	= 0;
+				while ($theURI != urldecode($theURI))
+				{
+					$last	= $theURI;
+					$theURI = urldecode($theURI);
+
+					if (++$halt > 10) {
+						// Runaway check. URI has been seriously compromised.
+						jexit();
+					}
+				}
+				
 				$theURI = str_replace('"', '&quot;',$theURI);
 				$theURI = str_replace('<', '&lt;',$theURI);
 				$theURI = str_replace('>', '&gt;',$theURI);
@@ -380,7 +392,7 @@ class JURI extends JObject
 	 * @return	array Query variables.
 	 * @since	1.5
 	 */
-	public function getVar($name = null, $default=null)
+	public function getVar($name, $default=null)
 	{
 		if (array_key_exists($name, $this->_vars)) {
 			return $this->_vars[$name];

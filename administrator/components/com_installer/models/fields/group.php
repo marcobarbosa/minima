@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: group.php 17244 2010-05-25 01:07:44Z eddieajau $
+ * @version		$Id: group.php 20196 2011-01-09 02:40:25Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 

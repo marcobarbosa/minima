@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 /**
- * @version		$Id: template_rtl.css 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: template_rtl.css 20455 2011-01-27 07:30:15Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  *
@@ -151,12 +151,18 @@ div.pane-sliders {
 }
 
 .pane-toggler  span {
+	padding-left: 0;
 	padding-right: 20px;
 }
 
 .pane-toggler-down span {
-	background: transparent url(../images/j_arrow_down.png) 5px 50%
-		no-repeat;
+	padding-right: 20px;
+	padding-left: 0;
+}
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+	padding: 5px 10px 5px 0;
+	margin: 0;
 }
 
 /**
@@ -202,6 +208,22 @@ div.current fieldset.radio label {
 	margin: 3px 2px 0 0;
 }
 
+div.current fieldset.checkboxes {
+	float:right;
+	clear:left;
+}
+
+div.current fieldset.checkboxes input {
+	float:right;
+	clear:right;
+	margin: 3px 2px 0 0;
+}
+
+div.current fieldset.checkboxes label {
+	clear:left;
+	margin: 3px 2px 0 0;
+}
+
 div.current input,
 div.current span.faux-input,
 div.current textarea,
@@ -211,6 +233,10 @@ div.current select {
 }
 
 div.current table#acl-config th.acl-groups {
+	text-align: right;
+}
+
+div.current table#filter-config th.acl-groups {
 	text-align: right;
 }
 
@@ -333,6 +359,10 @@ div.col {
 	float: right;
 }
 
+div.options-section.col {
+	float: left;
+}
+
 div.col1 {
 	float: right;
 }
@@ -354,16 +384,16 @@ div.col2 {
 
 	/* Layout Divs */
 div.main-section {
-	width: 60%;
+
 }
 
 div.options-section {
-	width: 40%;
+	margin: 10px 0 10px 10px;
 }
 
 /* for bluestork style html */
 div.width-40.fltrt {
-	margin: 10px 0 10px 3px;
+	margin: 10px 0 10px 10px;
 }
 
 /**
@@ -815,9 +845,12 @@ a img.calendar {
 }
 
 /* -- MODAL STYLES ----------- */
+div#sbox-window {
+	text-align: right;
+}
 
 h2.modal-title {
-	margin-right: 15px;
+	margin: 5px 15px 0 0;
 }
 
 ul.menu_types {
@@ -827,6 +860,7 @@ ul.menu_types li,
 dl.menu_type dd ul li {
 	float:right;
 	margin-left: 10px;
+	margin-right: 0;
 }
 
 dl.menu_type dt {
@@ -837,12 +871,30 @@ dl.menu_type dd {
 	clear:right;
 }
 
+dl.menu_type dd ul li {
+	margin: 0;
+}
+
+dl.menu_type dd ul {
+	margin: 0;
+}
+
+ul#new-modules-list {
+	padding: 5px 15px 0 0;
+	margin: 0;
+}
+ul#new-modules-list li {
+	float:right;
+	margin: 0 0 0 20px;
+}
+
 /**
  * User Accessibility
  */
 
 	/* Skip to Content Structural Styling */
 #skiplinkholder a,#skiplinkholder a:link,#skiplinkholder a:visited {
+	left: 0;
 	right: -200%;
 }
 
@@ -856,6 +908,7 @@ dl.menu_type dd {
 }
 
 #skiptargetholder {
+	left: 0;
 	right: -200%;
 }
 
@@ -886,6 +939,7 @@ fieldset.panelform span.faux-label {
 	clear:right;
 	float:right;
 	margin-right: 10px;
+	margin-left: 5px;
 }
 
 fieldset.adminform fieldset.radio label,
@@ -924,19 +978,31 @@ fieldset.panelform input, fieldset.panelform span.faux-input, fieldset.panelform
 	margin:5px 0 5px 5px;
 }
 
+/* -------- Batch Section ---------- */
+fieldset#batch-choose-action {
+	clear:none;
+	clear: right;
+}
 fieldset.batch label {
-	float:right;
-	margin-left: 10px;
+	float: right;
+	clear: none;
+}
+fieldset label#batch-choose-action-lbl {
+	clear: none;
+	clear: right;
+}
+
+fieldset.batch select, fieldset.batch input, fieldset.batch img, fieldset.batch button {
+	float: right;
+}
+
+select#batch-menu-id {
 	margin-right: 0;
+	margin-left: 30px;
 }
-
-fieldset.batch input, fieldset.batch textarea, fieldset.batch select, fieldset.batch img {
-	float:right;
-	margin:5px 0 5px 25px;
-}
-
-fieldset.batch input[type="radio"] {
-	margin-left: 5px;
+label#batch-access-lbl {
+	margin-right: 0;
+	margin-left: 10px;
 }
 
 /* Banner edit */
@@ -1035,7 +1101,9 @@ span.icon-16-locked {
 #jform_sef_rewrite-lbl {
 }
 
-/* CSS Rules Permission Angie with changes for Hathor */
+/* *
+* Permission Rules
+*/
 
 #permissions-sliders ul#rules,
 #permissions-sliders ul#rules ul
@@ -1047,16 +1115,15 @@ span.icon-16-locked {
 #permissions-sliders ul#rules li
 {
 	margin:0px 0 0 0%;
-	/*padding:0 0 0 1%;*/
 	padding:0;
 }
 
 #permissions-sliders ul#rules .pane-slider
 {
-    padding:0px;
-    top:0px;
-	right: 40%;
-    left: 0;
+}
+
+#permissions-sliders ul#rules li h3
+{
 }
 
 #permissions-sliders ul#rules li h3.pane-toggler-down a
@@ -1065,8 +1132,6 @@ span.icon-16-locked {
 
 #permissions-sliders ul#rules table.group-rules caption
 {
-	padding:5px; 
-	text-align:right;
 }
 
 #permissions-sliders ul#rules table.group-rules td
@@ -1079,7 +1144,6 @@ span.icon-16-locked {
 #permissions-sliders .panel 
 {
     margin-bottom: 3px;
-    margin-left: 60.5%;
     margin-right:0; 
 }
 
@@ -1095,7 +1159,7 @@ table.group-rules td select
 	
 #permissions-sliders ul#rules .mypanel
 {
-	padding:0px; 
+	padding:0px;
 }
 
 #permissions-sliders ul#rules 
@@ -1111,18 +1175,25 @@ table.group-rules td select
 
 #permissions-sliders .pane-toggler  span
 {
-	/* padding-left:5px; */
-	padding-right: 5px;
+	padding-left: 0;
+	padding-right: 20px;
 }
 
-#permissions-sliders .pane-toggler -down span
+#permissions-sliders .pane-toggler-down span
 {
-	/* padding-left:5px */
-	padding-right: 5px;
+	padding-left: 0;
+	padding-right: 20px;
 }
 
 #permissions-sliders ul#rules .panel h3
 {
+}
+
+/**
+ * Helpmenus
+ */
+ul.helpmenu li {
+	float: left;
 }
 
 /**

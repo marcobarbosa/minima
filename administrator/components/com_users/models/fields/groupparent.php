@@ -1,7 +1,7 @@
 <?php
 /**
  * @version		$Id$
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -41,6 +41,7 @@ class JFormFieldGroupParent extends JFormFieldList
 		$options = array();
 
 		$db = JFactory::getDbo();
+		$user = JFactory::getUser();
 		$query = $db->getQuery(true);
 
 		$query->select('a.id AS value, a.title AS text, COUNT(DISTINCT b.id) AS level');
@@ -68,7 +69,13 @@ class JFormFieldGroupParent extends JFormFieldList
 
 		// Pad the option text with spaces using depth level as a multiplier.
 		for ($i = 0, $n = count($options); $i < $n; $i++) {
-			$options[$i]->text = str_repeat('- ',$options[$i]->level).$options[$i]->text;
+			// Show groups only if user is super admin or group is not super admin
+			if ($user->authorise('core.admin') || (!JAccess::checkGroup($options[$i]->value, 'core.admin'))) {
+				$options[$i]->text = str_repeat('- ',$options[$i]->level).$options[$i]->text;
+			}
+			else {
+			 unset ($options[$i]);
+			}
 		}
 
 		// Merge any additional options in the XML definition.

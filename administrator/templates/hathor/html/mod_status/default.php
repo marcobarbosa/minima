@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: default.php 18398 2010-08-12 10:03:26Z infograf768 $
+ * @version		$Id: default.php 20431 2011-01-24 17:57:54Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -11,25 +11,30 @@
 // No direct access.
 defined('_JEXEC') or die;
 
+$hideLinks	= JRequest::getBool('hidemainmenu');
 $output = array();
 
 // Print the logged in users.
 if ($params->get('show_loggedin_users', 1)) :
-	$output[] = "<span class=\"loggedin-users\">".$online_num. " " . JText::_('MOD_STATUS_USERS') . "</span>";
+	$output[] = '<span class="loggedin-users">'.JText::plural('MOD_STATUS_USERS', $online_num).'</span>';
 endif;
 
 // Print the back-end logged in users.
 if ($params->get('show_loggedin_users_admin', 1)) :
-	$output[] = "<span class=\"loggedin-users\">".$count. " " . JText::_('MOD_STATUS_BACKEND_USERS') . "</span>";
+	$output[] = '<span class="backloggedin-users">'.JText::plural('MOD_STATUS_BACKEND_USERS', $count).'</span>';
 endif;
 
 //  Print the inbox message.
 if ($params->get('show_messages', 1)) :
-	$output[] = "<span class=\"$inboxClass\"><a href=\"$inboxLink\">". $unread . " " . JText::_('MOD_STATUS_MESSAGES'). "</a></span>";
+	$output[] = '<span class="'.$inboxClass.'">'.
+			($hideLinks ? '' : '<a href="'.$inboxLink.'">').
+			JText::plural('MOD_STATUS_MESSAGES', $unread).
+			($hideLinks ? '' : '</a>').
+			'</span>';
 endif;
 
 // Print the Preview link to Main site.
-	$output[] = "<span class=\"viewsite\"><a href=\"".JURI::root()."\" target=\"_blank\">".JText::_('MOD_STATUS_VIEW_SITE')."</a></span>";
+	$output[] = '<span class="viewsite"><a href="'.JURI::root().'" target="_blank">'.JText::_('MOD_STATUS_VIEW_SITE').'</a></span>';
 
 // Reverse rendering order for rtl display.
 if ($lang->isRTL()) :

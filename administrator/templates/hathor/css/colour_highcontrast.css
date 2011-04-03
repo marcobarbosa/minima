@@ -4,7 +4,7 @@
  * @version		$Id: highcontrast.css 19524 2010-11-17 11:45:07Z eddieajau $
  * @package		Joomla.Administrator
  * @subpackage	templates.hathor
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  *
@@ -22,6 +22,7 @@
  * #000000	Highlight/shadow border
  * #a20000	Invalid Alert Color
  * #00f800	Success Alert Color
+ * #feffbf  Disabled Menu/Protected
  *
  * MENU:
  *
@@ -192,8 +193,13 @@ span.writable {
 span.unwritable	{
 	color: #a20000;
 }
+
 .none {
-	color: #cccccc;
+	color: #feffbf;
+}
+
+.protected {
+	color: #feffbf;
 }
 
 span.note {
@@ -488,13 +494,17 @@ input,select, span.faux-input {
 }
 
 /* Inputs used as buttons */
-input[type="button"] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
 	background-color: #1b3f7c;
 	border: 1px solid #10254a;
 	color: #fcff20;
 }
 
-input[type="button"]:hover, input[type="button"]:focus {
+input[type="button"]:hover, input[type="button"]:focus,
+input[type="submit"]:hover, input[type="submit"]:focus,
+input[type="reset"]:hover, input[type="reset"]:focus {
 	background-color: #163365;
 	border-top: 1px solid #000000;
 	border-right: 1px solid #1b3f7c;
@@ -684,6 +694,13 @@ a.saveorder {
 
 a.saveorder.inactive {
 	background-position: 0px -16px;
+}
+
+/**
+ * Saving order icon styling in admin tables
+ */
+fieldset.batch {
+	background: #1c4181;
 }
 
 
@@ -1352,7 +1369,9 @@ a.jgrid:hover {
 .icon-32-remove {
 	background-image: url(../images/toolbar/icon-32-remove.png);
 }
-
+.icon-32-featured {
+	background-image: url(../images/toolbar/icon-32-featured.png);
+}
 /**
  * Quick Icons
  * Also knows as Header Icons
@@ -1535,8 +1554,8 @@ a.jgrid:hover {
 	background-image: url(../images/header/icon-48-writemess.png);
 }
 
-.icon-48-frontpage {
-	background-image: url(../images/header/icon-48-frontpage.png);
+.icon-48-featured {
+	background-image: url(../images/header/icon-48-featured.png);
 }
 
 .icon-48-sections {
@@ -1662,6 +1681,10 @@ div.message {
  */
 dl.menu_type dt {
 	border-bottom: 1px solid #1b3f7c;
+}
+
+ul#new-modules-list {
+	border-top: 1px solid #1b3f7c;
 }
 
 /**
@@ -1867,7 +1890,9 @@ table#acl-config th.acl-groups {
 * Options modal- config
 */
 
-/* CSS Rules Permission Angie with changes for Hathor */
+/* *
+* Permission Rules
+*/
 
 #permissions-sliders ul#rules,
 #permissions-sliders ul#rules ul
@@ -1881,9 +1906,15 @@ ul#rules li .pane-sliders .panel h3.title
 	border:solid 0px #1b3f7c;
 }
 
+#permissions-sliders ul#rules .pane-slider
+{
+	border:solid 1px #1b3f7c;
+}
+
 #permissions-sliders ul#rules li h3
 {
 	background:#1c4181;
+	border: 1px solid #1b3f7c;
 }
 
 #permissions-sliders ul#rules li h3.pane-toggler-down a
@@ -1893,13 +1924,10 @@ ul#rules li .pane-sliders .panel h3.title
 
 #permissions-sliders ul#rules li h3.pane-toggler-down
 { 
-	/* color:#2c2c2c; */
-	background:#10254a; 
 }
     
 #permissions-sliders ul#rules li h3.pane-toggler-down span
 { 
-	color:#fff; 
 }   
         
 #permissions-sliders ul#rules .group-kind
@@ -1909,18 +1937,19 @@ ul#rules li .pane-sliders .panel h3.title
             
 #permissions-sliders ul#rules table.group-rules caption
 {
-	background: #1c4181;
 }
 
 #permissions-sliders ul#rules table.group-rules td
 {
-    border:solid 1px #1b3f7c; 
+    border-right:solid 1px #1b3f7c; 
+    border-bottom:solid 1px #1b3f7c; 
 }
 
 #permissions-sliders ul#rules table.group-rules th
 {
-    background:#163365; 
-    border:solid 1px #1b3f7c; 
+    background: #10254a; 
+    border-right:solid 1px #1b3f7c; 
+    border-bottom:solid 1px #1b3f7c; 
     color:#fcff20;
 }
 
@@ -1942,7 +1971,7 @@ ul#rules table.group-rules td label
 
 #permissions-sliders .mypanel table.group-rules caption
 {
-	border:solid 1px #10254a;
+	/*border:solid 1px #10254a;*/
 }  
 
 #permissions-sliders  ul#rules  table.group-rules td
@@ -1957,17 +1986,14 @@ ul#rules table.group-rules td label
 
 #permissions-sliders .pane-toggler span
 {
-	background-image:none;
 }
 
 #permissions-sliders .pane-toggler-down span
-	{
-	background-image:none;
+{
 }
 
 #permissions-sliders ul#rules .panel h3
-	{
-	background:#1c4181 url(../images/j_arrow_right.png) top right no-repeat
+{
 }
 
 /*
@@ -2081,7 +2107,7 @@ table.adminlist tbody tr:hover td.check-d {
 
 #menu li.disabled a:hover, #menu li.disabled a:focus, #menu li.disabled a
 	{
-	color: #cccccc;
+	color: #feffbf;
 	background-color: #1b3f7c;
 	border-top: 1px solid #163365;
 	border-right: 1px solid #10254a;

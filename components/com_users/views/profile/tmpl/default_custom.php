@@ -1,13 +1,16 @@
 <?php
 /**
- * @version		$Id: default_custom.php 19071 2010-10-09 15:19:58Z chdemko $
+ * @version		$Id: default_custom.php 20211 2011-01-09 17:51:47Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
 defined('_JEXEC') or die;
+
+JLoader::register('JHtmlUsers', JPATH_COMPONENT . '/helpers/html/users.php');
+JHtml::register('users.spacer', array('JHtmlUsers','spacer'));
 
 $fieldsets = $this->form->getFieldsets();
 if (isset($fieldsets['core']))   unset($fieldsets['core']);
@@ -24,30 +27,17 @@ foreach ($fieldsets as $group => $fieldset): // Iterate through the form fieldse
 	<dl>
 	<?php foreach ($fields as $field):
 		if (!$field->hidden) :?>
-		<dt><?php echo $field->label; ?></dt>
+		<dt><?php echo $field->title; ?></dt>
 		<dd>
-			<?php
-				if (!$value = trim($field->value)) {
-					echo JText::_('COM_USERS_PROFILE_VALUE_NOT_FOUND');
-				} else {
-					if ($field->id == 'jform_profile_website') {
-						$v_http = substr ($value, 0, 4);
-
-						if($v_http == "http"){
-							echo '<a href="'.$value.'">'.$value.'</a>';
-						} else {
-							echo '<a href="http://'.$value.'">'.$value.'</a>';
-						}
-					} else {
-						if (method_exists($field, 'getText')) {
-							if (($value = $field->getText()) === null) {
-								$value = JText::_('COM_USERS_PROFILE_VALUE_NOT_FOUND');
-							}
-						}
-						echo $value;
-					}
-				}
-			?>
+			<?php if (JHtml::isRegistered('users.'.$field->id)):?>
+				<?php echo JHtml::_('users.'.$field->id, $field->value);?>
+			<?php elseif (JHtml::isRegistered('users.'.$field->fieldname)):?>
+				<?php echo JHtml::_('users.'.$field->fieldname, $field->value);?>
+			<?php elseif (JHtml::isRegistered('users.'.$field->type)):?>
+				<?php echo JHtml::_('users.'.$field->type, $field->value);?>
+			<?php else:?>
+				<?php echo JHtml::_('users.value', $field->value);?>
+			<?php endif;?>
 		</dd>
 		<?php endif;?>
 	<?php endforeach;?>

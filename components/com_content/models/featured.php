@@ -1,9 +1,9 @@
 <?php
 /**
- * @version		$Id: featured.php 19723 2010-12-01 20:36:10Z chdemko $
+ * @version		$Id: featured.php 20469 2011-01-28 14:35:19Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -37,7 +37,7 @@ class ContentModelFeatured extends ContentModelArticles
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		parent::populateState();
+		parent::populateState($ordering, $direction);
 
 		// List state information
 		$limitstart = JRequest::getVar('limitstart', 0, '', 'int');
@@ -49,6 +49,15 @@ class ContentModelFeatured extends ContentModelArticles
 		$this->setState('list.links', $params->get('num_links'));
 
 		$this->setState('filter.frontpage', true);
+
+		$user		= JFactory::getUser();
+		if ((!$user->authorise('core.edit.state', 'com_content')) &&  (!$user->authorise('core.edit', 'com_content'))){
+			// filter on published for those who do not have edit or edit.state rights.
+			$this->setState('filter.published', 1);
+		}
+		else {
+			$this->setState('filter.published', array(0, 1, 2));
+		}
 
 		// check for category selection
 		if (is_array($featuredCategories = $params->get('featured_categories'))) {

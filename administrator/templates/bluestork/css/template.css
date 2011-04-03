@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 /**
- * @version		$Id: template.css 19799 2010-12-08 03:49:04Z dextercowley $
+ * @version		$Id: template.css 20797 2011-02-21 15:39:14Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	templates.bluestork
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  *
  */
@@ -22,7 +22,9 @@ Dark grey color:			#666666 		RGB: 102/102/102
 Border grey color:			#CCCCCC 		RGB: 204/204/204
 
 ----------------------------------------------------------*/
-
+html {
+	overflow-y:scroll
+}
 
 body {
 	margin: 10px;
@@ -69,6 +71,10 @@ h1 {
 }
 
 h3 {
+	font-size: 1.182em;
+}
+
+h4 {
 	font-size: 1.182em;
 }
 
@@ -153,6 +159,10 @@ textarea:focus {
 p.error {
 	color: red;
 	font-weight: bold;
+}
+
+.protected {
+	color: #999999;
 }
 
 p.warning {
@@ -392,6 +402,10 @@ textarea#message {
 	width: 90%;
 }
 
+.pre_message {
+	font-size: 1.3em;
+}
+
 /* -- OVERLIB STYLES ----------------------------- */
 .ol-foreground {
 	background-color: #ffe;
@@ -424,14 +438,17 @@ textarea#message {
 
 /* Page titles */
 div.pagetitle {
-	padding-left: 60px;
+	height: 48px;
+	padding-left: 70px;
 	background-repeat: no-repeat;
-	margin-left: 10px;
+	background-position: 10px 0px;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 div.pagetitle h2 {
-	line-height: 48px;
-	font-size: 2em;
+	line-height: 24px;
+	font-size: 1.7em;
 	font-weight: bold;
 	color: #146295;
 	margin: 0;
@@ -583,6 +600,10 @@ h3.pane-toggler a:hover {
 	text-decoration: none;
 }
 
+.pane-slider.pane-hide {
+	display: none;
+}
+
 .pane-slider ol li {
 	list-style: none;
 	margin-left: -25px;
@@ -593,6 +614,19 @@ input#jformparams_link_titles1,
 input#jformparams_show_title1,
 input#jformparams_link_category1 {
 	margin-left: 13px;
+}
+
+div#position-icon.pane-sliders div.pane-down div.icon-wrapper {
+	margin: 5px 0 5px 0;
+}
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+	padding: 5px 0 5px 10px;
+	margin: 0;
+}
+
+div#position-icon.pane-sliders .icon {
+	background: #fff;
 }
 
 /* -- TAB STYLES ----------------------------- */
@@ -664,6 +698,24 @@ div.current fieldset.radio label {
 	clear: none;
 	min-width: 45px;
 	float: left;
+	margin: 3px 0 0 5px;
+}
+
+div.current fieldset.checkboxes {
+	float: left;
+	clear: right;
+}
+
+div.current fieldset.checkboxes input {
+	clear: left;
+	min-width: 15px;
+	float: left;
+	margin: 3px 0 0 2px;
+}
+
+div.current fieldset.checkboxes label {
+	clear: right;
+	min-width: 45px;
 	margin: 3px 0 0 5px;
 }
 
@@ -898,7 +950,7 @@ span.readonly {
 }
 
 #jform-imp {
-	width: 70px;
+	min-width: 70px;
 }
 
 .mod-desc { margin-left: 135px !important; float: none !important;}
@@ -933,12 +985,6 @@ label#jform_grouptitle-lbl {
 	padding-top: 3px;
 }
 
-span.spacer label {
-	white-space: nowrap;
-	font-weight: bold;
-	color: #666;
-}
-
 div#content-pane fieldset {
 	border: 0;
 	padding: 10px 15px 0 15px;
@@ -953,10 +999,9 @@ input.required {
 	background-color: #d5eeff;
 }
 
-label.required:after {
-	content: url(../images/required.png);
-	vertical-align: middle;
-	white-space: nowrap;
+.star {
+	color:#EB8207;
+	font-size:1.2em;
 }
 
 /* -------- Batch Section ---------- */
@@ -1037,7 +1082,8 @@ fieldset.adminform.long input { }
 /* Field label widths - short label */
 fieldset.adminform label, 
 fieldset.adminform span.faux-label {
-	width: 135px;
+	min-width: 135px;
+	padding: 0 5px 0 0;
 }
 
 fieldset.panelform {
@@ -1047,7 +1093,8 @@ fieldset.panelform label,
 fieldset.panelform div.paramrow label,
 fieldset.panelform span.faux-label {
 	min-width: 145px;
-	max-width: 145px;
+	max-width: 250px;
+	padding: 0 5px 0 0;
 }
 
 /* One-offs */
@@ -1137,16 +1184,18 @@ fieldset.adminform-legacy fieldset.radio {
 	border: 0;
 	float: left;
 	padding: 0;
-	margin: 0 0 5px 5px;
+	margin: 0 0 5px 0;
 	/* clear: right; */
 }
 
 fieldset.adminform fieldset.radio label,
 fieldset.panelform fieldset.radio label {
 	min-width: 60px;
+	padding-left: 0;
+	padding-right: 10px;
 	float: left;
 	clear: none;
-	width: 40px;
+	/*width: 40px;*/
 	display:inline;
 }
 
@@ -1167,7 +1216,6 @@ fieldset.panelform fieldset.checkboxes input[type="checkbox"] {
 	float: left;
 	clear: left;
 }
-
 fieldset.adminform fieldset.checkboxes label,
 fieldset.panelform fieldset.checkboxes label,
 fieldset.adminform fieldset.checkboxes span.faux-label,
@@ -1176,6 +1224,26 @@ fieldset.panelform fieldset.checkboxes span.faux-label {
 }
 
 /* end checkboxes */
+
+/* spacer */
+div.current span.spacer > span.before,
+fieldset.adminform span.spacer > span.before,
+fieldset.panelform span.spacer > span.before {
+	clear: both;
+	overflow: hidden;
+	height: 0;
+	display: block;
+}
+
+div.current span.spacer > span.text label ,
+fieldset.adminform span.spacer > span.text label ,
+fieldset.panelform span.spacer > span.text label {
+	white-space: nowrap;
+	font-weight: bold;
+	color: #666;
+}
+
+/* end spacer */
 
 fieldset.panelform-legacy label,
 fieldset.adminform-legacy label {
@@ -2026,6 +2094,7 @@ a.jgrid:hover {	text-decoration: none;}
 .icon-32-delete-style				{	background-image: url(../images/toolbar/icon-32-delete-style.png);	}
 .icon-32-purge						{	background-image: url(../images/toolbar/icon-32-purge.png);	}
 .icon-32-remove						{	background-image: url(../images/toolbar/icon-32-remove.png);	}
+.icon-32-featured			{	background-image: url(../images/toolbar/icon-32-featured.png);	}
 .toolbar-inactive					{	background-position: 0px 32px;  }
 
 /* -- HEADER ICON STYLES ----------------------------- */
@@ -2393,6 +2462,26 @@ dl.menu_type dd ul li {
 dl.menu_type dd ul {
 	margin-left: -40px;
 }
+
+ul#new-modules-list {
+	padding: 5px 0 0 15px;
+	width:95%;
+	margin: 0;
+	list-style: none;
+	border-top: 1px solid #666;
+}
+ul#new-modules-list li {
+	list-style: none;
+	display: block;
+	float:left;
+	margin: 0 20px 0 0;
+	width: 47%;
+}
+ul#new-modules-list li a {
+	font-size: 1.091em;
+	line-height: 1.8em;
+}
+
 
 /* -- ACL STYLES ----------- */
 
@@ -2857,8 +2946,9 @@ ul.config-option-list fieldset {
 	padding-right: 0;
 }
 
-
-/* CSS Rules Permission Angie */
+/**
+* Permission Rules
+*/
 
 #permissions-sliders ul#rules,
 #permissions-sliders ul#rules ul
@@ -2868,19 +2958,12 @@ ul.config-option-list fieldset {
     border:solid 0px #ccc; 
     background:#fff; 
     list-style-type:none;
-  
 }
 
 #permissions-sliders ul#rules li
 {
 	margin:0px 0 0 0%;
-	/*padding:0 0 0 1%;*/
-	padding:0
-}
-
-#permissions-sliders ul#rules .mypanel
-{
-	width:99%
+	padding:0;
 }
 
 ul#rules li .pane-sliders .panel h3.title
@@ -2890,19 +2973,23 @@ ul#rules li .pane-sliders .panel h3.title
 
 #permissions-sliders ul#rules .pane-slider
 {
-    padding:0px;
-    position:absolute; 
-    top:0px;
-    right:0 ;
-    background:none;
-    width:60%; 
+		border:solid 1px #ccc;
+}
+
+#permissions-sliders ul#rules .pane-slider.pane-hide
+{
+	display:none;
 }
 
 #permissions-sliders ul#rules li h3
 {
-	background:#f5f5f5;
+	background:#fafafa;
 	 font-size:1.10em;
-	 font-weight:normal
+}
+
+#permissions-sliders ul#rules li h3
+{
+	border: solid 1px #ccc;
 }
 
 #permissions-sliders ul#rules li h3.pane-toggler-down a
@@ -2911,38 +2998,26 @@ ul#rules li .pane-sliders .panel h3.title
 }
 
 #permissions-sliders ul#rules li h3.pane-toggler-down
-{ 
+{
 	color:#000; 
-	background:#146295;
+	/*background:#146295;*/
 }
     
 #permissions-sliders ul#rules li h3.pane-toggler-down span
 { 
-	color:#fff; 
+	/*color:#fff; */
 }
         
         
 #permissions-sliders ul#rules .group-kind
 {
-	color:#025A8D
+	color:#025A8D;
 }
             
 #permissions-sliders ul#rules table.group-rules
 {
     border-collapse:collapse;
      width:100%
-}
-
-#permissions-sliders ul#rules table.group-rules caption
-{
-	padding:10px; 
-	font-weight:bold;
-	text-align:left
-}
-
-#permissions-sliders ul#rules table.group-rules caption span
-{
-	font-weight:normal
 }
 
 #permissions-sliders ul#rules table.group-rules td
@@ -2968,7 +3043,18 @@ ul#rules li .pane-sliders .panel h3.title
     margin-bottom: 3px;
     margin-left:0;
     border:0;
-    margin-right:60.5%; 
+}
+
+#permissions-sliders p.rule-desc
+{
+	font-size: 1.091em;
+	margin-left: 0;
+}
+
+#permissions-sliders div.rule-notes
+	
+{
+	font-size: 1.091em;
 }
 
 ul#rules table.aclmodify-table
@@ -2994,20 +3080,21 @@ table.group-rules td select
 	
 #permissions-sliders ul#rules .mypanel
 {
-	border:solid 0px #ddd; 
-	background:#f5f5f5; 
+	background:#ffffff; 
 	padding:0px; 
-	width:100% 
 }
+
+#permissions-sliders .mypanel table.group-rules
+{
+	margin: 5px;
+} 
 
 #permissions-sliders .mypanel table.group-rules caption
 {
-	border:solid 1px #ccc;
 }  
 
 #permissions-sliders ul#rules 
 {	
-	min-height:35em ;
 	padding:5px
 }
 
@@ -3017,37 +3104,41 @@ table.group-rules td select
     padding:4px
 }
 
-#permissions-sliders span.level
-{
-	color:#aaa;
-	background-image:none
-}
-
 #permissions-sliders .pane-toggler span
 {
-	padding-left:5px;background-image:none
+	padding-left:20px;
 }
 
 #permissions-sliders .pane-toggler-down span
-	{
+{
+}
+
+#permissions-sliders .pane-toggler-down span
+{
+	padding-left:20px;
+}
+	
+#permissions-sliders .pane-toggler-down span.level,
+#permissions-sliders .pane-toggler span.level
+{
+	color:#aaa;
 	background-image:none;
+	padding: 0;
 }
-
-#permissions-sliders .pane-toggler-down span
-	{padding-left:5px}
 
 #permissions-sliders ul#rules .panel h3
-	{
-	background:#f5f5f5 url(../images/j_arrow_right.png) center right no-repeat
+{
 }
 	
 /* global_config permissions */
 
 #page-permissions  fieldset ul#rules  .pane-slider
-	{width:60%;}
+{
+}
 
 #permissions-sliders
-	{ min-height:29em; width:100%; }
+{
+}
 	
 /* Debug acl styling */	
 .check-0,
@@ -3082,4 +3173,11 @@ dl.tabs dt h3 a:link {
 	color:#333333;
 	outline:medium none;
 	text-decoration:none;
+}
+
+/* -- CUSTOM LANG STRINGS STYLES  ----------- */
+
+.red {
+	font-weight: bold;
+	color: #c00;
 }
