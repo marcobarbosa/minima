@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * @package     Minima
  * @subpackage  mod_mypanel
  * @author      Marco Barbosa
@@ -25,11 +25,11 @@ $nPages = ceil( count($items) / 9);
     <?php if (!$invisible) : ?>
     <!-- dots pagination -->
     <ul id="panel-pagination">
-    	<?php $pageCount=0;?>
+        <?php $pageCount=0;?>
         <?php for($i=0; $i < $nPages; $i++) : ?>
             <li <?php if($i == 0) echo "class=\"current\"" ?> id="panel-pagination-<?php echo $pageCount;?>">.</li>
         <?php
-        	$pageCount+=1;
+            $pageCount+=1;
         endfor;
         ?>
     </ul>
@@ -43,6 +43,9 @@ $nPages = ceil( count($items) / 9);
             //$std = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search", "com_weblinks");
             $std = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search");
             foreach ($items as $item) :
+                $desc = substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100);
+                $descExists = strpos($desc, '_XML_DESCRIPTION');
+                if ($descExists !== false) $desc = JText::_('TPL_MINIMA_NODESCRIPTION');
                 // if it's a standard extension, add the class to use the sprite img instead
                 if (in_array(strtolower($item->element), $std)) {
                     // getting the component image class
@@ -59,14 +62,14 @@ $nPages = ceil( count($items) / 9);
         <?php   if (!empty($class)): ?>
                 <li>
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
-                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
+                        <span class="extension-desc"><?php echo $desc; ?></span>
                     </a>
                 </li>
         <?php else: ?>
                 <li class="ext">
                     <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $item->alias; ?>" />
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
-                        <span class="extension-desc"><?php echo substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100); ?></span>
+                        <span class="extension-desc"><?php echo $desc; ?></span>
                     </a>
                 </li>
         <?php endif; ?>

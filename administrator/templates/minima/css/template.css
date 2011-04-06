@@ -466,13 +466,6 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             width: auto;
                                         }
 
-                #shortcuts li a:hover   {                                            
-                                            -webkit-transition: background-color, color, box-shadow 0.2s ease-in-out;
-                                            -moz-transition: background-color, color, box-shadow 0.2s ease-in-out;
-                                            -o-transition: background-color, color, box-shadow 0.2s ease-in-out;
-                                            transition: background-color, color, box-shadow 0.2s ease-in-out;
-                                        }
-
 #shortcuts li a.hover,
 #shortcuts li a:hover                   {
                                             background-color: #fff;
@@ -3349,6 +3342,11 @@ input.system-openid, input.com-system-openid
                                            color: #000;
                                            padding-left: 18px;
                                         }
+
+/* CSS OVERRIDES
+====================================================================================== */
+.com_installer .adminform {margin: 10px;}
+
 
 /* MEDIA QUERIES
 ====================================================================================== */

@@ -2,7 +2,7 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
 <install type="template" version="1.6" client="administrator" method="upgrade">
     <name>Minima</name>
-    <creationDate>July 2010</creationDate>
+    <creationDate>July 2010</creati0onDate>
     <author>Marco Barbosa</author>
     <authorEmail>iam@marcobarbosa.com</authorEmail>
     <authorUrl>http://minimatemplate.com</authorUrl>
