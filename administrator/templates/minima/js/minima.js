@@ -88,85 +88,9 @@ window.addEvent('domready', function() {
     if ($$('.adminlist').length) {
     	Minima.makeRowsClickable();
     };
-        
-    /* TOOLBAR
-     * ================================================== */
-        
-    if( toolbarElements.length )
-    {
-        toolbarElements.each(function(item1){
-            // whatever has a 'if' clause in the onclick value is a bulk action
-            if( item1.get('onclick') != null && item1.get('onclick').contains('if') )
-            {
-                 bulkActions.push(item1.getParent('li'));
-            }
-            else if( item1.get('class') != "divider" )
-            {
-                bulkNonActions.push(item1.getParent('li'));
-            }
-        });
-    }
 
-    // ------------------------------- 
-    // create elements
-    if(bulkActions.length > 1)
-    {
-        // create the new <ul>
-        var bulkListChildren = new Element('ul', {'id' : 'actions'}).hide(); // actions <ul>
-
-        // sort the list alphabetically
-        bulkActions = bulkActions.sort(function (a, b) {
-            if ( a.get("text").toLowerCase() < b.get("text").toLowerCase() ) return -1;
-            if ( a.get("text").toLowerCase() == b.get("text").toLowerCase() ) return 0;
-            return 1;
-        });
-
-        // then add the list items
-        bulkActions.each(function(item2, index){
-            bulkListChildren.grab(item2);
-        });
-
-        // create parent <li> that will toggle the new <ul>
-        var bulkListParent   = new Element('li', {
-            'id': 'bulkActions',
-            'events': {
-                'click': function(event){
-                    //bulkListChildren.toggle();
-                    this.toggleReveal(bulkListChildren,{duration: 200, styles: ['border']});
-                    $$(minima.getElement('#bulkActions > a:first-child'), this).switchClass('active', 'inactive');                                        
-                },
-                'outerClick': function(){
-                    //bulkListChildren.hide();
-                    bulkListChildren.dissolve({duration: 250});
-                    minima.getElement('#bulkActions > a:first-child').set('class','inactive');
-                }
-            }
-        });
-
-        // and add the anchor to this parent <li>
-        var bulkListAnchor   = new Element('a', {'html': language['actionBtn']}); // parent anchor
-        var spanArrow        = new Element('span', {'class' : 'arrow'}); // arrow
-
-        // ------------------------------- 
-        // now fix the elements
-
-        // first add the new parent li
-        // check if there's a toolbar-new button, the #actions goes right after it
-        var liLocation = ( $('toolbar-new') ) ? 'ul > li#toolbar-new' : 'ul > li';
-        bulkListParent.inject($('toolbar').getElement(liLocation), 'after');
-
-        // add the new anchor
-        $('bulkActions').grab(bulkListAnchor);
-
-        // add the arrow
-        bulkListAnchor.grab(spanArrow);
-
-        // then add the ul children of it
-        $('bulkActions').grab(bulkListChildren);
-
-        // everything's ready, now show it back
-
-    } // end bulkActions.lenght
+    // TOOLBAR
+    // =============================
 
     // FIXES
 	// =============================
@@ -213,8 +137,8 @@ window.addEvent('domready', function() {
         MinimaTabsVertical.addTabsAction();
     };
     
-    /* FILTER ACCORDION
-     * ================================================== */
+    // FILTER ACCORDION
+    // ==================================================
 
   
 
@@ -249,8 +173,8 @@ window.addEvent('domready', function() {
     
     // ------------------------------- 
 
-    /* PANEL TAB
-     * ================================================== */
+    // PANEL TAB
+    // ==================================================
 
     // tabs wrapper
     var tabsWrapper = $('panel-wrapper');

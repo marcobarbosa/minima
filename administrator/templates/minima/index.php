@@ -149,6 +149,7 @@ $itemid = JRequest::getCmd('Itemid', '');
     <script>
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
+            {minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js"},
             {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
         );
         MooTools.lang.set('en-US', 'Minima', {
