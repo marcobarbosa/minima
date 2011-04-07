@@ -225,10 +225,12 @@ button                                  {   width: auto; overflow: visible; }
         .user-profile img               {   float: left; margin: 0 10px 0 0; }
 
 
-#new-modules-list                       {   list-style: none; margin: 0; padding: 20px; }
+#new-modules-list                       {   list-style: none; margin: 10px 0 20px 17px; padding: 10px; }
     
     #new-modules-list li,
     dl.menu_type dd ul li               {   border-bottom: 1px solid #ddd; height: 32px; line-height: 32px; }        
+
+    #new-modules-list li                {   width: 370px; float: left; margin: 0 10px 0 10px; }
         
         #new-modules-list li a,
         dl.menu_type dd ul li           {                                            

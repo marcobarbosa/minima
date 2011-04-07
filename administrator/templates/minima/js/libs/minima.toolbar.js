@@ -102,23 +102,25 @@ var MinimaToolbarClass = new Class({
 
 	// class options
     options: {
-    	'toolbar' : $('toolbar'),
+    	'toolbar' : $('toolbar'), // toolbar parent
+    	'toolbarElements' : $$('.toolbar-list li a'), // list of the anchor elements
     	'label' : null
     },
 
     // local class elements
-    elements: {
-    	'toolbar' : $('toolbar'), // toolbar parent
-    	'toolbarElements' : $$('.toolbar-list li a'), // list of the anchor elements
+    elements: {    	    	
     	'bulkActionsArray': [], // array with the actions
     	'bulkNonActionsArray': [], // array with the other elements    	
     },
 	
 	// local instances
-	minima : $('minima'),
+	minima : null,
 
     // initialize the class
 	initialize: function(options, elements){
+    	// set the main node for DOM selection
+    	this.minima = document.id(options.minima) || document.id('minima');
+
     	// Set options
     	this.setOptions(options);
 
@@ -129,8 +131,8 @@ var MinimaToolbarClass = new Class({
 
     // sort the items between actions and non actions
     sortItems: function() {
-		if (this.elements.toolbarElements.length) {
-        	this.elements.toolbarElements.each(function(item){
+		if (this.options.toolbarElements.length) {
+        	this.options.toolbarElements.each(function(item){
 	            // whatever has a 'if' clause in the onclick value is a bulk action
 	            if (item.get('onclick') != null && item.get('onclick').contains('if')) {
 	                 this.elements.bulkActionsArray.push(item.getParent('li'));
@@ -157,17 +159,16 @@ var MinimaToolbarClass = new Class({
 		                'click': function(event){
 		                    //bulkListChildren.toggle();
 		                    this.toggleReveal(bulkListChildren,{duration: 200, styles: ['border']});
-		                    $$(minima.getElement('#bulkActions > a:first-child'), this).switchClass('active', 'inactive');                                        
+		                    $$(this.minima.getElement('#bulkActions > a:first-child'), this).switchClass('active', 'inactive');                                        
 		                },
 		                'outerClick': function(){
 		                    //bulkListChildren.hide();
 		                    bulkListChildren.dissolve({duration: 250});
-		                    minima.getElement('#bulkActions > a:first-child').set('class','inactive');
+		                    this.minima.getElement('#bulkActions > a:first-child').set('class','inactive');
 		                }
 		            }
 	        	}),
-	        	// parent <a>
-                // w00t dropbox is cool man
+	        	// parent <a>                
 	        	bulkListAnchor = new Element('a[text= '+ this.options.label +']'),
 	        	// arrow <span>
 	        	spanArrow = new Element('span.arrow');                
@@ -180,11 +181,12 @@ var MinimaToolbarClass = new Class({
 	        });
 
 	        // then add the list items
-	        bulkActionsArray.each(function(item, index){
+	        this.elements.bulkActionsArray.each(function(item, index){
+	        	// grab the action item into the list
 	            bulkListChildren.grab(item);
 	        });
 
-	        // first add the new parent li
+	        // add the new parent li
 	        // check if there's a toolbar-new button, the #actions goes right after that
 	        var liLocation = ( $('toolbar-new') ) ? 'ul > li#toolbar-new' : 'ul > li';
 	        bulkListParent.inject($('toolbar').getElement(liLocation), 'after');
