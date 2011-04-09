@@ -30,6 +30,7 @@ $view = JRequest::getCmd('view', '');
 $layout = JRequest::getCmd('layout', '');
 $task = JRequest::getCmd('task', '');
 $itemid = JRequest::getCmd('Itemid', '');
+$hidemainmenu = JRequest::getInt('hidemainmenu');
 
 ?>
 <!DOCTYPE html>
@@ -66,7 +67,7 @@ $itemid = JRequest::getCmd('Itemid', '');
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
