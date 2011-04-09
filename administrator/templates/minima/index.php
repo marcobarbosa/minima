@@ -67,7 +67,8 @@ $itemid = JRequest::getCmd('Itemid', '');
     <![endif]-->
 </head>
 <body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
-    <?php if (!JRequest::getInt('hidemainmenu')): ?>
+    <?php 
+    if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
             <jdoc:include type="modules" name="panel" />
@@ -138,6 +139,7 @@ $itemid = JRequest::getCmd('Itemid', '');
             <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
         </section><!-- /#content-box -->
     </div><!-- /#content -->
+    
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
