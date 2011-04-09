@@ -99,10 +99,7 @@ window.addEvent('domready', function() {
     });
 
     // show back the toolbar after done fixing it
-    if (toolbar) toolbar.show();
-
-    // tell css that the document is ready
-    $(document.body).addClass('ready');
+    //if (toolbar) toolbar.show();
 
     // add id #adminlist to .adminlist
     var adminlist = $$('.adminlist');

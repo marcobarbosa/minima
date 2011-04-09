@@ -130,8 +130,11 @@ $itemid = JRequest::getCmd('Itemid', '');
     <script>
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-        );
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}        
+        , function() {
+            // all done            
+            $(document.body).addClass('ready');            
+        });
     </script>
 </body>
 </html>
