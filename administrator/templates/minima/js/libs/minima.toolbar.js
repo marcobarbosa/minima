@@ -71,13 +71,15 @@
                     'id': 'bulkActions',
                     'events': {
                         'click': function(event){
-                            //bulkListChildren.toggle();
+                            // toggle reveal the children                        
                             this.toggleReveal(bulkListChildren,{duration: 200, styles: ['border']});
+                            // switch classes to active
                             $$(_this.minima.getElement('#bulkActions > a:first-child'), _this).switchClass('active', 'inactive');
                         },
                         'outerClick': function(){
-                            //bulkListChildren.hide();
+                            // hide the children
                             bulkListChildren.dissolve({duration: 250});
+                            // remove the classes to inactive
                             _this.minima.getElement('#bulkActions > a:first-child').set('class','inactive');
                         }
                     }
