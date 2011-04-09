@@ -150,8 +150,12 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
     <script>
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
+            {minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js"},
             {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-        );
+        , function() {
+            // all done            
+            $(document.body).addClass('ready');            
+        });
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",
             showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",

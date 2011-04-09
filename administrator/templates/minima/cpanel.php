@@ -54,16 +54,14 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
         ::-moz-selection { background: <?php echo $templateColor; ?>; color:#000; /* Firefox */ }
         body, a:link { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
-        #gravatar { border: 1px solid <?php echo $darkerColor; ?>; }
-        #gravatar:hover { border-color: <?php echo $templateColor; ?>;}
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
-    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>
+    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael.min.js"%3E%3C/script%3E'))</script>	
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
 <body id="minima" class="full jbg <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
@@ -133,8 +131,11 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
     <script>
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-        );
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}        
+        , function() {
+            // all done            
+            $(document.body).addClass('ready');            
+        });
     </script>
 </body>
 </html>

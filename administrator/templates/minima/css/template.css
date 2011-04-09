@@ -86,7 +86,7 @@ form                                    {   margin: 0; padding: 0; }
 select, input, textarea, button         {   font: 99% sans-serif; }
     input, select                       {   vertical-align: middle; }
 
-pre, code, kbd, samp                    {   font-family: monospace, sans-serif; }
+pre, code, kbd, samp                    {   font-family: monospace, sans-serif; color: #666;}
 
 hr                                      {   background:#ddd;color:#ddd;clear:both;float:none;width:100%;height:.1em;margin:1.45em 0;border:none;}
 hr.space                                {   background:#fff;color:#fff;visibility:hidden;}
@@ -225,10 +225,12 @@ button                                  {   width: auto; overflow: visible; }
         .user-profile img               {   float: left; margin: 0 10px 0 0; }
 
 
-#new-modules-list                       {   list-style: none; margin: 0; padding: 20px; }
+#new-modules-list                       {   list-style: none; margin: 10px 0 20px 17px; padding: 10px; }
     
     #new-modules-list li,
     dl.menu_type dd ul li               {   border-bottom: 1px solid #ddd; height: 32px; line-height: 32px; }        
+
+    #new-modules-list li                {   width: 370px; float: left; margin: 0 10px 0 10px; }
         
         #new-modules-list li a,
         dl.menu_type dd ul li           {                                            
@@ -1091,9 +1093,9 @@ input#upload-submit                     {
                                             -moz-border-radius: 10px;
                                             -webkit-border-radius: 10px;
                                             border-radius: 10px;
-                                            -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-                                            -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
-                                            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+                                            -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+                                            -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+                                            box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
                                             border: 1px solid #cfcfcf;
                                             color: #555;
                                             margin-right:10px;
@@ -1906,6 +1908,8 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
 #jform_num_columns,
 #jform_num_links                        {   width: 50px; }
 
+#jform_articletext                      {   max-width: 100%; margin-top: 10px; }
+
 /* fixes */
 #component-form                         {   margin: 0 10px; color: #666; }
     #component-form input,
@@ -1932,7 +1936,9 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
 .item-info                              {   min-height: 475px; }
     .item-info .adminformlist li:first-child
                                         {   margin-top: 15px;}
-    .item-info fieldset                 {   background: #f8f8f8; }
+    
+    /*.item-info fieldset                 {   background: rgba(255,255,255,0.3); }*/    
+    .item-info fieldset                 {   background: transparent; }
 
 #jform_title                            {   min-width: 500px; height: 20px; font-size: 16px; }
 #jform_title-lbl                        {   margin-bottom: 0; }

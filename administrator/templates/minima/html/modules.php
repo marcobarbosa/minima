@@ -17,11 +17,11 @@ function modChrome_widget($module, &$params, &$attribs)
     if ($module->content)
     {
         ?>
-        <div id="module-<?php echo $module->id ?>" class="box">
-            <header class="box-top">
+        <div id="<?php echo $module->id ?>" class="box">
+            <div class="box-top">
                 <span><?php echo $module->title; ?></span>
-            </header>
-            <section class="box-content"><?php echo $module->content; ?></section>
+            </div>
+            <div class="box-content"><?php echo $module->content; ?></div>
         </div>
         <?php
     }
