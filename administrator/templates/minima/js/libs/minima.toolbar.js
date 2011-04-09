@@ -17,37 +17,38 @@
         'label' : null
     },
 
+    // arrays
     bulkActionsArray: new Array(), // array with the actions
     bulkNonActionsArray: new Array(), // array with the other elements      
         
-    // local instances
+    // minima node
     minima : null,
 
     // initialize the class
     initialize: function(options){
         // set the main node for DOM selection
         this.minima = document.id(this.options.minima) || document.id('minima');
-
         // Set options
         this.setOptions(options);
-
-    },
+    }, // end of initialize
 
     // function to be called to run the class
     doToolbar: function() {
         this.sortItems();
         this.fixToolbar();        
-    },
+    }, // end of doToolbar
 
     // sort the items between actions and non actions
-    sortItems: function() {        
+    sortItems: function() {  
+        // save this for further reference      
         var _this = this;
+        // if we have elements to sort
         if (this.options.toolbarElements.length) {
+            // go through each of them
             this.options.toolbarElements.each(function(item) {
                 // whatever has a 'if' clause in the onclick value is a bulk action
-                if (item.get('onclick') != null && item.get('onclick').contains('if')) {
-                   _this.bulkActionsArray.push(item.getParent('li'));
-                // found it, but can't be a divider either
+                if (item.get('onclick') != null && item.get('onclick').contains('if')) {                
+                   _this.bulkActionsArray.push(item.getParent('li'));                
                 } else if (item.get('class') != "divider") {
                    _this.bulkNonActionsArray.push(item.getParent('li'));
                 }
@@ -57,6 +58,7 @@
 
     // fix the toolbar
     fixToolbar: function() {
+        // save this for further reference
         var _this = this;
         // only proccess if we have bulkActionsArray
         if (this.bulkActionsArray.length > 1) {         
@@ -98,22 +100,15 @@
                 bulkListChildren.grab(item);
             });
 
-            // add the new parent li
-            // check if there's a toolbar-new button, the #actions goes right after that
+            // add the new parent <li>
+            // check if there's a #toolbar-new button, the #actions goes right after that
             var liLocation = ( $('toolbar-new') ) ? 'ul > li#toolbar-new' : 'ul > li';
-                        
+
+            // inject the new bulk <li> element after according to liLocation
             bulkListParent.inject($('toolbar').getElement(liLocation), 'after');
-            // TODO make it the second elements always
-
-            // TODO must cache bulkActions somehow - test with code above
-            // add the new anchor
-            $('bulkActions').grab(bulkListAnchor);
-
-            // add the arrow
-            bulkListAnchor.grab(spanArrow);
-
-            // then add the ul children of it
-            $('bulkActions').grab(bulkListChildren);            
+            
+            // add the new anchor and the ul children            
+            bulkListParent.adopt(bulkListAnchor.grab(spanArrow), bulkListChildren);
 
         } // end bulkActions.lenght     
     } // end of fixToolbar
