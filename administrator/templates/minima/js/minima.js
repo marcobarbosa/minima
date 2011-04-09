@@ -57,19 +57,15 @@ window.addEvent('domready', function() {
     // instanciate
     //var chx = new IPhoneCheckboxes();
 
-    // Initiate all variables
+    // Initiate some global variables
     // ------------------------------- 
 
     // get the language strings
     var 
         language = MooTools.lang.get('Minima');
-    // DOM variables    
-        toolbarElements = $$('.toolbar-list li a'),
-        toolbar = $('toolbar'),
-        bulkActions = new Array(),
-        bulkNonActions = new Array(),
-        filterBar = $('filter-bar'),
+    // DOM variables                
         contentTop = $('content-top'),
+        toolbar = $('toolbar'),
         topHead = $('tophead'),
         minima = $('minima'),
         subMenu =  $('submenu'),
@@ -78,8 +74,8 @@ window.addEvent('domready', function() {
         Minima = new MinimaClass({},{systemMessage: $('system-message')}),
         MinimaToolbar = new MinimaToolbarClass(
             {
-                'toolbar' : $('toolbar'), // toolbar parent
-                'toolbarElements' : $$('.toolbar-list li a'), // list of the anchor elements
+                'toolbar' : toolbar, // toolbar parent
+                'toolbarElements' : minima.getElements('.toolbar-list li a'), // list of the anchor elements
                 'label' : language['actionBtn']
             }
         )
@@ -89,37 +85,30 @@ window.addEvent('domready', function() {
     // Trigger actions
  
     // Show system message
-    //
     Minima.showSystemMessage();
-    // Make whole row clickable, if there are any
-    //
-    if ($$('.adminlist').length) {
+
+    // Make whole row clickable, if there are any    
+    if (minima.getElements('.adminlist').length) {
     	Minima.makeRowsClickable();
     };
 
     // TOOLBAR
-    // =============================    
+    // =============================
     MinimaToolbar.doToolbar();
+    if(toolbar) toolbar.show();
 
     // FIXES
 	// =============================
     new Fx.SmoothScroll({
         links: '#topLink'
-    });
-
-    // show back the toolbar after done fixing it
-    //if (toolbar) toolbar.show();
+    });    
 
     // add id #adminlist to .adminlist
     var adminlist = $$('.adminlist');
     if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
 
     // add aditional tabs to #submenu position
-    if ($('submenu') ) $('submenu').addClass('minimaTabs');        
-
-    // get the submenu (tabs) to work
-    var subMenu =  $('submenu');
-    var itemForm = $('item-form');
+    if (subMenu) subMenu.addClass('minimaTabs');            
     
     if (subMenu && itemForm) {
         // Start tabs actions, create instances of class
@@ -144,8 +133,7 @@ window.addEvent('domready', function() {
     };
     
     // FILTER ACCORDION
-    // ==================================================
-  
+    // ==================================================  
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;    

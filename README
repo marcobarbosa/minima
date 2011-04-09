@@ -4,4 +4,9 @@ The template features Mootools 1.3 and lots of HTML5 & CSS 3 goodness.
 
 ( Full Joomla 1.6 installation included for testing. Minima's content is at 'administrator/templates/minima/' )
 
-* After installation, rename your installation folder to _installation
+Intructions: 
+==========
+- Rename _installation to installation
+- Run the installation proccess
+- Install the sample data in the last step
+- Rename installation back to _installation

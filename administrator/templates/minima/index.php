@@ -149,9 +149,8 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js"}
+            //{fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
         , function() {
             // all done            
             $(document.body).addClass('ready');            
@@ -161,6 +160,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
             showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",
             closeFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>"
         });
-    </script>  
+    </script>
+    <script src="templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"></script>    
 </body>
 </html>
