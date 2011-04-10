@@ -48,11 +48,14 @@ window.addEvent('domready', function() {
        
         // status of the filter, if it's on or off
         var 
+            // the status of the filter
             filterStatus = {
                 'true':  language['closeFilter'],
                 'false': language['showFilter']
             },
+            // the Fx slide
             filterSlide = new Fx.Slide(filterBar).hide(),		
+            // the "open filter" anchor
             filterAnchor = new Element('a', {
                 'href': '#minima',
                 'id': 'open-filter',
@@ -74,8 +77,8 @@ window.addEvent('domready', function() {
 		
 		// show filter if it's being used
         // -------------------------------
-        var filterActive = false;
-        var pageTitle = "";
+        var filterActive = false,
+            pageTitle = "";
 
         // FIXME not detecting correctly
         // we must find out if any of the filters are in use (selected)
@@ -95,7 +98,7 @@ window.addEvent('domready', function() {
         // if filter is active then show #filter-bar
         if (filterActive) {
         		filterSlide.show(); 
-        		filterAnchor.set('html', filterStatus[filterSlide.open]);  
+        		filterAnchor.set('html', filterStatus[filterSlide.open]).addClass("active"); 
         }      		
 
         
