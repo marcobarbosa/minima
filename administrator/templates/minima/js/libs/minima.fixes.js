@@ -4,17 +4,6 @@ window.addEvent('domready', function() {
     // FIXES
 	// =============================
   
-    // tell css that the document is ready
-    /* $(document.body).addClass('ready'); */
-
-    // toolbar is hidden until body is ready
-    // show it back the toolbar after done fixing it
-    //if (toolbar) toolbar.show();
-
-
-    // FIXME must see if this is necessary
-    // some tables don't have an id of #adminlist
-    // so add it if not found
     var 
         adminlist = $$('.adminlist'),
         subMenu = $('submenu'),
@@ -41,7 +30,6 @@ window.addEvent('domready', function() {
     // fix padding when there are no tabs
     if (!filterBar  && $$('.adminlist')) $$('.adminlist').addClass('padTop');
 
-
     // change the h2 title dynamically
     if (jformTitle) {
         // set the title of the page with the jform_title
@@ -55,40 +43,34 @@ window.addEvent('domready', function() {
         });
     }; // end jform_title
 
-
     // make filter-bar a slide    
     if (filterBar) {
        
         // status of the filter, if it's on or off
-        var filterStatus = {
-            'true':  language['closeFilter'],
-            'false': language['showFilter']
-        };
-		
-		var filterSlide = new Fx.Slide(filterBar).hide();
-		
-        // filter anchor element
-        var filterAnchor = new Element('a', {
-            'href': '#minima',
-            'id': 'open-filter',
-            'html': language['closeFilter'],
-            'events': {
-                'click': function(e){
-                    e.stop();
-                    filterSlide.toggle();
-                    this.toggleClass("active");                    
-                    if (this.hasClass("active")) {
-                      $('filter_search').focus();  
-                    } 
-                    if (contentTop.hasClass('fixed')) {
-                        window.scrollTo(0,0);                        
+        var 
+            filterStatus = {
+                'true':  language['closeFilter'],
+                'false': language['showFilter']
+            },
+            filterSlide = new Fx.Slide(filterBar).hide(),		
+            filterAnchor = new Element('a', {
+                'href': '#minima',
+                'id': 'open-filter',
+                'html': language['closeFilter'],
+                'events': {
+                    'click': function(e){
+                        e.stop();
+                        filterSlide.toggle();
+                        this.toggleClass("active");                    
+                        if (this.hasClass("active")) {
+                          $('filter_search').focus();  
+                        } 
+                        if (contentTop.hasClass('fixed')) {
+                            window.scrollTo(0,0);                        
+                        }
                     }
                 }
-            }
-        });
-
-
-		/* filterSlide.slideIn(); */
+            });
 		
 		// show filter if it's being used
         // -------------------------------
@@ -99,11 +81,9 @@ window.addEvent('domready', function() {
         // we must find out if any of the filters are in use (selected)
         
         filterBar.getElements('input, select').each(function(el) {
-        	var elValue = el.get('value');
-        	
+        	var elValue = el.get('value');        	
         	// if any filter is selected
-            if (elValue) {
-    		
+            if (elValue) {    		
                 // set to active
                 filterActive = true;
                 // add the selected filters to the pageTitle

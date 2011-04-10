@@ -130,10 +130,7 @@ window.addEvent('domready', function() {
         MinimaTabsVertical.showFirst();
         // Add onClick
         MinimaTabsVertical.addTabsAction();
-    };
-    
-    // FILTER ACCORDION
-    // ==================================================  
+    };    
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;    

@@ -1845,7 +1845,7 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                 .adminformlist li:first-child
                                         {   border-top: none; }
 
-            .config-option-list li:hover,
+            /*.config-option-list li:hover,
             .adminformlist li:hover,
             fieldset li:hover           {
                                             background: #FFFFED;
@@ -1853,13 +1853,13 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                                             background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFEE), color-
                                             stop(50%,#FFFFEE), color-stop(51%,#FFFFED), color-stop(100%,#FFFFED));
                                             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFEE', endColorstr='#FFFFED',GradientType=0 );
-                                        }
+                                        }*/
 
             #rules li:hover             {   background: transparent; }
 
                 .config-option-list li:hover label,
                 .adminformlist li:hover label
-                                        {   color: #555; }
+                                        {   color: #333; }
 
                     .config-option-list li:hover label:first-child {    color: #444; }
 
@@ -1974,7 +1974,7 @@ p.jform_desc                            {   clear: left; }
                                             border: 0;
                                             background: transparent;
                                             /* MB - 2011-04-09 - Disabled the display:none because it was conflicting with the slide effects of the filter-bar */
-                                            /* display: none;  */                                           
+                                            /*display: none;*/
                                             margin: 0 auto 2px;                                            
                                         }
 
