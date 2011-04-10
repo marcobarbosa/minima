@@ -376,7 +376,7 @@ footer .version                         {   margin: 10px; text-align: center; }
 
 #piechart svg                           {   height: 220px; min-width: 100%; }
 
-.box .adminlist                         {   padding: 0 5px; border-top: none; width: 98%; margin: 0 auto; }
+.box .adminlist                         {   padding: 0 5px; border-top: none; width: 98%; margin: 10px auto 0; }
 
     .box .adminlist th                  {   background: #eee; }
 
