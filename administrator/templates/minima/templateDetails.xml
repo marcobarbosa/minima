@@ -67,7 +67,11 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field type="loader" label="" name="Loader" addfieldpath="/administrator/templates/minima/elements" />
+                <field 
+                    type="loader" 
+                    label="" 
+                    name="Loader" 
+                    addfieldpath="/administrator/templates/minima/elements" />
                 <field
                     name="templateColor"
                     type="text"

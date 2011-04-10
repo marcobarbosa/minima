@@ -338,10 +338,19 @@ footer .version                         {   margin: 10px; text-align: center; }
 .box                                    {
                                             -moz-border-radius: 6px;
                                             -webkit-border-radius: 6px;
-                                            border-radius: 6px;
-                                            -moz-box-shadow: 0 0 4px #ccc;
-                                            -webkit-box-shadow: 0 0 4px #ccc;
-                                            box-shadow: 0 0 4px #ccc;
+                                            border-radius: 6px;                                            
+                                            -webkit-box-shadow: 
+                                                0 15px 10px -10px rgba(0, 0, 0, 0.3), 
+                                                0 1px 4px rgba(0, 0, 0, 0.3), 
+                                                0 0 40px rgba(0, 0, 0, 0.1) inset;
+                                            -moz-box-shadow: 
+                                                0 15px 10px -10px rgba(0, 0, 0, 0.3), 
+                                                0 1px 4px rgba(0, 0, 0, 0.3), 
+                                                0 0 40px rgba(0, 0, 0, 0.1) inset;
+                                            box-shadow: 
+                                                0 15px 10px -10px rgba(0, 0, 0, 0.3), 
+                                                0 1px 4px rgba(0, 0, 0, 0.3),
+                                                0 0 40px rgba(0, 0, 0, 0.1) inset;
                                             margin-bottom: 15px;
                                             -webkit-transition: all 0.2s ease-in-out;
                                             -moz-transition: all 0.2s ease-in-out;
@@ -394,7 +403,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             color: #fff;
                                             height: 18px;
                                             line-height: 18px;
-                                            padding: 5px 5px 5px 10px;
+                                            padding: 5px 5px 5px 14px;
                                         }
 
 .box-top span                           {
