@@ -306,7 +306,7 @@ body                                    {
 
         #tophead .site-link a           {   color: #fff; font-size: 12px; margin: 0 0 0 5px; float: none; position: relative; top: -2px;}
 
-        #logo                           {   font: normal 24px/28px 'Nobile', arial, serif; }
+        #logo                           {   font: normal 24px/29px 'Nobile', arial, serif; }
 
             #tophead.locked             {   margin-bottom: 12px; border-bottom: 1px solid #fff; height: 26px; }
             #tophead.locked #logo       {   font-size: 19px; line-height: 20px;}
