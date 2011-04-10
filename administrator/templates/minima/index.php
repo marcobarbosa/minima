@@ -139,6 +139,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
             <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
         </section><!-- /#content-box -->
     </div><!-- /#content -->
+    
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>

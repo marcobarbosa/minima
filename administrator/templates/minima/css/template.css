@@ -1973,7 +1973,8 @@ p.jform_desc                            {   clear: left; }
 #filter-bar                             {
                                             border: 0;
                                             background: transparent;
-                                            display: none;                                            
+                                            /* MB - 2011-04-09 - Disabled the display:none because it was conflicting with the slide effects of the filter-bar */
+                                            /* display: none;  */                                           
                                             margin: 0 auto 2px;                                            
                                         }
 
