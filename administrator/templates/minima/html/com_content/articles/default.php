@@ -53,8 +53,8 @@ $saveOrder  = $listOrder == 'a.ordering';
     </fieldset>
     <?php if( $this->pagination->total > 0 ): ?><div id="pagination-top"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>
     <div class="clr"> </div>
+    
 <?php if( $this->items ): ?>
-
     <table class="adminlist" id="adminlist">
         <thead>
             <tr>
