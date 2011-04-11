@@ -44,99 +44,106 @@ class Mod_MyshortcutsInstallerScript {
     function postflight($type, $parent) {
 
         $db = JFactory::getDBO();
+        
+        $db->setQuery("SELECT `home` FROM `#__template_styles` WHERE `#__template_styles`.`template` = 'minima'");                
 
-        // myshortcuts
-        $db->setQuery("UPDATE `#__modules`".
-            " SET `position` = 'shortcuts', `published` = '1', `access` = '3'".
-            " WHERE `#__modules`.`module` = 'mod_myshortcuts'; ");
+        $alreadyInstalled = $db->loadResult();
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            echo $db->getErrorMsg(true);
-        }
+        if (!$alreadyInstalled) {
 
-        // mypanel
-        $db->setQuery("UPDATE `#__modules`".
-            " SET `position` = 'panel', `published` = '1', `access` = '3'".
-            " WHERE `#__modules`.`module` = 'mod_mypanel'; ");
+            // myshortcuts
+            $db->setQuery("UPDATE `#__modules`".
+                " SET `position` = 'shortcuts', `published` = '1', `access` = '3'".
+                " WHERE `#__modules`.`module` = 'mod_myshortcuts'; ");
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            echo $db->getErrorMsg(true);
-        }
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                echo $db->getErrorMsg(true);
+            }
 
-        // copy modules
-        $db->setQuery("INSERT INTO `#__modules` (`title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES ".
-            " ('Popular Articles', '', '', 3, 'widgets-last', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{\"count\":\"5\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
-            " ('Recently Added Articles', '', '', 4, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{\"count\":\"5\",\"ordering\":\"c_dsc\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
-            " ('Logged-in Users', '', '', 2, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{\"count\":\"5\",\"name\":\"1\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*')");
+            // mypanel
+            $db->setQuery("UPDATE `#__modules`".
+                " SET `position` = 'panel', `published` = '1', `access` = '3'".
+                " WHERE `#__modules`.`module` = 'mod_mypanel'; ");
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            die($db->getErrorMsg(true));
-        }
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                echo $db->getErrorMsg(true);
+            }
 
-        // add values to modules_menu
-        $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
-            " SELECT `id`,0 FROM `#__modules`".
-            " WHERE `#__modules`.`module` = 'mod_myshortcuts' OR `#__modules`.`module` = 'mod_mypanel' LIMIT 2");
+            // copy modules
+            $db->setQuery("INSERT INTO `#__modules` (`title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES ".
+                " ('Popular Articles', '', '', 3, 'widgets-last', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_popular', 3, 1, '{\"count\":\"5\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
+                " ('Recently Added Articles', '', '', 4, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_latest', 3, 1, '{\"count\":\"5\",\"ordering\":\"c_dsc\",\"catid\":\"\",\"user_id\":\"0\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*'),".
+                " ('Logged-in Users', '', '', 2, 'widgets-first', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 'mod_logged', 3, 1, '{\"count\":\"5\",\"name\":\"1\",\"layout\":\"_:default\",\"moduleclass_sfx\":\"\",\"cache\":\"0\",\"automatic_title\":\"1\"}', 1, '*')");
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            echo $db->getErrorMsg(true);
-        }
-	
-	// add values to modules_menu
-        $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
-            " SELECT `id`,0 FROM `#__modules`".
-            " WHERE `#__modules`.`position` = 'widgets-last' OR `#__modules`.`position` = 'widgets-first'");
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                die($db->getErrorMsg(true));
+            }
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            echo $db->getErrorMsg(true);
-        }
+            // add values to modules_menu
+            $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
+                " SELECT `id`,0 FROM `#__modules`".
+                " WHERE `#__modules`.`module` = 'mod_myshortcuts' OR `#__modules`.`module` = 'mod_mypanel' LIMIT 2");
 
-        // set minima style default
-        $db->setQuery("UPDATE `#__template_styles`".
-            " SET `home` = '0'".
-            " WHERE `#__template_styles`.`client_id` =1;");
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                echo $db->getErrorMsg(true);
+            }
+    	
+    	   // add values to modules_menu
+            $db->setQuery("INSERT INTO `#__modules_menu` (`moduleid`,`menuid`)".
+                " SELECT `id`,0 FROM `#__modules`".
+                " WHERE `#__modules`.`position` = 'widgets-last' OR `#__modules`.`position` = 'widgets-first'");
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            die($db->getErrorMsg(true));
-        }
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                echo $db->getErrorMsg(true);
+            }
 
-        $db->setQuery("UPDATE `#__template_styles`".
-            " SET `home` = '1' WHERE `#__template_styles`.`template` = 'minima';");
+            // set minima style default
+            $db->setQuery("UPDATE `#__template_styles`".
+                " SET `home` = '0'".
+                " WHERE `#__template_styles`.`client_id` =1;");
 
-        if (!$db->query() && ($db->getErrorNum() != 1060)) {
-            die($db->getErrorMsg(true));
-        }
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                die($db->getErrorMsg(true));
+            }
 
-        // language that is being used
-        $currentLang = JFactory::getLanguage()->getTag();
-        // for testing purposes, say the language is de-DE
-        //$currentLang = "de-DE";
+            $db->setQuery("UPDATE `#__template_styles`".
+                " SET `home` = '1' WHERE `#__template_styles`.`template` = 'minima';");
 
-        // available translations
-        $languages = array("de-DE", "nb-NO", "pt-BR", "sv-SE", "ru-RU");
+            if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                die($db->getErrorMsg(true));
+            }
 
-        // files to download (without the language prefix)
-        $files = array("mod_myshortcuts.ini","tpl_minima.ini");
+            // language that is being used
+            /*$currentLang = JFactory::getLanguage()->getTag();
+            // for testing purposes, say the language is de-DE
+            //$currentLang = "de-DE";
 
-        // if we have that translation available
-        if (in_array($currentLang, $languages)) {
-            foreach($files as $toDownload) {
-                // fix the filename with the language prefix: 'en-GB.tpl_minima.ini'
-                $file = $currentLang.".".$toDownload;
-                // url to download the language
-                $url = "http://minimatemplate.com/get/language/".$currentLang."/".$file;
-                // path to save the file
-                $path = JPATH_ADMINISTRATOR.'/language/'.$currentLang.'/'.$file;
-                // content of the file
-                $content = $this->downloadFile($url);
-                // done, now proccess the $content
-                if ($content && ($content !== false)) {
-                    // save the file in the language folder
-                    JFile::write($path, $content);
-                }
-            } // end of foreach
-        } //end of if in_array
+            // available translations
+            $languages = array("de-DE", "nb-NO", "pt-BR", "sv-SE", "ru-RU");
 
+            // files to download (without the language prefix)
+            $files = array("mod_myshortcuts.ini","tpl_minima.ini");
+
+            // if we have that translation available
+            if (in_array($currentLang, $languages)) {
+                foreach($files as $toDownload) {
+                    // fix the filename with the language prefix: 'en-GB.tpl_minima.ini'
+                    $file = $currentLang.".".$toDownload;
+                    // url to download the language
+                    $url = "http://minimatemplate.com/get/language/".$currentLang."/".$file;
+                    // path to save the file
+                    $path = JPATH_ADMINISTRATOR.'/language/'.$currentLang.'/'.$file;
+                    // content of the file
+                    $content = $this->downloadFile($url);
+                    // done, now proccess the $content
+                    if ($content && ($content !== false)) {
+                        // save the file in the language folder
+                        JFile::write($path, $content);
+                    }
+                } // end of foreach
+            } //end of if in_array
+            */
+        } // end of alreadyInstalled
     } // end of postflight
 
 }

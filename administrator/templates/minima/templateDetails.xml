@@ -2,7 +2,7 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.5/template-install.dtd">
 <install type="template" version="1.6" client="administrator" method="upgrade">
     <name>Minima</name>
-    <creationDate>July 2010</creati0onDate>
+    <creationDate>July 2010</creationDate>
     <author>Marco Barbosa</author>
     <authorEmail>iam@marcobarbosa.com</authorEmail>
     <authorUrl>http://minimatemplate.com</authorUrl>
@@ -44,7 +44,13 @@
     </files>
     <!-- Languages -->
     <languages>
-        <language tag="en-GB">language/en-GB/en-GB.tpl_minima.ini</language>        
+        <language tag="de-DE">language/de-DE/de-DE.tpl_minima.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.tpl_minima.ini</language>
+        <language tag="es-ES">language/es-ES/es-ES.tpl_minima.ini</language>
+        <language tag="nb-NO">language/nb-NO/nb-NO.tpl_minima.ini</language>
+        <language tag="pt-BR">language/pt-BR/pt-BR.tpl_minima.ini</language>
+        <language tag="ru-RU">language/ru-RU/ru-RU.tpl_minima.ini</language>
+        <language tag="sv-SE">language/sv-SE/sv-SE.tpl_minima.ini</language>
     </languages>
     <!-- Positions -->
     <positions>

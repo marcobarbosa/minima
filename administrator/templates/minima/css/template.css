@@ -3362,8 +3362,7 @@ input.system-openid, input.com-system-openid
 
 /* CSS OVERRIDES
 ====================================================================================== */
-.com_installer .adminform {margin: 10px;}
-
+.com_installer table.adminform {width: 99%; margin: 10px auto; }
 
 /* MEDIA QUERIES
 ====================================================================================== */
