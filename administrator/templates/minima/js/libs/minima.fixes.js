@@ -59,7 +59,7 @@ window.addEvent('domready', function() {
             filterAnchor = new Element('a', {
                 'href': '#minima',
                 'id': 'open-filter',
-                'html': language['closeFilter'],
+                'html': language['showFilter'],
                 'events': {
                     'click': function(e){
                         e.stop();

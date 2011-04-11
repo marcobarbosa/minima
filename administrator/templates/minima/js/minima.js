@@ -142,17 +142,16 @@ window.addEvent('domready', function() {
         min: 200, 
         onEnter: function() {            
             // we are in locked mode, must fix positioning
-            if (scrollSize > 600) {
+            if (scrollSize > 400) {
                 if (document.body.hasClass('locked')) {
                     contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
                 };
                 contentTop.setStyle('width', topHead.getSize().x - 40).addClass('fixed');
                 //$$(contentTop,tableHead).setStyle('width', topHead.getSize().x - 40).addClass('fixed');
-
             };
         },
         onLeave: function() {
-            if (scrollSize > 600) {
+            if (scrollSize > 400) {
                 contentTop.removeClass('fixed');
                 if(document.body.hasClass('locked')) {
                     contentTop.setStyle('width', '100%');
