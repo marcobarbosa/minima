@@ -130,7 +130,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"}            
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}            
         , function() {
             // all done            
             $(document.body).addClass('ready');            
