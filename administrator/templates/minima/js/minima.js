@@ -140,7 +140,7 @@ window.addEvent('domready', function() {
     new ScrollSpy({
         // the minimum ammount of scrolling before it triggers
         min: 200, 
-        onEnter: function() {
+        onEnter: function() {            
             // we are in locked mode, must fix positioning
             if (scrollSize > 600) {
                 if (document.body.hasClass('locked')) {
