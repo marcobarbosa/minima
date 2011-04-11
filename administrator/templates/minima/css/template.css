@@ -357,6 +357,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             -o-transition: all 0.2s ease-in-out;
                                             transition: all 0.2s ease-in-out;
                                         }
+        
 
 .box-content                            {
                                             background: #dfdfdf;
