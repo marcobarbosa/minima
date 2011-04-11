@@ -87,8 +87,8 @@ $lang->load('mod_menu', JPATH_ADMINISTRATOR, null, true);
 				<li>
 					<a href="index.php?option=com_menus&view=item&layout=edit"><?php echo JText::_('MOD_MENU_MENU_MANAGER_NEW_MENU_ITEM'); ?></a>
 				</li>
-			</ul>			
-			<ul>
+			</ul>
+			<ul class="row">			
 				<li>
 					<a class="section" href="<?php echo JRoute::_('index.php?option=com_menus&view=menus#content-box'); ?>"><?php echo JText::_('MOD_MENU_MENUS'); ?></a>
 				</li>
