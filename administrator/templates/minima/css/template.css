@@ -1492,7 +1492,7 @@ input#upload-submit:active              {   background: #34B62A!important; borde
                                             -moz-border-radius: 0 0 6px 6px;
                                             -webkit-border-radius: 0 0 6px 6px;
                                             border-radius: 0 0 6px 6px;
-                                            margin: 0 1px;
+                                            margin: 0;
                                         }
 
     #permissions-sliders .content       {   margin: 0; }
