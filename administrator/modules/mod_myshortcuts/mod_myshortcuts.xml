@@ -7,7 +7,7 @@
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>iam@marcobarbosa.com</authorEmail>
     <authorUrl>http://marcobarbosa.com</authorUrl>
-    <version>0.8</version>
+    <version>0.9</version>
     <description>This module provides a shortcuts bar for the minima template.</description>
     <!-- Installer Hooks -->
     <scriptfile>mod_myshortcuts.script.php</scriptfile>

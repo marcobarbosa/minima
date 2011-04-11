@@ -43,7 +43,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">        
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">        
     <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
 
     <style>
@@ -150,8 +150,8 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"},
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.min.js"}
         , function() {
             // all done            
             $(document.body).addClass('ready');            
