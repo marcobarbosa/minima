@@ -134,7 +134,7 @@ window.addEvent('domready', function() {
 
     // fixed content-box header when scrolling    
     scrollSize = document.getScrollSize().y - document.getSize().y;    
-    tableHead = minima.getElements('#adminlist thead');
+    tableHead = minima.getElements('table.adminlist thead');
     
     /* scrollspy instance */    
     new ScrollSpy({
@@ -142,7 +142,7 @@ window.addEvent('domready', function() {
         min: 200, 
         onEnter: function() {
             // we are in locked mode, must fix positioning
-            if (scrollSize > 700) {
+            if (scrollSize > 600) {
                 if (document.body.hasClass('locked')) {
                     contentTop.setStyle('left', (topHead.getSize().x - 1140) / 2);
                 };
@@ -152,7 +152,7 @@ window.addEvent('domready', function() {
             };
         },
         onLeave: function() {
-            if (scrollSize > 700) {
+            if (scrollSize > 600) {
                 contentTop.removeClass('fixed');
                 if(document.body.hasClass('locked')) {
                     contentTop.setStyle('width', '100%');
