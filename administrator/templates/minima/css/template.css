@@ -3521,12 +3521,32 @@ input.system-openid, input.com-system-openid
 
 #ak_list_container                      {   margin-top: -1px; }
 
-#ak_list_container table.adminlist      {   width: 98%; }
+#ak_list_container table.adminlist,
+.wafexceptions table.adminlist,
+.ipwl table.adminlist,
+.ipbl table.adminlist,
+.badwords table.adminlist,
+.redirs table.adminlist                 {   width: 98%; }
 
 #ak_folder_container,
 #ak_files_container                     {   width: 47%; }
 
-p.liveupdate-buttons                    {   max-width: none !important; }
+.com_admintools .atoolsblock p          {   margin: 0 !important; }
+
+p.liveupdate-buttons,
+.htmaker #disclaimer p,
+.geoblock #disclaimer p,
+.dbprefix .disclaimer p                 {   max-width: none !important; }
+
+p.admintools-warning                    {
+                                            max-width: none !important;
+                                            margin-right: 20px;
+                                        }
+
+.fixpermsconfig #splitlist fieldset     {   width: 45.9%; }
+
+.fixpermsconfig #splitlist fieldset table.adminlist
+                                        {   width: 97%; }
 
 /*
 .iPhoneCheckContainer{ position:relative; width:85px; height:27px; cursor:pointer; overflow:hidden;  }
