@@ -16,6 +16,8 @@
     German: Christian Hent
     Swedish: Linda Kadar
     Brazilian Portuguese: Marco Barbosa
+    Russian: Stefan Tjurin
+    Spanish: Patricio Bustos
 
 /* SPECIAL THANKS */
     Dimitar Christoff (@d_mitar) - Javascript tips and refactoring
