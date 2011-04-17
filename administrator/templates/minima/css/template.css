@@ -3440,9 +3440,19 @@ input.system-openid, input.com-system-openid
 
 .icon-48-admintools                     {   background-image: url("../../../../media/com_admintools/images/admintools-48.png") !important; }
 
-.ak_cpanel_main_container .icon         {   padding: 0; }
+.com_akeeba .icon-48-liveupdate         {   background-image: url("../../../components/com_akeeba/liveupdate/assets/liveupdate-48.png") !important; }
 
-.ak_cpanel_main_container .icon a       {   display: block; }
+.com_admintools .icon-48-liveupdate     {   background-image: url("../../../components/com_admintools/liveupdate/assets/liveupdate-48.png") !important; }
+
+.ak_cpanel_main_container .icon,
+.com_admintools .icon                   {
+                                            padding: 0;
+                                            margin-bottom: 10px; }
+
+.ak_cpanel_main_container .icon a       {
+                                            display: block;
+                                            text-decoration: none;
+                                        }
 
 .ak_cpanel_main_container .icon a div   {
                                             margin-top: 10px;
@@ -3495,17 +3505,19 @@ input.system-openid, input.com-system-openid
                                             margin: 10px 0 5px;
                                         }
 
-.com_admintools .icon                   {
-                                            margin-bottom: 10px;
-                                            padding: 0;
-                                        }
-
 .com_admintools .icon a                 {
                                             display: block;
                                             margin-top: 10px;
                                             text-align: center;
                                             text-decoration: none;
                                         }
+
+#backup-setup table.adminlist  {
+                                            border: none;
+                                            padding-right: 24px;
+                                        }
+
+p.liveupdate-buttons                    {   max-width: none !important; }
 
 /*
 .iPhoneCheckContainer{ position:relative; width:85px; height:27px; cursor:pointer; overflow:hidden;  }
