@@ -3447,7 +3447,8 @@ input.system-openid, input.com-system-openid
 .ak_cpanel_main_container .icon,
 .com_admintools .icon                   {
                                             padding: 0;
-                                            margin-bottom: 10px; }
+                                            margin-bottom: 10px;
+                                        }
 
 .ak_cpanel_main_container .icon a       {
                                             display: block;
@@ -3512,10 +3513,18 @@ input.system-openid, input.com-system-openid
                                             text-decoration: none;
                                         }
 
-#backup-setup table.adminlist  {
+#backup-setup table.adminlist,
+.extfilter table.adminlist              {
                                             border: none;
                                             padding-right: 24px;
                                         }
+
+#ak_list_container                      {   margin-top: -1px; }
+
+#ak_list_container table.adminlist      {   width: 98%; }
+
+#ak_folder_container,
+#ak_files_container                     {   width: 47%; }
 
 p.liveupdate-buttons                    {   max-width: none !important; }
 
