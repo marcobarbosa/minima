@@ -921,11 +921,15 @@ BODY.error                              {   background: #ccc; }
             #panel-list li a:active     {   position: relative; top: 2px; }
 
             #panel-list li.ext a        {
-
+                                            background-image: none;
+                                            padding-left: 0;
+                                            width: 256px;
                                         }
 
             #panel-list li.ext a img    {
-
+                                            float: left;
+                                            padding-left: 15px;
+                                            padding-right: 12px;
                                         }
 
 #panel-list li .extension-desc          {
