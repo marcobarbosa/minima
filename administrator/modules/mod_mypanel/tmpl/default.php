@@ -53,9 +53,8 @@ $nPages = ceil( count($items) / 9);
                     $arrClass = explode(":", $item->img);
                     $class = "icon-48-".$arrClass[1];
                 } else {
-                    $arrImg = explode("com_", $item->element);
-                    $img = JPATH_ADMINISTRATOR."/components".$item->element."/images/icons/icon-48-".strtolower($arrImg[1]).".png";
-                    // FIXME JPATH is the wrong constant
+                	// component dev already specifies image path, so grab 48 px icon vs. 16 px
+                	$img = str_replace('16', '48', $item->img);
                     // fallback if img not found
                    if (!file_exists($img)) $class = "icon-48-generic";
                 }
@@ -68,8 +67,8 @@ $nPages = ceil( count($items) / 9);
                 </li>
         <?php else: ?>
                 <li class="ext">
-                    <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $item->alias; ?>" />
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $item->alias; ?>
+                    <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $title; ?>" />
+                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $title; ?>
                         <span class="extension-desc"><?php echo $desc; ?></span>
                     </a>
                 </li>
