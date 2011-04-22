@@ -103,10 +103,10 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
                 <?php if( $currentUser->authorize( array('core.manage','com_installer') ) ): ?>
                 <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
-                    <dd><a href="index.php?option=com_installer">Install</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
+                    <dd><a href="index.php?option=com_installer"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_INSTALL'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=update"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_UPDATE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=manage"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_MANAGE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=discover"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_DISCOVER'); ?></a></dd>
                 </dl>
                 <?php endif; ?>
             </nav><!-- /#list-content -->

@@ -758,7 +758,7 @@ BODY.error                              {   background: #ccc; }
                                             height: 15px;
                                             padding: 4px 24px 6px 12px;
                                             position: relative; top:0; left: -50%;
-                                            width: 79px;
+                                            width: auto;
                                         }
 
 #panel-tab:hover                        {
