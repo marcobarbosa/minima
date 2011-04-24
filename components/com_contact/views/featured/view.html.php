@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
+ * @version		$Id: view.html.php 21023 2011-03-28 10:55:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -114,7 +114,6 @@ class ContactViewFeatured extends JView
 		}
 		$id = (int) @$menu->query['id'];
 
-
 		$title = $this->params->get('page_title', '');
 		if (empty($title)) {
 			$title = $app->getCfg('sitename');
@@ -132,6 +131,11 @@ class ContactViewFeatured extends JView
 		if ($this->params->get('menu-meta_keywords')) 
 		{
 			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+
+		if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 	}
 }

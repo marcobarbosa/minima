@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: category.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: category.php 21145 2011-04-12 23:21:04Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -166,9 +166,9 @@ class ContentModelCategory extends JModelList
 		$this->setState('list.direction', $listOrder);
 
 		$this->setState('list.start', JRequest::getVar('limitstart', 0, '', 'int'));
-
+		
 		// set limit for query. If list, use parameter. If blog, add blog parameters for limit.
-		if (JRequest::getString('layout') == 'blog') {
+		if ((JRequest::getCmd('layout') == 'blog') || $params->get('layout_type') == 'blog') {
 			$limit = $params->get('num_leading_articles') + $params->get('num_intro_articles') + $params->get('num_links');
 			$this->setState('list.links', $params->get('num_links'));
 		}
@@ -191,6 +191,7 @@ class ContentModelCategory extends JModelList
 		$this->setState('filter.language',$app->getLanguageFilter());
 
 		$this->setState('layout', JRequest::getCmd('layout'));
+
 	}
 
 	/**
@@ -202,14 +203,7 @@ class ContentModelCategory extends JModelList
 	function getItems()
 	{
 		$params = $this->getState()->get('params');
-
-		// set limit for query. If list, use parameter. If blog, add blog parameters for limit.
-		if (JRequest::getString('layout') == 'blog') {
-			$limit = $params->get('num_leading_articles') + $params->get('num_intro_articles') + $params->get('num_links');
-		}
-		else {
-			$limit = $this->getState('list.limit');
-		}
+		$limit = $this->getState('list.limit');
 
 		if ($this->_articles === null && $category = $this->getCategory()) {
 			$model = JModel::getInstance('Articles', 'ContentModel', array('ignore_request' => true));

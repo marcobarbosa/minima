@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: codemirror.php 20826 2011-02-21 23:19:46Z dextercowley $
+ * @version		$Id: codemirror.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * CodeMirror Editor Plugin.
  *
- * @package		Joomla
- * @subpackage	Editors
+ * @package		Joomla.Plugin
+ * @subpackage	Editors.codemirror
  * @since		1.6
  */
 class plgEditorCodemirror extends JPlugin
@@ -33,8 +33,8 @@ class plgEditorCodemirror extends JPlugin
 	{
 		JHtml::_('core');
 		$uncompressed	= JFactory::getApplication()->getCfg('debug') ? '-uncompressed' : '';
-		JHTML::_('script',$this->_basePath . 'js/codemirror'.$uncompressed.'.js', false, false, false, false);
-		JHTML::_('stylesheet',$this->_basePath . 'css/codemirror.css');
+		JHtml::_('script',$this->_basePath . 'js/codemirror'.$uncompressed.'.js', false, false, false, false);
+		JHtml::_('stylesheet',$this->_basePath . 'css/codemirror.css');
 
 		return '';
 	}

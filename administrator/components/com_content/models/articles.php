@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: articles.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: articles.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -267,7 +267,7 @@ class ContentModelArticles extends JModelList
 			$user	= JFactory::getUser();
 			$groups	= $user->getAuthorisedViewLevels();
 
-			for ($x = 0; $x < count($items); $x++) {
+			for ($x = 0, $count = count($items); $x < $count; $x++) {
 				//Check the access level. Remove articles the user shouldn't see
 				if (!in_array($items[$x]->access, $groups)) {
 					unset($items[$x]);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: vote.php 20727 2011-02-16 10:51:28Z infograf768 $
+ * @version		$Id: vote.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Vote plugin.
  *
- * @package		Joomla
- * @subpackage	plg_vote
+ * @package		Joomla.Plugin
+ * @subpackage	Content.vote
  */
 class plgContentVote extends JPlugin
 {
@@ -48,8 +48,8 @@ class plgContentVote extends JPlugin
 			$img = '';
 
 			// look for images in template if available
-			$starImageOn = JHTML::_('image','system/rating_star.png', NULL, NULL, true);
-			$starImageOff = JHTML::_('image','system/rating_star_blank.png', NULL, NULL, true);
+			$starImageOn = JHtml::_('image','system/rating_star.png', NULL, NULL, true);
+			$starImageOff = JHtml::_('image','system/rating_star_blank.png', NULL, NULL, true);
 
 			for ($i=0; $i < $rating; $i++) {
 				$img .= $starImageOn;

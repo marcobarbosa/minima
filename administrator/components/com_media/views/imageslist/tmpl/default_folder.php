@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_folder.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_folder.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_media
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -12,6 +12,6 @@ defined('_JEXEC') or die;
 ?>
 <div class="item">
 	<a href="index.php?option=com_media&amp;view=imagesList&amp;tmpl=component&amp;folder=<?php echo $this->_tmp_folder->path_relative; ?>&amp;asset=<?php echo JRequest::getCmd('asset');?>&amp;author=<?php echo JRequest::getCmd('author');?>">
-		<?php echo JHTML::_('image','media/folder.gif', $this->_tmp_folder->name, array('height' => 80, 'width' => 80), true); ?>
+		<?php echo JHtml::_('image','media/folder.gif', $this->_tmp_folder->name, array('height' => 80, 'width' => 80), true); ?>
 		<span><?php echo $this->_tmp_folder->name; ?></span></a>
 </div>

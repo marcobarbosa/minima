@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: style.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: style.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -25,22 +25,4 @@ class TemplatesControllerStyle extends JControllerForm
 	 */
 	protected $text_prefix = 'COM_TEMPLATES_STYLE';
 
-	/**
-	 * Proxy for execute.
-	 *
-	 * If the task is an action which modifies data, the component cache is cleared.
-	 *
-	 * @since	1.6
- 	 */
-	public function execute($task)
-	{
-		parent::execute($task);
-
-		// Clear the component's cache
-		if (!in_array($task, array('display', 'edit', 'cancel'))) {
-			$cache = JFactory::getCache();
-			$cache->clean('com_templates');
-			$cache->clean('_system');
-		}
-	}
 }

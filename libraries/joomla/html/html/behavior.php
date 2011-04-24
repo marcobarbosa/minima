@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: behavior.php 20822 2011-02-21 23:02:52Z dextercowley $
+ * @version		$Id: behavior.php 21156 2011-04-15 03:58:11Z ian $
  * @package		Joomla.Framework
  * @subpackage	HTML
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -660,10 +660,13 @@ abstract class JHtmlBehavior
 		// Include mootools framework
 		self::framework();
 
-		$js = "window.addEvent('domready', function () {if (top != self) {top.location.replace(".$location.");}});";
+		$js = "window.addEvent('domready', function () {if (top == self) {document.documentElement.style.display = 'block'; } else {top.location = self.location; }});";
 		$document = JFactory::getDocument();
+		$document->addStyleDeclaration('html { display:none }');
 		$document->addScriptDeclaration($js);
 		
+		JResponse::setHeader('X-Frames-Options', 'SAME-ORIGIN');
+
 		$loaded = true;
 	}
 

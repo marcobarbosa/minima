@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: details_up.php 20650 2011-02-10 10:14:12Z infograf768 $
+ * @version		$Id: details_up.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_media
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -14,7 +14,7 @@ $user = JFactory::getUser();
 		<tr>
 			<td class="imgTotal">
 				<a href="index.php?option=com_media&amp;view=mediaList&amp;tmpl=component&amp;folder=<?php echo $this->state->parent; ?>" target="folderframe">
-					<?php echo JHTML::_('image','media/folderup_16.png', '..', array('width' => 16, 'height' => 16), true); ?></a>
+					<?php echo JHtml::_('image','media/folderup_16.png', '..', array('width' => 16, 'height' => 16), true); ?></a>
 			</td>
 			<td class="description">
 				<a href="index.php?option=com_media&amp;view=mediaList&amp;tmpl=component&amp;folder=<?php echo $this->state->parent; ?>" target="folderframe">..</a>

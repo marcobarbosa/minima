@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: view.html.php 20989 2011-03-18 09:19:41Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -51,9 +51,9 @@ class NewsfeedsViewNewsfeeds extends JView
 	{
 		$state	= $this->get('State');
 		$canDo	= NewsfeedsHelper::getActions($state->get('filter.category_id'));
-
+		$user	= JFactory::getUser();
 		JToolBarHelper::title(JText::_('COM_NEWSFEEDS_MANAGER_NEWSFEEDS'), 'newsfeeds.png');
-		if ($canDo->get('core.create')) {
+		if (count($user->getAuthorisedCategories('com_newsfeeds', 'core.create')) > 0) {
 			JToolBarHelper::addNew('newsfeed.add','JTOOLBAR_NEW');
 		}
 		if ($canDo->get('core.edit')) {

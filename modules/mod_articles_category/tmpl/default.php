@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20816 2011-02-21 21:25:24Z dextercowley $
+ * @version		$Id: default.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_articles_category
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -63,16 +63,16 @@ defined('_JEXEC') or die;
 						echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
 					elseif ($readmore = $item->alternative_readmore) :
 						echo $readmore;
-						echo JHTML::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
 						if ($params->get('show_readmore_title', 0) != 0) :
-							echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+							echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 						endif;
 					elseif ($params->get('show_readmore_title', 0) == 0) :
 						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');	
 					else :
 						
 						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHTML::_('string.truncate', ($item->title), $params->get('readmore_limit'));
+						echo JHtml::_('string.truncate', ($item->title), $params->get('readmore_limit'));
 					endif; ?>
 	        </a>
 			</p>
@@ -128,12 +128,12 @@ defined('_JEXEC') or die;
 						echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
 					elseif ($readmore = $item->alternative_readmore) :
 						echo $readmore;
-						echo JHTML::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
 					elseif ($params->get('show_readmore_title', 0) == 0) :
 						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');	
 					else :
 						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHTML::_('string.truncate', $item->title, $params->get('readmore_limit'));
+						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
 					endif; ?>
 	        </a>
 			</p>

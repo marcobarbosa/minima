@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: module.php 20880 2011-03-03 22:02:26Z dextercowley $
+ * @version		$Id: module.php 21148 2011-04-14 17:30:08Z ian $
  * @package		Joomla.Administrator
- * @subpackage	Modules
+ * @subpackage	com_modules
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -85,8 +85,11 @@ class ModulesModelModule extends JModelAdmin
 			if ($table->load($pk)) {
 
 				// Access checks.
-				if (!$user->authorise('core.delete', 'com_modules')) {
-					throw new Exception(JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+				if (!$user->authorise('core.delete', 'com_modules') || 
+							$table->published != -2) {
+					JError::raiseWarning(403, JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));	
+					//	throw new Exception(JText::_('JERROR_CORE_DELETE_NOT_PERMITTED'));
+					return;
 				}
 
 				if (!$table->delete($pk)) {
@@ -104,17 +107,15 @@ class ModulesModelModule extends JModelAdmin
 				}
 
 				// Clear module cache
-				$cache = JFactory::getCache($table->module);
-				$cache->clean();
+				parent::cleanCache($table->module, $table->client_id);
 			}
 			else {
 				throw new Exception($table->getError());
 			}
 		}
 
-		// Clear module cache
-		$cache = JFactory::getCache('com_modules');
-		$cache->clean();
+		// Clear modules cache
+		$this->cleanCache();
 
 		return true;
 	}
@@ -179,10 +180,6 @@ class ModulesModelModule extends JModelAdmin
 				{
 					$tuples[] = '('.(int) $table->id.','.(int) $menuid.')';
 				}
-
-				// Clear module cache
-				$cache = JFactory::getCache($table->module);
-				$cache->clean();
 			}
 			else {
 				throw new Exception($table->getError());
@@ -199,9 +196,8 @@ class ModulesModelModule extends JModelAdmin
 			}
 		}
 
-		// Clear module cache
-		$cache = JFactory::getCache('com_modules');
-		$cache->clean();
+		// Clear modules cache
+		$this->cleanCache();
 
 		return true;
 	}
@@ -556,7 +552,7 @@ class ModulesModelModule extends JModelAdmin
 			$orig_table->load( (int) $orig_data['id']);
 
 			if ($data['title'] == $orig_table->title) {
-				$data['title'] .= ' (copy)';
+				$data['title'] .= ' '.JText::_('JGLOBAL_COPY');
 				$data['published'] = 0;
 			}
 		}
@@ -687,11 +683,12 @@ class ModulesModelModule extends JModelAdmin
 		$this->setState('module.extension_id',	$extensionId);
 		$this->setState('module.id',			$table->id);
 
-		// Clear module cache
-		$cache = JFactory::getCache();
-		$cache->clean($table->module);
-		$cache->clean('com_modules');
-
+		// Clear modules cache
+		$this->cleanCache();
+		
+		// Clean module cache
+		parent::cleanCache($table->module, $table->client_id);
+		
 		return true;
 	}
 
@@ -711,4 +708,13 @@ class ModulesModelModule extends JModelAdmin
 
 		return $condition;
 	}
+	
+	/**
+	 * Custom clean cache method for different clients
+	 *
+	 * @since	1.6
+	 */
+	function cleanCache() {
+		parent::cleanCache('com_modules', $this->getClient());
+	}	
 }

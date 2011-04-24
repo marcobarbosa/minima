@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20348 2011-01-18 21:52:44Z infograf768 $
+ * @version		$Id: helper.php 21002 2011-03-20 16:09:29Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_languages
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -31,7 +31,12 @@ abstract class modLanguagesHelper
 		$homes = $db->loadObjectList('language');
 
 		foreach($languages as $i => &$language) {
+			// Do not display language without frontend UI
 			if (!JLanguage::exists($language->lang_code)) {
+				unset($languages[$i]);
+			}
+			// Do not display language without specific home menu
+			elseif (!isset($homes[$language->lang_code])) {
 				unset($languages[$i]);
 			}
 			else {

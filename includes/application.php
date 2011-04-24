@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: application.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: application.php 21148 2011-04-14 17:30:08Z ian $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -410,7 +410,7 @@ final class JSite extends JApplication
 		$menu = $this->getMenu();
 		$item = $menu->getActive();
 		if (!$item) {
-			$item = $menu->getItem(JRequest::getVar('Itemid'));
+			$item = $menu->getItem(JRequest::getInt('Itemid'));
 		}
 
 		$id = 0;

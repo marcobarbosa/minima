@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: language.php 20436 2011-01-25 12:02:39Z infograf768 $
+ * @version		$Id: language.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Installation
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -17,7 +17,6 @@ JLoader::register('JFormFieldList', JPATH_LIBRARIES.'/joomla/form/fields/list.ph
  * Language Form Field class.
  *
  * @package		Joomla.Installation
- * @subpackage	Form
  * @since		1.6
  */
 class JFormFieldLanguage extends JFormFieldList

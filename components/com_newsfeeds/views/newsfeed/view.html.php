@@ -1,8 +1,8 @@
 <?php
 /**
- * version $Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
- * @package		Joomla
- * @subpackage	Newsfeeds
+ * version $Id: view.html.php 21097 2011-04-07 15:38:03Z dextercowley $
+ * @package		Joomla.Site
+ * @subpackage	com_newsfeeds
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  *
@@ -17,8 +17,8 @@ jimport('joomla.application.component.view');
  * HTML View class for the Newsfeeds component
  *
  * @static
- * @package		Joomla
- * @subpackage	Newsfeeds
+ * @package		Joomla.Site
+ * @subpackage	com_newsfeeds
  * @since 1.0
  */
 class NewsfeedsViewNewsfeed extends JView
@@ -164,7 +164,7 @@ class NewsfeedsViewNewsfeed extends JView
 		$options['rssUrl']		= $newsfeed->link;
 		$options['cache_time']	= $newsfeed->cache_time;
 
-		$rssDoc = JFactory::getXMLparser('RSS', $options);
+		$rssDoc = JFactory::getXMLParser('RSS', $options);
 
 		if ($rssDoc == false) {
 			$msg = JText::_('COM_NEWSFEEDS_ERRORS_FEED_NOT_RETRIEVED');
@@ -265,7 +265,7 @@ class NewsfeedsViewNewsfeed extends JView
 		if (empty($title)) {
 			$title = $this->item->name;
 		}
-		$this->document->setTitle($title);		
+		$this->document->setTitle($title);
 
 		if ($this->item->metadesc)
 		{
@@ -283,6 +283,11 @@ class NewsfeedsViewNewsfeed extends JView
 		elseif (!$this->item->metakey && $this->params->get('menu-meta_keywords')) 
 		{
 			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+
+		if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

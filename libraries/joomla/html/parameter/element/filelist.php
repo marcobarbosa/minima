@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: filelist.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: filelist.php 20972 2011-03-16 13:57:36Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	Parameter
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -14,7 +14,8 @@ defined('JPATH_BASE') or die;
  * Renders a filelist element
  *
  * @package		Joomla.Framework
- * @subpackage		Parameter
+ * @subpackage	Parameter
+ * @deprecated	JParameter is deprecated and will be removed in a future version. Use JForm instead.
  * @since		1.5
  */
 

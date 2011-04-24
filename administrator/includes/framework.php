@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: framework.php 20886 2011-03-04 17:35:16Z ian $
+ * @version		$Id: framework.php 21171 2011-04-18 21:50:18Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	Application
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -20,8 +20,7 @@ defined('_JEXEC') or die;
 /*
  * Installation check, and check on removal of the install directory.
  */
-if (!file_exists(JPATH_CONFIGURATION.'/configuration.php') || (filesize(JPATH_CONFIGURATION.'/configuration.php') < 10) || file_exists(JPATH_INSTALLATION.'/index.php')) {
-	header('Location: ../installation/index.php');
+if (!file_exists(JPATH_CONFIGURATION.'/configuration.php') || (filesize(JPATH_CONFIGURATION.'/configuration.php') < 10) || file_exists(JPATH_INSTALLATION.'/index.php')) {	header('Location: ../installation/index.php');
 	exit();
 }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default.php 21084 2011-04-05 00:49:22Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_whosonline
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -9,28 +9,26 @@
 
 // no direct access
 defined('_JEXEC') or die;
+?>
 
+<?php if ($showmode == 0 || $showmode == 2) : ?> 
+	<?php $guest = JText::plural('MOD_WHOSONLINE_GUESTS', $count['guest']); ?>
+	<?php $member = JText::plural('MOD_WHOSONLINE_MEMBERS', $count['user']); ?>
+	<p><?php echo JText::sprintf('MOD_WHOSONLINE_WE_HAVE', $guest, $member); ?></p>
+<?php endif; ?>
 
-$guest = JText::plural('MOD_WHOSONLINE_GUESTS', $count['guest']);
-$member = JText::plural('MOD_WHOSONLINE_MEMBERS', $count['user']);
-
-if ($showmode == 0 || $showmode == 2) :
-	echo '<p>'. JText::sprintf('MOD_WHOSONLINE_WE_HAVE', $guest, $member).'</p>';
-endif;
-
-if (($showmode > 0) && count($names)) : ?>
+<?php if (($showmode > 0) && count($names)) : ?>
 	<ul  class="whosonline<?php echo $moduleclass_sfx ?>" >
-<?php foreach($names as $name) : ?>
-
+	<?php foreach($names as $name) : ?>
 		<li>
-		<?php if ($linknames==1) { ?>
-		<a href="index.php?option=com_users&view=profile&member_id=<?php echo (int) $name->userid; ?>">
-		<?php } ?>
-		<?php echo $name->username; ?>
-			<?php if ($linknames==1) : ?>
+			<?php if ($linknames == 1) : ?>
+				<a href="index.php?option=com_users&view=profile&member_id=<?php echo (int) $name->userid; ?>">
+				<?php echo $name->username; ?>
 				</a>
+			<?php else : ?>
+				<?php echo $name->username; ?>
 			<?php endif; ?>
 		</li>
-<?php endforeach;  ?>
+	<?php endforeach;  ?>
 	</ul>
 <?php endif;

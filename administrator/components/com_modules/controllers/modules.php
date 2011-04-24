@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: modules.php 20229 2011-01-10 01:40:33Z eddieajau $
+ * @version		$Id: modules.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -19,24 +19,6 @@ jimport('joomla.application.component.controlleradmin');
  */
 class ModulesControllerModules extends JControllerAdmin
 {
-	/**
-	 * Override the execute method to clear the modules cache for non-display tasks.
-	 *
-	 * @param	string		The task to perform.
-	 * @return	mixed|false	The value returned by the called method, false in error case.
-	 * @since	1.6
-	 */
-	public function execute($task)
-	{
-		parent::execute($task);
-
-		// Clear the component's cache
-		if ($task != 'display') {
-			$cache = JFactory::getCache('com_modules');
-			$cache->clean();
-		}
-	}
-
 	/**
 	 * Method to clone an existing module.
 	 * @since	1.6

@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: readmore.php 20240 2011-01-10 05:46:24Z dextercowley $
- * @package		Joomla
+ * @version		$Id: readmore.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,7 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Editor Readmore buton
  *
- * @package Editors-xtd
+ * @package		Joomla.Plugin
+ * @subpackage	Editors-xtd.readmore
  * @since 1.5
  */
 class plgButtonReadmore extends JPlugin

@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: remember.php 20215 2011-01-09 21:50:53Z chdemko $
- * @package		Joomla
+ * @version		$Id: remember.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Joomla! System Remember Me Plugin
  *
- * @package		Joomla
- * @subpackage	System
+ * @package		Joomla.Plugin
+ * @subpackage	System.remember
  */
 class plgSystemRemember extends JPlugin
 {

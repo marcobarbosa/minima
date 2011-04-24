@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: modulelayouts.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @version		$Id: modulelayouts.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -15,6 +15,7 @@ require_once dirname(__FILE__).'/list.php';
  *
  * @package		Joomla.Framework
  * @subpackage	Parameter
+ * @deprecated	JParameter is deprecated and will be removed in a future version. Use JForm instead.
  */
 class JElementModuleLayouts extends JElementList
 {
@@ -49,7 +50,7 @@ class JElementModuleLayouts extends JElementList
 			$module	= preg_replace('#\W#', '', $module);
 			$path1	= $base.DS.'modules'.DS.$module.DS.'tmpl';
 			$path2	= $base.DS.'templates'.DS.$template.DS.'html'.DS.$module;
-			$options[]	= JHTML::_('select.option', '', '');
+			$options[]	= JHtml::_('select.option', '', '');
 		}
 
 		if ($path1 && $path2) {
@@ -59,15 +60,15 @@ class JElementModuleLayouts extends JElementList
 
 			$files	= JFolder::files($path1, '^[^_]*\.php$');
 			foreach ($files as $file) {
-				$options[]	= JHTML::_('select.option', JFile::stripExt($file));
+				$options[]	= JHtml::_('select.option', JFile::stripExt($file));
 			}
 
 			if (is_dir($path2) && $files = JFolder::files($path2, '^[^_]*\.php$')) {
-				$options[]	= JHTML::_('select.optgroup', JText::_('JOPTION_FROM_DEFAULT'));
+				$options[]	= JHtml::_('select.optgroup', JText::_('JOPTION_FROM_DEFAULT'));
 				foreach ($files as $file) {
-					$options[]	= JHTML::_('select.option', JFile::stripExt($file));
+					$options[]	= JHtml::_('select.option', JFile::stripExt($file));
 				}
-				$options[]	= JHTML::_('select.optgroup', JText::_('JOPTION_FROM_DEFAULT'));
+				$options[]	= JHtml::_('select.optgroup', JText::_('JOPTION_FROM_DEFAULT'));
 			}
 		}
 

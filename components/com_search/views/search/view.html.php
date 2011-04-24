@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: view.html.php 20873 2011-03-03 17:01:36Z dextercowley $
+ * @version		$Id: view.html.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	Weblinks
+ * @subpackage	com_search
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,11 +13,11 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
 /**
- * HTML View class for the WebLinks component
+ * HTML View class for the search component
  *
  * @static
  * @package		Joomla.Site
- * @subpackage	Weblinks
+ * @subpackage	com_search
  * @since 1.0
  */
 class SearchViewSearch extends JView
@@ -64,6 +64,21 @@ class SearchViewSearch extends JView
 			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
+
+		if ($params->get('menu-meta_description'))
+		{
+			$this->document->setDescription($params->get('menu-meta_description'));
+		}
+
+		if ($params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $params->get('menu-meta_keywords'));
+		}
+
+		if ($params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $params->get('robots'));
+		}
 
 		// built select lists
 		$orders = array();
@@ -112,7 +127,7 @@ class SearchViewSearch extends JView
 
 			require_once JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
 
-			for ($i=0; $i < count($results); $i++)
+			for ($i=0, $count = count($results); $i < $count; $i++)
 			{
 				$row = &$results[$i]->text;
 
@@ -142,7 +157,7 @@ class SearchViewSearch extends JView
 
 				$result = &$results[$i];
 				if ($result->created) {
-					$created = JHTML::_('date',$result->created, JText::_('DATE_FORMAT_LC3'));
+					$created = JHtml::_('date',$result->created, JText::_('DATE_FORMAT_LC3'));
 				}
 				else {
 					$created = '';

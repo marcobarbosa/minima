@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: style.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: style.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_templates
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -91,10 +91,9 @@ class TemplatesModelStyle extends JModelAdmin
 				return false;
 			}
 		}
-
-		$cache = JFactory::getCache();
-		$cache->clean('com_templates');
-		$cache->clean('_system');
+		
+		// Clean cache
+		$this->cleanCache();
 
 		return true;
 	}
@@ -146,10 +145,9 @@ class TemplatesModelStyle extends JModelAdmin
 				throw new Exception($table->getError());
 			}
 		}
-
-		$cache = JFactory::getCache();
-		$cache->clean('com_templates');
-		$cache->clean('_system');
+		
+		// Clean cache
+		$this->cleanCache();
 
 		return true;
 	}
@@ -366,7 +364,12 @@ class TemplatesModelStyle extends JModelAdmin
 			$table->load($pk);
 			$isNew = false;
 		}
-
+		if (JRequest::getVar('task') == 'save2copy') {
+		$data['title'] .= ' '.JText::_('JGLOBAL_COPY');
+		$data['home'] = 0;
+		$data['assigned'] ='';
+		}
+		
 		// Bind the data.
 		if (!$table->bind($data)) {
 			$this->setError($table->getError());
@@ -438,8 +441,7 @@ class TemplatesModelStyle extends JModelAdmin
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache();
-		$cache->clean();
+		$this->cleanCache();
 
 		// Trigger the onExtensionAfterSave event.
 		$dispatcher->trigger('onExtensionAfterSave', array('com_templates.style', &$table, $isNew));
@@ -507,10 +509,8 @@ class TemplatesModelStyle extends JModelAdmin
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache();
-		$cache->clean('com_templates');
-		$cache->clean('_system');
-
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -563,10 +563,8 @@ class TemplatesModelStyle extends JModelAdmin
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache();
-		$cache->clean('com_templates');
-		$cache->clean('_system');
-
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -579,5 +577,15 @@ class TemplatesModelStyle extends JModelAdmin
 	public function getHelp()
 	{
 		return (object) array('key' => $this->helpKey, 'url' => $this->helpURL);
+	}
+	
+	/**
+	 * Custom clean cache method
+	 *
+	 * @since	1.6
+	 */
+	function cleanCache() {
+		parent::cleanCache('com_templates');
+		parent::cleanCache('_system');
 	}
 }

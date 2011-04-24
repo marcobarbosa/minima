@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: component.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: component.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	templates.bluestork
+ * @subpackage	Templates.bluestork
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -21,7 +21,13 @@ defined('_JEXEC') or die;
 <?php if ($this->direction == 'rtl') : ?>
 	<link href="templates/<?php echo  $this->template ?>/css/template_rtl.css" rel="stylesheet" type="text/css" />
 <?php endif; ?>
+<?php if ($this->params->get('textBig')) : ?>
+	<link rel="stylesheet" type="text/css" href="templates/<?php echo  $this->template ?>/css/textbig.css" />
+<?php endif; ?>
 
+<?php if ($this->params->get('highContrast')) : ?>
+	<link rel="stylesheet" type="text/css" href="templates/<?php echo  $this->template ?>/css/highcontrast.css" />
+<?php endif; ?>
 </head>
 <body class="contentpane">
 	<jdoc:include type="message" />

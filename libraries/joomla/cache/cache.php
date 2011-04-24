@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: cache.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: cache.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Cache
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -34,7 +34,7 @@ class JCache extends JObject
 	 * @var		object	Storage Handler
 	 * @since	1.5
 	 */
-	public static $_handler = array();
+	public $_handler = null;
 
 	/**
 	 * @since	1.6
@@ -378,14 +378,12 @@ class JCache extends JObject
 	 * @return	object	A JCacheStorage object
 	 * @since	1.5
 	 */
-	public function _getStorage()
+	public function &_getStorage()
 	{
-		if (isset(self::$_handler[$this->_options['storage']]) && self::$_handler[$this->_options['storage']] instanceof JCacheStorage) {
-			return self::$_handler[$this->_options['storage']];
+		if (!isset($this->_handler)) {
+			$this->_handler = JCacheStorage::getInstance($this->_options['storage'], $this->_options);
 		}
-
-		self::$_handler[$this->_options['storage']] = JCacheStorage::getInstance($this->_options['storage'], $this->_options);
-		return self::$_handler[$this->_options['storage']];
+		return $this->_handler;
 	}
 
 	/**

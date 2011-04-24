@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: update.php 20803 2011-02-21 19:32:48Z dextercowley $
+ * @version		$Id: update.php 21170 2011-04-18 21:33:11Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -112,6 +112,27 @@ class InstallerModelUpdate extends JModelList
 			return true;
 		} else {
 			$this->_message = JText::_('COM_INSTALLER_FAILED_TO_PURGE_UPDATES');
+			return false;
+		}
+	}
+	
+	/**
+	 * Enables any disabled rows in #__update_sites table
+	 *
+	 * @return	boolean result of operation
+	 * @since	1.6
+	 */
+	public function enableSites()
+	{
+		$db = JFactory::getDBO();
+		$db->setQuery('UPDATE #__update_sites SET enabled = 1 WHERE enabled = 0');
+		if ($db->Query()) {
+			if ($rows = $db->getAffectedRows()) {
+				$this->_message .= JText::plural('COM_INSTALLER_ENABLED_UPDATES', $rows);
+			}
+			return true;
+		} else {
+			$this->_message .= JText::_('COM_INSTALLER_FAILED_TO_ENABLE_UPDATES');
 			return false;
 		}
 	}

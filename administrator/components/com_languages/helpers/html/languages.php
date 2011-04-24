@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: languages.php 20740 2011-02-17 10:28:57Z infograf768 $
+ * @version		$Id: languages.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -26,7 +26,7 @@ abstract class JHtmlLanguages {
 	public static function published($published)
 	{
 		if ($published) {
-			return JHTML::_('image','menu/icon-16-default.png', JText::_('COM_LANGUAGES_HEADING_DEFAULT'), NULL, true);
+			return JHtml::_('image','menu/icon-16-default.png', JText::_('COM_LANGUAGES_HEADING_DEFAULT'), NULL, true);
 		}
 		else {
 			return '&#160;';

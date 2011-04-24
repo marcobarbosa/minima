@@ -14,16 +14,15 @@
 	<version>1.6.0</version>
 	<description>MOD_LATEST_NEWS_XML_DESCRIPTION</description>
 	<files>
-		<filename
-			module="mod_articles_latest">mod_articles_latest.php</filename>
+		<filename module="mod_articles_latest">mod_articles_latest.php</filename>
 		<folder>tmpl</folder>
 		<filename>helper.php</filename>
 		<filename>index.html</filename>
 		<filename>mod_articles_latest.xml</filename>
 	</files>
 	<languages>
-		<language
-			tag="en-GB">en-GB.latestnews.ini</language>
+		<language tag="en-GB">en-GB.latestnews.ini</language>
+		<language tag="en-GB">en-GB.latestnews.sys.ini</language>
 	</languages>
 	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_LATEST_NEWS" />
 	<config>
@@ -46,6 +45,20 @@
 					default="5"
 					label="MOD_LATEST_NEWS_FIELD_COUNT_LABEL"
 					description="MOD_LATEST_NEWS_FIELD_COUNT_DESC" />
+
+				<field
+					name="show_featured"
+					type="list"
+					default=""
+					label="MOD_LATEST_NEWS_FIELD_FEATURED_LABEL"
+					description="MOD_LATEST_NEWS_FIELD_FEATURED_DESC">
+					<option
+						value="">JSHOW</option>
+					<option
+						value="0">JHIDE</option>
+					<option
+						value="1">MOD_LATEST_NEWS_VALUE_ONLY_SHOW_FEATURED</option>
+				</field>
 
 				<field
 					name="ordering"
@@ -75,20 +88,6 @@
 						value="by_me">MOD_LATEST_NEWS_VALUE_ADDED_BY_ME</option>
 					<option
 						value="not_me">MOD_LATEST_NEWS_VALUE_NOTADDED_BY_ME</option>
-				</field>
-
-				<field
-					name="show_featured"
-					type="list"
-					default=""
-					label="MOD_LATEST_NEWS_FIELD_FEATURED_LABEL"
-					description="MOD_LATEST_NEWS_FIELD_FEATURED_DESC">
-					<option
-						value="">JSHOW</option>
-					<option
-						value="0">JHIDE</option>
-					<option
-						value="1">MOD_LATEST_NEWS_VALUE_ONLY_SHOW_FEATURED</option>
 				</field>
 
 			</fieldset>

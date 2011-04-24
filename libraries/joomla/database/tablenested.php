@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: tablenested.php 20747 2011-02-18 00:47:36Z dextercowley $
+ * @version		$Id: tablenested.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Database
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -1378,7 +1378,7 @@ class JTableNested extends JTable
 		// Validate arguments
 		if (is_array($idArray) && is_array($lft_array) && count($idArray) == count($lft_array))
 		{
-			for ($i = 0; $i < count($idArray); $i++)
+			for ($i = 0, $count = count($idArray); $i < $count; $i++)
 			{
 				// Do an update to change the lft values in the table for each id
 				$query = $this->_db->getQuery(true);

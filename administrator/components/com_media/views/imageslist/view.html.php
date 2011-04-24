@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20828 2011-02-22 04:22:21Z dextercowley $
+ * @version		$Id: view.html.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -28,9 +28,9 @@ class MediaViewImagesList extends JView
 
 		$lang	= JFactory::getLanguage();
 
-		JHTML::_('stylesheet','media/popup-imagelist.css', array(), true);
+		JHtml::_('stylesheet','media/popup-imagelist.css', array(), true);
 		if ($lang->isRTL()) :
-			JHTML::_('stylesheet','media/popup-imagelist_rtl.css', array(), true);
+			JHtml::_('stylesheet','media/popup-imagelist_rtl.css', array(), true);
 		endif;
 
 		$document = JFactory::getDocument();

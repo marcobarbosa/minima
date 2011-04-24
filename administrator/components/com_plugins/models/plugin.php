@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: plugin.php 20450 2011-01-26 17:51:58Z dextercowley $
+ * @version		$Id: plugin.php 21035 2011-03-31 06:01:38Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -208,6 +208,22 @@ class PluginsModelPlugin extends JModelAdmin
 		$lang		= JFactory::getLanguage();
 		$client		= JApplicationHelper::getClientInfo(0);
 
+	// Load the core and/or local language sys file(s) for the ordering field.
+		$db = JFactory::getDbo();
+		$query = 'SELECT element' .
+				' FROM #__extensions' .
+				' WHERE (type =' .$db->Quote('plugin'). 'AND folder='. $db->Quote($folder) . ')';
+		$db->setQuery($query);
+		$elements = $db->loadResultArray();
+		
+		foreach ($elements as $elementa)
+		{
+				$lang->load('plg_'.$folder.'_'.$elementa.'.sys', JPATH_ADMINISTRATOR, null, false, false)
+			||	$lang->load('plg_'.$folder.'_'.$elementa.'.sys', JPATH_PLUGINS.'/'.$folder.'/'.$elementa, null, false, false)
+			||	$lang->load('plg_'.$folder.'_'.$elementa.'.sys', JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
+			||	$lang->load('plg_'.$folder.'_'.$elementa.'.sys', JPATH_PLUGINS.'/'.$folder.'/'.$elementa, $lang->getDefault(), false, false);
+		}
+		
 		if (empty($folder) || empty($element)) {
 			$app = JFactory::getApplication();
 			$app->redirect(JRoute::_('index.php?option=com_plugins&view=plugins',false));
@@ -229,21 +245,6 @@ class PluginsModelPlugin extends JModelAdmin
 		||	$lang->load('plg_'.$folder.'_'.$element, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load('plg_'.$folder.'_'.$element, JPATH_PLUGINS.'/'.$folder.'/'.$element, $lang->getDefault(), false, false);
 		
-		// Load the core and/or local language sys file(s) for the ordering field.
-		$db = JFactory::getDbo();
-		$query = 'SELECT element' .
-				' FROM #__extensions' .
-				' WHERE (type =' .$db->Quote('plugin'). 'AND folder='. $db->Quote($folder) . ')';
-		$db->setQuery($query);
-		$elements = $db->loadResultArray();
-		
-		foreach ($elements as $element)
-		{
-				$lang->load('plg_'.$folder.'_'.$element.'.sys', JPATH_ADMINISTRATOR, null, false, false)
-			||	$lang->load('plg_'.$folder.'_'.$element.'.sys', JPATH_PLUGINS.'/'.$folder.'/'.$element, null, false, false)
-			||	$lang->load('plg_'.$folder.'_'.$element.'.sys', JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
-			||	$lang->load('plg_'.$folder.'_'.$element.'.sys', JPATH_PLUGINS.'/'.$folder.'/'.$element, $lang->getDefault(), false, false);
-		}
 
 		if (file_exists($formFile)) {
 			// Get the plugin form.
@@ -314,4 +315,14 @@ class PluginsModelPlugin extends JModelAdmin
 	{
 		return (object) array('key' => $this->helpKey, 'url' => $this->helpURL);
 	}
+
+	/**
+	 * Custom clean cache method, plugins are cached in 2 places for different clients
+	 *
+	 * @since	1.6
+	 */
+	function cleanCache() {
+		parent::cleanCache('com_plugins', 0);
+		parent::cleanCache('com_plugins', 1);
+	}	
 }

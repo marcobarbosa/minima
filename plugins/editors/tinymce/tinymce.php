@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: tinymce.php 20899 2011-03-07 20:56:09Z ian $
- * @package		Joomla
+ * @version		$Id: tinymce.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * TinyMCE Editor Plugin
  *
- * @package		Joomla
- * @subpackage	Editors
+ * @package		Joomla.Plugin
+ * @subpackage	Editors.tinymce
  * @since		1.5
  */
 class plgEditorTinymce extends JPlugin
@@ -753,7 +752,7 @@ class plgEditorTinymce extends JPlugin
 	function _displayButtons($name, $buttons, $asset, $author)
 	{
 		// Load modal popup behavior
-		JHTML::_('behavior.modal', 'a.modal-button');
+		JHtml::_('behavior.modal', 'a.modal-button');
 
 		$args['name'] = $name;
 		$args['event'] = 'onGetInsertMethod';
@@ -800,7 +799,7 @@ class plgEditorTinymce extends JPlugin
 	{
 		$return  = '';
 		$return .= "\n<div class=\"toggle-editor\">\n";
-		$return .= "<div class=\"button2-left\"><div class=\"blank\"><a href=\"#\" onclick=\"javascript:tinyMCE.execCommand('mceToggleEditor', false, '$name');return false;\" title=\"".JText::_('PLG_TINY_BUTTON_TOGGLE_EDITOR')."\">".JText::_('PLG_TINY_BUTTON_TOGGLE_EDITOR')."</a></div></div>";
+		$return .= "<div class=\"button2-left\"><div class=\"blank\"><a href=\"#\" onclick=\"tinyMCE.execCommand('mceToggleEditor', false, '$name');return false;\" title=\"".JText::_('PLG_TINY_BUTTON_TOGGLE_EDITOR')."\">".JText::_('PLG_TINY_BUTTON_TOGGLE_EDITOR')."</a></div></div>";
 		$return .= "</div>\n";
 
 		return $return;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20828 2011-02-22 04:22:21Z dextercowley $
+ * @version		$Id: view.html.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -27,11 +27,11 @@ class MediaViewImages extends JView
 		$append = '';
 
 		JHtml::_('behavior.framework', true);
-		JHTML::_('script','media/popup-imagemanager.js', true, true);
-		JHTML::_('stylesheet','media/popup-imagemanager.css', array(), true);
+		JHtml::_('script','media/popup-imagemanager.js', true, true);
+		JHtml::_('stylesheet','media/popup-imagemanager.css', array(), true);
 
 		if ($lang->isRTL()) {
-			JHTML::_('stylesheet','media/popup-imagemanager_rtl.css', array(), true);
+			JHtml::_('stylesheet','media/popup-imagemanager_rtl.css', array(), true);
 		}
 
 		if ($config->get('enable_flash', 1)) {

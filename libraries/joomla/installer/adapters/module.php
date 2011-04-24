@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: module.php 20819 2011-02-21 21:53:18Z dextercowley $
+ * @version		$Id: module.php 20980 2011-03-17 10:48:59Z chdemko $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -294,6 +294,22 @@ class JInstallerModule extends JAdapterInstance
 
 			return false;
 		}
+
+		// If there is a manifest script, lets copy it.
+		if ($this->get('manifest_script')) {
+			$path['src'] = $this->parent->getPath('source').DS.$this->get('manifest_script');
+			$path['dest'] = $this->parent->getPath('extension_root').DS.$this->get('manifest_script');
+
+			if (!file_exists($path['dest']) || $this->parent->getOverwrite()) {
+				if (!$this->parent->copyFiles(array ($path))) {
+					// Install failed, rollback changes
+					$this->parent->abort(JText::_('JLIB_INSTALLER_ABORT_MOD_INSTALL_MANIFEST'));
+
+					return false;
+				}
+			}
+		}
+
 
 		// Parse optional tags
 		$this->parent->parseMedia($this->manifest->media, $clientId);

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: contentadministrator.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: contentadministrator.php 20974 2011-03-16 14:14:03Z chdemko $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -28,7 +28,7 @@ abstract class JHtmlContentAdministrator
 		$state	= JArrayHelper::getValue($states, (int) $value, $states[1]);
 		$html	= JHtml::_('image','admin/'.$state[0], JText::_($state[2]), NULL, true);
 		if ($canChange) {
-			$html	= '<a href="javascript:void(0);" onclick="return listItemTask(\'cb'.$i.'\',\''.$state[1].'\')" title="'.JText::_($state[3]).'">'
+			$html	= '<a href="#" onclick="return listItemTask(\'cb'.$i.'\',\''.$state[1].'\')" title="'.JText::_($state[3]).'">'
 					. $html.'</a>';
 		}
 

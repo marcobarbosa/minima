@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: helper.php 21003 2011-03-20 17:10:45Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Language
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -133,7 +133,8 @@ class JLanguageHelper
 				if (!$languages = $cache->get('languages')) {
 					$db 	= JFactory::getDBO();
 					$query	= $db->getQuery(true);
-					$query->select('*')->from('#__languages')->where('published=1');
+					// TODO Use an ordering field for 1.7 $query->select('*')->from('#__languages')->where('published=1')->order('ordering ASC');
+					$query->select('*')->from('#__languages')->where('published=1')->order('lang_id ASC');
 					$db->setQuery($query);
 
 					$languages['default'] 	= $db->loadObjectList();

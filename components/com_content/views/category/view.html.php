@@ -1,8 +1,8 @@
 <?php
 /**
- * version $Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
- * @package		Joomla
- * @subpackage	Content
+ * version $Id: view.html.php 21145 2011-04-12 23:21:04Z dextercowley $
+ * @package		Joomla.Site
+ * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -125,7 +125,7 @@ class ContentViewCategory extends JView
 
 		// For blog layouts, preprocess the breakdown of leading, intro and linked articles.
 		// This makes it much easier for the designer to just interrogate the arrays.
-		if ($this->getLayout() != 'default') {
+		if (($params->get('layout_type') == 'blog') || ($this->getLayout() == 'blog')) {
 			$max = count($items);
 
 			// The first group is the leading articles.
@@ -149,10 +149,11 @@ class ContentViewCategory extends JView
 				$this->intro_items = ContentHelperQuery::orderDownColumns($this->intro_items, $this->columns);
 			}
 
+			$limit = $numLeading + $numIntro + $numLinks;
 			// The remainder are the links.
-			for ($i = $numLeading + $numIntro; $i < $max; $i++)
+			for ($i = $numLeading + $numIntro; $i < $limit && $i < $max;$i++)
 			{
-				$this->link_items[$i] = &$items[$i];
+					$this->link_items[$i] = &$items[$i];
 			}
 		}
 
@@ -244,6 +245,11 @@ class ContentViewCategory extends JView
 		elseif (!$this->category->metakey && $this->params->get('menu-meta_keywords')) 
 		{
 			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+		
+		if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 
 		if ($app->getCfg('MetaTitle') == '1') {

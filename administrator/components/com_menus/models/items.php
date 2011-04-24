@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: items.php 20267 2011-01-11 03:44:44Z eddieajau $
+ * @version		$Id: items.php 21006 2011-03-21 06:20:03Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -176,7 +176,7 @@ class MenusModelItems extends JModelList
 		$query->join('LEFT', '`#__users` AS u ON u.id = a.checked_out');
 
 		//Join over components
-		$query->select('c.name AS componentname');
+		$query->select('c.element AS componentname');
 		$query->join('LEFT', '`#__extensions` AS c ON c.extension_id = a.component_id');
 
 		// Join over the asset groups.

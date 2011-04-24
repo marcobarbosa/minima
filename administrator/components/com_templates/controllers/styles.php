@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: styles.php 20231 2011-01-10 01:46:33Z eddieajau $
+ * @version		$Id: styles.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -48,24 +48,6 @@ class TemplatesControllerStyles extends JControllerAdmin
 		}
 
 		$this->setRedirect('index.php?option=com_templates&view=styles');
-	}
-
-	/**
-	 * Proxy for execute.
-	 *
-	 * If the task is an action which modifies data, the component cache is cleared.
-	 *
-	 * @since	1.6
- 	 */
-	public function execute($task)
-	{
-		parent::execute($task);
-
-		// Clear the component's cache
-		if ($task != 'display') {
-			$cache = JFactory::getCache('com_templates');
-			$cache->clean();
-		}
 	}
 
 	/**

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: controller.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: controller.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	Content
+ * @subpackage	com_search
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -16,7 +16,7 @@ jimport('joomla.application.component.controller');
  * Search Component Controller
  *
  * @package		Joomla.Site
- * @subpackage	Search
+ * @subpackage	com_search
  * @since 1.5
  */
 class SearchController extends JController
@@ -32,7 +32,7 @@ class SearchController extends JController
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		JRequest::setVar('view','search'); // force it to be the polls view
+		JRequest::setVar('view','search'); // force it to be the search view
 
 		return parent::display($cachable, $urlparams);
 	}

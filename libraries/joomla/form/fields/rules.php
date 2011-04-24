@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: rules.php 20828 2011-02-22 04:22:21Z dextercowley $
+ * @version		$Id: rules.php 21007 2011-03-22 13:23:21Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Form
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.

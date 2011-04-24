@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: index.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: index.php 21140 2011-04-11 17:10:29Z dextercowley $
  * @package		Joomla.Site
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 
 /* The following line loads the MooTools JavaScript Library */
-JHTML::_('behavior.framework', true);
+JHtml::_('behavior.framework', true);
 
 /* The following line gets the application object for things like displaying the site name */
 $app = JFactory::getApplication();
@@ -34,8 +34,8 @@ $app = JFactory::getApplication();
 
 		<!-- The following four lines load the Blueprint CSS Framework and the template CSS file for right-to-left languages. If you don't want to use these, delete these lines. -->
 		<?php if($this->direction == 'rtl') : ?>
-			<!--link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/blueprint/plugins/rtl/screen.css" type="text/css" />
-			<!--link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template_rtl.css" rel="stylesheet" type="text/css" />
+			<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/blueprint/plugins/rtl/screen.css" type="text/css" />
+			<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/template_rtl.css" rel="stylesheet" type="text/css" />
 		<?php endif; ?>
 
 		<!-- The following line loads the template JavaScript file located in the template folder. It's blank by default. -->

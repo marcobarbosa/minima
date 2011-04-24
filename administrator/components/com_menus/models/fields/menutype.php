@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: menutype.php 20804 2011-02-21 19:38:29Z dextercowley $
+ * @version		$Id: menutype.php 20974 2011-03-16 14:14:03Z chdemko $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -113,7 +113,7 @@ class JFormFieldMenuType extends JFormFieldList
 			foreach ($list as $item)
 			{
 				$html[] = '			<li>';
-				$html[] = '				<a class="choose_type" href="#" onclick="javascript:Joomla.submitbutton(\'item.setType\', \''.
+				$html[] = '				<a class="choose_type" href="#" onclick="Joomla.submitbutton(\'item.setType\', \''.
 											base64_encode(json_encode(array('id' => $recordId, 'title' => $item->title, 'request' => $item->request))).'\')"' .
 											' title="'.JText::_($item->description).'">'.
 											JText::_($item->title).'</a>';
@@ -132,19 +132,19 @@ class JFormFieldMenuType extends JFormFieldList
 		$html[] = '	<dd>';
 		$html[] = '		<ul>';
 		$html[] = '			<li>';
-		$html[] = '				<a class="choose_type" href="#" onclick="javascript:Joomla.submitbutton(\'item.setType\', \''.
+		$html[] = '				<a class="choose_type" href="#" onclick="Joomla.submitbutton(\'item.setType\', \''.
 									base64_encode(json_encode(array('id' => $recordId, 'title'=>'url'))).'\')"' .
 									' title="'.JText::_('COM_MENUS_TYPE_EXTERNAL_URL_DESC').'">'.
 									JText::_('COM_MENUS_TYPE_EXTERNAL_URL').'</a>';
 		$html[] = '			</li>';
 		$html[] = '			<li>';
-		$html[] = '				<a class="choose_type" href="#" onclick="javascript:Joomla.submitbutton(\'item.setType\', \''.
+		$html[] = '				<a class="choose_type" href="#" onclick="Joomla.submitbutton(\'item.setType\', \''.
 									base64_encode(json_encode(array('id' => $recordId, 'title'=>'alias'))).'\')"' .
 									' title="'.JText::_('COM_MENUS_TYPE_ALIAS_DESC').'">'.
 									JText::_('COM_MENUS_TYPE_ALIAS').'</a>';
 		$html[] = '			</li>';
 		$html[] = '			<li>';
-		$html[] = '				<a class="choose_type" href="#" onclick="javascript:Joomla.submitbutton(\'item.setType\', \''.
+		$html[] = '				<a class="choose_type" href="#" onclick="Joomla.submitbutton(\'item.setType\', \''.
 									base64_encode(json_encode(array('id' => $recordId, 'title'=>'separator'))).'\')"' .
 									' title="'.JText::_('COM_MENUS_TYPE_SEPARATOR_DESC').'">'.
 									JText::_('COM_MENUS_TYPE_SEPARATOR').'</a>';

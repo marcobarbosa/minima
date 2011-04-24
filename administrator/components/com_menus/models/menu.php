@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: menu.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: menu.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -202,11 +202,9 @@ class MenusModelMenu extends JModelForm
 
 		$this->setState('menu.id', $table->id);
 
-		// Clear the component's cache
-		$cache = JFactory::getCache('com_modules');
-		$cache->clean();
-		$cache->clean('mod_menu');
-
+		// Clean the cache
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -236,11 +234,9 @@ class MenusModelMenu extends JModelForm
 			}
 		}
 
-		// Clear the component's cache
-		$cache = JFactory::getCache('com_modules');
-		$cache->clean();
-		$cache->clean('mod_menu');
-
+		// Clean the cache
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -278,4 +274,14 @@ class MenusModelMenu extends JModelForm
 
 		return $result;
 	}
+
+	/**
+	 * Custom clean cache method
+	 *
+	 * @since	1.6
+	 */
+	function cleanCache() {
+		parent::cleanCache('com_modules');
+		parent::cleanCache('mod_menu');
+	}	
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: mod_whosonline.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @version		$Id: mod_whosonline.php 21084 2011-04-05 00:49:22Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_whosonline
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -22,6 +22,7 @@ if ($showmode == 0 || $showmode == 2) {
 if ($showmode > 0) {
 	$names	= modWhosonlineHelper::getOnlineUserNames();
 }
+
 $linknames = $params->get('linknames', 0);
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: article.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @version		$Id: article.php 21148 2011-04-14 17:30:08Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -39,13 +39,17 @@ class ContentModelArticle extends JModelAdmin
 	 */
 	protected function canDelete($record)
 	{
-		$user = JFactory::getUser();
-
-		return $user->authorise('core.delete', 'com_content.article.'.(int) $record->id);
+		if (!empty($record->id)) {
+			if ($record->state != -2) {
+				return ;
+			}
+			$user = JFactory::getUser();
+			return $user->authorise('core.delete', 'com_content.article.'.(int) $record->id);
+		}
 	}
 
 	/**
-	 * Method to test whether a record can be deleted.
+	 * Method to test whether a record can have its state edited.
 	 *
 	 * @param	object	$record	A record object.
 	 *
@@ -220,7 +224,7 @@ class ContentModelArticle extends JModelAdmin
 	{
 		if (parent::save($data)) {
 			if (isset($data['featured'])) {
-				$this->featured($this->getState('article.id'), $data['featured']);
+				$this->featured($this->getState($this->getName().'.id'), $data['featured']);
 			}
 			return true;
 		}
@@ -261,29 +265,46 @@ class ContentModelArticle extends JModelAdmin
 				throw new Exception($db->getErrorMsg());
 			}
 
-			// Adjust the mapping table.
-			// Clear the existing features settings.
-			$db->setQuery(
-				'DELETE FROM #__content_frontpage' .
-				' WHERE content_id IN ('.implode(',', $pks).')'
-			);
-			if (!$db->query()) {
-				throw new Exception($db->getErrorMsg());
-			}
-
-			if ($value == 1) {
-				// Featuring.
-				$tuples = array();
-				foreach ($pks as $i => $pk) {
-					$tuples[] = '('.$pk.', '.(int)($i + 1).')';
-				}
+			if ((int)$value == 0) {
+				// Adjust the mapping table.
+				// Clear the existing features settings.
 				$db->setQuery(
-					'INSERT INTO #__content_frontpage (`content_id`, `ordering`)' .
-					' VALUES '.implode(',', $tuples)
+					'DELETE FROM #__content_frontpage' .
+					' WHERE content_id IN ('.implode(',', $pks).')'
 				);
 				if (!$db->query()) {
-					$this->setError($db->getErrorMsg());
-					return false;
+					throw new Exception($db->getErrorMsg());
+				}
+			} else {
+				// first, we find out which of our new featured articles are already featured.
+				$query = $db->getQuery(true);
+				$query->select('f.content_id');
+				$query->from('#__content_frontpage AS f');
+				$query->where('content_id IN ('.implode(',', $pks).')');
+				//echo $query;
+				$db->setQuery($query);
+
+				if (!is_array($old_featured = $db->loadResultArray())) {
+					throw new Exception($db->getErrorMsg());
+				}
+				
+				// we diff the arrays to get a list of the articles that are newly featured
+				$new_featured = array_diff($pks, $old_featured);
+				
+				// Featuring.
+				$tuples = array();
+				foreach ($new_featured as $pk) {
+					$tuples[] = '('.$pk.', 0)';
+				}
+				if (count($tuples)) {
+					$db->setQuery(
+						'INSERT INTO #__content_frontpage (`content_id`, `ordering`)' .
+						' VALUES '.implode(',', $tuples)
+					);
+					if (!$db->query()) {
+						$this->setError($db->getErrorMsg());
+						return false;
+					}
 				}
 			}
 
@@ -294,8 +315,7 @@ class ContentModelArticle extends JModelAdmin
 
 		$table->reorder();
 
-		$cache = JFactory::getCache('com_content');
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
@@ -314,4 +334,20 @@ class ContentModelArticle extends JModelAdmin
 		$condition[] = 'catid = '.(int) $table->catid;
 		return $condition;
 	}
+
+	/**
+	 * Custom clean the cache of com_content and content modules
+	 *
+	 * @since	1.6
+	 */
+	protected function cleanCache()
+	{
+		parent::cleanCache('com_content');
+		parent::cleanCache('mod_articles_archive');
+		parent::cleanCache('mod_articles_categories');
+		parent::cleanCache('mod_articles_category');
+		parent::cleanCache('mod_articles_latest');
+		parent::cleanCache('mod_articles_news');
+		parent::cleanCache('mod_articles_popular');
+	}	
 }

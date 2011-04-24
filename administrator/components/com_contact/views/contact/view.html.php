@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: view.html.php 20989 2011-03-18 09:19:41Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -63,7 +63,7 @@ class ContactViewContact extends JView
 		// Built the actions for new and existing records.
 		if ($isNew)  {
 			// For new records, check the create permission.
-			if ($canDo->get('core.create')) {
+			if ($isNew && (count($user->getAuthorisedCategories('com_contact', 'core.create')) > 0)) {
 				JToolBarHelper::apply('contact.apply', 'JTOOLBAR_APPLY');
 				JToolBarHelper::save('contact.save', 'JTOOLBAR_SAVE');
 				JToolBarHelper::custom('contact.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);

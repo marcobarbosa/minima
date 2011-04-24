@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: modelform.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: modelform.php 21088 2011-04-05 22:06:34Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Application
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -47,7 +47,7 @@ abstract class JModelForm extends JModel
 			}
 
 			// Check if this is the user having previously checked out the row.
-			if ($table->checked_out > 0 && $table->checked_out != $user->get('id') && !$user->authorise('core.manage', 'com_checkin')) {
+			if ($table->checked_out > 0 && $table->checked_out != $user->get('id') && !$user->authorise('core.admin', 'com_checkin')) {
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_CHECKIN_USER_MISMATCH'));
 				return false;
 			}

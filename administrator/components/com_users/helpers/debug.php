@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: debug.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: debug.php 20986 2011-03-17 20:31:11Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_users
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -38,7 +38,7 @@ class UsersHelperDebug
 
 		$items = $db->setQuery($query)->loadObjectList();
 
-		if (sizeof($items)) {
+		if (count($items)) {
 			$lang = JFactory::getLanguage();
 
 			foreach ($items as &$item)

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: helper.php 20541 2011-02-03 21:12:06Z dextercowley $
+ * @version		$Id: helper.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	mod_articles_latest
+ * @subpackage	mod_articles_news
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: installer.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: installer.php 21048 2011-04-01 00:39:19Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -1022,12 +1022,12 @@ class JInstaller extends JAdapter
 		}
 
 		// Work out what files have been deleted
-		if ($oldFiles && is_a($oldFiles, 'JXMLElement'))
+		if ($oldFiles && ($oldFiles instanceof JXMLElement)) 
 		{
 			$oldEntries = $oldFiles->children();
 			if (count($oldEntries))
 			{
-				$deletions = $this->findDeletedFiles($oldEntries, $element);
+				$deletions = $this->findDeletedFiles($oldEntries, $element->children());
 				foreach ($deletions['folders'] as $deleted_folder) {
 					JFolder::delete($destination.DS.$deleted_folder);
 				}

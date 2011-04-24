@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: view.html.php 21148 2011-04-14 17:30:08Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -185,13 +185,13 @@ class MenusViewItems extends JView
 			JToolBarHelper::divider();
 			JToolBarHelper::custom('items.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
 		}
-		
+		if ($canDo->get('core.edit.state')) {
+			JToolBarHelper::trash('items.trash','JTOOLBAR_TRASH');
+		}		
 		if ($this->state->get('filter.published') == -2 && $canDo->get('core.delete')) {
 			JToolBarHelper::deleteList('', 'items.delete','JTOOLBAR_EMPTY_TRASH');
 		}
-		else if ($canDo->get('core.edit.state')) {
-			JToolBarHelper::trash('items.trash','JTOOLBAR_TRASH');
-		}
+
 		
 		if ($canDo->get('core.edit.state')) {
 			JToolBarHelper::makeDefault('items.setDefault', 'COM_MENUS_TOOLBAR_SET_HOME');

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @version		$Id: view.html.php 20989 2011-03-18 09:19:41Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -53,9 +53,10 @@ class WeblinksViewWeblinks extends JView
 
 		$state	= $this->get('State');
 		$canDo	= WeblinksHelper::getActions($state->get('filter.category_id'));
-
+		$user	= JFactory::getUser();
+		
 		JToolBarHelper::title(JText::_('COM_WEBLINKS_MANAGER_WEBLINKS'), 'weblinks.png');
-		if ($canDo->get('core.create')) {
+		if (count($user->getAuthorisedCategories('com_weblinks', 'core.create')) > 0) {
 			JToolBarHelper::addNew('weblink.add','JTOOLBAR_NEW');
 		}
 		if ($canDo->get('core.edit')) {

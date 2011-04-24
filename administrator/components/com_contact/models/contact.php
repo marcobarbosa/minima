@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: contact.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: contact.php 21148 2011-04-14 17:30:08Z ian $
  * @package		Joomla.Administrator
  * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -30,19 +30,18 @@ class ContactModelContact extends JModelAdmin
 	 * @since	1.6
 	 */
 	protected function canDelete($record)
-	{
-		$user = JFactory::getUser();
-
-		if ($record->catid) {
+	{ 
+		if (!empty($record->id)) {
+			if ($record->published != -2) {
+				return ;
+			}		
+			$user = JFactory::getUser();
 			return $user->authorise('core.delete', 'com_contact.category.'.(int) $record->catid);
-		}
-		else {
-			return parent::canDelete($record);
-		}
+		}	
 	}
 
 	/**
-	 * Method to test whether a record can be deleted.
+	 * Method to test whether a record can have its state edited.
 	 *
 	 * @param	object	$record	A record object.
 	 *
@@ -341,8 +340,8 @@ class ContactModelContact extends JModelAdmin
 
 		$table->reorder();
 
-		$cache = JFactory::getCache('com_contact');
-		$cache->clean();
+		// Clean component's cache
+		$this->cleanCache();
 
 		return true;
 	}

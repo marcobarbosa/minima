@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: componentlayout.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: componentlayout.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Form
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -126,7 +126,7 @@ class JFormFieldComponentLayout extends JFormField
 			
 			// Add a Use Global option if useglobal="true" in XML file
 			if ($this->element['useglobal'] == 'true') {
-				$groups[JText::_('JOPTION_FROM_STANDARD')]['items'][]	= JHTML::_('select.option', '', JText::_('JGLOBAL_USE_GLOBAL'));
+				$groups[JText::_('JOPTION_FROM_STANDARD')]['items'][]	= JHtml::_('select.option', '', JText::_('JGLOBAL_USE_GLOBAL'));
 			}
 
 			// Add the layout options from the component path.
@@ -159,7 +159,7 @@ class JFormFieldComponentLayout extends JFormField
 					$value = JFile::stripext(JFile::getName($file));
 					$component_layouts[$i] = $value;
 					$text = isset($menu['option']) ? JText::_($menu['option']) : (isset($menu['title']) ? JText::_($menu['title']) : $value);
-					$groups['_']['items'][]	= JHTML::_('select.option', '_:'.$value, $text);
+					$groups['_']['items'][]	= JHtml::_('select.option', '_:'.$value, $text);
 				}
 			}
 						
@@ -182,7 +182,7 @@ class JFormFieldComponentLayout extends JFormField
 						// Files with corresponding xml files are alternate menu items, not alternate layout files
 						// So we need to exclude these files
 						$xml_files = JFolder::files($template_path, '^[^_]*\.xml$', false, true);
-						for ($j = 0; $j < count($xml_files); $j++)
+						for ($j = 0, $count = count($xml_files); $j < $count; $j++)
 						{
 							$xml_files[$j] = JFile::stripext(JFile::getName($xml_files[$j]));
 						}
@@ -208,7 +208,7 @@ class JFormFieldComponentLayout extends JFormField
 								// Add an option to the template group
 								$value = JFile::stripext(JFile::getName($file));
 								$text = $lang->hasKey($key = strtoupper('TPL_'.$template->name.'_'.$extn.'_'.$view.'_LAYOUT_'.$value)) ? JText::_($key) : $value;
-								$groups[$template->name]['items'][]	= JHTML::_('select.option', $template->element.':'.$value, $text);
+								$groups[$template->name]['items'][]	= JHtml::_('select.option', $template->element.':'.$value, $text);
 							}
 						}
 					}

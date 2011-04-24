@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: geshi.php 20806 2011-02-21 19:44:59Z dextercowley $
- * @package		Joomla.Administrator
- * @subpackage	plg_geshi
+ * @version		$Id: geshi.php 21097 2011-04-07 15:38:03Z dextercowley $
+ * @package		Joomla.Plugin
+ * @subpackage	Content.geshi
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: component.php 20819 2011-02-21 21:53:18Z dextercowley $
+ * @version		$Id: component.php 20944 2011-03-10 11:07:05Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Installer
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -1157,7 +1157,7 @@ class JInstallerComponent extends JAdapterInstance
 		}
 		else {
 			// No component option defined... cannot delete what we don't know about
-			JError::raiseWarning(100, 'JLIB_INSTALLER_ERROR_COMP_UNINSTALL_NO_OPTION');
+			JError::raiseWarning(100, JText::_('JLIB_INSTALLER_ERROR_COMP_UNINSTALL_NO_OPTION'));
 			return false;
 		}
 	}

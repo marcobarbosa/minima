@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<!--
-		$Id: weblink.xml 20740 2011-02-17 10:28:57Z infograf768 $
+		$Id: weblink.xml 20990 2011-03-18 16:42:30Z infograf768 $
 	-->
 <form>
 	<fieldset>
@@ -47,7 +47,7 @@
 		<field
 			name="state"
 			type="list"
-			label="JGLOBAL_STATE"
+			label="JSTATUS"
 			description="COM_WEBLINKS_FIELD_STATE_DESC"
 			class="inputbox"
 			size="1"

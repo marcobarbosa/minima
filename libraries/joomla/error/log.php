@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: log.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: log.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Error
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -132,7 +132,7 @@ class JLog extends JObject
 
 		// Fill in the field data
 		$line = $this->_format;
-		for ($i = 0; $i < count($fields[0]); $i++)
+		for ($i = 0, $count = count($fields[0]); $i < $count; $i++)
 		{
 			$line = str_replace($fields[0][$i], (isset ($entry[$fields[1][$i]])) ? $entry[$fields[1][$i]] : "-", $line);
 		}

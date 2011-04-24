@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20807 2011-02-21 19:51:41Z dextercowley $
+ * @version		$Id: helper.php 21144 2011-04-12 23:18:56Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_category
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -223,8 +223,7 @@ abstract class modArticlesCategoryHelper
 
 			$item->displayDate = '';
 			if ($show_date) {
-				$date = new JDate($item->$show_date_field);
-				$item->displayDate= $date->format($show_date_format);
+				$item->displayDate = JHTML::_('date', $item->$show_date_field, $show_date_format);
 			}
 
 			if ($item->catid) {
@@ -237,8 +236,10 @@ abstract class modArticlesCategoryHelper
 
 			$item->displayHits = $show_hits ? $item->hits : '';
 			$item->displayAuthorName = $show_author ? $item->author : '';
-			$item->introtext = JHtml::_('content.prepare', $item->introtext);
-			$item->introtext = self::_cleanIntrotext($item->introtext);
+			if ($show_introtext) {
+				$item->introtext = JHtml::_('content.prepare', $item->introtext);
+				$item->introtext = self::_cleanIntrotext($item->introtext);
+			}
 			$item->displayIntrotext = $show_introtext ? self::truncate($item->introtext, $introtext_limit) : '';
 			// added Angie show_unauthorizid
 			$item->displayReadmore = $item->alternative_readmore;

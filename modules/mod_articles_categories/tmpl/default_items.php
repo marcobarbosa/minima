@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_items.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_items.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_articles_categories
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -21,7 +21,7 @@ foreach ($list as $item) :
 		<?php
 		if($params->get('show_description', 0))
 		{
-			echo JHTML::_('content.prepare',$item->description, $item->getParams());
+			echo JHtml::_('content.prepare',$item->description, $item->getParams());
 		}
 		if($params->get('show_children', 0) && (($params->get('maxlevel', 0) == 0) || ($params->get('maxlevel') >= ($item->level - $startLevel))) && count($item->getChildren()))
 		{

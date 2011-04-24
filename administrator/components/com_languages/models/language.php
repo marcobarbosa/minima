@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: language.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: language.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -178,8 +178,7 @@ class LanguagesModelLanguage extends JModelAdmin
 		$this->setState('language.id', $table->lang_id);
 
 		// Clean the cache.
-		$cache = JFactory::getCache('com_languages');
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
@@ -218,9 +217,20 @@ class LanguagesModelLanguage extends JModelAdmin
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache('com_languages');
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
+	
+	/**
+	 * Custom clean cache method
+	 *
+	 * @since	1.6
+	 */
+	function cleanCache() {
+		parent::cleanCache('_system', 0);
+		parent::cleanCache('_system', 1);
+		parent::cleanCache('com_languages', 0);
+		parent::cleanCache('com_languages', 1);
+	}	
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_core.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_core.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_users
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -34,7 +34,7 @@ jimport('joomla.user.helper');
 			<?php echo JText::_('COM_USERS_PROFILE_REGISTERED_DATE_LABEL'); ?>
 		</dt>
 		<dd>
-			<?php echo JHTML::_('date',$this->data->registerDate); ?>
+			<?php echo JHtml::_('date',$this->data->registerDate); ?>
 		</dd>
 		<dt>
 			<?php echo JText::_('COM_USERS_PROFILE_LAST_VISITED_DATE_LABEL'); ?>
@@ -42,7 +42,7 @@ jimport('joomla.user.helper');
 
 		<?php if ($this->data->lastvisitDate != '0000-00-00 00:00:00'){?>
 			<dd>
-				<?php echo JHTML::_('date',$this->data->lastvisitDate); ?>
+				<?php echo JHtml::_('date',$this->data->lastvisitDate); ?>
 			</dd>
 		<?php }
 		else {?>

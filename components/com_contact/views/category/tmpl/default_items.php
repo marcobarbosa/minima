@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_items.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: default_items.php 20982 2011-03-17 16:12:00Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -35,7 +35,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<thead><tr>
 
 			<th class="item-title">
-				<?php echo JHtml::_('grid.sort', 'COM_CONTACT_CONTACT_EMAIL_NAME', 'a.name', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_CONTACT_CONTACT_EMAIL_NAME_LABEL', 'a.name', $listDirn, $listOrder); ?>
 			</th>
 			<?php if ($this->params->get('show_position_headings')) : ?>
 			<th class="item-position">

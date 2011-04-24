@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
+ * @version		$Id: view.html.php 21018 2011-03-25 17:30:03Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -142,6 +142,10 @@ class ContentViewArchive extends JView
 			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
 		}
 		
+		if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
+		}
 	}
 }
 ?>

@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: image.php 20813 2011-02-21 21:08:29Z dextercowley $
- * @package		Joomla
+ * @version		$Id: image.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,7 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Editor Image buton
  *
- * @package Editors-xtd
+ * @package		Joomla.Plugin
+ * @subpackage	Editors-xtd.image
  * @since 1.5
  */
 class plgButtonImage extends JPlugin

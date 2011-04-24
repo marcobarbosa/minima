@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: users.xml 20196 2011-01-09 02:40:25Z ian $ -->
+<!-- $Id: users.xml 21024 2011-03-29 09:57:24Z infograf768 $ -->
 <extension type="component" version="1.6.0" method="upgrade">
 	<name>com_users</name>
 	<author>Joomla! Project</author>
@@ -9,8 +9,7 @@
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
 	<version>1.6.0</version>
-	<description>
-	COM_USERS_XML_DESCRIPTION</description>
+	<description>COM_USERS_XML_DESCRIPTION</description>
 
 	<files folder="site">
 		<filename>controller.php</filename>

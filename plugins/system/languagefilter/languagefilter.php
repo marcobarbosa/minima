@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: languagefilter.php 20655 2011-02-10 15:34:13Z infograf768 $
- * @package		Joomla
+ * @version		$Id: languagefilter.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,10 +12,10 @@ jimport('joomla.language.helper');
 jimport('joomla.plugin.plugin');
 
 /**
-* Joomla! Language Filter Plugin
-*
- * @package		Joomla
- * @subpackage	System
+ * Joomla! Language Filter Plugin
+ *
+ * @package		Joomla.Plugin
+ * @subpackage	System.languagefilter
  * @since		1.6
  */
 class plgSystemLanguageFilter extends JPlugin
@@ -174,12 +173,16 @@ class plgSystemLanguageFilter extends JPlugin
 				$sef = isset(self::$lang_codes[$lang_code]) ? self::$lang_codes[$lang_code]->sef : self::$default_sef;
 				$uri->setPath($sef . '/' . $path);
 				
-				$app = JFactory::getApplication();
-				if ($app->getCfg('sef_rewrite')) {
-					$app->redirect($uri->base().$uri->toString(array('path', 'query', 'fragment')));
-				}
-				else {
-					$app->redirect($uri->base().'index.php/'.$uri->toString(array('path', 'query', 'fragment')));
+				$post = JRequest::get('POST');
+				if (JRequest::getMethod() != "POST" || count($post) == 0)
+				{
+					$app = JFactory::getApplication();
+					if ($app->getCfg('sef_rewrite')) {
+						$app->redirect($uri->base().$uri->toString(array('path', 'query', 'fragment')));
+					}
+					else {
+						$app->redirect($uri->base().'index.php/'.$uri->toString(array('path', 'query', 'fragment')));
+					}
 				}
 			}
 			$lang_code = self::$sefs[$sef]->lang_code;
@@ -193,8 +196,12 @@ class plgSystemLanguageFilter extends JPlugin
 			if (!isset(self::$sefs[$sef])) {
 				$sef = isset(self::$lang_codes[$lang_code]) ? self::$lang_codes[$lang_code]->sef : self::$default_sef;
 				$uri->setVar('lang', $sef);
-				$app = JFactory::getApplication();
-				$app->redirect(JURI::base(true).'/index.php?'.$uri->getQuery());
+				$post = JRequest::get('POST');
+				if (JRequest::getMethod() != "POST" || count($post) == 0)
+				{
+					$app = JFactory::getApplication();
+					$app->redirect(JURI::base(true).'/index.php?'.$uri->getQuery());
+				}
 			}
 		}
 

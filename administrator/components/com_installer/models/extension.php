@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: extension.php 20267 2011-01-11 03:44:44Z eddieajau $
+ * @version		$Id: extension.php 21137 2011-04-11 17:03:16Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -124,6 +124,11 @@ class InstallerModel extends JModelList
 					||	$lang->load("$extension.sys", JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 					||	$lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
 				break;
+				case 'file':
+					$extension = 'files_' . $item->element;
+						$lang->load("$extension.sys", JPATH_SITE, null, false, false)
+					||	$lang->load("$extension.sys", JPATH_SITE, $lang->getDefault(), false, false);
+				break;
 				case 'library':
 					$extension = 'lib_' . $item->element;
 						$lang->load("$extension.sys", JPATH_SITE, null, false, false)
@@ -138,7 +143,7 @@ class InstallerModel extends JModelList
 					||	$lang->load("$extension.sys", $source, $lang->getDefault(), false, false);
 				break;
 				case 'package':
-					$extension = 'pkg_' . $item->element;
+					$extension = $item->element;
 						$lang->load("$extension.sys", JPATH_SITE, null, false, false)
 					||	$lang->load("$extension.sys", JPATH_SITE, $lang->getDefault(), false, false);
 				break;

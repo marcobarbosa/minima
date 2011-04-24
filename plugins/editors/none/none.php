@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: none.php 20631 2011-02-09 19:21:47Z infograf768 $
- * @package		Joomla
+ * @version		$Id: none.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Plain Textarea Editor Plugin
  *
- * @package		Joomla
- * @subpackage	Editors
+ * @package		Joomla.Plugin
+ * @subpackage	Editors.none
  * @since		1.5
  */
 class plgEditorNone extends JPlugin

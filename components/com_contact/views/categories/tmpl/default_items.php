@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: default_items.php 20789 2011-02-20 05:58:55Z infograf768 $
+ * @version		$Id: default_items.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	com_newsfeeds
+ * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

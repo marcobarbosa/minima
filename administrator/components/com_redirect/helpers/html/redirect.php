@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: redirect.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: redirect.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -34,9 +34,9 @@ class JHtmlRedirect
 			-2	=> array('trash.png',		'links.publish',		'JTRASHED',	'COM_REDIRECT_ENABLE_LINK'),
 		);
 		$state	= JArrayHelper::getValue($states, (int) $value, $states[0]);
-		$html	= JHTML::_('image','admin/'.$state[0], JText::_($state[2]), NULL, true);
+		$html	= JHtml::_('image','admin/'.$state[0], JText::_($state[2]), NULL, true);
 		if ($canChange) {
-			$html	= '<a href="javascript:void(0);" onclick="return listItemTask(\'cb'.$i.'\',\''.$state[1].'\')" title="'.JText::_($state[3]).'">'
+			$html	= '<a href="#" onclick="return listItemTask(\'cb'.$i.'\',\''.$state[1].'\')" title="'.JText::_($state[3]).'">'
 					. $html.'</a>';
 		}
 

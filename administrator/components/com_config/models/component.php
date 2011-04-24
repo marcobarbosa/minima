@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: component.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: component.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_config
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -165,8 +165,8 @@ class ConfigModelComponent extends JModelForm
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache('_system');
-		$cache->clean();
+		$this->cleanCache('_system', 0);
+		$this->cleanCache('_system', 1);
 
 		return true;
 	}

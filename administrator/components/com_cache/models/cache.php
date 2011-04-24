@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: cache.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: cache.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	Cache
+ * @subpackage	com_cache
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -16,7 +16,7 @@ jimport('joomla.application.component.modellist');
  * Cache Model
  *
  * @package		Joomla.Administrator
- * @subpackage	Cache
+ * @subpackage	com_cache
  * @since		1.6
  */
 class CacheModelCache extends JModelList
@@ -76,7 +76,7 @@ class CacheModelCache extends JModelList
 
 			if ($data != false) {
 				$this->_data = $data;
-				$this->_total = sizeof($data);
+				$this->_total = count($data);
 
 				if ($this->_total) {
 					// Apply custom ordering
@@ -117,11 +117,8 @@ class CacheModelCache extends JModelList
 		);
 
 		jimport('joomla.cache.cache');
-
-		// We need to clear the previously used cache handlers, otherwise backend cachebase can't be used
-		JCache::$_handler = array();
-
 		$cache = JCache::getInstance('', $options);
+		
 		return $cache;
 	}
 

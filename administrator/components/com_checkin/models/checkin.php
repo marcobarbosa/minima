@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: checkin.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: checkin.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	Checkin
+ * @subpackage	com_checkin
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -15,7 +15,7 @@ jimport('joomla.application.component.modellist');
  * Checkin Model
  *
  * @package		Joomla.Administrator
- * @subpackage	Checkin
+ * @subpackage	com_checkin
  * @since		1.6
  */
 class CheckinModelCheckin extends JModelList

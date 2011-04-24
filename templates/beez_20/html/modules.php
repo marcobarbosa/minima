@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: modules.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: modules.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	tpl_beez2
+ * @subpackage	Templates.beez_20
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

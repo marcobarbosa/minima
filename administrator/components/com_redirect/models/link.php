@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: link.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: link.php 21167 2011-04-18 18:25:26Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -24,6 +24,44 @@ class RedirectModelLink extends JModelAdmin
 	 * @since	1.6
 	 */
 	protected $text_prefix = 'COM_REDIRECT';
+	
+	/**
+	 * Method to test whether a record can be deleted.
+	 *
+	 * @param	object	$record	A record object.
+	 *
+	 * @return	boolean	True if allowed to delete the record. Defaults to the permission set in the component.
+	 * @since	1.6
+	 */
+	protected function canDelete($record)
+	{
+		
+			if ($record->published != -2) {
+				return false;
+			}
+			$user = JFactory::getUser();
+			return $user->authorise('core.admin', 'com_redirect');
+		
+	}
+
+	/**
+	 * Method to test whether a record can have its state edited.
+	 *
+	 * @param	object	$record	A record object.
+	 *
+	 * @return	boolean	True if allowed to change the state of the record. Defaults to the permission set in the component.
+	 * @since	1.6
+	 */
+	protected function canEditState($record)
+	{
+		$user = JFactory::getUser();
+
+		// Check the component since there are no categories or other assets.
+			return $user->authorise('core.admin', 'com_redirect');
+
+	}
+	
+	
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
@@ -55,7 +93,7 @@ class RedirectModelLink extends JModelAdmin
 		}
 
 		// Modify the form based on access controls.
-		if (!$this->canEditState((object) $data)) {
+		if ($this->canEditState((object) $data) != true) {
 			// Disable fields for display.
 			$form->setFieldAttribute('published', 'disabled', 'true');
 
@@ -105,10 +143,10 @@ class RedirectModelLink extends JModelAdmin
 		JArrayHelper::toInteger($pks);
 
 		// Populate default comment if necessary.
-		$comment = (!empty($comment)) ? $comment : JText::sprintf('COM_REDIRECT_REDIRECTED_ON', JHTML::_('date',time()));
+		$comment = (!empty($comment)) ? $comment : JText::sprintf('COM_REDIRECT_REDIRECTED_ON', JHtml::_('date',time()));
 
 		// Access checks.
-		if (!$user->authorise('core.edit', 'com_redirect')) {
+		if (!$user->authorise('core.admin', 'com_redirect')) {
 			$pks = array();
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_EDIT_NOT_PERMITTED'));
 			return false;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: atom.php 20219 2011-01-09 22:14:54Z chdemko $
+ * @version		$Id: atom.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Document
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -88,7 +88,7 @@ defined('JPATH_BASE') or die;
 		$feed.= "	<generator uri=\"http://joomla.org\" version=\"1.6\">".$data->getGenerator()."</generator>\n";
 		$feed.= '	<link rel="self" type="application/atom+xml" href="'.str_replace(' ','%20',$url.$syndicationURL)."\"/>\n";
 
-		for ($i=0;$i<count($data->items);$i++)
+		for ($i=0, $count = count($data->items); $i < $count; $i++)
 		{
 			$feed.= "	<entry>\n";
 			$feed.= "		<title>".htmlspecialchars(strip_tags($data->items[$i]->title), ENT_COMPAT, 'UTF-8')."</title>\n";

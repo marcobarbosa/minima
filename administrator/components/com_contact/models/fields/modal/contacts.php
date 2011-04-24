@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: contacts.php 20804 2011-02-21 19:38:29Z dextercowley $
+ * @version		$Id: contacts.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -36,7 +36,7 @@ class JFormFieldModal_Contacts extends JFormField
 	{
 		// Load the javascript
 		JHtml::_('behavior.framework');
-		JHTML::_('behavior.modal', 'a.modal');
+		JHtml::_('behavior.modal', 'a.modal');
 
 		// Build the script.
 		$script = array();

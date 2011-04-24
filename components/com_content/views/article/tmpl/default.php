@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20817 2011-02-21 21:48:16Z dextercowley $
+ * @version		$Id: default.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -23,7 +23,7 @@ $user		= JFactory::getUser();
 	<?php echo $this->escape($this->params->get('page_heading')); ?>
 	</h1>
 <?php endif; ?>
-<?php if ($params->get('show_title')|| $params->get('access-edit')) : ?>
+<?php if ($params->get('show_title')) : ?>
 	<h2>
 	<?php if ($params->get('link_titles') && !empty($this->item->readmore_link)) : ?>
 		<a href="<?php echo $this->item->readmore_link; ?>">
@@ -102,17 +102,17 @@ endif; ?>
 <?php endif; ?>
 <?php if ($params->get('show_create_date')) : ?>
 	<dd class="create">
-	<?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHTML::_('date',$this->item->created, JText::_('DATE_FORMAT_LC2'))); ?>
+	<?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date',$this->item->created, JText::_('DATE_FORMAT_LC2'))); ?>
 	</dd>
 <?php endif; ?>
 <?php if ($params->get('show_modify_date')) : ?>
 	<dd class="modified">
-	<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHTML::_('date',$this->item->modified, JText::_('DATE_FORMAT_LC2'))); ?>
+	<?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date',$this->item->modified, JText::_('DATE_FORMAT_LC2'))); ?>
 	</dd>
 <?php endif; ?>
 <?php if ($params->get('show_publish_date')) : ?>
 	<dd class="published">
-	<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE', JHTML::_('date',$this->item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
+	<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE', JHtml::_('date',$this->item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
 	</dd>
 <?php endif; ?>
 <?php if ($params->get('show_author') && !empty($this->item->author )) : ?>
@@ -122,7 +122,7 @@ endif; ?>
 
 	<?php if (!empty($this->item->contactid ) &&  $params->get('link_author') == true):?>
 		<?php 	echo JText::sprintf('COM_CONTENT_WRITTEN_BY' , 
-		 JHTML::_('link',JRoute::_('index.php?option=com_contact&view=contact&id='.$this->item->contactid),$author)); ?>
+		 JHtml::_('link',JRoute::_('index.php?option=com_contact&view=contact&id='.$this->item->contactid),$author)); ?>
 
 	<?php else :?>
 		<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
@@ -160,13 +160,13 @@ endif; ?>
 		elseif ($readmore = $this->item->alternative_readmore) :
 			echo $readmore;
 			if ($params->get('show_readmore_title', 0) != 0) :
-			    echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+			    echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 			endif;
 		elseif ($params->get('show_readmore_title', 0) == 0) :
 			echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');	
 		else :
 			echo JText::_('COM_CONTENT_READ_MORE');
-			echo JHTML::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+			echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 		endif; ?></a>
 		</p>
 	<?php endif; ?>

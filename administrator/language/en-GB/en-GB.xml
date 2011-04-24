@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: en-GB.xml 20196 2011-01-09 02:40:25Z ian $ -->
+<!-- $Id: en-GB.xml 21134 2011-04-10 17:07:29Z infograf768 $ -->
 <metafile version="1.6" client="administrator">
 	<name>English (United Kingdom)</name>
-	<version>1.6.0</version>
+	<version>1.6.2</version>
 	<creationDate>2008-03-15</creationDate>
 	<author>Joomla! Project</author>
 	<authorEmail>admin@joomla.org</authorEmail>
@@ -61,6 +61,7 @@
 		<filename>en-GB.com_wrapper.ini</filename>
 		<filename>en-GB.com_wrapper.sys.ini</filename>
 		<filename>en-GB.lib_joomla.ini</filename>
+		<filename>en-GB.localise.php</filename>
 		<filename>en-GB.ini</filename>
 		<filename>en-GB.mod_custom.ini</filename>
 		<filename>en-GB.mod_custom.sys.ini</filename>

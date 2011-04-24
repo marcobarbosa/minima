@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: category.php 20648 2011-02-10 09:09:54Z chdemko $
+ * @version		$Id: category.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	Contact
+ * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,7 +14,7 @@ jimport('joomla.application.component.modellist');
 
 /**
  * @package		Joomla.Site
- * @subpackage	Contact
+ * @subpackage	com_contact
  */
 class ContactModelCategory extends JModelList
 {

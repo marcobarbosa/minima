@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: category.php 20802 2011-02-21 19:29:26Z dextercowley $
+ * @version		$Id: category.php 21148 2011-04-14 17:30:08Z ian $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -34,10 +34,16 @@ class CategoriesModelCategory extends JModelAdmin
 	 */
 	protected function canDelete($record)
 	{
-		$user = JFactory::getUser();
+		if (!empty($record->id)) {
+			if ($record->published != -2) {
+				return ;
+			}		
+			$user = JFactory::getUser();
 
-		return $user->authorise('core.delete', $record->extension.'.category.'.(int) $record->id);
-	}
+			return $user->authorise('core.delete', $record->extension.'.category.'.(int) $record->id);
+
+		}
+	}			
 
 	/**
 	 * Method to test whether a record can be deleted.
@@ -338,7 +344,7 @@ class CategoriesModelCategory extends JModelAdmin
 
 			if (((int) $data['parent_id'] === (int) $orig_table->parent_id) 
 			 && ($data['alias'] == $orig_table->alias)) {
-				$data['title'] .= ' (copy)';	
+				$data['title'] .= ' '.JText::_('JGLOBAL_COPY');	
 				$data['alias'] .= '-copy';
 			}
 		}
@@ -391,6 +397,9 @@ class CategoriesModelCategory extends JModelAdmin
 
 		$this->setState($this->getName().'.id', $table->id);
 
+		// Clear the cache
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -410,6 +419,9 @@ class CategoriesModelCategory extends JModelAdmin
 			return false;
 		}
 
+		// Clear the cache
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -431,6 +443,9 @@ class CategoriesModelCategory extends JModelAdmin
 			return false;
 		}
 
+		// Clear the cache
+		$this->cleanCache();
+		
 		return true;
 
 	}
@@ -484,6 +499,9 @@ class CategoriesModelCategory extends JModelAdmin
 			return false;
 		}
 
+		// Clear the cache
+		$this->cleanCache();
+		
 		return true;
 	}
 
@@ -518,7 +536,7 @@ class CategoriesModelCategory extends JModelAdmin
 				return false;
 			}
 		}
-
+		
 		return true;
 	}
 
@@ -676,10 +694,6 @@ class CategoriesModelCategory extends JModelAdmin
 			return false;
 		}
 
-		// Clear the component's cache
-		$cache = JFactory::getCache('com_categories');
-		$cache->clean();
-
 		return true;
 	}
 
@@ -797,10 +811,31 @@ class CategoriesModelCategory extends JModelAdmin
 			}
 		}
 
-		// Clear the component's cache
-		$cache = JFactory::getCache('com_categories');
-		$cache->clean();
-
 		return true;
+	}
+
+	/**
+	 * Custom clean the cache of com_content and content modules
+	 *
+	 * @since	1.6
+	 */
+	protected function cleanCache()
+	{
+		$extension = JRequest::getCmd('extension');
+		switch ($extension)
+		{
+			case 'com_content':
+				parent::cleanCache('com_content');
+				parent::cleanCache('mod_articles_archive');
+				parent::cleanCache('mod_articles_categories');
+				parent::cleanCache('mod_articles_category');
+				parent::cleanCache('mod_articles_latest');
+				parent::cleanCache('mod_articles_news');
+				parent::cleanCache('mod_articles_popular');
+				break;
+			default:
+				parent::cleanCache($extension);
+				break;
+		}
 	}
 }

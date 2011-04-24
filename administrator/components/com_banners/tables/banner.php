@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: banner.php 20703 2011-02-15 06:10:42Z infograf768 $
+ * @version		$Id: banner.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 /**
  * Banner table
  *
- * @package		Joomla.Framework
+ * @package		Joomla.Administrator
  * @subpackage	com_banners
  * @since		1.5
  */

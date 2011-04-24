@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: profile.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: profile.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,7 +14,7 @@ require_once JPATH_ADMINISTRATOR.'/components/com_users/models/user.php';
  * User model.
  *
  * @package		Joomla.Administrator
- * @subpackage	com_users
+ * @subpackage	com_admin
  * @since		1.6
  */
 class AdminModelProfile extends UsersModelUser

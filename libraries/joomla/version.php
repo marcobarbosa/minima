@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: version.php 20886 2011-03-04 17:35:16Z ian $
+ * @version		$Id: version.php 21171 2011-04-18 21:50:18Z dextercowley $
  * @package		Joomla.Framework
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -24,13 +24,13 @@ class JVersion
 	/** @public string Development Status */
 	public $DEV_STATUS	= 'Stable';
 	/** @public int Sub Release Level */
-	public $DEV_LEVEL	= '1';
+	public $DEV_LEVEL	= '3';
 	/** @public int build Number */
 	public $BUILD		= '';
 	/** @public string Codename */
 	public $CODENAME	= 'Onward';
 	/** @public string Date */
-	public $RELDATE	= '07-Mar-2011';
+	public $RELDATE	= '18-Apr-2011';
 	/** @public string Time */
 	public $RELTIME	= '23:00';
 	/** @public string Timezone */

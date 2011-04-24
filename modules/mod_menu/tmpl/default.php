@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20805 2011-02-21 19:41:07Z dextercowley $
+ * @version		$Id: default.php 20983 2011-03-17 16:19:45Z chdemko $
  * @package		Joomla.Site
  * @subpackage	mod_menu
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -27,10 +27,11 @@ foreach ($list as $i => &$item) :
 		$class .= 'current ';
 	}
 
-	if (in_array($item->id, $path)) {
-		$class .= 'active ';
+	if (	$item->type == 'alias' &&
+			in_array($item->params->get('aliasoptions'),$path)
+		||	in_array($item->id, $path)) {
+	  $class .= 'active ';
 	}
-
 	if ($item->deeper) {
 		$class .= 'deeper ';
 	}

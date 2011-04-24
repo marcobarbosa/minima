@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: default.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_cache
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -68,7 +68,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<?php echo $item->count; ?>
 			</td>
 			<td class="center">
-				<?php echo $item->size ?>
+				<?php echo JHtml::_('number.bytes', $item->size*1024); ?>
 			</td>
 		</tr>
 		<?php $i++; endforeach; ?>

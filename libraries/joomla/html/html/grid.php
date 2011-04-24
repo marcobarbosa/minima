@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: grid.php 20650 2011-02-10 10:14:12Z infograf768 $
+ * @version		$Id: grid.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	HTML
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -78,7 +78,7 @@ abstract class JHtmlGrid
 		$html .= JText::_($title);
 
 		if ($order == $selected) {
-			$html .= JHTML::_('image','system/'.$images[$index], '', NULL, true);
+			$html .= JHtml::_('image','system/'.$images[$index], '', NULL, true);
 		}
 
 		$html .= '</a>';
@@ -186,8 +186,8 @@ abstract class JHtmlGrid
 		$action = $value ? JText::_('JLIB_HTML_UNPUBLISH_ITEM') : JText::_('JLIB_HTML_PUBLISH_ITEM');
 
 		$href = '
-		<a href="javascript:void(0);" onclick="return listItemTask(\'cb'. $i .'\',\''. $prefix.$task .'\')" title="'. $action .'">'.
-		JHTML::_('image','admin/'.$img, $alt, NULL, true).'</a>'
+		<a href="#" onclick="return listItemTask(\'cb'. $i .'\',\''. $prefix.$task .'\')" title="'. $action .'">'.
+		JHtml::_('image','admin/'.$img, $alt, NULL, true).'</a>'
 		;
 
 		return $href;
@@ -228,7 +228,7 @@ abstract class JHtmlGrid
 
 	public static function order($rows, $image = 'filesave.png', $task = 'saveorder')
 	{
-		// $image = JHTML::_('image','admin/'.$image, JText::_('JLIB_HTML_SAVE_ORDER'), NULL, true);
+		// $image = JHtml::_('image','admin/'.$image, JText::_('JLIB_HTML_SAVE_ORDER'), NULL, true);
 		$href = '<a href="javascript:saveorder('.(count($rows)-1).', \''.$task.'\')" class="saveorder" title="'.JText::_('JLIB_HTML_SAVE_ORDER').'"></a>';
 
 		return $href;
@@ -242,13 +242,13 @@ abstract class JHtmlGrid
 		if ($overlib) {
 			$text = addslashes(htmlspecialchars($row->editor, ENT_COMPAT, 'UTF-8'));
 
-			$date	= JHTML::_('date',$row->checked_out_time, JText::_('DATE_FORMAT_LC1'));
-			$time	= JHTML::_('date',$row->checked_out_time, 'H:i');
+			$date	= JHtml::_('date',$row->checked_out_time, JText::_('DATE_FORMAT_LC1'));
+			$time	= JHtml::_('date',$row->checked_out_time, 'H:i');
 
 			$hover = '<span class="editlinktip hasTip" title="'. JText::_('JLIB_HTML_CHECKED_OUT') .'::'. $text .'<br />'. $date .'<br />'. $time .'">';
 		}
 
-		$checked = $hover .JHTML::_('image','admin/checked_out.png', NULL, NULL, true).'</span>';
+		$checked = $hover .JHtml::_('image','admin/checked_out.png', NULL, NULL, true).'</span>';
 
 		return $checked;
 	}

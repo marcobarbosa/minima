@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: CREDITS 20800 2011-02-21 17:33:07Z infograf768 $
+ * @version		$Id: CREDITS 21112 2011-04-09 15:41:18Z infograf768 $
  * @package		Joomla.Installation
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -121,13 +121,16 @@ Translation Contributors:
 Afrikaans (af-ZA) - Gerrit Hoekstra
 Albanian (sq-AL) - Albanian Translation Team
 Arabic Unitag (ar-AA) - Arabic Unitag Translation Team - Mahmood Alhaj Kassem
+Azeri (az-AZ) - Azeri Translation team - Guluzade Farhad
 Belarusian (be-BY) - Dennis Hermacki
 Bengali (bn-BD) – Kamal Sikder
+Bosnian (bs-BA) - Bosnian Translation Team - Admir Agic
 Brazilian Portuguese (pt-BR) - Joomla! Brasil - FaBMak
 Bulgarian (bg-BG) - Bulgarian Translation Team - Yuriy Boev
 Catalan (ca-ES) - Catalan Translation Team - Damià Verger
 Chinese Traditional (zh-TW) - Traditional Chinese Translation Team - Eddy Chang
 Chinese Simplified (zh-CN) - Simplified Chinese Translation Team - Jonathan Chang
+Croatian (hr-HR) - Croatian Translation Team - Hrvoje Jerkovic
 Czech (cs-CZ) - Czech Translation Team
 Danish (da-DK) - Danish Translation Team - Ronny Buelund, Mikael Winther, Ole Bang Ottosen
 Dutch (nl-NL) - Dutch Translation Team - Marijke Stuivenberg, Martijn Maandag, Marco Corrò
@@ -145,6 +148,7 @@ Greek (el-GR) - Greek Joomla Community - Aris Ntatsis
 Gujarati (gu-IN) - Gujarati Translation Team - Ronak Bhagdev
 Hebrew (he-IL) - Hebrew Translation Team - Yair Lahav, Ofer Cohen
 Hungarian (hu-HU) - Magyar Joomla! Felhasznalok Nemzetkozi Egyesulete - Jozsef Tamas Herczeg, Annamaria Ban
+Icelandic (is-IS) - Joomlis! Icelandic Joomla Community [joomlis.net] - Magnús Guðlaugsson
 Indonesian (id-ID) - Hanacaraka Team - Andy Sikumbang
 Italian (it-IT) - Italian Translation Team - Stefania Gaianigo, Alessandro Rossi
 Japanese (ja-JP) - Japanese Translation Team - Noriaki Koide, Hiroko Hirano
@@ -159,7 +163,7 @@ Mongolian (mn-MN) - Mongolian Translation Team, Altansukh T.
 Norwegian Bokmål (nb-NO) - Joomla! i Norge - Rune Rasmussen, Roar Jystad, Jens-Christian Skibakk
 Norwegian Nynorsk (nn-NO) - Joomla! i Norge - Toyni Tobekk (based on nb-NO translations)
 Persian (fa-IR) - Persian Translation Team - Mostafa Alavi nik , joomfa team
-Polish (pl-PL) - Polskie Centrum Joomla! - Maciej Słojewski, Stefan Wajda
+Polish (pl-PL) - Polskie Centrum Joomla! 
 Portuguese (pt-PT) - Comunidade Joomla! Portugal - Paulo Izidoro
 Romanian (ro-RO) - Romanian Joomla! Community - Cosmin Lebu
 Russian (ru-RU) - Russian Translation Team (joomlaportal.ru) - Sergey Litvinov, Sergey Brovin, Alexey Brin

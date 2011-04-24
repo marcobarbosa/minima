@@ -64,7 +64,7 @@ if ($user->authorise('core.admin')) {
 	$menu->addSeparator();
 }
 
-$menu->addChild(new JMenuNode(JText::_('MOD_MENU_LOGOUT'), 'index.php?option=com_login&task=logout', 'class:logout'));
+$menu->addChild(new JMenuNode(JText::_('MOD_MENU_LOGOUT'), JRoute::_('index.php?option=com_login&task=logout&'. JUtility::getToken() .'=1'), 'class:logout'));
 
 $menu->getParent();
 
@@ -78,7 +78,7 @@ if ($user->authorise('core.manage', 'com_users'))
 	new JMenuNode(JText::_('MOD_MENU_COM_USERS_USERS'), '#'), true
 	);
 	$createUser = $shownew && $user->authorise('core.create', 'com_users');
-	$createGrp	= $createUser &&  $user->authorise('core.admin', 'com_users');
+	$createGrp	= $user->authorise('core.admin', 'com_users');
 
 	$menu->addChild(
 		new JMenuNode(JText::_('MOD_MENU_COM_USERS_USER_MANAGER'), 'index.php?option=com_users&view=users', 'class:user'),
@@ -146,7 +146,7 @@ if ($user->authorise('core.manage', 'com_menus'))
 	// Menu Types
 	foreach (ModMenuHelper::getMenus() as $menuType)
 	{
-		$titleicon = $menuType->home ? ' <span>'.JHTML::_('image','menu/icon-16-default.png', NULL, NULL, true).'</span>' : '';
+		$titleicon = $menuType->home ? ' <span>'.JHtml::_('image','menu/icon-16-default.png', NULL, NULL, true).'</span>' : '';
 		$menu->addChild(
 		new JMenuNode($menuType->title,	'index.php?option=com_menus&view=items&menutype='.$menuType->menutype, 'class:menu', null, null, $titleicon), $createMenu
 				);

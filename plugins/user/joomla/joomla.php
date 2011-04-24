@@ -1,8 +1,6 @@
 <?php
 /**
- * @version		$Id: joomla.php 19852 2010-12-12 23:54:45Z dextercowley $
- * @package		Joomla
- * @subpackage	JFramework
+ * @version		$Id: joomla.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -15,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Joomla User plugin
  *
- * @package		Joomla
- * @subpackage	JFramework
+ * @package		Joomla.Plugin
+ * @subpackage	User.joomla
  * @since		1.5
  */
 class plgUserJoomla extends JPlugin

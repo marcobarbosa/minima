@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: edit.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: edit.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_users
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -52,12 +52,12 @@ $fieldsets = $this->form->getFieldsets();
 
 	<div class="width-40 fltrt">
 		<?php
-		echo JHTML::_('sliders.start');
+		echo JHtml::_('sliders.start');
 		foreach ($fieldsets as $fieldset) :
 			if ($fieldset->name == 'user_details') :
 				continue;
 			endif;
-			echo JHTML::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
+			echo JHtml::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
 		?>
 		<fieldset class="panelform">
 		<ul class="adminformlist">
@@ -72,7 +72,7 @@ $fieldsets = $this->form->getFieldsets();
 		</ul>
 		</fieldset>
 		<?php endforeach; ?>
-		<?php echo JHTML::_('sliders.end'); ?>
+		<?php echo JHtml::_('sliders.end'); ?>
 
 		<input type="hidden" name="task" value="" />
 		<?php echo JHtml::_('form.token'); ?>

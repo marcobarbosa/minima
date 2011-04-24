@@ -2,7 +2,7 @@
 /**
  * @version		$Id: index.php 17268 2010-05-25 20:32:21Z a.radtke $
  * @package		Joomla.Site
- * @subpackage	tpl_beez5
+ * @subpackage	Templates.beez5
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -19,7 +19,7 @@ if ($showRightColumn==0 and $showleft==0) {
 	$showno = 0;
 }
 
-JHTML::_('behavior.framework', true);
+JHtml::_('behavior.framework', true);
 
 // get params
 $color			= $this->params->get('templatecolor');

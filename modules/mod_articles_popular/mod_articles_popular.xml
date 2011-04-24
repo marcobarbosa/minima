@@ -14,40 +14,20 @@
 	<version>1.6.0</version>
 	<description>MOD_POPULAR_XML_DESCRIPTION</description>
 	<files>
-		<filename
-			module="mod_articles_popular">mod_articles_popular.php</filename>
+		<filename module="mod_articles_popular">mod_articles_popular.php</filename>
 		<folder>tmpl</folder>
 		<filename>helper.php</filename>
 		<filename>index.html</filename>
 		<filename>mod_articles_popular.xml</filename>
 	</files>
 	<languages>
-		<language
-			tag="en-GB">en-GB.mostread.ini</language>
+		<language tag="en-GB">en-GB.mostread.ini</language>
+		<language tag="en-GB">en-GB.mostread.sys.ini</language>
 	</languages>
 	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_MOST_READ" />
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-
-				<field
-					name="show_front"
-					type="radio"
-					default="1"
-					label="MOD_POPULAR_FIELD_FEATURED_LABEL"
-					description="MOD_POPULAR_FIELD_FEATURED_DESC">
-					<option
-						value="1">JSHOW</option>
-					<option
-						value="0">JHIDE</option>
-				</field>
-
-				<field
-					name="count"
-					type="text"
-					default="5"
-					label="MOD_POPULAR_FIELD_COUNT_LABEL"
-					description="MOD_POPULAR_FIELD_COUNT_DESC" />
 
 				<field
 					name="catid"
@@ -60,6 +40,26 @@
 					description="MOD_POPULAR_FIELD_CATEGORY_DESC" >
 					<option value="">JOPTION_ALL_CATEGORIES</option>
 				</field>
+
+				<field
+					name="count"
+					type="text"
+					default="5"
+					label="MOD_POPULAR_FIELD_COUNT_LABEL"
+					description="MOD_POPULAR_FIELD_COUNT_DESC" />
+
+					<field
+					name="show_front"
+					type="radio"
+					default="1"
+					label="MOD_POPULAR_FIELD_FEATURED_LABEL"
+					description="MOD_POPULAR_FIELD_FEATURED_DESC">
+					<option
+						value="1">JSHOW</option>
+					<option
+						value="0">JHIDE</option>
+				</field>
+
 			</fieldset>
 
 			<fieldset

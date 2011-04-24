@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: standard.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: standard.php 21168 2011-04-18 18:37:11Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	HTML
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -66,6 +66,7 @@ class JButtonStandard extends JButton
 	 */
 	protected function _getCommand($name, $task, $list)
 	{
+		JHtml::_('behavior.framework');
 		$message	= JText::_('JLIB_HTML_PLEASE_MAKE_A_SELECTION_FROM_THE_LIST');
 		$message	= addslashes($message);
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: rss.php 20219 2011-01-09 22:14:54Z chdemko $
+ * @version		$Id: rss.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Document
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -120,7 +120,7 @@ class JDocumentRendererRSS extends JDocumentRenderer
 			$feed.= "		<skipDays>".htmlspecialchars($data->skipDays, ENT_COMPAT, 'UTF-8')."</skipDays>\n";
 		}
 
-		for ($i=0; $i<count($data->items); $i++)
+		for ($i=0, $count = count($data->items); $i < $count; $i++)
 		{
 			if ((strpos($data->items[$i]->link, 'http://') === false) and (strpos($data->items[$i]->link, 'https://') === false)) {
 				$data->items[$i]->link = str_replace(' ','%20',$url.$data->items[$i]->link);

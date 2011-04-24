@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: debug.php 20249 2011-01-10 12:11:11Z infograf768 $
- * @package		Joomla
+ * @version		$Id: debug.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -14,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Joomla! Debug plugin
  *
- * @package		Joomla
- * @subpackage	System
+ * @package		Joomla.Plugin
+ * @subpackage	System.debug
  */
 class plgSystemDebug extends JPlugin
 {
@@ -52,7 +51,11 @@ class plgSystemDebug extends JPlugin
 		if (!JDEBUG) {
 			return;
 		}
-		
+
+		if (!$_PROFILER instanceof JProfiler) {
+			return;
+		}
+
 		// Load the language 
 		$this->loadLanguage();
 

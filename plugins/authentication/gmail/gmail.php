@@ -1,9 +1,7 @@
 <?php
 
 /**
- * @version		$Id: gmail.php 20196 2011-01-09 02:40:25Z ian $
- * @package		Joomla
- * @subpackage	JFramework
+ * @version		$Id: gmail.php 21100 2011-04-07 15:44:20Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -16,8 +14,8 @@ jimport('joomla.plugin.plugin');
 /**
  * GMail Authentication Plugin
  *
- * @package		Joomla
- * @subpackage	JFramework
+ * @package		Joomla.Plugin
+ * @subpackage	Authentication.gmail
  * @since 1.5
  */
 class plgAuthenticationGMail extends JPlugin {
@@ -55,7 +53,7 @@ class plgAuthenticationGMail extends JPlugin {
 				}
 				$curl = curl_init('https://mail.google.com/mail/feed/atom');
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $this->params->get('verify_peer', 1));
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $this->params->get('verifypeer', 1));
 				//curl_setopt($curl, CURLOPT_HEADER, 1);
 				curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 				curl_setopt($curl, CURLOPT_USERPWD, $credentials['username'].':'.$credentials['password']);

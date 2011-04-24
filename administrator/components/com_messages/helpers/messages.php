@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: messages.php 20740 2011-02-17 10:28:57Z infograf768 $
+ * @version		$Id: messages.php 20952 2011-03-11 16:09:38Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -17,6 +17,30 @@ jimport('joomla.application.component.controller');
  */
 class MessagesHelper extends JController
 {
+/**
+	 * Configure the Linkbar.
+	 *
+	 * @param	string	The name of the active view.
+	 *
+	 * @return	void
+	 * @since	1.6
+	 */
+	
+	public static function addSubmenu($vName)
+	{
+		JSubMenuHelper::addEntry(
+			JText::_('COM_MESSAGES_ADD'),
+			'index.php?option=com_messages&view=message&layout=edit',
+			$vName == 'message'
+		);
+
+		JSubMenuHelper::addEntry(
+			JText::_('COM_MESSAGES_READ'),
+			'index.php?option=com_messages',
+			$vName == 'messages'
+		);
+	}
+
 	/**
 	 * Gets a list of the actions that can be performed.
 	 *

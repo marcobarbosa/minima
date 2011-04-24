@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: language.php 20457 2011-01-27 07:51:58Z infograf768 $
+ * @version		$Id: language.php 21009 2011-03-23 09:51:58Z chdemko $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -419,6 +419,13 @@ class JInstallerLanguage extends JAdapterInstance
 		if (empty($element))
 		{
 			JError::raiseWarning(100, JText::_('JLIB_INSTALLER_ERROR_LANG_UNINSTALL_ELEMENT_EMPTY'));
+			return false;
+		}
+		
+		// check that the language is not protected, Normally en-GB.
+		$protected  = $extension->get('protected');
+		if ($protected == 1) {
+			JError::raiseWarning(100, JText::_('JLIB_INSTALLER_ERROR_LANG_UNINSTALL_PROTECTED'));
 			return false;
 		}
 

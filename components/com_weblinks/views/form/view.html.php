@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20523 2011-02-03 01:26:20Z dextercowley $
+ * @version		$Id: view.html.php 21023 2011-03-28 10:55:01Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -83,13 +83,21 @@ class WeblinksViewForm extends JView
 		// Because the application sets a default page title,
 		// we need to get it from the menu item itself
 		$menu = $menus->getActive();
+
+		if (empty($this->item->id)) {
+		$head = JText::_('COM_WEBLINKS_FORM_SUBMIT_WEBLINK');
+		}
+		else {
+		$head = JText::_('COM_WEBLINKS_FORM_EDIT_WEBLINK');
+		}
+
 		if ($menu) {
 			$this->params->def('page_heading', $this->params->get('page_title', $menu->title));
 		} else {
-			$this->params->def('page_heading', JText::_('COM_WEBLINKS_FORM_EDIT_WEBLINK'));
+			$this->params->def('page_heading', $head);
 		}
 
-		$title = $this->params->def('page_title', JText::_('COM_WEBLINKS_FORM_EDIT_WEBLINK'));
+		$title = $this->params->def('page_title', $head);
 		if ($app->getCfg('sitename_pagetitles', 0)) {
 			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
@@ -103,6 +111,11 @@ class WeblinksViewForm extends JView
 		if ($this->params->get('menu-meta_keywords')) 
 		{
 			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+
+			if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
 		}
 	}
 }

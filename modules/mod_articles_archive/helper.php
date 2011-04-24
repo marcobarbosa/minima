@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: helper.php 21049 2011-04-01 02:05:21Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	mod_articles_archive
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -28,7 +28,7 @@ class modArchiveHelper
 		}
 
 		$db->setQuery($query, 0, intval($params->get('count')));
-		$rows = $db->loadObjectList();
+		$rows = (array) $db->loadObjectList();
 
 		$app	= JFactory::getApplication();
 		$menu	= $app->getMenu();

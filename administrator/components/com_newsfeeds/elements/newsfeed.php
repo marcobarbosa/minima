@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: newsfeed.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: newsfeed.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -12,8 +12,9 @@ defined('_JEXEC') or die;
 /**
  * Renders a newsfeed selection element
  *
- * @package		Newsfeeds
- * @subpackage	Parameter
+ * @package		Joomla.Administrator
+ * @subpackage	com_newsfeeds
+ * @deprecated	JParameter is deprecated and will be removed in a future version. Use JForm instead.
  * @since		1.5
  */
 

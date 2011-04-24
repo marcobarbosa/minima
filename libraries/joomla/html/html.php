@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: html.php 20206 2011-01-09 17:11:35Z chdemko $
+ * @version		$Id: html.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	HTML
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -716,7 +716,7 @@ abstract class JHtml
 		}
 
 		return '<input type="text" title="'.(0!==(int)$value ? JHtml::_('date',$value):'').'" name="'.$name.'" id="'.$id.'" value="'.htmlspecialchars($value, ENT_COMPAT, 'UTF-8').'" '.$attribs.' />'.
-				($readonly ? '' : JHTML::_('image','system/calendar.png', JText::_('JLIB_HTML_CALENDAR'), array( 'class' => 'calendar', 'id' => $id.'_img'), true));
+				($readonly ? '' : JHtml::_('image','system/calendar.png', JText::_('JLIB_HTML_CALENDAR'), array( 'class' => 'calendar', 'id' => $id.'_img'), true));
 	}
 
 	/**

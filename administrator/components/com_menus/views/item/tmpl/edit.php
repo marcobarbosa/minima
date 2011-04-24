@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: edit.php 20822 2011-02-21 23:02:52Z dextercowley $
+ * @version		$Id: edit.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_menus
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -15,7 +15,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
-JHTML::_('behavior.modal');
+JHtml::_('behavior.modal');
 ?>
 
 <script type="text/javascript">
@@ -63,7 +63,11 @@ JHTML::_('behavior.modal');
 					<?php echo $this->form->getInput('link'); ?></li>
 				<?php endif; ?>
 
-				<?php if ($this->item->type != 'alias'): ?>
+				<?php if ($this->item->type == 'alias'): ?>
+					<li> <?php echo $this->form->getLabel('aliastip'); ?></li>
+				<?php endif; ?>
+
+				<?php if ($this->item->type !='url'): ?>
 					<li><?php echo $this->form->getLabel('alias'); ?>
 					<?php echo $this->form->getInput('alias'); ?></li>
 				<?php endif; ?>

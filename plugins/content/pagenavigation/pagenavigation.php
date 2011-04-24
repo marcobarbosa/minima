@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: pagenavigation.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: pagenavigation.php 21147 2011-04-14 16:49:40Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,8 +13,8 @@ jimport('joomla.plugin.plugin');
 /**
  * Pagenavigation plugin class.
  *
- * @package		Joomla
- * @subpackage	plg_pagenavigation
+ * @package		Joomla.Plugin
+ * @subpackage	Content.pagenavigation
  */
 class plgContentPagenavigation extends JPlugin
 {
@@ -30,7 +30,7 @@ class plgContentPagenavigation extends JPlugin
 			return false;
 		}
 
-		if ($params->get('show_item_navigation') && ($context == 'com_content.article')) {
+		if ($params->get('show_item_navigation') && ($context == 'com_content.article') && ($view == 'article')) {
 			$html = '';
 			$db		= JFactory::getDbo();
 			$user	= JFactory::getUser();
@@ -42,7 +42,7 @@ class plgContentPagenavigation extends JPlugin
 
 			$uid	= $row->id;
 			$option	= 'com_content';
-			$canPublish = $user->authorise('core.edit.state', $option.'.'.$view.'.'.$row->id);
+			$canPublish = $user->authorise('core.edit.state', $option.'.article.'.$row->id);
 
 			// The following is needed as different menu items types utilise a different param to control ordering.
 			// For Blogs the `orderby_sec` param is the order controlling param.

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: blog.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: blog.php 20960 2011-03-12 14:14:00Z chdemko $
  * @package		Joomla.Site
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -50,7 +50,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 <?php if (!empty($this->lead_items)) : ?>
 <div class="items-leading">
 	<?php foreach ($this->lead_items as &$item) : ?>
-		<div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? 'class="system-unpublished"' : null; ?>">
+		<div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');

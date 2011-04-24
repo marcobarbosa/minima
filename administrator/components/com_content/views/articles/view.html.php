@@ -36,13 +36,7 @@ class ContentViewArticles extends JView
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
 		$this->authors		= $this->get('Authors');
-
-/*
-		echo ("<pre>");
-		print_r($this->state);
-		echo ("</pre>");	
-			
-*/
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));

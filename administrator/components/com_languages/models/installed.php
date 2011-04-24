@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: installed.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: installed.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -317,10 +317,10 @@ class LanguagesModelInstalled extends JModelList
 		}
 
 		// Clean the cache.
-		$cache = JFactory::getCache();
-		$cache->clean('com_languages');
-		$cache->clean('_system');
-
+		$this->cleanCache();
+		$this->cleanCache('_system', 0);
+		$this->cleanCache('_system', 1);
+		
 		return true;
 	}
 

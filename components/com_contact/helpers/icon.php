@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: icon.php 20484 2011-01-30 16:27:23Z dextercowley $
+ * @version		$Id: icon.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
  * @subpackage	com_content
  * @since 1.5
  */
-class JHTMLIcon
+class JHtmlIcon
 {
 
 	static function email($contact, $params, $attribs = array())

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: controllerform.php 20265 2011-01-10 23:49:25Z dextercowley $
+ * @version		$Id: controllerform.php 21138 2011-04-11 17:04:46Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -556,6 +556,7 @@ class JControllerForm extends JController
 				$recordId = $model->getState($this->context.'.id');
 				$this->holdEditId($context, $recordId);
 				$app->setUserState($context.'.data', null);
+                                $model->checkout($recordId);
 
 				// Redirect back to the edit screen.
 				$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_item.$this->getRedirectToItemAppend($recordId, $key), false));

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: index.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: index.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	templates.bluestork
+ * @subpackage	Templates.bluestork
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

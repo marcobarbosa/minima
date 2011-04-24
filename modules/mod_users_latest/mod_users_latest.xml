@@ -14,12 +14,15 @@
 	<version>1.6.0</version>
 	<description>MOD_USERS_LATEST_XML_DESCRIPTION</description>
 	<files>
-		<filename
-			module="mod_users_latest">mod_users_latest.php</filename>
+		<filename module="mod_users_latest">mod_users_latest.php</filename>
 		<folder>tmpl</folder>
 		<filename>helper.php</filename>
-		<filename>index.html</filename>		<filename>mod_users_latest.xml</filename>
+		<filename>index.html</filename>
 	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_users_latest.ini</language>
+		<language tag="en-GB">en-GB.mod_users_latest.sys.ini</language>
+	</languages>
 	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_LATEST_USERS" />
 	<config>
 		<fields name="params">
@@ -41,17 +44,6 @@
 						value="0">JNO</option>
 					<option
 						value="1">JYES</option>
-				</field>
-				<field
-					name="linktowhat"
-					type="list"
-					default="0"
-					label="MOD_USERS_LATEST_FIELD_LINKTOWHAT_LABEL"
-					description="MOD_USERS_LATEST_FIELD_LINKTOWHAT_DESC">
-					<option
-						value="0">MOD_USERS_LATEST_FIELD_VALUE_PROFILE</option>
-					<option
-						value="1">MOD_USERS_LATEST_FIELD_VALUE_CONTACT</option>
 				</field>
 			</fieldset>
 			<fieldset

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20226 2011-01-09 23:33:13Z eddieajau $
+ * @version		$Id: default.php 20974 2011-03-16 14:14:03Z chdemko $
  * @package		Joomla.Installation
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -57,9 +57,9 @@ JHtml::_('script', 'installation/template/js/installation.js', true, false, fals
 				<div class="far-right">
 <?php if ($this->document->direction == 'ltr') : ?>
 					<div class="button1-right"><div class="prev"><a href="index.php?view=filesystem" rel="prev" title="<?php echo JText::_('JPrevious'); ?>"><?php echo JText::_('JPrevious'); ?></a></div></div>
-					<div class="button1-left"><div class="next"><a href="javascript:void(0);" onclick="Install.submitform('setup.saveconfig');" rel="next" title="<?php echo JText::_('JNext'); ?>"><?php echo JText::_('JNext'); ?></a></div></div>
+					<div class="button1-left"><div class="next"><a href="#" onclick="Install.submitform('setup.saveconfig');" rel="next" title="<?php echo JText::_('JNext'); ?>"><?php echo JText::_('JNext'); ?></a></div></div>
 <?php elseif ($this->document->direction == 'rtl') : ?>
-					<div class="button1-right"><div class="prev"><a href="javascript:void(0);" onclick="Install.submitform('setup.saveconfig');" rel="next" title="<?php echo JText::_('JNext'); ?>"><?php echo JText::_('JNext'); ?></a></div></div>
+					<div class="button1-right"><div class="prev"><a href="#" onclick="Install.submitform('setup.saveconfig');" rel="next" title="<?php echo JText::_('JNext'); ?>"><?php echo JText::_('JNext'); ?></a></div></div>
 					<div class="button1-left"><div class="next"><a href="index.php?view=filesystem" rel="prev" title="<?php echo JText::_('JPrevious'); ?>"><?php echo JText::_('JPrevious'); ?></a></div></div>
 <?php endif; ?>
 				</div>

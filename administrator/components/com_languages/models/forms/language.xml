@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: language.xml 20740 2011-02-17 10:28:57Z infograf768 $ -->
+	<!-- $Id: language.xml 20990 2011-03-18 16:42:30Z infograf768 $ -->
 <form>
 	<fieldset>
 		<field name="lang_id" type="text"
@@ -65,7 +65,7 @@
 			class="inputbox"
 			default="1"
 			description="COM_LANGUAGES_FIELD_PUBLISHED_DESC"
-			label="JPUBLISHED"
+			label="JSTATUS"
 			size="1"
 		>
 			<option value="1">JPUBLISHED</option>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: application.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: application.php 21169 2011-04-18 19:52:28Z dextercowley $
  * @package		Joomla.Administrator
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -36,7 +36,7 @@ class JAdministrator extends JApplication
 		parent::__construct($config);
 
 		//Set the root in the URI based on the application name
-		JURI::root(null, str_replace('/'.$this->getName(), '', JURI::base(true)));
+		JURI::root(null, str_ireplace('/'.$this->getName(), '', JURI::base(true)));
 	}
 
 	/**

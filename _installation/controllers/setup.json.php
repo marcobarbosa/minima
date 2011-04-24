@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: setup.json.php 20486 2011-01-30 16:56:41Z dextercowley $
+ * @version		$Id: setup.json.php 20954 2011-03-11 18:52:35Z infograf768 $
  * @package		Joomla.Installation
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
@@ -166,13 +166,23 @@ class JInstallationControllerSetup extends JController
 			$file = JPath::clean(str_replace(JPATH_CONFIGURATION, $options->ftp_root, $path), '/');
 			$return = $ftp->delete($file);
 
+			// Delete the extra XML file while we're at it
+			if ($return)
+			{
+				$file = JPath::clean($options->ftp_root.'/joomla.xml');
+				if (file_exists($file))
+				{
+					$return = $ftp->delete($file);
+				}
+			}
+
 			$ftp->quit();
 		} else {
 			// Try to delete the folder.
 			// We use output buffering so that any error message echoed JFolder::delete
 			// doesn't land in our JSON output.
 			ob_start();
-			$return = JFolder::delete($path);
+			$return = JFolder::delete($path) && (!file_exists(JPATH_ROOT.'/joomla.xml') || JFile::delete(JPATH_ROOT.'/joomla.xml'));
 			ob_end_clean();
 		}
 		

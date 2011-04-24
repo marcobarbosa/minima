@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20873 2011-03-03 17:01:36Z dextercowley $
+ * @version		$Id: view.html.php 21023 2011-03-28 10:55:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_users
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -85,5 +85,20 @@ class UsersViewRemind extends JView
 			$title = JText::sprintf('JPAGETITLE', $app->getCfg('sitename'), $title);
 		}
 		$this->document->setTitle($title);
+
+		if ($this->params->get('menu-meta_description'))
+		{
+			$this->document->setDescription($this->params->get('menu-meta_description'));
+		}
+
+		if ($this->params->get('menu-meta_keywords')) 
+		{
+			$this->document->setMetadata('keywords', $this->params->get('menu-meta_keywords'));
+		}
+
+		if ($this->params->get('robots')) 
+		{
+			$this->document->setMetadata('robots', $this->params->get('robots'));
+		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: user.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: user.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Form
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -14,8 +14,8 @@ jimport('joomla.form.formfield');
 /**
  * Field to select a user id from a modal list.
  *
- * @package		Joomla.Administrator
- * @subpackage	com_users
+ * @package		Joomla.Framework
+ * @subpackage	Form
  * @since		1.6
  */
 class JFormFieldUser extends JFormField

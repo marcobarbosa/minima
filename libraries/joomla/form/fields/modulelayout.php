@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: modulelayout.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: modulelayout.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Form
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -136,7 +136,7 @@ class JFormFieldModuleLayout extends JFormField
 					// Add an option to the module group
 					$value = JFile::stripExt($file);
 					$text = $lang->hasKey($key = strtoupper($module.'_LAYOUT_'.$value)) ? JText::_($key) : $value;
-					$groups['_']['items'][]	= JHTML::_('select.option', '_:'.$value, $text);
+					$groups['_']['items'][]	= JHtml::_('select.option', '_:'.$value, $text);
 				}
 			}
 
@@ -174,7 +174,7 @@ class JFormFieldModuleLayout extends JFormField
 								// Add an option to the template group
 								$value = JFile::stripExt($file);
 								$text = $lang->hasKey($key = strtoupper('TPL_'.$template->element.'_'.$module.'_LAYOUT_'.$value)) ? JText::_($key) : $value;
-								$groups[$template->element]['items'][]	= JHTML::_('select.option', $template->element.':'.$value, $text);
+								$groups[$template->element]['items'][]	= JHtml::_('select.option', $template->element.':'.$value, $text);
 							}
 						}
 					}

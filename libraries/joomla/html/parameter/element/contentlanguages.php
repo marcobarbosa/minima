@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: contentlanguages.php 20806 2011-02-21 19:44:59Z dextercowley $
+ * @version		$Id: contentlanguages.php 20972 2011-03-16 13:57:36Z chdemko $
  * @package		Joomla.Framework
  * @subpackage	Parameter
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -17,6 +17,7 @@ require_once dirname(__FILE__).'/list.php';
  *
  * @package		Joomla.Framework
  * @subpackage	Parameter
+ * @deprecated	JParameter is deprecated and will be removed in a future version. Use JForm instead.
  * @since		1.6
  */
 class JElementContentLanguages extends JElementList

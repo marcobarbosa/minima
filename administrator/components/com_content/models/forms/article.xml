@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<!--
-		$Id: article.xml 20525 2011-02-03 01:30:22Z dextercowley $
+		$Id: article.xml 20990 2011-03-18 16:42:30Z infograf768 $
 	-->
 <form>
 	<fieldset>
@@ -21,7 +21,7 @@
 			label="COM_CONTENT_FIELD_ARTICLETEXT_LABEL" description="COM_CONTENT_FIELD_ARTICLETEXT_DESC"
 			filter="ContentHelper::filterText" buttons="true" />
 
-		<field name="state" type="list" label="JGLOBAL_STATE"
+		<field name="state" type="list" label="JSTATUS"
 			description="JFIELD_PUBLISHED_DESC" class="inputbox"
 			filter="intval" size="1" default="1"
 		>

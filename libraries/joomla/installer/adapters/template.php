@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: template.php 20457 2011-01-27 07:51:58Z infograf768 $
+ * @version		$Id: template.php 20944 2011-03-10 11:07:05Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -324,7 +324,7 @@ class JInstallerTemplate extends JAdapterInstance
 			unset($row);
 			// Make sure we delete the folders
 			JFolder::delete($this->parent->getPath('extension_root'));
-			JError::raiseWarning(100, JTEXT::_('JLIB_INSTALLER_ERROR_TPL_UNINSTALL_INVALID_NOTFOUND_MANIFEST'));
+			JError::raiseWarning(100, JText::_('JLIB_INSTALLER_ERROR_TPL_UNINSTALL_INVALID_NOTFOUND_MANIFEST'));
 
 			return false;
 		}

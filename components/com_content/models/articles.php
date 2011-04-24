@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: articles.php 20847 2011-02-24 17:45:39Z dextercowley $
+ * @version		$Id: articles.php 21145 2011-04-12 23:21:04Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -13,7 +13,7 @@ jimport('joomla.application.component.modellist');
 /**
  * This models supports retrieving lists of articles.
  *
- * @package		Joomla.Administrator
+ * @package		Joomla.Site
  * @subpackage	com_content
  * @since		1.6
  */
@@ -160,6 +160,7 @@ class ContentModelArticles extends JModelList
 			$this->getState(
 				'list.select',
 				'a.id, a.title, a.alias, a.title_alias, a.introtext, ' .
+				'a.checked_out, a.checked_out_time, ' .
 				'a.catid, a.created, a.created_by, a.created_by_alias, ' .
 				// use created if modified is 0
 				'CASE WHEN a.modified = 0 THEN a.created ELSE a.modified END as modified, ' .
@@ -173,8 +174,8 @@ class ContentModelArticles extends JModelList
 
 		// Process an Archived Article layout
 		if ($this->getState('filter.published') == 2) {
-			// If badcats is not null, this means that the article is inside an unpublished category
-			// In this case, the state is set to 0 to indicate Unpublished (even if the article state is Published)
+			// If badcats is not null, this means that the article is inside an archived category
+			// In this case, the state is set to 2 to indicate Archived (even if the article state is Published)
 			$query->select($this->getState('list.select','CASE WHEN badcats.id is null THEN a.state ELSE 2 END AS state'));
 		}
 		else {
@@ -449,6 +450,7 @@ class ContentModelArticles extends JModelList
 		// Filter by language
 		if ($this->getState('filter.language')) {
 			$query->where('a.language in ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').')');
+			$query->where('(contact.language in ('.$db->quote(JFactory::getLanguage()->getTag()).','.$db->quote('*').') OR contact.language IS NULL)');
 		}
 
 		// Add the list ordering clause.
@@ -491,7 +493,8 @@ class ContentModelArticles extends JModelList
 			// For blogs, article params override menu item params only if menu param = 'use_article'
 			// Otherwise, menu item params control the layout
 			// If menu item is 'use_article' and there is no article param, use global
-			if (JRequest::getString('layout') == 'blog' || JRequest::getString('view') == 'featured') {
+			if ((JRequest::getString('layout') == 'blog') || (JRequest::getString('view') == 'featured')
+				|| ($this->getState('params')->get('layout_type') == 'blog')) {
 				// create an array of just the params set to 'use_article'
 				$menuParamsArray = $this->getState('params')->toArray();
 				$articleArray = array();

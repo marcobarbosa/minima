@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: view.html.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	MailTo
+ * @subpackage	com_mailto
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -34,7 +34,7 @@ class MailtoViewMailto extends JView
 		$data->link = urldecode(JRequest::getVar('link', '', 'method', 'base64'));
 
 		if ($data->link == '') {
-			JError::raiseError(403, 'COM_MAILTO_LINK_IS_MISSING');
+			JError::raiseError(403, JText::_('COM_MAILTO_LINK_IS_MISSING'));
 			$false = false;
 			return $false;
 		}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<!-- $Id: profile.xml 20196 2011-01-09 02:40:25Z ian $ -->
+	<!-- $Id: profile.xml 21036 2011-03-31 09:12:46Z infograf768 $ -->
 <extension version="1.6" type="plugin" group="user">
 	<name>plg_user_profile</name>
 	<author>Joomla! Project</author>
@@ -16,12 +16,10 @@
 		<filename>index.html</filename>
 		<folder>profiles</folder>
 	</files>
-
 	<languages>
 		<language tag="en-GB">en-GB.plg_user_profile.ini</language>
 		<language tag="en-GB">en-GB.plg_user_profile.sys.ini</language>
 	</languages>
-
 	<config>
 		<fields name="params">
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: source.php 20899 2011-03-07 20:56:09Z ian $
+ * @version		$Id: source.php 20944 2011-03-10 11:07:05Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -106,12 +106,12 @@ class TemplatesControllerSource extends JController
 		$context	= 'com_templates.edit.source';
 
 		if (preg_match('#\.\.#', base64_decode($recordId))) {
-			return JError::raiseError(500, 'COM_TEMPLATES_ERROR_SOURCE_FILE_NOT_FOUND');
+			return JError::raiseError(500, JText::_('COM_TEMPLATES_ERROR_SOURCE_FILE_NOT_FOUND'));
 		}
 
 		// Access check.
 		if (!$this->allowEdit()) {
-			return JError::raiseWarning(403, 'JLIB_APPLICATION_ERROR_EDIT_NOT_PERMITTED');
+			return JError::raiseWarning(403, JText::_('JLIB_APPLICATION_ERROR_EDIT_NOT_PERMITTED'));
 		}
 
 		// Check-out succeeded, push the new record id into the session.
@@ -160,18 +160,18 @@ class TemplatesControllerSource extends JController
 
 		// Access check.
 		if (!$this->allowSave()) {
-			return JError::raiseWarning(403, 'JERROR_SAVE_NOT_PERMITTED');
+			return JError::raiseWarning(403, JText::_('JERROR_SAVE_NOT_PERMITTED'));
 		}
 
 		// Match the stored id's with the submitted.
 		if (empty($data['extension_id']) || empty($data['filename'])) {
-			return JError::raiseError(500, 'COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH');
+			return JError::raiseError(500, JText::_('COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH'));
 		}
 		else if ($data['extension_id'] != $model->getState('extension.id')) {
-			return JError::raiseError(500, 'COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH');
+			return JError::raiseError(500, JText::_('COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH'));
 		}
 		else if ($data['filename'] != $model->getState('filename')) {
-			return JError::raiseError(500, 'COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH');
+			return JError::raiseError(500, JText::_('COM_TEMPLATES_ERROR_SOURCE_ID_FILENAME_MISMATCH'));
 		}
 
 		// Validate the posted data.

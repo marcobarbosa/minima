@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: calendar.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: calendar.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Parameter
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -15,6 +15,7 @@ defined('_JEXEC') or die;
  *
  * @package		Joomla.Framework
  * @subpackage	Parameter
+ * @deprecated	JParameter is deprecated and will be removed in a future version. Use JForm instead.
  * @since		1.5
  */
 class JElementCalendar extends JElement
@@ -35,6 +36,6 @@ class JElementCalendar extends JElement
 		$id		= $control_name.$name;
 		$name	= $control_name.'['.$name.']';
 
-		return JHTML::_('calendar',$value, $name, $id, $format, array('class' => $class));
+		return JHtml::_('calendar',$value, $name, $id, $format, array('class' => $class));
 	}
 }

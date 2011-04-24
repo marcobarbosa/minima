@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: view.html.php 21148 2011-04-14 17:30:08Z ian $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -56,9 +56,9 @@ class BannersViewBanners extends JView
 		require_once JPATH_COMPONENT.'/helpers/banners.php';
 
 		$canDo	= BannersHelper::getActions($this->state->get('filter.category_id'));
-
+		$user	= JFactory::getUser();
 		JToolBarHelper::title(JText::_('COM_BANNERS_MANAGER_BANNERS'), 'banners.png');
-		if ($canDo->get('core.create')) {
+		if (count($user->getAuthorisedCategories('com_banners', 'core.create')) > 0) {
 			JToolBarHelper::addNew('banner.add','JTOOLBAR_NEW');
 		}
 
@@ -88,15 +88,14 @@ class BannersViewBanners extends JView
 			JToolBarHelper::custom('banners.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true);
 		}
 
-		if ($this->state->get('filter.state') == -2 && $canDo->get('core.delete')) {
+
+		if ($canDo->get('core.edit.state')) {
+			JToolBarHelper::trash('banners.trash','JTOOLBAR_TRASH');
+		}
+		if ( $canDo->get('core.delete')) {
 			JToolBarHelper::deleteList('', 'banners.delete','JTOOLBAR_EMPTY_TRASH');
 			JToolBarHelper::divider();
 		}
-		else if ($canDo->get('core.edit.state')) {
-			JToolBarHelper::trash('banners.trash','JTOOLBAR_TRASH');
-			JToolBarHelper::divider();
-		}
-
 		if ($canDo->get('core.admin')) {
 			JToolBarHelper::preferences('com_banners');
 			JToolBarHelper::divider();

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: default_batch.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_batch.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	templates.hathor
+ * @subpackage	Templates.hathor
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
@@ -33,7 +33,7 @@ $published = $this->state->get('filter.published');
 				<option value=""><?php echo JText::_('JSELECT') ?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('menu.menuitems', array('published' => $published)));?>
 			</select>
-			<?php echo JHTML::_( 'select.radiolist', $options, 'batch[move_copy]', '', 'value', 'text', 'm'); ?>
+			<?php echo JHtml::_( 'select.radiolist', $options, 'batch[move_copy]', '', 'value', 'text', 'm'); ?>
 		</fieldset>
 	<?php endif; ?>
 	<button type="submit" onclick="Joomla.submitbutton('item.batch');">

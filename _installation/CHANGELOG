@@ -1,6 +1,6 @@
 0. Metadata
 -----------
-File version:	$Id: CHANGELOG 20887 2011-03-04 19:37:19Z ian $
+File version:	$Id: CHANGELOG 21171 2011-04-18 21:50:18Z dextercowley $
 Copyright:		Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
 License:		GNU General Public License version 2 or later; see LICENSE.txt
 
@@ -27,6 +27,248 @@ $ -> Language fix or change
 - -> Removed
 ! -> Note
 
+-------------------- 1.6.3 Stable Release [18-Apr-2011] ------------------
+
+18-Apr-2011 Mark Dexter
+ # [#25661] *Redirect not now fully editable
+ # [#25657] Mootools no longer loaded in backend
+ # [#25688] Updates sites never re-enabled after being disabled
+
+16-Apr-2011 Jean-Marie Simonet
+ $ Updating es-ES installation file
+ # [#25650] Can't insert image for menu item. Thanks Dennis and Rouven
+ 
+15-Apr-2011 Jean-Marie Simonet
+ # Removing install check
+
+-------------------- 1.6.2 Stable Release [14-Apr-2011] ------------------
+
+14-Apr-2011
+ # [#25617] performance of assets table query with > 40 articles on website in registered mode
+
+13-Apr-2011 Jean-Marie Simonet
+ # Correcting error in the plugin language filter xml
+ 
+12-Apr-2011 Mark Dexter
+ # [#25593] Module Articles Category takes server timezone instead of Joomla one
+ # [#25370] new layouts - No pagination on articles category page if first visit
+
+11-Apr-2011 Mark Dexter
+ # [#25602] Sort in Article Category List broken
+ # [#23364] Installation of tar.gz packages fails in xampp under Windows
+ # [#25614] *en-GB.files_joomla.sys.ini not loading
+ # [#25541] Apply (Save and present in Editor again) does not checkout row
+ # [#23878] Remove remaining ereg* functions - Obscolete in PHP 5.3
+ # [#25581] RTL in Atomic
+ # [#25603] *Email Cloak Plugin outputs preformatted code in email "to" field
+ # [#21809] access levels - pagination::orderDownIcon appearing before last item
+ # [#24835] Administrator (with a capital A) does weird stuff
+
+10-Apr-2011 Jean-Marie Simonet
+ $ Adding lib_joomla.ini into site language folder and localise.php in admin language folder to prevent confusion for TTs.
+ $ Changing en-GB.xmls version for 1.6.2
+ 
+09-Apr-2011 Jean-Marie Simonet
+ #$ Updating pl-PL installation language
+
+08-Apr-2011 Jean-Marie Simonet
+ # [#25585] *Unused Jtoolbarhelper title in Language Manager Content Languages
+ # [#24321] Hiding "Add New Shortcuts" removed Groups and Levels in admin menu. Thanks Christophe.
+ # [#25257] media manager folder names hidden when long. Thanks Bill and Andrea.
+
+07-Apr-2011
+ # [#24016] Native support for IIS Rewrite
+ # [#25247] Fix a number of incorrect comment in components
+ # [#25563] Category Blog - More Article links don't have limitation
+ # [#25497] *Notices with module Articles category
+ # [#25576] Gmail authentication fails (Verify Peer variable mistyped)
+ # [#25550] com_contact vCard link not using JRoute::_() which causes download issues with System - Language Filter plugin enabled and SEF
+
+07-Apr-2011 Jean-Marie Simonet
+ # [#25569] the package strings are not translated when installing or managing. Thanks Christophe
+
+06-Apr-2011 Jean-Marie Simonet
+ # [#25551] #24285 change breaks module cache functionality, needs to be reverted. Thanks Klas.
+ # [#25572] *ROOT parent category wrongly displays in featured and blog layout
+ # [#25571] admin templates does not add a border on fielset when using tabs. Thanks Christophe.
+
+05-Apr-2011 Mark Dexter
+ # [#25540] JModelForm enables 'com_checkin' for 'core.manage' - should be 'core.admin'
+ # [#24974] The word Array appears below the document when Cache is turned on
+ # [#25545] Wrong header output in com_contact vCard view makes IE handle vCard downloads wrong...
+
+05-Apr-2011 Jean-Marie Simonet
+ #$ Adding Icelandic to installation languages
+ #$ Upgrading ru_RU installation language
+ 
+04-Apr-2011 Mark Dexter
+ # [#25519] Minor Bugs in mod_whosonline
+
+04-Apr-2011 Jean-Marie Simonet
+ #$ Upgrading fi-FI installation language
+
+02-Apr-2011 Mark Dexter
+ # [#25340] The robots.txt file offers no protection for a site installed in a folder.
+ # [#24285] Headlinks in header sum up when using progressive/conservative cache
+ # [#25403] "Font Size" not working with Internet Explorer 7
+ # [#25508] Update CodeMirror to Version 1.0
+ # [#22870] Improved fix for XSS issue found in Joomla 1.5.20
+ # [#25522] Extra quote in com_weblinks
+ # [#25074] Form onchange event pointing to non-existant event
+ # [#22926] browser detection script reports wrong informations
+ # [#25397] Typos in sample data
+ 
+02-Apr-2011 Jean-Marie Simonet
+ $ Added missing strings
+
+01-Apr-2011 Mark Dexter
+ # Fix incorrect comments in articles model
+
+31-Mar-2011 Mark Dexter
+ # [#24917] Module latest user parameter link to contact does not work
+ # [#25385] Optimize for loops
+ # [#25425] Extension "upgrade" method re-installing component
+ # [#25496] Database error not handled in mod_users_latest and mod_articles_archive
+
+31-Mar-2011 Jean-Marie Simonet
+ # [#25495] *Wrong lang load order when editing plugin
+ # Normalizing plugins xml (languages missing). Thanks Bill
+ # [#25486] Undefined notice on 404 page
+
+30-Mar-2011 Jean-Marie Simonet
+ #$ Adding Bosnian to installation languages
+ 
+29-Mar-2011 Mark Dexter
+ # [#25288] Media form field is not allowed access to media manager in the front end
+ # [#25129] Media manager popup - Change of directory don't reflect in list of images and folders on windows system (XAMPP)
+ # [#24736] Don't always load Mootools (More) in the backend.
+ # [#25139] Changing modules doesn't reflect changes with enabled caching.
+ # [#25071] onchange event does not fire in JFormFieldAMedia
+
+29-Mar-2011 Jean-Marie Simonet
+ # Correcting some components xml
+ # Normalizing front-end modules xml (format and sys.ini missing)
+ # Normalizing back-end modules xml (languages missing)
+ 
+28-Mar-2011 Jean-Marie Simonet
+ # [#25481] *Combined patch for various meta issues in menu items. Thanks Piotr
+ 
+27-Mar-2011 Jean-Marie Simonet
+ #$ Adding Azeri to installation languages
+ # [#25224] Many places calling JHTML:: instead of JHtml:: Thanks Peter and Bill.
+ # [#25451] Installer missing client-side check that package was selected prior to pressing Upload and Install Button. Thanks Amy.
+ # [#25467] Empty file administrator/components/com_users/helpers/levels.php  
+ 
+24-Mar-2011 Jean-Marie Simonet
+ # [#25436] *Metatag Robots not working for menu items
+ 
+23-Mar-2011 Jean-Marie Simonet
+ # Adding Khmer flag to language switcher images. Thanks Sovann Heng.
+ # [#25417] JPane slider effect not functioning properly. Thanks Byron and Bill.
+ # [#22425] Improve .htaccess rewrite efficency. Thanks Ian Galpin.
+ #$ Adding Croatian to installation languages
+ # [#25432] Hathor: minor bug that causes hidden Date values in com_templates. Thanks CY Lee and Bill.
+ # [#25412] tooltips in high contrast mode (bluestork).
+ 
+23-Mar-2011 Christophe Demko
+ # [#25416] *Although en-GB language is protected by default in db, it can be uninstalled (Jean-Marie Simonet)
+
+22-Mar-2011 Jean-Marie Simonet
+ # [#25399] *rev 20974 breaks normal sliders/tabs behavior.
+ # Minor typos errors in some ini files. Thanks Sovann Heng.
+ 
+21-Mar-2011 Jean-Marie Simonet
+ # [#25355] com_menus translation is missing for list items. Thanks Kolyamba.
+ 
+20-Mar-2011 Mark Dexter
+ # Fix typo in revision 20991
+
+20-Mar-2011 Jean-Marie Simonet
+ # [#25400] *langswitcher module can display content languages with no specific home page. Thanks Christophe.
+ # [#25401] *Content language ordering not implemented. Thanks Christophe.
+ 
+19-Mar-2011 Jean-Marie Simonet
+ #$  [#25349] Menu item type Alias, not editable alias. Thanks Pavel.
+
+18-Mar-2011 Jean-Marie Simonet
+ # [#24710] Contact language is ignored in frontend. Thanks Christophe.
+ # [#25021] Static caching of language switcher ruins the correct class lang-active behaviour. Thanks Mark Visser and Christophe. Tip: save again the switcher parameters.
+ # [#25025] Fix New and Save icons for other components. Thanks Elin and Bill
+ # [#24514] Inconsistency in the naming of the items statuses. Thanks Jozcef and Bill.
+
+17-Mar-2011 Christophe Demko
+ # [#24954] Module, plugin, and component scriptfile are not copied to final install point (Ian MacLennan)
+ # [#25319] Incorrect language keys in error.php of atomic template (bill richardson)
+ # [#24987] Contact form not using Jform, makes event not work as expected (Elin Waring, Jean-Marie Simonet)
+ # [#25347] Menu alias not respecting "active" (bill richardson)
+ # [#25360] Ordering of two modules options are inconsistent (bill richardson, Jozsef Tamas Herczeg)
+ # [#25372] Don't use sizeof() (Rouven Weßling)
+
+17-Mar-2011 Jean-Marie Simonet
+ # [#25356] Following  tracker 25210. Thanks Christophe.
+ # [#25118] Featured articles are reordered when editing one of them. Thanks Ian and Christophe.
+ 
+16-Mar-2011 Mark Dexter
+ # Fix typo in 25308 (revision 20969)
+
+16-Mar-2011 Christophe Demko
+ # [#25318] Wrong order in Module Latest Users (Marijke Stuivenberg)
+ # [#23458] Unused JElement classes in core (Rouven Weßling)
+ # [#25228] No javascript form validation after clicking submit button (Piotr Mocko, Rouven Weßling)
+ # [#25111] Don't use the javascript pseudo protocol when it isn't necessary (Rouven Weßling)
+
+16-Mar-2011 Jean-Marie Simonet
+ # [#25338] *Unused show title parameter for archives menu item
+ 
+15-Mar-2011 Jean-Marie Simonet
+ # [#25088] System information > Directory Permissions: List incomplete. Thanks Nikolai and Reinhard.
+ # [#25027] module assignment slider gives inaccurate information for modules with "all except". Thanks Elin and Christophe.
+ # [#25308] Article Title will not go away, no matter what. Thanks Elin
+
+14-Mar-2011 Jean-Marie Simonet
+ # [#25320] Typos on the 404 page. Thanks Bill.
+ #$ [#25259] Article edit page permits you to attempt to edit checked-out articles, causing 403 errors. Thanks Bernie
+ 
+13-Mar-2011 Christophe Demko
+ # [#24998] Don't add aria role breadcrumbs (Rouven Weßling, Mark Dexter)
+
+12-Mar-2011 Christophe Demko
+ # [#25289] The front end rendering of the media field is missing srings (Elin Waring)
+ # [#25276] *Weblinks adding words "Web links" before the actual link text (Jean-Marie Simonet)
+ # [#25305] Wrong CSS class declaration (Ernesto Patarroyo, bill richardson, Jean-Marie Simonet)
+
+11-Mar-2011 Jean-Marie Simonet
+ #$ [#25269] *Save & Copy template styles issue
+ # [#25176] 404 after pagebreak in <--prev next --> footer. Thanks Ian and Dave.
+ # [#25285] *Normalizing com_messages UI
+ # [#24345] *joomla.xml still exists after install of install. Thanks Ian.
+ 
+10-Mar-2011 Jean-Marie Simonet
+ $# [#25252] *Missing weblink ini strings when submit/edit weblink from a content.
+ # [#25262] Logout in administration menu not working
+ #$ [#25232] Some errors and warnings are not translated due to missing JText::_(). Thanks Rouven
+ # [#25210] Language filter redirecting breaks image uploading in frontend. Patch included. Thanks Bernie.
+ # [#25174] Plugin System cache error when debug is on. Thanks Ian.
+ # [#25170] Content pictures aren't displaying if SEF is on and System Cache plugin is enabled. Thanks Ian.
+ # [#24430] Unable to create external menu item type with an alias that is a folder name
+
+09-Mar-2011 Jean-Marie Simonet
+ $ [#25231] Typo in en-GB.lib_joomla.ini. Thanks Serge.
+ # [#25213] Several places calling getXMLparser instead of getXMLParser. Thanks Bill and Anon 
+ $ [#25145] Incorrect SMTP security option. Thanks Ian and Jozcef.
+ # [#25240] *Issue with Articles created in front-end and set to featured. Thanks Andrew.
+ # [#25238] 1.6.1 breaks wrapper menu links. Thanks Elin
+ # [#25172] RTL issues with beez 2 & beez 5. Thanks Ofer.
+ # [#24836] Blog pagination options missed in Gobal configuration (com_content). Thanks Bill.
+ # [#25098] failure to delete error message showing incorrectly. Thanks Patrick and Bill.
+
+08-Mar-2011 Jean-Marie Simonet
+ $ Updating xx-XX.ini
+ # [#25177] hr.gif and sr.gif are transparent. Thanks Erik.
+ $ Correcting typo in ini file
+ $ [#25136] "Plugin" instead of "Module" in en-GB.lib_joomla.ini
+ $ Changing milkyway to beez_20 in ini file. Thanks Sovann Heng.
+ #$ Typo in ini key. Thanks Sovann Heng
 
 -------------------- 1.6.1 Stable Release [07-Mar-2011] ------------------
 

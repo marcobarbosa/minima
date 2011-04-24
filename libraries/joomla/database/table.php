@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: table.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: table.php 20935 2011-03-09 18:45:50Z infograf768 $
  * @package		Joomla.Framework
  * @subpackage	Table
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -706,7 +706,7 @@ abstract class JTable extends JObject
 
 		// Check for a database error.
 		if (!$this->_db->query()) {
-			$e = new JException(JText::_('JLIB_DATABASE_ERROR_DELETE_FAILED', get_class($this), $this->_db->getErrorMsg()));
+			$e = new JException(JText::sprintf('JLIB_DATABASE_ERROR_DELETE_FAILED', get_class($this), $this->_db->getErrorMsg()));
 			$this->setError($e);
 			return false;
 		}

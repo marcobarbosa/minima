@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: media.php 20813 2011-02-21 21:08:29Z dextercowley $
+ * @version		$Id: media.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	Massmail
+ * @subpackage	com_media
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -58,7 +58,7 @@ if (strpos($cmd, '.') != false) {
 		require_once $controllerPath;
 	}
 	else {
-		JError::raiseError(500, 'JERROR_INVALID_CONTROLLER');
+		JError::raiseError(500, JText::_('JERROR_INVALID_CONTROLLER'));
 	}
 }
 else {
@@ -74,7 +74,7 @@ if (class_exists($controllerClass)) {
 	$controller = new $controllerClass();
 }
 else {
-	JError::raiseError(500, 'JERROR_INVALID_CONTROLLER_CLASS');
+	JError::raiseError(500, JText::_('JERROR_INVALID_CONTROLLER_CLASS'));
 }
 
 // Set the model and view paths to the administrator folders

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: helper.php 20926 2011-03-09 06:59:31Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_feed
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -27,7 +27,7 @@ class modFeedHelper
 			$options['cache_time'] = null;
 		}
 
-		$rssDoc = JFactory::getXMLparser('RSS', $options);
+		$rssDoc = JFactory::getXMLParser('RSS', $options);
 
 		$feed = new stdclass();
 

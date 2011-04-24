@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20472 2011-01-28 15:03:58Z chdemko $
+ * @version		$Id: helper.php 21091 2011-04-06 05:53:50Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */

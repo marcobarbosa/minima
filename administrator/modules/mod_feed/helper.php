@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: helper.php 20926 2011-03-09 06:59:31Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -39,7 +39,7 @@ abstract class modFeedHelper
 			$options['cache_time'] = null;
 		}
 
-		$rssDoc = JFactory::getXMLparser('RSS', $options);
+		$rssDoc = JFactory::getXMLParser('RSS', $options);
 
 		if ($rssDoc != false)
 		{

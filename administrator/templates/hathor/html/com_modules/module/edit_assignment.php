@@ -2,7 +2,7 @@
 /**
  * @version		$Id: edit_assignment.php 19774 2010-12-05 05:45:14Z chdemko $
  * @package		Joomla.Administrator
- * @subpackage	templates.hathor
+ * @subpackage	Templates.hathor
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -68,7 +68,7 @@ $menuTypes = MenusHelper::getMenuLinks();
 			<?php foreach ($menuTypes as &$type) : 
 				echo JHtml::_('tabs.panel', $type->title ? $type->title : $type->menutype, $type->menutype.'-details');
 				
-				$count 	= sizeof($type->links);
+				$count 	= count($type->links);
 				$i		= 0;
 				if ($count) :
 				?>					

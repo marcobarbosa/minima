@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: menu.php 20741 2011-02-17 12:23:06Z infograf768 $
+ * @version		$Id: menu.php 20948 2011-03-10 16:21:40Z infograf768 $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -79,7 +79,7 @@ class JTableMenu extends JTableNested
 	{
 		// If the alias field is empty, set it to the title.
 		$this->alias = trim($this->alias);
-		if ((empty($this->alias)) && ($this->type != 'alias')) {
+		if ((empty($this->alias)) && ($this->type != 'alias' && $this->type !='url')) {
 			$this->alias = $this->title;
 		}
 

@@ -2,7 +2,7 @@
 /**
  * @version		$Id: blog.php 17187 2010-05-19 11:18:22Z infograf768 $
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	Templates.beez5
  * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -54,7 +54,7 @@ $cparams =& JComponentHelper::getParams('com_media');
 <?php if (!empty($this->lead_items)) : ?>
 <div class="items-leading">
 	<?php foreach ($this->lead_items as &$item) : ?>
-		<article class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? 'class="system-unpublished"' : null; ?>">
+		<article class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? 'system-unpublished' : null; ?>">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');

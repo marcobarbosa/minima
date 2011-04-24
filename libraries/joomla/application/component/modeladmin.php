@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: modeladmin.php 20228 2011-01-10 00:52:54Z eddieajau $
+ * @version		$Id: modeladmin.php 21032 2011-03-29 16:38:31Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Application
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -256,8 +256,7 @@ abstract class JModelAdmin extends JModelForm
 		}
 
 		// Clear the component's cache
-		$cache = JFactory::getCache($this->option);
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
@@ -399,8 +398,7 @@ abstract class JModelAdmin extends JModelForm
 		}
 
 		// Clear the component's cache
-		$cache = JFactory::getCache($this->option);
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
@@ -462,10 +460,9 @@ abstract class JModelAdmin extends JModelForm
 			$result = null;
 		}
 
+		// Clear the component's cache
 		if ($result == true) {
-			// Clear the component's cache
-			$cache = JFactory::getCache($this->option);
-			$cache->clean();
+			$this->cleanCache();
 		}
 
 		return $result;
@@ -529,8 +526,7 @@ abstract class JModelAdmin extends JModelForm
 			}
 
 			// Clean the cache.
-			$cache = JFactory::getCache($this->option);
-			$cache->clean();
+			$this->cleanCache();
 
 			// Trigger the onContentAfterSave event.
 			$dispatcher->trigger($this->event_after_save, array($this->option.'.'.$this->name, &$table, $isNew));
@@ -614,9 +610,9 @@ abstract class JModelAdmin extends JModelForm
 		}
 
 		// Clear the component's cache
-		$cache = JFactory::getCache($this->option);
-		$cache->clean();
+		$this->cleanCache();
 
 		return true;
 	}
+
 }

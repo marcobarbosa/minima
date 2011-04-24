@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	templates.hathor
+ * @subpackage	Templates.hathor
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
 				<?php echo JText::_('MOD_LATEST_LATEST_ITEMS'); ?>
 			</th>
 			<th>
-				<strong><?php echo JText::_('JPUBLISHED'); ?></strong>
+				<strong><?php echo JText::_('JSTATUS'); ?></strong>
 			</th>
 			<th>
 				<strong><?php echo JText::_('MOD_LATEST_CREATED'); ?></strong>
@@ -48,7 +48,7 @@ defined('_JEXEC') or die;
 				<?php echo JHtml::_('jgrid.published', $item->state, $i, '', false); ?>
 			</td>
 			<td class="center">
-				<?php echo JHTML::_('date',$item->created, 'Y-m-d H:i:s'); ?>
+				<?php echo JHtml::_('date',$item->created, 'Y-m-d H:i:s'); ?>
 			</td>
 			<td class="center">
 				<?php echo $item->author_name;?>

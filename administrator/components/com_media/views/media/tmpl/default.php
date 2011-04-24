@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default.php 21105 2011-04-08 13:59:21Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_media
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -13,7 +13,7 @@ $user = JFactory::getUser();
 ?>
 <table width="100%">
 	<tr valign="top">
-		<td width="200">
+		<td>
 			<fieldset id="treeview">
 				<legend><?php echo JText::_('COM_MEDIA_FOLDERS'); ?></legend>
 				<div id="media-tree_tree"></div>
@@ -78,10 +78,10 @@ $user = JFactory::getUser();
 						</ul>
 						<div class="clr"> </div>
 						<p class="overall-title"></p>
-						<?php echo JHTML::_('image','media/bar.gif', JText::_('COM_MEDIA_OVERALL_PROGRESS'), array('class' => 'progress overall-progress'), true); ?>
+						<?php echo JHtml::_('image','media/bar.gif', JText::_('COM_MEDIA_OVERALL_PROGRESS'), array('class' => 'progress overall-progress'), true); ?>
 						<div class="clr"> </div>
 						<p class="current-title"></p>
-						<?php echo JHTML::_('image','media/bar.gif', JText::_('COM_MEDIA_CURRENT_PROGRESS'), array('class' => 'progress current-progress'), true); ?>
+						<?php echo JHtml::_('image','media/bar.gif', JText::_('COM_MEDIA_CURRENT_PROGRESS'), array('class' => 'progress current-progress'), true); ?>
 						<p class="current-text"></p>
 					</div>
 					<ul class="upload-queue" id="upload-queue">

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_batch.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_batch.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_categories
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -33,7 +33,7 @@ $extension	= $this->escape($this->state->get('filter.extension'));
 				<option value=""><?php echo JText::_('JSELECT') ?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('category.categories', $extension, array('published' => $published)));?>
 			</select>
-			<?php echo JHTML::_( 'select.radiolist', $options, 'batch[move_copy]', '', 'value', 'text', 'm'); ?>
+			<?php echo JHtml::_( 'select.radiolist', $options, 'batch[move_copy]', '', 'value', 'text', 'm'); ?>
 		</fieldset>
 	<?php endif; ?>
 	<button type="submit" onclick="submitbutton('category.batch');">

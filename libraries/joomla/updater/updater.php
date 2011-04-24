@@ -2,7 +2,7 @@
 /**
  * Joomla! Update System
  *
- * @version		$Id: updater.php 20263 2011-01-10 21:12:41Z dextercowley $
+ * @version		$Id: updater.php 21039 2011-03-31 15:47:46Z dextercowley $
  * @package		Joomla.Framework
  * @subpackage	Updater
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -83,7 +83,7 @@ class JUpdater extends JAdapter {
 				}
 				if(array_key_exists('updates', $update_result) && count($update_result['updates']))
 				{
-					for($k = 0; $k < count($update_result['updates']); $k++)
+					for($k = 0, $count = count($update_result['updates']); $k < $count; $k++)
 					{
 						$current_update = &$update_result['updates'][$k];
 						$update = JTable::getInstance('update');

@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		$Id: login.php 20544 2011-02-04 08:03:31Z infograf768 $
+ * @version		$Id: login.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @package		Joomla.Administrator
- * @subpackage	templates.bluestork
+ * @subpackage	Templates.bluestork
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 JHtml::_('behavior.noframes');
+JHtml::_('behavior.framework');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
@@ -36,13 +37,13 @@ JHtml::_('behavior.noframes');
 <?php  endif; ?>
 
 <script type="text/javascript">
-	function setFocus() {
+	window.addEvent('domready', function () {
 		document.getElementById('form-login').username.select();
 		document.getElementById('form-login').username.focus();
-	}
+	});
 </script>
 </head>
-<body onload="javascript:setFocus()">
+<body>
 	<div id="border-top" class="h_blue">
 		<div>
 			<div>

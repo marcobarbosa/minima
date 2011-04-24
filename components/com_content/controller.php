@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: controller.php 20727 2011-02-16 10:51:28Z infograf768 $
+ * @version		$Id: controller.php 21020 2011-03-27 06:52:01Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_content
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -29,7 +29,7 @@ class ContentController extends JController
 		}
 		// Article frontpage Editor article proxying:
 		elseif(JRequest::getCmd('view') === 'articles' && JRequest::getCmd('layout') === 'modal') {
-			JHTML::_('stylesheet','system/adminlist.css', array(), true);
+			JHtml::_('stylesheet','system/adminlist.css', array(), true);
 			$config['base_path'] = JPATH_COMPONENT_ADMINISTRATOR;
 		}
 
@@ -49,7 +49,7 @@ class ContentController extends JController
 	{
 		$cachable = true;
 
-		JHTML::_('behavior.caption');
+		JHtml::_('behavior.caption');
 
 		// Set the default view name and format from the Request.
 		// Note we are using a_id to avoid collisions with the router and the return page.

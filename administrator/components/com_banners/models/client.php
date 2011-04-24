@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: client.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: client.php 21148 2011-04-14 17:30:08Z ian $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -28,13 +28,18 @@ class BannersModelClient extends JModelAdmin
 	 */
 	protected function canDelete($record)
 	{
-		$user = JFactory::getUser();
-
-		if (!empty($record->catid)) {
-			return $user->authorise('core.delete', 'com_banners.category.'.(int) $record->catid);
-		}
-		else {
-			return $user->authorise('core.delete', 'com_banners');
+		if (!empty($record->id)) {
+				if ($record->state != -2) {
+					return ;
+				}
+			$user = JFactory::getUser();
+	
+			if (!empty($record->catid)) {
+				return $user->authorise('core.delete', 'com_banners.category.'.(int) $record->catid);
+			}
+			else {
+				return $user->authorise('core.delete', 'com_banners');
+			}
 		}
 	}
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: profile.php 20762 2011-02-18 04:49:10Z dextercowley $
+ * @version		$Id: profile.php 21097 2011-04-07 15:38:03Z dextercowley $
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -11,8 +11,8 @@ jimport('joomla.utilities.date');
 /**
  * An example custom profile plugin.
  *
- * @package		Joomla.Plugins
- * @subpackage	user.profile
+ * @package		Joomla.Plugin
+ * @subpackage	User.profile
  * @version		1.6
  */
 class plgUserProfile extends JPlugin

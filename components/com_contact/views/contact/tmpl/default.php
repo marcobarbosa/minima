@@ -1,8 +1,8 @@
 <?php
  /**
- * $Id: default.php 20542 2011-02-04 07:06:15Z infograf768 $
+ * $Id: default.php 21101 2011-04-07 15:47:33Z dextercowley $
  * @package		Joomla.Site
- * @subpackage	Contact
+ * @subpackage	com_contact
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -49,7 +49,7 @@ $cparams = JComponentHelper::getParams ('com_media');
 	<?php endif; ?>	
 	<?php if ($this->contact->image && $this->params->get('show_image')) : ?>
 		<div class="contact-image">
-			<?php echo JHTML::_('image',$this->contact->image, JText::_('COM_CONTACT_IMAGE_DETAILS'), array('align' => 'middle')); ?>
+			<?php echo JHtml::_('image',$this->contact->image, JText::_('COM_CONTACT_IMAGE_DETAILS'), array('align' => 'middle')); ?>
 		</div>
 	<?php endif; ?> 	
 
@@ -61,8 +61,8 @@ $cparams = JComponentHelper::getParams ('com_media');
 
 	<?php if ($this->params->get('allow_vcard')) :	?>
 		<?php echo JText::_('COM_CONTACT_DOWNLOAD_INFORMATION_AS');?>
-			<a href="<?php echo JURI::base(); ?>index.php?option=com_contact&amp;view=contact&amp;id=<?php echo $this->contact->id; ?>&amp;format=vcf">
-				<?php echo JText::_('COM_CONTACT_VCARD');?></a>
+			<a href="<?php echo JRoute::_('index.php?option=com_contact&amp;view=contact&amp;id='.$this->contact->id . '&amp;format=vcf'); ?>">
+			<?php echo JText::_('COM_CONTACT_VCARD');?></a>
 	<?php endif; ?>
 	<p></p>
 	<?php if ($this->params->get('show_email_form') && ($this->contact->email_to || $this->contact->user_id)) : ?>

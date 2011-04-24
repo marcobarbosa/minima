@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default_form.php 20196 2011-01-09 02:40:25Z ian $
+ * @version		$Id: default_form.php 21021 2011-03-27 07:22:54Z infograf768 $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
  * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
@@ -12,6 +12,18 @@
 defined('_JEXEC') or die;
 ?>
 <script type="text/javascript">
+	Joomla.submitbutton = function(pressbutton) {
+		var form = document.getElementById('adminForm');
+
+		// do field validation
+		if (form.install_package.value == ""){
+			alert("<?php echo JText::_('COM_INSTALLER_MSG_INSTALL_PLEASE_SELECT_A_PACKAGE', true); ?>");
+		} else {
+			form.installtype.value = 'upload';
+			form.submit();
+		}
+	}
+        
 	Joomla.submitbutton3 = function(pressbutton) {
 		var form = document.getElementById('adminForm');
 
