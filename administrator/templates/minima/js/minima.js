@@ -242,6 +242,7 @@ window.addEvent('domready', function() {
         // open the panel slide
         openPanel.addEvents({
             'click': function(){
+                minima.getElements("#shortcuts .parent").getChildren('.sub').dissolve({duration: 200}).removeClass('hover');
         		Panel.panel.toggle();
             }/*,
             'outerClick' : function(){
