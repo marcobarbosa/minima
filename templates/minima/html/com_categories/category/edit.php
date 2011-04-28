@@ -70,10 +70,19 @@ JHtml::_('behavior.keepalive');
 
 				<li><?php echo $this->form->getLabel('published'); ?>
 				<?php echo $this->form->getInput('published'); ?></li>
-
+		
+				<?php if (!defined('MOLAJO_ACL')) : ?>
 				<li><?php echo $this->form->getLabel('access'); ?>
 				<?php echo $this->form->getInput('access'); ?></li>			
-				
+				<?php endif; ?>
+				<?php if ($this->canDo->get('core.admin')): ?>
+					<li><span class="faux-label"><?php echo JText::_('JGLOBAL_ACTION_PERMISSIONS_LABEL'); ?></span>
+					<div class="button2-left"><div class="blank">
+		      			<button type="button" onclick="document.location.href='#access-rules';">
+		      			<?php echo JText::_('JGLOBAL_PERMISSIONS_ANCHOR'); ?></button>
+		      		</div></div>
+		    		</li>
+				<?php endif; ?>	
 				<li><?php echo $this->form->getLabel('language'); ?>
 				<?php echo $this->form->getInput('language'); ?></li>
 	

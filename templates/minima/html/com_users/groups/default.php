@@ -16,9 +16,10 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Load the tooltip behavior.
 JHtml::_('behavior.tooltip');
 
-$user = JFactory::getUser();
-$listOrder	= $this->state->get('list.ordering');
-$listDirn	= $this->state->get('list.direction');
+$user		= JFactory::getUser();
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
+
 JText::script('COM_USERS_GROUPS_CONFIRM_DELETE');
 ?>
 <script type="text/javascript">
@@ -107,8 +108,9 @@ JText::script('COM_USERS_GROUPS_CONFIRM_DELETE');
 					<?php endif; ?>
 				</td>
 				<td>
-					<?php echo str_repeat('<span class="gi">|&mdash;</span>', $item->level) ?>
-					<?php if ($canEdit) : ?>
+				<?php $plus = defined('MOLAJO_ACL') ? 2 : 0 ?>
+					<?php echo str_repeat('<span class="gi">|&mdash;</span>', $item->level + $plus) ?>
+					<?php if ($canEdit && $item->id > 0 && $item->id != 999999)  : ?>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&task=group.edit&id='.$item->id);?>">
 						<?php echo $this->escape($item->title); ?></a>
 					<?php else : ?>

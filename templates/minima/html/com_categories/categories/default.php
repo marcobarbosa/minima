@@ -17,8 +17,8 @@ JHtml::_('behavior.tooltip');
 $user   = JFactory::getUser();
 $userId = $user->get('id');
 $extension  = $this->escape($this->state->get('filter.extension'));
-$listOrder  = $this->state->get('list.ordering');
-$listDirn   = $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 $ordering   = ($listOrder == 'a.lft');
 $canOrder   = $user->authorise('core.edit.state', 'com_categories');
 $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
@@ -38,12 +38,12 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                 <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true);?>
             </select>
-
+			<?php if (!defined('MOLAJO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
             </select>
-
+			<?php endif; ?>
             <select name="filter_language" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_LANGUAGE');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->state->get('filter.language'));?>
@@ -67,7 +67,7 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                     <?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
                 </th>
                 <th width="5%">
-                    <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.published', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'a.published', $listDirn, $listOrder); ?>
                 </th>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ORDERING', 'a.lft', $listDirn, $listOrder); ?>
@@ -75,9 +75,11 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'categories.saveorder'); ?>
                     <?php endif; ?>
                 </th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
                 </th>
+				<?php endif; ?>
                 <th width="5%" class="nowrap">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'language', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?>
                 </th>
@@ -104,9 +106,11 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'categories.saveorder'); ?>
                     <?php endif; ?>
                 </th>
+                <?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
                 </th>
+                <?php endif; ?>
                 <th width="5%" class="nowrap">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'language', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?>
                 </th>

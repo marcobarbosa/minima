@@ -13,11 +13,11 @@ defined('_JEXEC') or die;
 // Include the component HTML helpers.
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
-JHTML::_('script','system/multiselect.js',false,true);
+JHtml::_('script','system/multiselect.js',false,true);
 $client = $this->state->get('filter.client_id') ? 'administrator' : 'site';
 $user = JFactory::getUser();
-$listOrder  = $this->state->get('list.ordering');
-$listDirn   = $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 $canOrder   = $user->authorise('core.edit.state', 'com_modules');
 $saveOrder  = $listOrder == 'ordering';
 ?>
@@ -74,11 +74,12 @@ $saveOrder  = $listOrder == 'ordering';
             </select>
 
 
-
+			<?php if (!defined('MOLAJO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
             </select>
+			<?php endif; ?>
 
 
             <select name="filter_language" class="inputbox" onchange="this.form.submit()">
@@ -100,7 +101,7 @@ $saveOrder  = $listOrder == 'ordering';
                     <?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'title', $listDirn, $listOrder); ?>
                 </th>
                 <th width="5%">
-                    <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'published', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'JSTATUS', 'published', $listDirn, $listOrder); ?>
                 </th>
                 <th width="15%" class="left">
                     <?php echo JHtml::_('grid.sort',  'COM_MODULES_HEADING_POSITION', 'position', $listDirn, $listOrder); ?>
@@ -117,9 +118,11 @@ $saveOrder  = $listOrder == 'ordering';
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'COM_MODULES_HEADING_PAGES', 'pages', $listDirn, $listOrder); ?>
                 </th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
                 </th>
+				<?php endif; ?>
                 <th width="5%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'language_title', $listDirn, $listOrder); ?>
                 </th>
@@ -155,9 +158,11 @@ $saveOrder  = $listOrder == 'ordering';
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'COM_MODULES_HEADING_PAGES', 'pages', $listDirn, $listOrder); ?>
                 </th>
+                <?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
                 </th>
+                <?php endif; ?>
                 <th width="5%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'language_title', $listDirn, $listOrder); ?>
                 </th>
@@ -224,10 +229,11 @@ $saveOrder  = $listOrder == 'ordering';
                 <td class="center">
                     <?php echo $item->pages; ?>
                 </td>
-
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <td class="center">
                     <?php echo $this->escape($item->access_level); ?>
                 </td>
+				<?php endif; ?>
                 <td class="center">
                     <?php if ($item->language==''):?>
                         <?php echo JText::_('JDEFAULT'); ?>
