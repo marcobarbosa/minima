@@ -76,9 +76,11 @@ $saveOrder	= $listOrder == 'ordering';
 				<th class="nowrap" width="10%">
 					<?php echo JHtml::_('grid.sort', 'COM_PLUGINS_ELEMENT_HEADING', 'element', $listDirn, $listOrder); ?>
 				</th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JGrid_Heading_Access', 'access', $listDirn, $listOrder); ?>
 				</th>
+				<?php endif; ?>
 				<th class="nowrap" width="1%">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'extension_id', $listDirn, $listOrder); ?>
 				</th>
