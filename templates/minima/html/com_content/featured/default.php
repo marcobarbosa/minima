@@ -14,8 +14,8 @@ JHtml::addIncludePath(JPATH_COMPONENT.DS.'helpers'.DS.'html');
 JHtml::_('behavior.tooltip');
 
 $user   = JFactory::getUser();
-$listOrder  = $this->state->get('list.ordering');
-$listDirn   = $this->state->get('list.direction');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
 $canOrder   = $user->authorise('core.edit.state', 'com_content.article');
 $saveOrder  = $listOrder == 'fp.ordering';
 ?>
@@ -29,12 +29,12 @@ $saveOrder  = $listOrder == 'fp.ordering';
             <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSearch_Filter_Clear'); ?></button>
         </div>
         <div class="filter-select fltrt">
+			<?php if (!defined('MOLAJO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
-                <?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
-            </select>
-
-            <select name="filter_published" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>	</select>
+			<?php endif; ?>            
+			<select name="filter_published" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true);?>
             </select>
@@ -71,9 +71,11 @@ $saveOrder  = $listOrder == 'fp.ordering';
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'featured.saveorder'); ?>
                     <?php endif; ?>
                 </th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
-                    <?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'category', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
                 </th>
+				<?php endif; ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
                 </th>
@@ -112,9 +114,11 @@ $saveOrder  = $listOrder == 'fp.ordering';
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'featured.saveorder'); ?>
                     <?php endif; ?>
                 </th>
-                <th width="10%">
-                    <?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'category', $listDirn, $listOrder); ?>
-                </th>
+ 				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<th width="10%">
+					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
+				</th>
+				<?php endif; ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
                 </th>
@@ -179,14 +183,16 @@ $saveOrder  = $listOrder == 'fp.ordering';
                         <?php echo $item->ordering; ?>
                     <?php endif; ?>
                 </td>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
                 <td class="center">
                     <?php echo $this->escape($item->access_level); ?>
                 </td>
+				<?php endif; ?>
                 <td class="center">
                     <?php echo $this->escape($item->author_name); ?>
                 </td>
                 <td class="center nowrap">
-                    <?php echo JHTML::_('date',$item->created, JText::_('DATE_FORMAT_LC4')); ?>
+					<?php echo JHtml::_('date',$item->created, JText::_('DATE_FORMAT_LC4')); ?>
                 </td>
                 <td class="center">
                     <?php echo (int) $item->hits; ?>

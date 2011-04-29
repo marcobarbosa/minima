@@ -12,12 +12,11 @@ defined('_JEXEC') or die;
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('behavior.tooltip');
 
-$user       = JFactory::getUser();
-$userId     = $user->get('id');
-$listOrder  = $this->state->get('list.ordering');
-$listDirn   = $this->state->get('list.direction');
-$saveOrder  = $listOrder == 'a.ordering';
-
+$user		= JFactory::getUser();
+$userId		= $user->get('id');
+$listOrder	= $this->escape($this->state->get('list.ordering'));
+$listDirn	= $this->escape($this->state->get('list.direction'));
+$saveOrder	= $listOrder == 'a.ordering';
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles');?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
@@ -34,12 +33,12 @@ $saveOrder  = $listOrder == 'a.ordering';
                 <option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true);?>
             </select>
-
-            <select name="filter_access" class="inputbox" onchange="this.form.submit()">
-                <option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
-                <?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
-            </select>
-
+			<?php if (!defined('MOLAJO_ACL')) : ?>
+			<select name="filter_access" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
+				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
+			</select>
+			<?php endif; ?>
             <select name="filter_category_id" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('category.options', 'com_content'), 'value', 'text', $this->state->get('filter.category_id'));?>
@@ -126,9 +125,11 @@ $saveOrder  = $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'articles.saveorder'); ?>
                     <?php endif; ?>
                 </th>
-                <th width="10%">
-                    <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
-                </th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<th width="10%">
+					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
+				</th>
+				<?php endif; ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
                 </th>
@@ -200,9 +201,11 @@ $saveOrder  = $listOrder == 'a.ordering';
 				<?php echo $item->ordering; ?>
 			<?php endif; ?>
                 </td>
-                <td class="center">
-                    <?php echo $this->escape($item->access_level); ?>
-                </td>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<td class="center">
+					<?php echo $this->escape($item->access_level); ?>
+				</td>
+				<?php endif; ?>
                 <td class="center">
                     <?php echo $this->escape($item->author_name); ?>
                 </td>
