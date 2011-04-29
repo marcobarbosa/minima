@@ -88,9 +88,11 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 				</th>
+				<?php if (!defined('MOLAJO_ACL')) : ?>
 				<th width="15%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
 				</th>
+				<?php endif; ?>
 				<th width="15%">
 					<?php echo JHtml::_('grid.sort', 'JCATEGORY', 'a.catid', $listDirn, $listOrder); ?>
 				</th>

@@ -81,9 +81,11 @@ $saveOrder	= $listOrder == 'a.ordering';
                         <?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'articles.saveorder'); ?>
                     <?php endif; ?>
                 </th>
+                <?php if (!defined('MOLAJO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
                 </th>
+                 <?php endif; ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_CREATED_BY', 'a.created_by', $listDirn, $listOrder); ?>
                 </th>
