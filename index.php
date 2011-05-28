@@ -25,13 +25,13 @@ $lang   = JFactory::getLanguage();
 
 // Mount the body classes
 $requestVars = array(
-                        "option"  => JRequest::getCmd('option', ''), 
-                        "view"    => JRequest::getCmd('view', ''),
-                        "layout"  => JRequest::getCmd('layout', ''),
-                        "task"    => JRequest::getCmd('task', ''),
-                        "itemId"  => JRequest::getCmd('Itemid', ''),                        
-                        "locked"  => JRequest::getInt('hidemainmenu') ? 'locked' : '',
-                        "hasId"   => JRequest::getCmd('id', '') ? 'hasId' : 'noId'
+                        "option"  => JRequest::getCmd('option', 'no-option'), 
+                        "view"    => JRequest::getCmd('view', 'no-view'),
+                        "layout"  => JRequest::getCmd('layout', 'no-layout'),
+                        "task"    => JRequest::getCmd('task', 'no-task'),
+                        "itemId"  => JRequest::getCmd('Itemid', 'no-itemid'),                        
+                        "locked"  => JRequest::getInt('hidemainmenu') ? 'locked' : 'not-locked',
+                        "hasId"   => JRequest::getCmd('id', '') ? 'has-id' : 'no-id'
                     );
 
 ?>
@@ -45,7 +45,7 @@ $requestVars = array(
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">        
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
 
     <style>

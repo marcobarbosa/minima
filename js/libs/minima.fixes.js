@@ -13,22 +13,19 @@ window.addEvent('domready', function() {
         filterBar = $('filter-bar'),
         language = MooTools.lang.get('Minima');
 
-    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');    
+    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
 
-    // position aditional tabs to #submenu position
-    if (subMenu) subMenu.addClass('minimaTabs');            
+    // move tabs to #submenu position
+    if (subMenu) subMenu.addClass('minimaTabs'); 
 
     // some overrides have tabs that are out of place   
     if ((subMenu && subMenu.hasClass('out')) || (subMenu && itemForm)) {        
-        // hide the tabs content
-        //if (itemForm) itemForm.getChildren('div').addClass('hide');
         // position the tabs on the right place
         subMenu.inject($('content'),'top');        
     }; // end of subMenu
 
-    // FIXME must see if this is necessary
     // fix padding when there are no tabs
-    if (!filterBar  && $$('.adminlist')) $$('.adminlist').addClass('padTop');
+    //if (!filterBar  && $$('.adminlist')) $$('.adminlist').addClass('padTop');
 
     // change the h2 title dynamically
     if (jformTitle) {
@@ -42,7 +39,7 @@ window.addEvent('domready', function() {
             }
             //fix alias automatically, removing extra chars, all lower cased
             // but only if it's a new content
-            if ($(document.body).hasClass('noId')) {            
+            if ($(document.body).hasClass('no-id')) {                
                 $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
             }
         });
