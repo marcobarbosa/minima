@@ -19,7 +19,7 @@ $listDirn   = $this->state->get('list.direction');
 $canOrder   = $user->authorise('core.edit.state', 'com_content.article');
 $saveOrder  = $listOrder == 'fp.ordering';
 ?>
-<?php if( $this->items ): ?>
+
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=featured');?>" method="post" name="adminForm">
     <fieldset id="filter-bar">
         <div class="filter-search fltlft">
@@ -46,6 +46,7 @@ $saveOrder  = $listOrder == 'fp.ordering';
     </fieldset>
     <?php if( $this->pagination->total > 0 ): ?><div id="pagination-top"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>
     <div class="clr"> </div>
+    <?php if( $this->items ): ?>
     <table class="adminlist">
         <thead>
             <tr>

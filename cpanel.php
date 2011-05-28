@@ -25,6 +25,7 @@ $view = JRequest::getCmd('view', '');
 $layout = JRequest::getCmd('layout', '');
 $task = JRequest::getCmd('task', '');
 $itemid = JRequest::getCmd('Itemid', '');
+$hidemainmenu = JRequest::getInt('hidemainmenu');
 
 ?>
 
@@ -38,13 +39,13 @@ $itemid = JRequest::getCmd('Itemid', '');
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">    
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">    
     <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
         #panel-tab, #panel-tab.active, #panel-wrapper,#more, #more.inactive { background-color: <?php echo $darkerColor; ?>; }
-        #tophead { background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
+        #tophead, .box-top { background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
         #prev, #next { border: 1px solid <?php echo $templateColor; ?>; background: <?php echo $templateColor;?>; background: -moz-linear-gradient(-90deg,<?php echo $templateColor;?>,<?php echo $darkerColor;?>); /* FF3.6 */ background: -webkit-gradient(linear, left top, left bottom, from(<?php echo $templateColor;?>), to(<?php echo $darkerColor;?>)); /* Saf4+, Chrome */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=<?php echo $templateColor;?>, endColorstr=<?php echo $darkerColor;?>); /* IE6,IE7 */ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $templateColor;?>', EndColorStr='<?php echo $darkerColor;?>')"; /* IE8 */ }
         #prev:active, #next:active { background-color: <?php echo $darkerColor; ?>; }
         .box:hover { -moz-box-shadow: 0 0 10px <?php echo $templateColor; ?>; -webkit-box-shadow: 0 0 10px <?php echo $templateColor; ?>; box-shadow: 0 0 10px <?php echo $templateColor; ?>; }
@@ -53,19 +54,18 @@ $itemid = JRequest::getCmd('Itemid', '');
         ::-moz-selection { background: <?php echo $templateColor; ?>; color:#000; /* Firefox */ }
         body, a:link { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
-        #gravatar { border: 1px solid <?php echo $darkerColor; ?>; }
-        #gravatar:hover { border-color: <?php echo $templateColor; ?>;}
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
-    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>
+    <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>	
+        
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="full jbg <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="full jbg <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />
@@ -131,9 +131,11 @@ $itemid = JRequest::getCmd('Itemid', '');
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-        );
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}            
+        , function() {
+            // all done            
+            $(document.body).addClass('ready');            
+        });
     </script>
 </body>
 </html>

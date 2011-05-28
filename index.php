@@ -30,6 +30,7 @@ $view = JRequest::getCmd('view', '');
 $layout = JRequest::getCmd('layout', '');
 $task = JRequest::getCmd('task', '');
 $itemid = JRequest::getCmd('Itemid', '');
+$hidemainmenu = JRequest::getInt('hidemainmenu');
 
 ?>
 <!DOCTYPE html>
@@ -42,7 +43,7 @@ $itemid = JRequest::getCmd('Itemid', '');
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">        
+    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">        
     <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
 
     <style>
@@ -66,7 +67,7 @@ $itemid = JRequest::getCmd('Itemid', '');
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if (JRequest::getInt('hidemainmenu')) echo " locked"; ?>">
+<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">
@@ -102,10 +103,10 @@ $itemid = JRequest::getCmd('Itemid', '');
                 <?php if( $currentUser->authorize( array('core.manage','com_installer') ) ): ?>
                 <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
-                    <dd><a href="index.php?option=com_installer">Install</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
+                    <dd><a href="index.php?option=com_installer"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_INSTALL'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=update"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_UPDATE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=manage"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_MANAGE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&view=discover"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_DISCOVER'); ?></a></dd>
                 </dl>
                 <?php endif; ?>
             </nav><!-- /#list-content -->
@@ -138,6 +139,7 @@ $itemid = JRequest::getCmd('Itemid', '');
             <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
         </section><!-- /#content-box -->
     </div><!-- /#content -->
+    
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
@@ -148,14 +150,17 @@ $itemid = JRequest::getCmd('Itemid', '');
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
-        );
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"},
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.min.js"}
+        , function() {
+            // all done            
+            $(document.body).addClass('ready');            
+        });
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",
-            showFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>",
-            closeFilter: "<?php echo JText::_('TPL_MINIMA_SEARCH',true);?>"
+            showFilter: "<?php echo JText::_('TPL_MINIMA_SHOW_FILTER',true);?>",
+            closeFilter: "<?php echo JText::_('TPL_MINIMA_HIDE_FILTER',true);?>"
         });
-    </script>  
+    </script>        
 </body>
 </html>

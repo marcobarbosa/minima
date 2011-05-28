@@ -46,7 +46,7 @@ defined('_JEXEC') or die;
 		<fieldset class="uploadform adminform">
 			<legend><?php echo JText::_('COM_INSTALLER_UPLOAD_PACKAGE_FILE'); ?></legend>
 			<label for="install_package"><?php echo JText::_('COM_INSTALLER_PACKAGE_FILE'); ?></label>
-			<input class="input_box" id="install_package" name="install_package" type="file" size="57" />
+			<input class="input_box" id="install_package" name="install_package" type="file" />
 			<input class="button" type="button" value="<?php echo JText::_('COM_INSTALLER_UPLOAD_AND_INSTALL'); ?>" onclick="Joomla.submitbutton()" />
 		</fieldset>
 		<div class="clr"></div>
