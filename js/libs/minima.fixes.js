@@ -16,15 +16,7 @@ window.addEvent('domready', function() {
 
         language    = MooTools.lang.get('Minima');
 
-    if (subMenu) {
-        subMenu.addClass('minimaTabs');
-        // if we have tabs out of place
-        if(subMenu.hasClass('out') || itemForm) {
-            // position the tabs on the right place
-            subMenu.inject($('content'),'top');            
-        }
-    }    
-
+    
     // change the h2 title dynamically
     if (jformTitle) {
         // set the title of the page with the jform_title
@@ -37,7 +29,7 @@ window.addEvent('domready', function() {
             }
             //fix alias automatically, removing extra chars, all lower cased
             // but only if it's a new content
-            if ($(document.body).hasClass('no-id') && jformAlias) {
+            if (minima.hasClass('no-id') && jformAlias) {
                 jformAlias.set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
             }
         });
@@ -114,7 +106,7 @@ window.addEvent('domready', function() {
         });
 
         // add the filter anchor next to pagetitle
-        $$('.pagetitle').grab(filterAnchor);
+        minima.getElement('.pagetitle').grab(filterAnchor);
         //$$('.pagetitle h2').inject(filterAnchor, 'before');
         
         // hidden to avoid flicker, show it back after done fixing it
