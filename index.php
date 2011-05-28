@@ -106,9 +106,9 @@ $requestVars = array(
                 <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
                     <dd><a href="index.php?option=com_installer"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_INSTALL'); ?></a></dd>
-                    <dd><a href="index.php?option=com_installer&view=update"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_UPDATE'); ?></a></dd>
-                    <dd><a href="index.php?option=com_installer&view=manage"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_MANAGE'); ?></a></dd>
-                    <dd><a href="index.php?option=com_installer&view=discover"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_DISCOVER'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=update"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_UPDATE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=manage"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_MANAGE'); ?></a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=discover"><?php echo JText::_('TPL_MINIMA_EXTENSIONS_DISCOVER'); ?></a></dd>
                 </dl>
                 <?php endif; ?>
             </nav><!-- /#list-content -->
@@ -153,7 +153,7 @@ $requestVars = array(
     <script>
         head.js(
             {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"},
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.min.js"}
+            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}
         , function() {
             // all done            
             $(document.body).addClass('ready');            
