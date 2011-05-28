@@ -65,7 +65,7 @@ $requestVars = array(
     <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>	
         
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.min.js" defer="defer"></script>
     <![endif]-->
 </head>
 <body id="minima" class="full jbg"<?php echo " ".implode(" ", $requestVars); ?>"">

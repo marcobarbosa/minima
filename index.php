@@ -66,7 +66,7 @@ $requestVars = array(
 
     <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>    
 	<!--[if (gte IE 6)&(lte IE 8)]>
-        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
+        <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.min.js" defer="defer"></script>
     <![endif]-->
 </head>
 <body id="minima" class="<?php echo implode(" ", $requestVars); ?>">
