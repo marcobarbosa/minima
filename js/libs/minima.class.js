@@ -16,8 +16,13 @@ var MinimaClass = new Class({
 	element: {
 		systemMessage: null
 	},
+    
+    // minima node
+    minima : null,
 
 	initialize: function(options, elements){
+       // set the main node for DOM selection
+        this.minima = document.id(this.options.minima) || document.id('minima');
     	// Set options
     	this.setOptions(options);
     	// Set elements

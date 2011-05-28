@@ -2,7 +2,7 @@
 /** 
  * @package     Minima
  * @author      Marco Barbosa
- * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
+ * @copyright   Copyright (C) 2011 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -104,9 +104,9 @@ $requestVars = array(
                 <dl>
                     <dt><?php echo JText::_('TPL_MINIMA_EXTENSIONS',true);?></dt>
                     <dd><a href="index.php?option=com_installer">Install</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=update">Update</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=manage">Manage</a></dd>
-                    <dd><a href="index.php?option=com_installer&view=discover">Discover</a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=update">Update</a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=manage">Manage</a></dd>
+                    <dd><a href="index.php?option=com_installer&amp;view=discover">Discover</a></dd>
                 </dl>
                 <?php endif; ?>
             </nav><!-- /#list-content -->

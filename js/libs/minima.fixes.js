@@ -37,9 +37,14 @@ window.addEvent('domready', function() {
         // change while typing it
         jformTitle.addEvent('keyup', function(event){
             // show h2 with the title typed
-            if(jformTitle.get("value") != "") $$('.pagetitle h2').set('html', this.get("value"));
+            if(jformTitle.get("value") != ""){
+                $$('.pagetitle h2').set('html', this.get("value"));
+            }
             //fix alias automatically, removing extra chars, all lower cased
-            $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
+            // but only if it's a new content
+            if ($(document.body).hasClass('noId')) {            
+                $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
+            }
         });
     }; // end jform_title
 
