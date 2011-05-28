@@ -8,7 +8,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
-$app    = JFactory::getApplication();
+$app = JFactory::getApplication();
 
 // template color parameter
 $templateColor = $this->params->get('templateColor');
@@ -20,21 +20,23 @@ if (strrpos($templateColor, "#") === false) $templateColor = "#".$this->params->
 // get the current logged in user
 $currentUser = JFactory::getUser();
 
+// get the current language object
 $lang   = JFactory::getLanguage();
-/*$lang->load('mod_menu', JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);*/
-//$lang->load('mod_menu', JPATH_BASE, $lang->getDefault(), false, false);
 
-// Detecting Active Variables
-$option = JRequest::getCmd('option', '');
-$view = JRequest::getCmd('view', '');
-$layout = JRequest::getCmd('layout', '');
-$task = JRequest::getCmd('task', '');
-$itemid = JRequest::getCmd('Itemid', '');
-$hidemainmenu = JRequest::getInt('hidemainmenu');
+// Mount the body classes
+$requestVars = array(
+                        "option"  => JRequest::getCmd('option', ''), 
+                        "view"    => JRequest::getCmd('view', ''),
+                        "layout"  => JRequest::getCmd('layout', ''),
+                        "task"    => JRequest::getCmd('task', ''),
+                        "itemId"  => JRequest::getCmd('Itemid', ''),                        
+                        "locked"  => JRequest::getInt('hidemainmenu') ? 'locked' : '',
+                        "hasId"   => JRequest::getCmd('id', '') ? 'hasId' : 'noId'
+                    );
 
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo  $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
+<html lang="<?php echo $this->language; ?>" class="no-js" dir="<?php echo  $this->direction; ?>">
 
 <head>
 
@@ -67,7 +69,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/plugins/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="<?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
+<body id="minima" class="<?php echo implode(" ", $requestVars); ?>">
     <?php if (!JRequest::getInt('hidemainmenu')): ?>
         <?php if( $this->countModules('panel') ): ?>
         <div id="panel-wrapper">

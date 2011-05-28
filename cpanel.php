@@ -19,13 +19,16 @@ $lighterColor   = $this->params->get('lighterColor');
 // get the current logged in user
 $currentUser = JFactory::getUser();    
 
-// Detecting Active Variables
-$option = JRequest::getCmd('option', '');
-$view = JRequest::getCmd('view', '');
-$layout = JRequest::getCmd('layout', '');
-$task = JRequest::getCmd('task', '');
-$itemid = JRequest::getCmd('Itemid', '');
-$hidemainmenu = JRequest::getInt('hidemainmenu');
+// Mount the body classes
+$requestVars = array(
+                        "option"  => JRequest::getCmd('option', ''), 
+                        "view"    => JRequest::getCmd('view', ''),
+                        "layout"  => JRequest::getCmd('layout', ''),
+                        "task"    => JRequest::getCmd('task', ''),
+                        "itemId"  => JRequest::getCmd('Itemid', ''),                        
+                        "locked"  => JRequest::getInt('hidemainmenu') ? 'locked' : '',
+                        "hasId"   => JRequest::getCmd('id', '') ? 'hasId' : 'noId'
+                    );
 
 ?>
 
@@ -65,7 +68,7 @@ $hidemainmenu = JRequest::getInt('hidemainmenu');
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="full jbg <?php echo $option." ".$view." ".$layout." ".$task." ".$itemid; if ($hidemainmenu) echo " locked"; ?>">
+<body id="minima" class="full jbg"<?php echo " ".implode(" ", $requestVars); ?>"">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />
