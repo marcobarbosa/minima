@@ -13,49 +13,39 @@ var MinimaTabsClass = new Class({
     },
 
     elements: {
-        'tabs': null,
-        'content': null
+        'tabs'     : null,
+        'content'  : null
     },
         
-    // additional dom elements for processing
-    domElements: {
-        'subMenu': $('submenu'),
-        'itemForm': $('item-form')
-    },
-
     initialize: function(options, elements){
-
         // Set options
         this.setOptions(options);
-
         // Set elements
         this.elements = elements;
-
-        // fix existing tabs        
-        // if we have a #submenu in the DOM
-        if (this.domElements.subMenu) {                
-            // the #submenu should have a .minimaTabs class
-            this.domElements.subMenu.addClass('minima-tabs');
-            // and if we have tabs out of place..
-            if(this.domElements.subMenu.hasClass('out') || this.domElements.itemForm) {                    
-                // ..move them to the right place
-                // which is above the title and toolbar-box
-                this.domElements.subMenu.inject( $('content'),'top' );
-            }
-        } // end of if this.domElements.subMenu
-
     },
 
+    // move outside tabs the proper place
+    moveTabs: function(el) {        
+        // the #submenu should have a .minimaTabs class
+        //this.elements.subMenu.addClass('minima-tabs');            
+        // move the tbas to the right place
+        // which is above the title and toolbar-box
+        el.inject( $('content'),'top' );
+    },
+
+    // shows the first tab content
     showFirst: function() {
         // Show first
         this.elements.content.pick().removeClass('hide');
     },
 
+    // hide all contents
     hideAllContent: function() {
         // Hide all
         this.elements.content.addClass('hide');
     },
 
+    // attaches the tabs actions
     addTabsAction: function() {
         // save the context
         var _this = this;            
