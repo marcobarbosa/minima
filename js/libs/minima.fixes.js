@@ -5,42 +5,40 @@ window.addEvent('domready', function() {
 	// =============================
   
     var 
-        adminlist = $$('.adminlist'),
-        subMenu = $('submenu'),
-        jformTitle = $('jform_title'),
-        itemForm = $('item-form'),
-        minima = $('minima'),
-        filterBar = $('filter-bar'),
-        language = MooTools.lang.get('Minima');
+        minima      = $('minima'),
+        adminlist   = minima.getElement('.adminlist'),
+        subMenu     = $('submenu'),
+        jformTitle  = $('jform_title'),
+        jformAlias  = $('jform_alias'),
+        itemForm    = $('item-form'),        
+        h2Title     = minima.getElement('.pagetitle h2'),
+        filterBar   = $('filter-bar'),
 
-    if (adminlist.length && adminlist.get('id') != 'adminlist') adminlist.set('id','adminlist');
+        language    = MooTools.lang.get('Minima');
 
-    // move tabs to #submenu position
-    if (subMenu) subMenu.addClass('minimaTabs'); 
-
-    // some overrides have tabs that are out of place   
-    if ((subMenu && subMenu.hasClass('out')) || (subMenu && itemForm)) {        
-        // position the tabs on the right place
-        subMenu.inject($('content'),'top');        
-    }; // end of subMenu
-
-    // fix padding when there are no tabs
-    //if (!filterBar  && $$('.adminlist')) $$('.adminlist').addClass('padTop');
+    if (subMenu) {
+        subMenu.addClass('minimaTabs');
+        // if we have tabs out of place
+        if(subMenu.hasClass('out') || itemForm) {
+            // position the tabs on the right place
+            subMenu.inject($('content'),'top');            
+        }
+    }    
 
     // change the h2 title dynamically
     if (jformTitle) {
         // set the title of the page with the jform_title
-        if(jformTitle.get("value") != "") $$('.pagetitle h2').set('html', jformTitle.get("value"));
+        if(jformTitle.get("value") != "") h2Title.set('html', jformTitle.get("value"));
         // change while typing it
         jformTitle.addEvent('keyup', function(event){
             // show h2 with the title typed
             if(jformTitle.get("value") != ""){
-                $$('.pagetitle h2').set('html', this.get("value"));
+               h2Title.set('html', this.get("value"));
             }
             //fix alias automatically, removing extra chars, all lower cased
             // but only if it's a new content
-            if ($(document.body).hasClass('no-id')) {                
-                $('jform_alias').set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
+            if ($(document.body).hasClass('no-id') && jformAlias) {
+                jformAlias.set( 'value', this.get("value").standardize().replace(/\s+/g, '-').replace(/[^-\w]+/g, '').toLowerCase() );
             }
         });
     }; // end jform_title
