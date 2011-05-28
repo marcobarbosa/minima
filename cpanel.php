@@ -137,7 +137,7 @@ $requestVars = array(
             {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}            
         , function() {
             // all done            
-            $(document.body).addClass('ready');            
+            $('minima').addClass('ready');          
         });
     </script>
 </body>
