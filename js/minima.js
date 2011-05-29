@@ -234,8 +234,9 @@ window.addEvent('domready', function() {
 
         // Open the panel slide
         openPanel.addEvents({
-            'click': function(){
-                minima.getElements("#shortcuts .parent").getChildren('.sub').dissolve({duration: 200}).removeClass('hover');
+            'click': function(){                
+                //minima.getElements("#shortcuts .parent").getChildren('.sub').dissolve({duration: 200}).removeClass('hover');
+                minima.getElements("#shortcuts .parent").removeClass('hover');
         		Panel.panel.toggle();
             }/*,
             'outerClick' : function(){
@@ -253,7 +254,7 @@ window.addEvent('domready', function() {
             Panel.panel.toggle();
         });
 
-    }// end of if(tabsWrapper)
+    }; // end of if(tabsWrapper)
 
 
     // dropdown menu
@@ -267,7 +268,7 @@ window.addEvent('domready', function() {
         extra.set('class','inactive');
         listWrapper.removeClass('active');
         extraLists.dissolve();            
-    }
+    };
 
     // turn off list when click outside
     listWrapper.addEvent('outerClick', function(){
