@@ -1043,7 +1043,7 @@ div.pagetitle                           {
 
 div.pagetitle h2                        {
                                             color: #297BA2;
-                                            font: normal 26px/48px 'Nobile', arial, serif;
+                                            font: normal 24px/48px 'Nobile', arial, serif;
                                             margin: 0;
                                             padding: 0;
                                             text-shadow: 1px 1px 0 #ddd;
@@ -1051,7 +1051,7 @@ div.pagetitle h2                        {
 
     .contentpane h2                     {   text-shadow: 1px 1px 0 #fff!important; }
 
-.locked .pagetitle h2                   {   font-size: 26px; line-height: 44px; padding-top: 5px; }
+.locked .pagetitle h2                   {   font-size: 24px; line-height: 44px; padding-top: 5px; }
     .icon-48-content-category-add h2    {   font-size: 24px!important; line-height: 1.5; }
 div.pagetitle span                      {   color: #666; }
 
