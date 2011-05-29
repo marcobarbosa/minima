@@ -47,7 +47,7 @@ $loggeduser = JFactory::getUser();
 
 			<select name="filter_group_id" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('COM_USERS_FILTER_USERGROUP');?></option>
-			<?php if (defined('MOLAJO_ACL')) : ?>
+			<?php if (defined('FORKITO_ACL')) : ?>
 				<?php echo JHtml::_('select.options', UsersHelper::getGroups(), 'id', 'text', $this->state->get('filter.group_id'));?>
 			<?php else: ?>
 				<?php echo JHtml::_('select.options', UsersHelper::getGroups(), 'value', 'text', $this->state->get('filter.group_id'));?>
@@ -76,7 +76,7 @@ $loggeduser = JFactory::getUser();
 					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_ACTIVATED', 'a.activation', $listDirn, $listOrder); ?>
 				</th>
 				<th class="nowrap" width="10%">
-				<?php if (defined('MOLAJO_ACL')) : ?>
+				<?php if (defined('FORKITO_ACL')) : ?>
 					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_GROUPS', 'group_names', $listDirn, $listOrder); ?>
 				<?php else: ?>
 					<?php echo JText::_('COM_USERS_HEADING_GROUPS'); ?>
@@ -115,7 +115,7 @@ $loggeduser = JFactory::getUser();
 					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_ACTIVATED', 'a.activation', $listDirn, $listOrder); ?>
 				</th>
 				<th class="nowrap" width="10%">
-				<?php if (defined('MOLAJO_ACL')) : ?>
+				<?php if (defined('FORKITO_ACL')) : ?>
 					<?php echo JHtml::_('grid.sort', 'COM_USERS_HEADING_GROUPS', 'group_names', $listDirn, $listOrder); ?>
 				<?php else: ?>
 					<?php echo JText::_('COM_USERS_HEADING_GROUPS'); ?>

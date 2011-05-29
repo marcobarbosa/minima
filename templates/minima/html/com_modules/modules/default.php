@@ -74,7 +74,7 @@ $saveOrder  = $listOrder == 'ordering';
             </select>
 
 
-			<?php if (!defined('MOLAJO_ACL')) : ?>
+			<?php if (!defined('FORKITO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
                 <option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
                 <?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
@@ -118,7 +118,7 @@ $saveOrder  = $listOrder == 'ordering';
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'COM_MODULES_HEADING_PAGES', 'pages', $listDirn, $listOrder); ?>
                 </th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
                 </th>
@@ -158,7 +158,7 @@ $saveOrder  = $listOrder == 'ordering';
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort',  'COM_MODULES_HEADING_PAGES', 'pages', $listDirn, $listOrder); ?>
                 </th>
-                <?php if (!defined('MOLAJO_ACL')) : ?>
+                <?php if (!defined('FORKITO_ACL')) : ?>
                 <th width="10%">
                     <?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ACCESS', 'access', $listDirn, $listOrder); ?>
                 </th>
@@ -229,7 +229,7 @@ $saveOrder  = $listOrder == 'ordering';
                 <td class="center">
                     <?php echo $item->pages; ?>
                 </td>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
                 <td class="center">
                     <?php echo $this->escape($item->access_level); ?>
                 </td>

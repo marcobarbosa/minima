@@ -32,7 +32,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		</p>
 
 		<p>
-		<?php if (!defined('MOLAJO_ACL')) : ?>
+		<?php if (!defined('FORKITO_ACL')) : ?>
 			<select name="filter_access" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
@@ -63,7 +63,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 				</th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
 				<th width="15%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
 				</th>
@@ -88,7 +88,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 				</th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
 				<th width="15%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
 				</th>
@@ -115,7 +115,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<a class="pointer" onclick="if (window.parent) window.parent.<?php echo $this->escape($function);?>('<?php echo $item->id; ?>', '<?php echo $this->escape(addslashes($item->title)); ?>', '<?php echo $this->escape($item->catid); ?>');">
 						<?php echo $this->escape($item->title); ?></a>
 				</td>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
 				<td class="center">
 					<?php echo $this->escape($item->access_level); ?>
 				</td>

@@ -46,7 +46,7 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('archived' => false)), 'value', 'text', $this->state->get('filter.published'), true);?>
 			</select>
-			<?php if (!defined('MOLAJO_ACL')) : ?>
+			<?php if (!defined('FORKITO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
@@ -79,7 +79,7 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 						<?php echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'items.saveorder'); ?>
 					<?php endif; ?>
 				</th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ACCESS', 'access_level', $listDirn, $listOrder); ?>
 				</th>
@@ -159,7 +159,7 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 						<?php echo $orderkey + 1;?>
 					<?php endif; ?>
 				</td>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
 				<td class="center">
 					<?php echo $this->escape($item->access_level); ?>
 				</td>

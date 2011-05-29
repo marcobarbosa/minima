@@ -108,7 +108,7 @@ JText::script('COM_USERS_GROUPS_CONFIRM_DELETE');
 					<?php endif; ?>
 				</td>
 				<td>
-				<?php $plus = defined('MOLAJO_ACL') ? 2 : 0 ?>
+				<?php $plus = defined('FORKITO_ACL') ? 2 : 0 ?>
 					<?php echo str_repeat('<span class="gi">|&mdash;</span>', $item->level + $plus) ?>
 					<?php if ($canEdit && $item->id > 0 && $item->id != 999999)  : ?>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&task=group.edit&id='.$item->id);?>">

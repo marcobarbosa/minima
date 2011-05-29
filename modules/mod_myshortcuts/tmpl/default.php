@@ -122,7 +122,7 @@ $lang->load('mod_menu', JPATH_ADMINISTRATOR, null, true);
 					<a href="<?php echo JRoute::_('index.php?option=com_users&task=group.add'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_ADD_GROUP'); ?></a>
 				</li>
 				</ul>
-			<?php if (!defined('MOLAJO_ACL')) : ?>			
+			<?php if (!defined('FORKITO_ACL')) : ?>			
 			<ul class="row">
 				<li>
 					<a class="section" href="<?php echo JRoute::_('index.php?option=com_users&view=levels#content-box'); ?>"><?php echo JText::_('MOD_MENU_COM_USERS_LEVELS'); ?></a>

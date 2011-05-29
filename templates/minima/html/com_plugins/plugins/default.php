@@ -38,7 +38,7 @@ $saveOrder	= $listOrder == 'ordering';
 				<option value=""><?php echo JText::_('COM_PLUGINS_OPTION_FOLDER');?></option>
 				<?php echo JHtml::_('select.options', PluginsHelper::folderOptions(), 'value', 'text', $this->state->get('filter.folder'));?>
 			</select>
-			<?php if (!defined('MOLAJO_ACL')) : ?>
+			<?php if (!defined('FORKITO_ACL')) : ?>
             <select name="filter_access" class="inputbox" onchange="this.form.submit()">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_ACCESS');?></option>
 				<?php echo JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'));?>
@@ -76,7 +76,7 @@ $saveOrder	= $listOrder == 'ordering';
 				<th class="nowrap" width="10%">
 					<?php echo JHtml::_('grid.sort', 'COM_PLUGINS_ELEMENT_HEADING', 'element', $listDirn, $listOrder); ?>
 				</th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
                 <th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JGrid_Heading_Access', 'access', $listDirn, $listOrder); ?>
 				</th>
@@ -111,7 +111,7 @@ $saveOrder	= $listOrder == 'ordering';
 				<th class="nowrap" width="10%">
 					<?php echo JHTML::_('grid.sort', 'COM_PLUGINS_ELEMENT_HEADING', 'element', $listDirn, $listOrder); ?>
 				</th>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
                 <th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JGrid_Heading_Access', 'access', $listDirn, $listOrder); ?>
 				</th>
@@ -171,7 +171,7 @@ $saveOrder	= $listOrder == 'ordering';
 				<td class="nowrap center">
 					<?php echo $this->escape($item->element);?>
 				</td>
-				<?php if (!defined('MOLAJO_ACL')) : ?>
+				<?php if (!defined('FORKITO_ACL')) : ?>
                 <td class="center">
 					<?php echo $this->escape($item->access_level); ?>
 				</td>
