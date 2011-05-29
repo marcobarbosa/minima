@@ -161,7 +161,7 @@ $requestVars = array(
         MooTools.lang.set('en-US', 'Minima', {
             actionBtn : "<?php echo JText::_('TPL_MINIMA_ACTIONS',true);?>",
             showFilter: "<?php echo JText::_('TPL_MINIMA_SHOW_FILTER',true);?>",
-            closeFilter: "<?php echo JText::_('TPL_MINIMA_HIDE_FILTER',true);?>"
+            hideFilter: "<?php echo JText::_('TPL_MINIMA_HIDE_FILTER',true);?>"
         });
     </script>        
 </body>

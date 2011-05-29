@@ -13,8 +13,8 @@ var MinimaTabsClass = new Class({
     },
 
     elements: {
-        'tabs'     : null,
-        'content'  : null
+        tabs     : null,
+        content  : null
     },
         
     initialize: function(options, elements){

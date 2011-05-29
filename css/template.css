@@ -734,7 +734,7 @@ BODY.error                              {   background: #ccc; }
                                             font-size: 13px;
                                             font-weight: bold;
                                             margin: -6px 0;
-                                            padding-right: 25px;               
+                                            padding-right: 25px;
                                         }
 
 #open-filter:hover                      {   background-position: right 6px; }
