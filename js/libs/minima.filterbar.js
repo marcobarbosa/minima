@@ -38,8 +38,6 @@ var MinimaFilterBarClass = new Class({
         this.elements = elements;
         // set the labels        
         this.setLabelsLanguage(lang['hideFilter'], lang['showFilter']);                
-        // create the new elements necessary to work
-        this.createSlideElements();
     },
 
     // set the language
@@ -106,6 +104,8 @@ var MinimaFilterBarClass = new Class({
 
     doFilterBar: function() {        
         var _this = this;
+        // create the new elements necessary to work
+        this.createSlideElements();
         // move anchor to proper place
         this.fixAnchor();
         // attach the listener to the inputs
