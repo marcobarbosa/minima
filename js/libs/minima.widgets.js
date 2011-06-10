@@ -16,6 +16,8 @@ var MinimaWidgetsClass = new Class({
 
     // minima node
     minima : null,
+    spinner: null,
+    timeout: 0,
 
     // columns elements caching
     columns: {},
@@ -31,6 +33,10 @@ var MinimaWidgetsClass = new Class({
         this.columns = this.minima.getElements('.col');
         // if we have any column to work with..
         if (this.columns.length) {
+            // create a spinner element
+            this.spinner = new Spinner();
+            // show the spinner
+            this.spinner.show(true);            
             // cache the boxes elements
             this.boxes = this.minima.getElements('.box');            
             // initialize LocalStorage
@@ -38,9 +44,8 @@ var MinimaWidgetsClass = new Class({
             // load and prepare the saved positions
             this.loadPositions();
             // attach the drag and drop events
-            this.attachDrag();
-            
-        }
+            this.attachDrag();            
+        } 
     },
     
     loadPositions: function() {
@@ -50,7 +55,7 @@ var MinimaWidgetsClass = new Class({
         if (typeOf(widgets) !== 'array') return false;
         // storage at first time
         if (widgets.length === 0) this.storagePositions();        
-        // TODO must add a spinner loader here
+        // show the loading spinner
         // loop through each column and fix it
         this.columns.each(function(position){
             widgets.each(function(widget, index){
@@ -60,11 +65,15 @@ var MinimaWidgetsClass = new Class({
             });
         });
         // all done, show them
+        // hide the spinner
+        this.spinner.hide(true); 
+        // display the widgets one by one
         this.displayWidgets();
     },
 
     // animates the transition
     displayWidgets: function() {                
+        // fade in the boxes
         this.boxes.each(function(el, i) {
             setTimeout(function() {                
                 el.fade('in');
