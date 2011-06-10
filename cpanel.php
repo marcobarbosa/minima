@@ -2,6 +2,7 @@
 /** 
  * @package     Minima
  * @author      Marco Barbosa
+ * @author      Júlio Pontes
  * @copyright   Copyright (C) 2011 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -68,7 +69,7 @@ $requestVars = array(
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.min.js" defer="defer"></script>
     <![endif]-->
 </head>
-<body id="minima" class="full jbg"<?php echo " ".implode(" ", $requestVars); ?>"">
+<body id="minima" class="full jbg <?php echo implode(" ", $requestVars); ?>">
     <?php if( $this->countModules('panel') ): ?>
     <div id="panel-wrapper">
         <jdoc:include type="modules" name="panel" />
@@ -134,7 +135,9 @@ $requestVars = array(
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"}            
+            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"},
+            {localstorage: "templates/<?php echo $this->template ?>/js/plugins/localstorage.js"},
+            {widgets: "templates/<?php echo $this->template ?>/js/libs/minima.widgets.js"}
         , function() {
             // all done            
             $('minima').addClass('ready');          
