@@ -43,7 +43,7 @@ $requestVars = array(
 
     <jdoc:include type="head" />
 
-    <link href="templates/<?php echo $this->template ?>/css/template.min.css" rel="stylesheet">    
+    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">    
     <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
 
     <style>
