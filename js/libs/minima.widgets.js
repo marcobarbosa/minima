@@ -44,10 +44,12 @@ var MinimaWidgetsClass = new Class({
         if (typeOf(widgets) != 'array') return false;
         // ...
         if (widgets.length == 0) this.storagePositions();        
+        // TODO must add a spinner here to load one by one
         // loop through each column and fix it
         this.columns.each(function(position){
             widgets.each(function(widget){
                 if (widget.position == position.id) {
+                    // TODO animate the grab with a small delay
                     $(position.id).grab($(widget.id));
                 }
             });
