@@ -417,6 +417,39 @@ footer .version                         {   margin: 10px; text-align: center; }
 .box:hover .box-top span, .box-top:hover span
                                         {   text-shadow: 1px 1px 0 #333; }
 
+.box-top nav                            {   float: right; position: relative;}
+
+.box-top nav span                       {   
+                                            background: transparent url('../images/icons.png') center -253px;
+                                            display: block; 
+                                            cursor: pointer;
+                                            height: 16px;
+                                            text-indent: -9999px;
+                                            width: 32px;                                             
+                                        }
+
+    .box-top nav span:hover             {
+                                            background-position: center -214px;
+                                        }
+
+    .box-top nav span.hover             {
+                                            background-position: center -214px;
+                                        }
+
+.box-top nav ul                         {   display: none; position: absolute; padding: 5px; }
+
+    .box-top nav.active ul              {   display: block;}
+
+    .box-top nav ul li                  {   
+                                            background: #fff;
+                                            height: 25px;
+                                            line-height: 25px;
+                                            padding: 0 8px;
+                                            border-bottom: 1px solid #eee;
+                                        }
+        .box-top nav ul li a            {   display: block; }
+
+
 /*----------------------------------------------------------------*/                                     
 
 /*

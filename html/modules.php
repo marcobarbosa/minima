@@ -20,14 +20,14 @@ function modChrome_widget($module, &$params, &$attribs)
         <div id="widget-<?php echo $module->id ?>" class="box">
             <div class="box-top">
                 <span><?php echo $module->title; ?></span>
-                <!--<nav>
+                <nav>
                     <span class="box-icon"></span>                
                     <ul>
                         <li><a href="javascript:MinimaWidget.config('<?php echo $module->id ?>');">Settings</a></li>
                         <li><a href="#">Hide</a></li>
                         <li><a href="#">Close</a></li>
                     </ul>
-                </nav>-->
+                </nav>
             </div>
             <div class="box-content"><?php echo $module->content; ?></div>
         </div>
