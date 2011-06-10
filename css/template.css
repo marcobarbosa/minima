@@ -370,20 +370,12 @@ footer .version                         {   margin: 10px; text-align: center; }
                                                 0 15px 10px -10px rgba(0, 0, 0, 0.3), 
                                                 0 1px 4px rgba(0, 0, 0, 0.3),
                                                 0 0 40px rgba(0, 0, 0, 0.1) inset;
-                                            margin-bottom: 15px;
-                                            -webkit-transition: box-shadow 0.2s ease-in-out;
-                                            -moz-transition: box-shadow 0.2s ease-in-out;
-                                            -o-transition: box-shadow 0.2s ease-in-out;
-                                            transition: box-shadow 0.2s ease-in-out;
+                                            margin-bottom: 15px;                                            
                                             display: block;
                                             opacity: 0;
                                         }
 
     .no-js .box                         {   opacity: 1; }
-
-.com_cpanel .spinner                    {   }
-
-    .no-js .com_cpanel .spinner         {   display: none; }
 
 .box-content                            {
                                             background: #dfdfdf;
