@@ -42,7 +42,7 @@ var MinimaWidgetsClass = new Class({
         widgets = this.storage.get('widgets');
         // get out if it's not set
         if (typeOf(widgets) != 'array') return false;
-        // ...
+        // storage at first time
         if (widgets.length == 0) this.storagePositions();        
         // TODO must add a spinner here to load one by one
         // loop through each column and fix it
@@ -76,7 +76,7 @@ var MinimaWidgetsClass = new Class({
             handle : '.box-top',
             opacity: 0.6,
             revert: {
-                duration: 300,
+                duration: 500,
                 trasition: 'elastic:out'
             },
             onComplete: function(widget){            
@@ -85,6 +85,7 @@ var MinimaWidgetsClass = new Class({
         });
     },
     
+    // Config action to open a modal cconfiguration of a module
     config: function(id) {
         var url = 'index.php?option=com_modules&client_id=0&task=module.edit&id='+id+'&tmpl=component&view=module&layout=modal';
         //console.log(url);        
