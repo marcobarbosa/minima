@@ -1,7 +1,8 @@
 /** 
  * @package     Minima
  * @author      Júlio Pontes
- * @copyright   Copyright (C) 2010 Júlio Pontes. All rights reserved.
+ * @author      Marco Barbosa
+ * @copyright   Copyright (C) 2011 Júlio Pontes. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -18,6 +19,8 @@ var MinimaWidgetsClass = new Class({
 
     // columns elements caching
     columns: {},
+    // boxes elements caching
+    boxes: {},
     
     initialize: function() {        
         // reset the localStorage
@@ -28,12 +31,15 @@ var MinimaWidgetsClass = new Class({
         this.columns = this.minima.getElements('.col');
         // if we have any column to work with..
         if (this.columns.length) {
+            // cache the boxes elements
+            this.boxes = this.minima.getElements('.box');            
             // initialize LocalStorage
             this.storage = new LocalStorage();
             // load and prepare the saved positions
             this.loadPositions();
             // attach the drag and drop events
             this.attachDrag();
+            
         }
     },
     
@@ -41,18 +47,28 @@ var MinimaWidgetsClass = new Class({
         // get widgets from the storage
         widgets = this.storage.get('widgets');
         // get out if it's not set
-        if (typeOf(widgets) != 'array') return false;
+        if (typeOf(widgets) !== 'array') return false;
         // storage at first time
-        if (widgets.length == 0) this.storagePositions();        
-        // TODO must add a spinner here to load one by one
+        if (widgets.length === 0) this.storagePositions();        
+        // TODO must add a spinner loader here
         // loop through each column and fix it
         this.columns.each(function(position){
-            widgets.each(function(widget){
-                if (widget.position == position.id) {
-                    // TODO animate the grab with a small delay
+            widgets.each(function(widget, index){
+                if (widget.position == position.id) {                    
                     $(position.id).grab($(widget.id));
                 }
             });
+        });
+        // all done, show them
+        this.displayWidgets();
+    },
+
+    // animates the transition
+    displayWidgets: function() {                
+        this.boxes.each(function(el, i) {
+            setTimeout(function() {                
+                el.fade('in');
+            }, 400 * i);
         });
     },
     

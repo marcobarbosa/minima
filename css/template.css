@@ -356,7 +356,11 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             -moz-transition: all 0.2s ease-in-out;
                                             -o-transition: all 0.2s ease-in-out;
                                             transition: all 0.2s ease-in-out;
+                                            display: block;
+                                            opacity: 0;
                                         }
+
+    .no-js .box                         {   opacity: 1;}
         
 
 .box-content                            {
