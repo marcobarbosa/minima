@@ -1843,7 +1843,8 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                                             border-radius: 6px;
                                         }
 
-    .config-option-list li input, .config-option-list li select
+    .config-option-list li input, 
+    .config-option-list li select
                                         {   padding: 4px!important; }
 
         .config-option-list li,
