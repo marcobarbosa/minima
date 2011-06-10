@@ -135,7 +135,7 @@ $requestVars = array(
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.min.js"},
+            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
             {localstorage: "templates/<?php echo $this->template ?>/js/plugins/localstorage.js"},
             {widgets: "templates/<?php echo $this->template ?>/js/libs/minima.widgets.js"}
         , function() {

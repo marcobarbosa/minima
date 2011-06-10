@@ -76,7 +76,7 @@ var MinimaWidgetsClass = new Class({
             handle : '.box-top',
             opacity: 0.6,
             revert: {
-                duration: 500,
+                duration: 300,
                 trasition: 'elastic:out'
             },
             onComplete: function(widget){            

@@ -36,8 +36,10 @@ var MinimaFilterBarClass = new Class({
         this.setOptions(options);
         // set elements
         this.elements = elements;
-        // set the labels        
-        this.setLabelsLanguage(lang['hideFilter'], lang['showFilter']);                
+        // set the labels
+        if (lang.length) {
+            this.setLabelsLanguage(lang['hideFilter'], lang['showFilter']);                
+        }
     },
 
     // set the language
