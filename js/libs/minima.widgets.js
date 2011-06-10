@@ -34,9 +34,9 @@ var MinimaWidgetsClass = new Class({
         // if we have any column to work with..
         if (this.columns.length) {
             // create a spinner element
-            this.spinner = new Spinner();
+            this.spinner = new Spinner( $('content-cpanel'));
             // show the spinner
-            this.spinner.show(true);            
+            this.spinner.show(true);
             // cache the boxes elements
             this.boxes = this.minima.getElements('.box');            
             // initialize LocalStorage

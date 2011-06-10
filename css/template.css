@@ -325,6 +325,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             padding: 0 20px;
                                             max-width: 1140px;
                                             margin: 0 auto;
+                                            position: relative;
                                             width: 95%;
                                         }
 
@@ -334,13 +335,9 @@ footer .version                         {   margin: 10px; text-align: center; }
 #widgets-last                           {   width: 48.1%; margin-right: 0;}
 
 .spinner                                {
-                                            position: absolute;
-                                            /*background: #fff;
-                                            opacity: 0.9;
-                                            filter: alpha(opacity=90);
-                                            -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);*/
+                                            position: absolute;                                            
                                             z-index: 999;
-                                            
+                                            top: 25%!important;
                                         }
 
     .spinner-msg                        {
@@ -352,7 +349,7 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             background: url('../images/spinner.gif') no-repeat;
                                             width: 24px;
                                             height: 24px;
-                                            margin: 0 auto;
+                                            margin: 0 auto;                                            
                                         }
 
 /*----------------------------------------------------------------*/
