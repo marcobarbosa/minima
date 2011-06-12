@@ -77,7 +77,7 @@ var MinimaWidgetsClass = new Class({
         this.boxes.each(function(el, i) {
             setTimeout(function() {                
                 el.fade('in');
-            }, 400 * i);
+            }, 400 * (i * 1.5));
         });
     },
     
