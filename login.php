@@ -29,6 +29,9 @@ $app = JFactory::getApplication();
 
     <jdoc:include type="head" />
 
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.reset.css" rel="stylesheet" type="text/css">    
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.forms.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">

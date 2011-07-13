@@ -18,7 +18,7 @@
     $extend(Selectors.Pseudo,{visible:function(){if(this.getStyle("visibility")!="hidden"&&this.isVisible()&&this.isDisplayed()){return this}}});
 
     // toggle for reveal or dissolve
-    Element.implement('toggleReveal', function(el, options) {        
+    Element.implement('toggleReveal', function(el, options) {
         return el.isDisplayed() ? el.dissolve(options) : el.reveal(options);
     });
     
@@ -139,7 +139,7 @@ window.addEvent('domready', function() {
                 'content' : $('tabs').getChildren('.panelform')
             });
 
-        if(subMenu.hasClass('out')) {
+        if (subMenu.hasClass('out')) {
             MinimaTabsHorizontal.moveTabs(subMenu);   
         }
 
