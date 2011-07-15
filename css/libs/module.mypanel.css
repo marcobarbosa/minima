@@ -1,0 +1,83 @@
+
+#panel                                  {
+                                            height: 290px;
+                                            margin: 0 auto;
+                                            overflow: auto; overflow-x: hidden; overflow-y: hidden;
+                                            position: relative;
+                                            width: 900px; padding: 25px 25px 0;
+                                        }
+
+#panel-list                             {   height: 290px; overflow: hidden; }
+
+#panel-list,
+#panel-pagination                       {
+                                            list-style: none;
+                                            margin: 10px auto; padding: 0;
+                                            width: 2000px;
+                                        }
+
+    #panel-pagination                   {   width: 50%; position: absolute; top: -5px; padding: 0 46%;}
+        #panel-pagination li            {
+                                            color: #ccc; cursor: pointer;
+                                            font-size: 42px; font-weight: bold; font-family: Georgia;
+                                            line-height: 0;
+                                            float: left; margin-right: 2px;
+                                        }
+
+        #panel-pagination .current      {  color: #fff; }
+
+
+    #panel-list li                      {   height: 85px; float: left; margin: 5px; width: 290px; }
+
+        #panel-list li a                {
+                                            -moz-border-radius: 6px;
+                                            -webkit-border-radius: 6px;
+                                            border-radius: 6px;
+                                            color: #fff;
+                                            font-weight: normal;
+                                            font-size: 18px;
+                                            display: block;
+                                            height: 70px;
+                                            margin: 0 auto;
+                                            padding-left: 70px; padding-top: 10px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis-word;
+                                            width: 176px;
+                                        }
+
+            #panel-list li a:hover      {   
+                                            -moz-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+                                            -webkit-box-reflect: below 3px -webkit-gradient(linear, left top, left bottom, from(
+                                                transparent), color-stop(.7, transparent), to(rgba(255,255,255,0.5)));
+                                            text-decoration: none; 
+                                            text-shadow: 1px 1px 0 #444; 
+                                        }
+
+            #panel-list li a:active     {   position: relative; top: 2px; }
+
+            #panel-list li.ext a        {
+                                            background-image: none;
+                                            padding-left: 0;
+                                            width: 256px;
+                                        }
+
+            #panel-list li.ext a img    {
+                                            float: left;
+                                            padding: 12px 12px 0 32px;                                            
+                                        }
+
+#panel-list li .extension-desc          {
+                                            font-size: 11px;
+                                            font-weight: normal;
+                                            display: block;
+                                            letter-spacing: 0.5px;
+                                            padding: 5px 5px 5px 3px;
+                                            opacity: 0.6;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis-word;
+                                        }
+
+#panel-list li a:hover .extension-desc  {   opacity: 1; }
+

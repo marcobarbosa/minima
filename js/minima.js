@@ -299,8 +299,12 @@ window.addEvent('domready', function() {
     // dashboard icons actions
     if (minima.hasClass('com_cpanel')) {        
         minima.getElements('.box-icon').addEvent('click', function() {        
-            this.toggleClass('hover').getParent('nav').toggleReveal(this.getNext('ul'));
+            this.toggleClass('hover').getParent('nav').toggleReveal(this.getNext('ul'), { duration: 200});
         });
+        minima.getElements('.box-icon').addEvent('outerClick', function(){
+            //this.toggleClass('hover').getParent('nav').dissolve();
+            //this.getParent('nav').getNext('ul').dissolve();
+    }); 
     }
 
 });

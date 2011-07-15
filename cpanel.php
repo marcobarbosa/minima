@@ -46,7 +46,8 @@ $requestVars = array(
     <link href="templates/<?php echo $this->template ?>/css/libs/template.reset.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.shortcuts.css" rel="stylesheet">
-
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.cpanel.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/module.mypanel.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">
     <!--<link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">-->
     
@@ -127,7 +128,7 @@ $requestVars = array(
         <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
         <section id="widgets-first" class="col">
             <jdoc:include type="modules" name="widgets-first" style="widget" />
-        </section><!-- /#widgets-first -->
+        </section><!-- /#widgets-first -->        
         <section id="widgets-last" class="col">
             <jdoc:include type="modules" name="widgets-last" style="widget" />
         </section><!-- /#widgets-last -->
@@ -135,18 +136,18 @@ $requestVars = array(
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
-            <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
+            <span class="version"><?php echo JVERSION; ?></span>
         </p>
         <jdoc:include type="modules" name="footer" style="none"  />
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"},
-            {localstorage: "templates/<?php echo $this->template ?>/js/plugins/localstorage.js"},
-            {widgets: "templates/<?php echo $this->template ?>/js/libs/minima.widgets.js"}
+            { minima: "templates/<?php echo $this->template ?>/js/minima.js" },
+            { localStorage: "templates/<?php echo $this->template ?>/js/plugins/localstorage.js" },
+            { widgets: "templates/<?php echo $this->template ?>/js/libs/minima.widgets.js" }
         , function() {
             // all done            
-            $('minima').addClass('ready');          
+            $('minima').addClass('ready');
         });
     </script>
 </body>

@@ -45,8 +45,14 @@ $requestVars = array(
 
     <jdoc:include type="head" />
 
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.reset.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.shortcuts.css" rel="stylesheet">
+
     <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/ipad.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">
+    <!--<link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">-->
+    
+    <!--<link href="templates/<?php echo $this->template ?>/css/tablet.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">-->
 
     <style>
         #panel li a:hover,.box-top { background-color: <?php echo $templateColor; ?>; }
@@ -145,7 +151,7 @@ $requestVars = array(
     <footer>
         <p class="copyright">
             <a href="http://www.joomla.org">Joomla!</a>
-            <span class="version"><?php echo  JText::_('JVERSION') ?> <?php echo  JVERSION; ?></span>
+            <span class="version"><?php echo JVERSION; ?></span>
             <a href="#minima" id="topLink"><?php echo JText::_('TPL_MINIMA_TOP'); ?></a>
         </p>
         <jdoc:include type="modules" name="footer" style="none" />        
