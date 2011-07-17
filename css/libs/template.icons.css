@@ -1,19 +1,5 @@
 /* JGRID STYLES
 ====================================================================================== */
-/* Admin backend grid table elements */
-.jgrid span                             {   background: url(../images/admin/admin.png) no-repeat top left; }
-
-a.jgrid:hover                           {   text-decoration: none; }
-
-.jgrid span.state,
-a.move_up, span.move_up, a.move_down, span.move_down, a.grid_false, a.grid_true, a.grid_trash
-                                        {
-                                            display: inline-block;
-                                            height: 16px;
-                                            width: 16px;
-                                        }
-a.move_up, span.move_up, a.move_down, span.move_down, a.grid_false, a.grid_true, a.grid_trash
-                                        {   text-indent: -1000em; background: url(../images/admin/admin.png) no-repeat top left; }
 
 .jgrid span.text                        {   display:none; }
 .jgrid span.archive                     {   background-position: 0 -402px;  }
@@ -62,10 +48,7 @@ span.move_up                            {   background-position: 0 -888px;  }
 
 /* ICONS
 ====================================================================================== */
-#panel li a                             {
-                                            background-image: url(../images/header/icon-48.png);
-                                            background-repeat: no-repeat;
-                                        }
+
 .icon-16-alert                          {   background-position: 4px -4px;   }
 .icon-16-apply                          {   background-position: 4px -42px;  }
 .icon-16-archive                        {   background-position: 4px -88px;  }
@@ -193,11 +176,6 @@ span.move_up                            {   background-position: 0 -888px;  }
 /*
  * HEADER ICON STYLES
  */
-.pagetitle,
-#cpanel li a                            {
-                                            background-image: url('../images/header/icon-48.png');
-                                            background-repeat: no-repeat;
-                                        }
 
 .icon-48-alert                          {   background-position: 10px 5px; }
 

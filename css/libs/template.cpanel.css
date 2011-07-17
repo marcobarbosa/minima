@@ -16,6 +16,11 @@
 	        								width: 48.1%;
 	        							}
 
+            .onDrag .col                {
+                                            width: 48%;
+                                            border: 1px dashed #ccc;        
+                                        }
+
 #widgets-first                          { }
 #widgets-last                           { margin-right: 0; }
 

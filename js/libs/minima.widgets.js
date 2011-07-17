@@ -104,7 +104,14 @@ var MinimaWidgetsClass = new Class({
                 duration: 500,
                 trasition: 'elastic:out'
             },
-            onComplete: function(widget){            
+            onStart: function() {
+                // add class to body to tell it's dragging
+                minima.addClass('onDrag');
+            },
+            onComplete: function(widget) {
+                // not dragging anymore
+                minima.removeClass('onDrag');
+                // save the positions after dropping
                 that.storagePositions();
             }
         });
