@@ -438,7 +438,6 @@ footer .version                         {   margin: 10px; text-align: center; }
                                             position:relative;
                                             padding: 3px 0;
                                             width: 100%;
-                                            z-index: 10;
                                         }
 
     #shortcuts ul                       {
@@ -545,7 +544,7 @@ footer .version                         {   margin: 10px; text-align: center; }
 #shortcuts .sub ul                      {   
                                             margin: 0; 
                                             padding: 0 10px 10px; 
-                                            float: left;                                
+                                            float: left;  
                                         }
 
     #shortcuts .sub ul li               {   
