@@ -51,8 +51,8 @@ $requestVars = array(
     <link href="templates/<?php echo $this->template ?>/css/libs/module.mypanel.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.forms.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">
-    
+    <link href="templates/<?php echo $this->template ?>/css/libs/component.menu.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">    
     
     <!--<link href="templates/<?php echo $this->template ?>/css/tablet.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">-->
 

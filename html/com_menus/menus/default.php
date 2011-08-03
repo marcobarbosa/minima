@@ -32,131 +32,57 @@ $listDirn	= $this->state->get('list.direction');
 <?php if( $this->items ): ?>
 <form action="<?php echo JRoute::_('index.php?option=com_menus&view=menus');?>" method="post" name="adminForm" id="adminForm">
 <!--<?php if( $this->pagination->total > 0 ): ?><div id="pagination-top"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>-->
-	<table class="adminlist">
-		<thead>
-			<tr>
-				<th width="1%" rowspan="2">
-					<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
-				</th>
-				<th rowspan="2%">
-					<?php echo JHtml::_('grid.sort',  'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
-				</th>
-				<th width="30%" colspan="3">
-					<?php echo JText::_('COM_MENUS_HEADING_NUMBER_MENU_ITEMS'); ?>
-				</th>
-				<th width="20%" rowspan="2">
-					<?php echo JText::_('COM_MENUS_HEADING_LINKED_MODULES'); ?>
-				</th>
-				<th width="1%" class="nowrap" rowspan="2">
-					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
-				</th>
-			</tr>
-			<tr>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_PUBLISHED_ITEMS'); ?>
-				</th>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_UNPUBLISHED_ITEMS'); ?>
-				</th>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_TRASHED_ITEMS'); ?>
-				</th>
-			</tr>
-		</thead>
-		<?php if( $this->pagination->total >= 10 ): ?>
-		<tfoot>
-			<tr>
-				<th width="1%" rowspan="2">
-					<input type="checkbox" name="checkall-toggle" value="" onclick="checkAll(this)" />
-				</th>
-				<th rowspan="2%">
-					<?php echo JHtml::_('grid.sort',  'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
-				</th>
-				<th width="30%" colspan="3">
-					<?php echo JText::_('COM_MENUS_HEADING_NUMBER_MENU_ITEMS'); ?>
-				</th>
-				<th width="20%" rowspan="2">
-					<?php echo JText::_('COM_MENUS_HEADING_LINKED_MODULES'); ?>
-				</th>
-				<th width="1%" class="nowrap" rowspan="2">
-					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
-				</th>
-			</tr>
-			<tr>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_PUBLISHED_ITEMS'); ?>
-				</th>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_UNPUBLISHED_ITEMS'); ?>
-				</th>
-				<th width="10%">
-					<?php echo JText::_('COM_MENUS_HEADING_TRASHED_ITEMS'); ?>
-				</th>
-			</tr>
-		</tfoot>
-		<?php endif; ?>
-		<tbody>
+		
+		<ol class="menu-list">
+
 		<?php foreach ($this->items as $i => $item) :
 			$canCreate	= $user->authorise('core.create',		'com_menus');
 			$canEdit	= $user->authorise('core.edit',			'com_menus');
 			$canChange	= $user->authorise('core.edit.state',	'com_menus');
 		?>
-			<tr class="row<?php echo $i % 2; ?>">
-				<td class="center">
-					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
-				</td>
-				<td>
-					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype) ?> ">
-						<?php echo $this->escape($item->title); ?></a>
-					<p class="smallsub">(<span><?php echo JText::_('COM_MENUS_MENU_MENUTYPE_LABEL') ?></span>
-						<?php if ($canEdit) : ?>
-							<?php echo '<a href="'. JRoute::_('index.php?option=com_menus&task=menu.edit&id='.$item->id).' title='.$this->escape($item->description).'">'.
-							$this->escape($item->menutype).'</a>'; ?>)
-						<?php else : ?>
-							<?php echo $this->escape($item->menutype)?>)
-						<?php endif; ?>
-					</p>
-				</td>
-				<td class="center btns">
-					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=1');?>">
-						<?php echo $item->count_published; ?></a>
-				</td>
-				<td class="center btns">
+
+		
+			<li class="menu-list-item">
+				<div>
+					<h3>
+						<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype) ?> ">
+							<?php echo $this->escape($item->title); ?>
+						</a>
+						<!--<span class="menu-type"><?php echo $this->escape($item->menutype); ?></span>-->
+					</h3>
+				
+					<!--<span class="menu-desc"><?php echo $this->escape($item->description); ?></span>-->
+
+					<!--<ul>
+						<li class="hasTip" title="<?php echo JText::_('COM_MENUS_HEADING_PUBLISHED_ITEMS'); ?>"><a href="#"><?php echo $item->count_published; ?></a></li>
+						<li class="hasTip" title="<?php echo JText::_('COM_MENUS_HEADING_UNPUBLISHED_ITEMS'); ?>"><a href="#"><?php echo $item->count_unpublished; ?></a></li>
+						<li class="hasTip" title="<?php echo JText::_('COM_MENUS_HEADING_TRASHED_ITEMS'); ?>"><a href="#"><?php echo $item->count_trashed; ?></a></li>
+					</ul>-->
+
+
+					<a class="menu-modules" href="#">
+						<!--see modules linked to the Menu-->
+						<?php echo "<span>".count($this->modules[$item->menutype])."</span>"; echo JText::_('COM_MENUS_HEADING_LINKED_MODULES'); ?>
+					</a>
+								
+					<!--<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=1');?>">
+						<?php echo $item->count_published; ?>
+					</a>				
 					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=0');?>">
-						<?php echo $item->count_unpublished; ?></a>
-				</td>
-				<td class="center btns">
+						<?php echo $item->count_unpublished; ?>
+					</a>
 					<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=-2');?>">
-						<?php echo $item->count_trashed; ?></a>
-				</td>
-				<td class="left">
-				<ul>
-					<?php
-					if (isset($this->modules[$item->menutype])) :
-						foreach ($this->modules[$item->menutype] as &$module) :
-						?>
-						<li>
-							<?php if ($canEdit) : ?>
-								<a class="modal" href="<?php echo JRoute::_('index.php?option=com_modules&task=module.edit&id='.$module->id.'&return='.$return.'&tmpl=component&layout=modal');?>" rel="{handler: 'iframe', size: {x: 1024, y: 450}}"  title="<?php echo JText::_('COM_MENUS_EDIT_MODULE_SETTINGS');?>">
-								<?php echo JText::sprintf('COM_MENUS_MODULE_ACCESS_POSITION', $this->escape($module->title), $this->escape($module->access_title), $this->escape($module->position)); ?></a>
-							<?php else :?>
-								<?php echo JText::sprintf('COM_MENUS_MODULE_ACCESS_POSITION', $this->escape($module->title), $this->escape($module->access_title), $this->escape($module->position)); ?>
-							<?php endif; ?>
-						</li>
-						<?php
-						endforeach;
-					endif;
-					?>
-					</ul>
-				</td>
-				<td class="center">
-					<?php echo $item->id; ?>
-				</td>
-			</tr>
-			<?php endforeach; ?>
-		</tbody>
-	</table>
-	<?php if( $this->pagination->total > 0): ?><div id="pagination-bottom"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>
+						<?php echo $item->count_trashed; ?>
+					</a>-->
+					<!--<span class="menu-id"><?php echo JHtml::_('grid.id', $i, $item->id); ?></span>-->
+				</div>
+			</li>
+		
+	<?php endforeach; ?>
+
+	</ol>	
+
+	<!--<?php if( $this->pagination->total > 0): ?><div id="pagination-bottom"><?php echo $this->pagination->getListFooter(); ?></div><?php endif; ?>-->
 	<div>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />

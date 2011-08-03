@@ -8,9 +8,9 @@ var MinimaFilterBarClass = new Class({
     minima: null,
 
     // labels statuses strings
-    filterStatusLabels : {
-        'true':  "Show search & filters",
-        'false': "Hide search & filters"
+    filterStatusLabels : {        
+        "true": "Hide search & filters",
+        "false":  "Show search & filters"
     },
 
     // boolean that tells if the filter is active or not
@@ -24,7 +24,7 @@ var MinimaFilterBarClass = new Class({
         filterBar : null
     },
     
-    // the filters themselves    
+    // the filter elements
     filterSlide  : null,
     filterAnchor : null,
 

@@ -271,10 +271,9 @@ p.jform_desc                            {   clear: left; }
 
 #filter-bar                             {
                                             border: 0;
-                                            background: transparent;
-                                            /* MB - 2011-04-09 - Disabled the display:none because it was conflicting with the slide effects of the filter-bar */
-                                            /*display: none;*/
-                                            margin: 0 auto 2px;                                            
+                                            background: transparent;                                            
+                                            /*margin: 0 auto 2px;*/
+                                            margin: 0 auto !important;
                                         }
 
     #filter-bar button                  {   padding: 2px 4px;}
@@ -285,7 +284,7 @@ p.jform_desc                            {   clear: left; }
 
 .filter-select                          {   margin-left: 10px; float: left; }
 
-#filters_hideprotected-lbl              { display: inline; }
+#filters_hideprotected-lbl              {   display: inline; }
 
 table#template-mgr td                   {   padding: 15px 0; }
 

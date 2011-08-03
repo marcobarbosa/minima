@@ -48,15 +48,6 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
         div.toolbar-list a:active       {   top: 1px; }
         #actions .toolbar               {   width: 100%; }
 
-#bulkActions a .arrow                   {
-                                            background: url('../images/arrows.png') no-repeat -5px -119px;
-                                            display: block;
-                                            height: 10px;
-                                            position: absolute;
-                                            right: 6px; top: 8px;
-                                            width: 12px; height: 9px;
-                                        }
-
 #bulkActions a,
 #toolbar a,
 input#upload-submit                     {
@@ -67,8 +58,6 @@ input#upload-submit                     {
                                             /*background: -webkit-linear-gradient(#f9f9f9, #cfcfcf);*/
                                             /*background: linear-gradient(top, #f9f9f9, #cfcfcf);*/
                                             filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#cfcfcf');
-                                            /*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#f9f9f9', 
-                                            EndColorStr='#cfcfcf')";*/
                                             -moz-border-radius: 10px;
                                             -webkit-border-radius: 10px;
                                             border-radius: 10px;
@@ -195,7 +184,6 @@ input[type="button"]:active
                                         }
 
 #bulkActions a:active                   {   background: #ccc!important; top: 0; text-shadow: none!important; }
-#bulkActions .active .arrow             {   background: url('../images/arrows.png') no-repeat -5px -452px; }
 
 #actions                                {
                                             margin-top: 25px;

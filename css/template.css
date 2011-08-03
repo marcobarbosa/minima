@@ -295,11 +295,11 @@ BODY.error                              {   background: #ccc; }
                                             border-radius: 0 0 4px 4px;
                                             background:#dfdfdf;
                                             float: left;
-                                            padding-bottom: 12px; padding-top: 12px;
+                                            padding: 12px 0;    
                                             width: 100%;
                                         }
     /* to fix flicker */
-    BODY.ready #content-box             {   padding-top: 0; }
+    /*BODY.ready #content-box             {   padding-top: 0; }*/
 
     #content-box p                      {   max-width: 550px; font-size: 13px; color: #666; line-height: 1.5; margin-left: 20px; }
 
@@ -602,11 +602,28 @@ BODY.error                              {   background: #ccc; }
                                             transition: all 0.2s ease-in-out;
                                         }
 
+#bulkActions a .arrow                   {
+                                            background: url('../images/arrows.png') no-repeat -5px -119px;
+                                            display: block;
+                                            height: 10px;
+                                            position: absolute;
+                                            right: 6px; top: 8px;
+                                            width: 12px; height: 9px;
+                                        }
+
+#bulkActions .active .arrow             {   background: url('../images/arrows.png') no-repeat -5px -452px; }
 
 /*
  * STATUS STYLES
  */
-#gravatar                               {   margin-top: 3px; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; }
+#gravatar                               {
+                                            -moz-border-radius: 6px; 
+                                            -webkit-border-radius: 6px; 
+                                            border-radius: 6px; 
+                                            float: left;
+                                            margin-top: 3px; 
+                                            margin-right: 5px;
+                                        }
 
 #module-status                          {   float: right; height: 25px; line-height: 25px; }
 
@@ -1046,7 +1063,7 @@ table.adminlist tbody th                {   font-weight: bold; }
 table.adminlist tbody tr                {   background-color: #fff; text-align: left; }
 
 table.adminlist tbody tr td             {   background: #fff; height: 36px; }
-table.adminlist tbody tr.row1 td        {   background: #f4f4f4; /*border-top: 1px solid #FFF;*/ }
+table.adminlist tbody tr.row1 td        {   background: #f4f4f4; }
 
 table.adminlist tfoot tr                {   color: #333; }
 
@@ -1056,28 +1073,17 @@ table.adminlist tbody tr.row0:hover td,
 table.adminlist tbody tr.row1:hover td,
 table tbody tr:hover td,
 table.adminlist tr.selected td,
-table.adminlist tr.row1.selected td     {                          
-                                            background-color: #FFD;
+table.adminlist tr.row1.selected td,
+table.adminlist .selected               {                          
+                                            background-color: #FFD!important; 
                                         }
-
-
-/*table.adminlist tr.selected td,
-table.adminlist tr.row1.selected td     {   
-                                            background-color: #FFFFBF;
-                                            background: -moz-linear-gradient(top, #FFFFBF 0%, #FFD 98%);
-
-                                            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFBF), color-
-                                            stop(98%,#FFD));
-                                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFBA', 
-                                            endColorstr='#FFD',GradientType=0 );
-
-                                        }*/
-
 
     .media-manager tbody tr:hover td    {   background: transparent!important;}
 
 table tbody tr:hover td span,
-table tbody tr:hover td label           {   color: #333!important; }
+table tbody tr:hover td label,
+table.adminlist .selected
+                                        {   color: #222!important; }
 
 table.adminlist td.order                {
                                             text-align: center;
@@ -1316,7 +1322,7 @@ a.pointer                               {   cursor: pointer; }
                                             border: 1px solid #D4D5AA;
                                             float: left;
                                             max-width: 200px;
-                                            padding: 8px 8px 8px 20px;
+                                            padding: 8px 8px 6px 15px;
                                             z-index: 50;
                                             -moz-border-radius: 0 12px 12px 12px;
                                             -webkit-border-radius: 0 12px 12px 12px;
@@ -1440,9 +1446,8 @@ a.move_up, span.move_up, a.move_down, span.move_down, a.grid_false, a.grid_true,
                                             background: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#ccc));
                                             background: -webkit-linear-gradient(#ddd, #ccc);
                                             background: linear-gradient(top, #ddd, #ccc);
-                                            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', endColorStr='#cccccc');
-                                            /*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', 
-                                            EndColorStr='#cccccc')";*/
+                                            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#dddddd', endColorStr='#cccccc');                                            
+                                            border: 1px solid #ccc; border-bottom: none;
                                             -moz-border-radius: 6px 6px 0 0;
                                             -webkit-border-radius: 6px 6px 0 0;
                                             border-radius: 6px 6px 0 0;
