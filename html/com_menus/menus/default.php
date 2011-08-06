@@ -62,7 +62,7 @@ $listDirn	= $this->state->get('list.direction');
 
 					<a class="menu-modules" href="#">
 						<!--see modules linked to the Menu-->
-						<?php echo "<span>".count($this->modules[$item->menutype])."</span>"; echo JText::_('COM_MENUS_HEADING_LINKED_MODULES'); ?>
+						<?php echo "<span>".count($this->modules[$item->menutype])." modules</span>";  ?>
 					</a>
 								
 					<!--<a href="<?php echo JRoute::_('index.php?option=com_menus&view=items&menutype='.$item->menutype.'&filter_published=1');?>">
@@ -75,8 +75,8 @@ $listDirn	= $this->state->get('list.direction');
 						<?php echo $item->count_trashed; ?>
 					</a>-->
 					<!--<span class="menu-id"><?php echo JHtml::_('grid.id', $i, $item->id); ?></span>-->
-				</div>
-			</li>
+			</div>
+		</li>
 		
 	<?php endforeach; ?>
 
