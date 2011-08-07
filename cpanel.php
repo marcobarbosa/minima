@@ -10,6 +10,8 @@
 // no direct access
 defined('_JEXEC') or die;
 
+JHTML::_('behavior.modal');
+
 $app    = JFactory::getApplication();
 
 // template color parameter
@@ -30,7 +32,6 @@ $requestVars = array(
                         "locked"  => JRequest::getInt('hidemainmenu') ? 'locked' : 'not-locked',
                         "hasId"   => JRequest::getCmd('id', '') ? 'has-id' : 'no-id'
                     );
-
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +72,7 @@ $requestVars = array(
 
     <script src="http://yandex.st/raphael/1.5.2/raphael.min.js"></script>
     <script>!window.Raphael && document.write(unescape('%3Cscript src="templates/<?php echo $this->template ?>/js/raphael/raphael.min.js"%3E%3C/script%3E'))</script>	
-        
+    
 	<!--[if (gte IE 6)&(lte IE 8)]>
         <script type="text/javascript" src="templates/<?php echo $this->template ?>/js/selectivizr.min.js" defer="defer"></script>
     <![endif]-->
@@ -126,12 +127,12 @@ $requestVars = array(
     <div class="message-wrapper"><jdoc:include type="message" /></div><hr class="space" />
     <div id="content-cpanel">
         <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
-        <section id="widgets-first" class="col">
-            <jdoc:include type="modules" name="widgets-first" style="widget" />
-        </section><!-- /#widgets-first -->        
-        <section id="widgets-last" class="col">
-            <jdoc:include type="modules" name="widgets-last" style="widget" />
-        </section><!-- /#widgets-last -->
+		<section id="widgets-first" class="col">
+			<jdoc:include type="modules" name="cpanel" style="widget" />
+		</section>
+		<!-- /#widgets-first -->
+		<section id="widgets-last" class="col"></section>
+		<!-- /#widgets-last -->
     </div><!-- /#content-cpanel -->
     <footer>
         <p class="copyright">
