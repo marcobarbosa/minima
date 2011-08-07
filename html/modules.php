@@ -17,17 +17,16 @@ function modChrome_widget($module, &$params, &$attribs)
     if ($module->content)
     {
         ?>
-        <div id="widget-<?php echo $module->id ?>" class="box">
+        <div id="widget-<?php echo $module->id ?>" class="box expand">
             <div class="box-top">
-                <span><?php echo $module->title; ?></span>
-                <!--<nav>
+                <span class="handle"><?php echo $module->title; ?></span>
+                <nav>
                     <span class="box-icon"></span>                
                     <ul>
-                        <li><a href="javascript:MinimaWidget.config('<?php echo $module->id ?>');">Settings</a></li>
-                        <li><a href="#">Hide</a></li>
-                        <li><a href="#">Close</a></li>
+                        <li><a class="nav-settings" href="javascript:void(0);">Settings</a></li>
+                        <li><a class="nav-hide" href="javascript:void(0);">Hide</a></li>
                     </ul>
-                </nav>-->
+                </nav>
             </div>
             <div class="box-content"><?php echo $module->content; ?></div>
         </div>
