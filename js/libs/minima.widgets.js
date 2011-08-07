@@ -43,9 +43,33 @@ var MinimaWidgetsClass = new Class({
             this.storage = new LocalStorage();
             // load and prepare the saved positions
             this.loadPositions();
+            // add widgets events
+            this.addEvents();
             // attach the drag and drop events
             this.attachDrag();            
         } 
+    },
+    
+    addEvents: function() {
+    	var that = this;
+    	this.boxes.each(function(widget){
+    		widgetId = widget.id.replace('widget-','');
+    		widget.getElement('a.nav-settings').addEvent('click',function(){
+    			that.settings(widgetId);
+    		});
+    		widget.getElement('a.nav-hide').addEvent('click',function(){
+    			if(widget.hasClass('expand')){
+    				widget.removeClass('expand');
+    				widget.addClass('minimize');
+    				this.set('text','Show');
+    			}
+    			else if(widget.hasClass('minimize')){
+    				widget.removeClass('minimize');
+    				widget.addClass('expand');
+    				this.set('text','Hide');
+    			}
+    		});
+    	});
     },
     
     loadPositions: function() {
@@ -59,8 +83,9 @@ var MinimaWidgetsClass = new Class({
         // loop through each column and fix it
         this.columns.each(function(position){
             widgets.each(function(widget, index){
-                if (widget.position == position.id) {                    
-                    $(position.id).grab($(widget.id));
+                if (widget.position == position.id) {
+                	if( widget.id != "" )
+                		$(position.id).grab($(widget.id));
                 }
             });
         });
@@ -98,7 +123,7 @@ var MinimaWidgetsClass = new Class({
         // create new sortables
         new Sortables( this.columns, {
             clone : true,
-            handle : '.box-top',
+            handle : '.handle',
             opacity: 0.6,
             revert: {
                 duration: 500,
@@ -117,12 +142,12 @@ var MinimaWidgetsClass = new Class({
         });
     },
     
-    // Config action to open a modal cconfiguration of a module
-    config: function(id) {
+    // Config action to open a modal configuration of a module
+    settings: function(id) {
         var url = 'index.php?option=com_modules&client_id=0&task=module.edit&id='+id+'&tmpl=component&view=module&layout=modal';
-        //console.log(url);        
         SqueezeBox.open(url,{handler: 'iframe', size: {x: 900, y: 550}});
     }
+    
 });
 
 window.addEvent('domready', function() {
