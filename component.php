@@ -13,7 +13,11 @@ defined('_JEXEC') or die;
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo  $this->language; ?>" lang="<?php echo  $this->language; ?>" dir="<?php echo  $this->direction; ?>" >
 <head>
 	<jdoc:include type="head" />
-	<link href="templates/<?php echo  $this->template ?>/css/template.css" rel="stylesheet" />
+	<link href="templates/<?php echo $this->template ?>/css/libs/template.reset.css" rel="stylesheet">
+	<link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.forms.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">
+    <link href="templates/<?php echo  $this->template ?>/css/template.css" rel="stylesheet" />
 </head>
 <body class="contentpane">
 	<jdoc:include type="message" />
