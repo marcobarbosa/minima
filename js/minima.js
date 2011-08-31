@@ -159,10 +159,15 @@ window.addEvent('domready', function() {
         MinimaTabsVertical.addTabsAction();
     };    
 
+    // individual tabs, not necessairly in a form
+    if (subMenu && subMenu.hasClass('out')) {
+        subMenu.inject( $('content'), 'top' );
+    }
+
     // SCROLLING
     // =============================
     // fixed content-box header when scrolling    
-    var scrollSize = document.getScrollSize().y - document.getSize().y;    
+    var scrollSize = document.getScrollSize().y - document.getSize().y;
     
     /* scrollspy instance */    
     new ScrollSpy({
