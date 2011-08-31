@@ -85,8 +85,8 @@ JHtml::_('behavior.keepalive');
 	</div><!-- #item-basic -->	
 	
 	<div id="item-advanced">
-	        <ul id="advanced-tabs">			
-			<li class="basic-options"><a href="#" class="active"><?php echo JText::_('JDETAILS'); ?></a></li>
+	    <ul class="vertical-tabs">			
+		    <li class="basic-options"><a href="#" class="active"><?php echo JText::_('JDETAILS'); ?></a></li>
 			<li class="metadata"><a href="#"><?php echo JText::_('JGLOBAL_FIELDSET_METADATA_OPTIONS'); ?></a></li>
 		</ul>
 		<div id="tabs">			
