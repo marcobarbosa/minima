@@ -68,8 +68,6 @@ $requestVars = array(
         ::-moz-selection { background: <?php echo $templateColor; ?>; color:#000; /* Firefox */ }
         body, a:link { -webkit-tap-highlight-color: <?php echo $templateColor; ?>;  }
         #logo {text-shadow: 1px 1px 0 <?php echo $darkerColor; ?>, -1px -1px 0 <?php echo $darkerColor; ?>; }
-        #gravatar { border: 1px solid <?php echo $darkerColor; ?>; }
-        #gravatar:hover { border-color: <?php echo $templateColor; ?>; }
     </style>
 
     <script src="templates/<?php echo $this->template ?>/js/plugins/head.min.js"></script>    
