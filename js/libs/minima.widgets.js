@@ -44,51 +44,65 @@ var MinimaWidgetsClass = new Class({
             // load and prepare the saved positions
             this.loadPositions();
             // add widgets events
-            this.addEvents();
+            // disabled - no menus for now!
+            //this.addEvents();
             // attach the drag and drop events
             this.attachDrag();            
         } 
     },
     
     addEvents: function() {
-    	var that = this;
-    	this.boxes.each(function(widget){
-    		widgetId = widget.id.replace('widget-','');
-    		widget.getElement('a.nav-settings').addEvent('click',function(){
-    			that.settings(widgetId);
-    		});
-    		widget.getElement('a.nav-hide').addEvent('click',function(){
-    			if(widget.hasClass('expand')){
-    				widget.removeClass('expand');
-    				widget.addClass('minimize');
-    				this.set('text','Show');
-    			}
-    			else if(widget.hasClass('minimize')){
-    				widget.removeClass('minimize');
-    				widget.addClass('expand');
-    				this.set('text','Hide');
-    			}
-    		});
-    	});
+        var that = this;
+        this.boxes.each(function(widget){
+            widgetId = widget.id.replace('widget-','');
+            widget.getElement('a.nav-settings').addEvent('click',function(){
+                that.settings(widgetId);
+            });
+            widget.getElement('a.nav-hide').addEvent('click',function(){
+                if(widget.hasClass('expand')){
+                    widget.removeClass('expand');
+                    widget.addClass('minimize');
+                    this.set('text','Show');
+                }
+                else if(widget.hasClass('minimize')){
+                    widget.removeClass('minimize');
+                    widget.addClass('expand');
+                    this.set('text','Hide');
+                }
+            });
+        });
     },
     
     loadPositions: function() {
         // get widgets from the storage
         widgets = this.storage.get('widgets');
         // get out if it's not set
-        if (typeOf(widgets) !== 'array') return false;
+        
         // storage at first time
-        if (widgets.length === 0) this.storagePositions();        
-        // show the loading spinner
-        // loop through each column and fix it
-        this.columns.each(function(position){
-            widgets.each(function(widget, index){
-                if (widget.position == position.id) {
-                	if( widget.id != "" )
-                		$(position.id).grab($(widget.id));
-                }
+        if (typeOf(widgets) == 'array' && widgets.length === 0) this.storagePositions();        
+        
+        if (typeOf(widgets) == 'array')
+        {
+            // show the loading spinner
+            // loop through each column and fix it
+            this.columns.each(function(position){
+                widgets.each(function(widget, index){
+                    if (widget.position == position.id) {
+                        if( widget.id != "" )
+                            $(position.id).grab($(widget.id));
+                    }
+                });
             });
-        });
+        } else {
+            // loop through each column and fix it
+            var positionIndex = 0;
+            var that = this;
+            $$('.box').each(function(widgetElement, index){
+                that.columns[positionIndex].grab(widgetElement);
+                positionIndex++;
+                if(positionIndex >= that.columns.length) positionIndex = 0;
+            });
+        }
         // all done, show them
         // hide the spinner
         this.spinner.hide(true); 
@@ -119,11 +133,12 @@ var MinimaWidgetsClass = new Class({
     },
     // attach the drag and drop events
     attachDrag: function(){
+        console.log(this.columns);
         var that = this;
         // create new sortables
         new Sortables( this.columns, {
             clone : true,
-            handle : '.handle',
+            handle : '.box-top',
             opacity: 0.6,
             revert: {
                 duration: 500,

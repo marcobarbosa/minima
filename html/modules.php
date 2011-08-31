@@ -20,13 +20,13 @@ function modChrome_widget($module, &$params, &$attribs)
         <div id="widget-<?php echo $module->id ?>" class="box expand">
             <div class="box-top">
                 <span class="handle"><?php echo $module->title; ?></span>
-                <nav>
+                <!--<nav>
                     <span class="box-icon"></span>                
                     <ul>
                         <li><a class="nav-settings" href="javascript:void(0);">Settings</a></li>
                         <li><a class="nav-hide" href="javascript:void(0);">Hide</a></li>
                     </ul>
-                </nav>
+                </nav>-->
             </div>
             <div class="box-content"><?php echo $module->content; ?></div>
         </div>

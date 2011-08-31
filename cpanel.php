@@ -127,11 +127,12 @@ $requestVars = array(
     <div class="message-wrapper"><jdoc:include type="message" /></div><hr class="space" />
     <div id="content-cpanel">
         <noscript><?php echo  JText::_('WARNJAVASCRIPT') ?></noscript>
-		<section id="widgets-first" class="col">
-			<jdoc:include type="modules" name="cpanel" style="widget" />
-		</section>
-		<!-- /#widgets-first -->
-		<section id="widgets-last" class="col"></section>
+        <section id="widgets-first" class="col">
+            <jdoc:include type="modules" name="cpanel" style="widget" />
+        </section>
+        <!-- /#widgets-first -->
+        <section id="widgets-last" class="col"></section>
+        <!-- /#widgets-last -->
 		<!-- /#widgets-last -->
     </div><!-- /#content-cpanel -->
     <footer>
