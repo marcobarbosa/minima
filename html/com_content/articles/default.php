@@ -14,16 +14,30 @@ JHtml::_('behavior.tooltip');
 
 $user       = JFactory::getUser();
 $userId     = $user->get('id');
+
 $listOrder  = $this->state->get('list.ordering');
 $listDirn   = $this->state->get('list.direction');
 $saveOrder  = $listOrder == 'a.ordering';
 
+
 ?>
+
+<script type="text/javascript">
+    // register the webkitspeechchange event
+    Element.NativeEvents.webkitspeechchange = 2;
+    // trigger the form submit on change
+    window.addEvent('domready', function() {
+        $('filter_search').addEvent('webkitspeechchange', function(event) {
+            $('adminForm').submit();
+        });     
+    });
+</script>
+
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles');?>" method="post" name="adminForm" id="adminForm">
     <fieldset id="filter-bar">
         <div class="filter-search fltlft">
             <label class="filter-search-lbl" for="filter_search"><?php echo JText::_('JSEARCH_FILTER_LABEL'); ?></label>
-            <input type="text" name="filter_search" id="filter_search" value="<?php echo $this->state->get('filter.search'); ?>" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" />
+            <input speech type="search" name="filter_search" id="filter_search" value="<?php echo $this->state->get('filter.search'); ?>" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC'); ?>" x-webkit-speech />
 
             <button type="submit" class="btn"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
             <button type="button" onclick="document.id('filter_search').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
