@@ -257,11 +257,13 @@ window.addEvent('domready', function() {
 
 
     // dropdown menu
-    extra.addEvent('click', function(){            
-        this.switchClass('active','inactive');            
-        //extraLists.toggle();
-        this.toggleReveal(extraLists, {heightOverride: '155',duration: 250});
-    });
+    if (extra) {
+        extra.addEvent('click', function(){            
+            this.switchClass('active','inactive');            
+            //extraLists.toggle();
+            this.toggleReveal(extraLists, {heightOverride: '155',duration: 250});
+        });
+    }
 
     var hideLists = function() {
         extra.set('class','inactive');
@@ -270,14 +272,18 @@ window.addEvent('domready', function() {
     };
 
     // turn off list when click outside
-    listWrapper.addEvent('outerClick', function(){
-        hideLists();
-    });        
+    if (listWrapper) {
+        listWrapper.addEvent('outerClick', function(){
+            hideLists();
+        });
+    }
 
     // turn off list when clicking a link
-    extraLists.getElements("a").addEvent('click', function(){
-        hideLists();
-    });
+    if (extraLists) {
+        extraLists.getElements("a").addEvent('click', function(){
+            hideLists();
+        });
+    }
 
     minima.getElements('#shortcuts .parent').each(function(li) {             
         // add events to the list elements

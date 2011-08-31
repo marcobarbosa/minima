@@ -61,8 +61,8 @@ $app = JFactory::getApplication();
     </div>
     <script type="text/javascript">
         function setFocus() {
-            document.getElementById('form-login').username.select();
-            document.getElementById('form-login').username.focus();	    
+            //document.getElementById('form-login').username.select();
+            //document.getElementById('form-login').username.focus();	    
         }
     </script>
 </body>
