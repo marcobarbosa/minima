@@ -16,12 +16,13 @@
                                             width: 2000px;
                                         }
 
-    #panel-pagination                   {   width: 50%; position: absolute; top: -5px; padding: 0 46%;}
+    #panel-pagination                   {   height: 20px; width: 50%; position: absolute; top: -5px; padding: 0 46%;}
         #panel-pagination li            {
                                             color: #ccc; cursor: pointer;
                                             font-size: 42px; font-weight: bold; font-family: Georgia;
                                             line-height: 0;
                                             float: left; margin-right: 2px;
+                                            height: 20px;
                                         }
 
         #panel-pagination .current      {  color: #fff; }
