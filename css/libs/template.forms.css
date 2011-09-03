@@ -241,7 +241,7 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
 
 #jform_title                            {   min-width: 500px; height: 20px; font-size: 16px; }
 #jform_title-lbl                        {   margin-bottom: 0; }
-#jform_alias                            {   max-width: 250px; }
+#jform_alias                            {   max-width: 220px; }
 
 /* Required elements */
 input.required                          {   background-color: #d5eeff; }
