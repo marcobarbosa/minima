@@ -47,8 +47,6 @@
     // MinimaFilterbarClass by Marco Barbosa
     var MinimaFilterBarClass=new Class({Implements:[Options],options:{},minima:null,filterStatusLabels:{"true":"Hide search & filters","false":"Show search & filters"},isActive:false,pageTitle:"",elements:{filterBar:null},filterSlide:null,filterAnchor:null,initialize:function(a,b,c){this.minima=$(this.options.minima)||$("minima");this.setOptions(a);this.elements=b;if(c.length){this.setLabelsLanguage(c.hideFilter,c.showFilter)}},setLabelsLanguage:function(b,a){if(b.length&&a.length){this.filterStatusLabels["true"]=b;this.filterStatusLabels["false"]=a}},createSlideElements:function(){var a=this;this.filterSlide=new Fx.Slide(this.elements.filterBar).hide();this.filterAnchor=new Element("a",{href:"#minima",id:"open-filter",html:a.filterStatusLabels["false"],events:{click:function(c){var b=$("filter_search");c.stop();a.filterSlide.toggle();this.toggleClass("active");if(this.hasClass("active")&&b){b.focus()}if($("content-top").hasClass("fixed")){window.scrollTo(0,0)}}}})},fixAnchor:function(){this.minima.getElement(".pagetitle").grab(this.filterAnchor)},onFilterSelected:function(){var a=this;filterBar.getElements("input, select").each(function(b){var c=b.get("value");if(c){a.isActive=true;a.pageTitle+=(b.get("tag").toLowerCase()=="select")?b.getElement("option:selected").get("html").toLowerCase()+" ":a.pageTitle+=c.toLowerCase()+" ";a.addFiltersToTitle()}})},addFiltersToTitle:function(){var a=minima.getElement(".pagetitle h2");if(this.pageTitle.length){a.set("html",a.get("html")+"<em>( "+this.pageTitle+")</em>")}},doFilterBar:function(){var a=this;this.createSlideElements();this.fixAnchor();this.onFilterSelected();if(this.isActive){this.filterSlide.show();this.filterAnchor.set("html",this.filterStatusLabels[this.filterSlide.open]).addClass("active")}this.filterSlide.addEvent("complete",function(){a.filterAnchor.set("html",a.filterStatusLabels[a.filterSlide.open])});this.elements.filterBar.show()}});
 
-;
-
 
 window.addEvent('domready', function() {
 
@@ -316,7 +314,7 @@ window.addEvent('domready', function() {
             //this.getParent('nav').getNext('ul').dissolve();
         // }); 
     // }
-
+/*
     var cleanSelectedRows = function() {        
         minima.getElements('td.selected').removeClass('selected');
     }
@@ -333,5 +331,5 @@ window.addEvent('domready', function() {
             cleanSelectedRows();            
         }
     });
-
+*/
 });
