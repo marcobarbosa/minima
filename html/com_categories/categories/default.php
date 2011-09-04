@@ -66,7 +66,7 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                 <th>
                     <?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
                 </th>
-                <th width="5%">
+                <th width="5%" class="nowrap">
                     <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.published', $listDirn, $listOrder); ?>
                 </th>
                 <th width="10%">
@@ -95,7 +95,7 @@ $saveOrder  = ($listOrder == 'a.lft' && $listDirn == 'asc');
                 <th>
                     <?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
                 </th>
-                <th width="5%">
+                <th width="5%" class="nowrap">
                     <?php echo JHtml::_('grid.sort', 'JPUBLISHED', 'a.published', $listDirn, $listOrder); ?>
                 </th>
                 <th width="10%">
