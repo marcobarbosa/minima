@@ -146,35 +146,7 @@ JHtml::_('behavior.keepalive');
             <?php endforeach; ?>
 
             <fieldset id="metadata" class="panelform">
-                <ol class="adminformlist">
-                    <li><?php echo $this->form->getLabel('metadesc'); ?>
-                    <?php echo $this->form->getInput('metadesc'); ?></li>
-
-                    <li><?php echo $this->form->getLabel('metakey'); ?>
-                    <?php echo $this->form->getInput('metakey'); ?></li>
-
-                    <?php
-                    $fieldSets = $this->form->getFieldsets('metadata');
-
-                    foreach ($fieldSets as $name => $fieldSet) :
-                        echo JHtml::_('sliders.panel',JText::_($label), $name.'-options');
-                            if (isset($fieldSet->description) && trim($fieldSet->description)) :
-                                echo '<p class="tip">'.$this->escape(JText::_($fieldSet->description)).'</p>';
-                            endif;
-                            ?>
-                        <fieldset class="panelform">
-                        <ol class="adminformlist">
-                            <?php foreach ($this->form->getFieldset($name) as $field) : ?>
-                                <li><?php echo $field->label; ?>
-                                <?php echo $field->input; ?></li>
-                            <?php endforeach; ?>
-                        </ol>
-                        </fieldset>
-                    <?php endforeach; ?>
-
-                    <li><?php echo $this->form->getLabel('xreference'); ?>
-                    <?php echo $this->form->getInput('xreference'); ?></li>
-                </ol>
+                <?php echo $this->loadTemplate('metadata'); ?>
             </fieldset>
         </div><!-- /#tabs -->
     </div><!-- /#item-advanced -->
