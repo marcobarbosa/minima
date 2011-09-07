@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<install type="package" version="1.7" method="upgrade">
+	<name>Minima</name>
+	<packagename>Minima</packagename>
+	<version>0.9</version>
+	<url>http://marcobarbosa.com</url>
+	<packager>Marco Barbosa</packager>
+	<packagerurl>http://minimatemplate.com</packagerurl>
+	<description>Minima template package.</description>
+	<update>http://minimatemplate.com/update/update.xml</update>
+	<files folder="packages">				
+		<file type="template"	id="minima"	         client="administrator">tpl_minima.zip</file>				
+		<file type="module"		id="mod_mypanel" 	 client="administrator">mod_mypanel.zip</file>
+		<file type="module"		id="mod_myshortcuts"  client="administrator">mod_myshortcuts.zip</file>		
+	</files>
+</install>

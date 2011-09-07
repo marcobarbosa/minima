@@ -3,3 +3,5 @@
 .buildpath
 configuration.php
 *~
+
+build/ftp.properties
