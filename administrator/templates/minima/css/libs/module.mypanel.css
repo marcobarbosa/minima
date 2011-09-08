@@ -18,11 +18,16 @@
 
     #panel-pagination                   {   height: 20px; width: 50%; position: absolute; top: -5px; padding: 0 46%;}
         #panel-pagination li            {
-                                            color: #ccc; cursor: pointer;
-                                            font-size: 42px; font-weight: bold; font-family: Georgia;
+                                            cursor: pointer;
                                             line-height: 0;
-                                            float: left; margin-right: 2px;
-                                            height: 20px;
+                                            float: left;
+                                            margin-right: 6px;
+                                            padding: 4px;
+                                            text-indent: -9999px;
+                                            display: block;
+                                            padding: 7px;
+                                            box-shadow: inset 0px 1px 4px rgba(0,0,0,0.3);
+                                            border-radius: 8px;
                                         }
 
         #panel-pagination .current      {  color: #fff; }

@@ -27,7 +27,7 @@ $nPages = ceil( (count($items)*3) / 9);
     <ul id="panel-pagination">
         <?php $pageCount=0;?>
         <?php for($i=0; $i < $nPages; $i++) : ?>
-            <li <?php if($i == 0) echo "class=\"current\"" ?> id="panel-pagination-<?php echo $pageCount;?>">.</li>
+            <li <?php if($i == 0) echo "class=\"current\"" ?> id="panel-pagination-<?php echo $pageCount;?>"></li>
         <?php
             $pageCount+=1;
         endfor;
