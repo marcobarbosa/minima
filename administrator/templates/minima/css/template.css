@@ -387,6 +387,7 @@ BODY.error                              {   background: #ccc; }
 
 #user-status                            {
                                             list-style: none;
+                                            float: right;
                                             margin: 0px 20px 0 0;
                                             height: 35px;
                                             line-height: 35px;
@@ -623,14 +624,22 @@ BODY.error                              {   background: #ccc; }
                                             margin-right: 5px;
                                         }
 
-#module-status                          {   float: right; height: 25px; line-height: 25px; }
+#module-status                          {   
+                                            float: right; 
+                                            height: 35px; line-height: 35px; 
+                                        }
 
-    #module-status span                 {   padding: 4px 4px 0 22px; }
+    #module-status span                 {
+                                            /* center any background image */
+                                            background-position: left center!important;
+                                            padding: 0 4px 0 22px; 
+                                            float: left;
+                                        }
 
     #module-status a                    {   color: #fff; }
 
 #module-status .unread-messages,
-#module-status .no-unread-messages      {   background: url(../images/menu/icon-16-messages.png) 3px 3px no-repeat; }
+#module-status .no-unread-messages      {   background: url(../images/menu/icon-16-messages.png) 3px 9px no-repeat!important; }
 
     #module-status .unread-messages a   {   font-weight: bold; }
 
@@ -1434,7 +1443,11 @@ a.move_up, span.move_up, a.move_down, span.move_down, a.grid_false, a.grid_true,
                                             height: 30px; line-height: 15px;
                                         }
 
-#submenu li                             {   float: left; margin-right: 6px; }
+#submenu li                             {   
+                                            float: left; 
+                                            margin-right: 6px; 
+                                            position: relative;
+                                        }
 
 #submenu li a,
 #submenu span.nolink                    {
@@ -1468,9 +1481,13 @@ a.move_up, span.move_up, a.move_down, span.move_down, a.grid_false, a.grid_true,
 
 #submenu a.active, #submenu a.active:hover,
 #submenu span.nolink.active             {
-                                            background: #fff; color: #666; font-weight: bold; text-decoration: none;
-                                            border: 1px solid #e4e4e4; border-bottom: none;
+                                            background: #fff; 
+                                            color: #666; font-weight: bold; 
+                                            text-decoration: none;
+                                            border: 1px solid #e4e4e4; 
+                                            border-bottom: none;
                                             outline: none;
+                                            z-index: 3;
                                         }
 
 /* COMPONENT STYLES
