@@ -38,7 +38,11 @@
                                             width: 16px;
                                         }
 
-            #shortcuts ul li.last       {   float: right; margin-right:20px; }
+            #shortcuts ul .last         {   float: right; margin-right:20px; }
+
+                #shortcuts ul .last .sub{
+                                            margin-left: -250px;
+                                        }
 
             #shortcuts li a             {
                                             background-color: transparent;

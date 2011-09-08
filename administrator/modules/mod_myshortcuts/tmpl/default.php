@@ -160,10 +160,26 @@ $lang->load('mod_menu', JPATH_ADMINISTRATOR, null, true);
 		</nav><!-- /.sub -->
 	</li><!-- /.parent -->
 	<?php endif; ?>
-	<li class="last">
-		<a href="<?php echo JRoute::_('index.php?option=com_admin&view=help'); ?>">
+	<li class="last parent">
+		<a href="#">
 			<?php echo JText::_('MOD_MENU_HELP'); ?>
 		</a>
+		<nav class="sub">
+			<ul>
+				<li><a href="http://extensions.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_EXTENSIONS'); ?></a></li>
+				<li><a href="http://community.joomla.org/translations.html"><?php echo JText::_('MOD_MENU_HELP_TRANSLATIONS'); ?></a></li>
+				<li><a href="http://resources.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_RESOURCES'); ?></a></li>
+				<li><a href="http://community.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_COMMUNITY'); ?></a></li>
+				<li><a href="http://developer.joomla.org/security.html"><?php echo JText::_('MOD_MENU_HELP_SECURITY'); ?></a></li>
+				<li><a href="http://developer.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_DEVELOPER'); ?></a></li>
+				<li><a href="http://shop.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_SHOP'); ?></a></li>
+			</ul>
+			<ul>
+				<li><a href="<?php echo JRoute::_('index.php?option=com_admin&view=help'); ?>" class="section"><?php echo JText::_('MOD_MENU_HELP_JOOMLA'); ?></a></li>
+				<li><a href="http://forum.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_SUPPORT_FORUM'); ?></a></li>
+				<li><a href="http://docs.joomla.org/"><?php echo JText::_('MOD_MENU_HELP_DOCUMENTATION'); ?></a></li>
+			</ul>
+		</nav>
 	</li>
 </ul>
 
