@@ -5,3 +5,7 @@ configuration.php
 *~
 
 build/ftp.properties
+
+minima.sublime-workspace
+
+minima.sublime-project
