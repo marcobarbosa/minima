@@ -54,8 +54,6 @@ class ModMypanelHelper
 
         // component list
         $components = $db->loadObjectList();
-        // FIXME change to array here
-        //$components = $db->loadObjectList();
 
         // Parse the list of extensions.
         foreach ($components as &$component) {
