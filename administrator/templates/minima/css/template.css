@@ -1011,7 +1011,10 @@ table.adminlist thead th, table.adminlist tfoot th
                                             background: #e8e8e8;
                                             border-bottom: 1px solid #cecece;
                                             color: #666;
-                                            font-size: 13px; font-weight: bold;
+                                            font-size: 13px; 
+                                            font-weight: normal;
+                                            height: 25px;
+                                            line-height: 25px;
                                             text-align: center;
                                         }
 
@@ -1019,7 +1022,12 @@ table.adminlist thead.fixed th          {   position: fixed;}
 
 table.adminlist tfoot td                {   background: #fff; border-top: 1px solid #ddd; }
 table.adminlist th                      {   padding: 0; }
-    table.adminlist th a                {   display: block; padding: 6px; }
+    
+    table.adminlist th a                {   
+                                            display: block; 
+                                            font-weight: bold;
+                                        }
+    
     table.adminlist th a:hover          {   background-color: #d9d9d9; text-decoration: none; }
 
 table.adminlist th a.saveorder          {   margin-top: -20px; padding: 0; }
