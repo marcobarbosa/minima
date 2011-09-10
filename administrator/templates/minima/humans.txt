@@ -11,24 +11,17 @@
     Twitter: @hussfelt
     From: Sweden
 
-    Php & Javascript developer: Júlio Pontes
+    PHP & Javascript developer: Júlio Pontes
     Twitter: @juliopontes
     From: Brazil
-    
-/* CONTRIBUTORS */
-    Norwegian: Torkil S. Johnsen
-    German: Christian Hent
-    Swedish: Linda Kadar
-    Brazilian Portuguese: Marco Barbosa
-    Russian: Stefan Tjurin
-    Spanish: Patricio Bustos
 
 /* SPECIAL THANKS */
     Dimitar Christoff (@d_mitar) - Javascript tips and refactoring
     Stian Didriksen (@stipsan) - JS and CSS3 Improvements
     -------------------------
-    J and Beyond - the coolest Joomla! event you will ever be.
+    J and Beyond - The coolest Joomla! event you will ever be.
     Molajo - Because Joomla! rocks and Molajo crocs!
+    Joomla Day Brasil 2011 - Presented Minima in the best Joomla! Day I have attended.
 
 /* THANKS (those who helped somewhat: feedback, motivation, etc) */
     Amy Stephen
@@ -40,6 +33,7 @@
     Fotis Envagelou
     Henrik Hussfelt
     Jeremy Wilken
+    Joomla Day Brasil 2011
     Linda Kadar
     Martin Blodau
     Matt Thomas
