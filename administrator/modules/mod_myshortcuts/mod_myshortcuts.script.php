@@ -72,9 +72,23 @@ class Mod_MyshortcutsInstallerScript {
         } else {
             
             // check for widgets-first and widgets-last modules
-            /*$db->setQuery("SELECT `home` FROM `#__template_styles` WHERE `#__template_styles`.`template` = 'minima'");                
+            $db->setQuery("SELECT `position` FROM `#__modules` WHERE `#__modules`.`position` LIKE 'widgets'");
+            
+            // they should be cpanel instead
+            $hasWrongPositions = $db->loadResult();
 
-            $alreadyInstalled = $db->loadResult();*/
+            // minima doesn't need dashboard positions anymore
+            if ($hasWrongPositions) {
+                // update position to cpanel
+                $db->setQuery("UPDATE `#__modules`".
+                    " SET `position` = 'cpanel'".
+                    " WHERE `#__modules`.`position` = 'widgets-first' OR `#__modules`.`position` = 'widgets-last' ;");
+
+                if (!$db->query() && ($db->getErrorNum() != 1060)) {
+                    die($db->getErrorMsg(true));
+                }
+            }
+
 
             // cleaning cache
             JModel::cleanCache("Minima");
