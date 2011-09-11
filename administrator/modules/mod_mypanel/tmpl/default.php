@@ -45,7 +45,7 @@ if (count($items) <= 9) {
             $count = 0;
 
             // standard components that we have the icons ready
-            $jComponents = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search", "com_weblinkss");
+            $jComponents = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search", "com_weblinks");
 
             foreach ($items as $item) {
                 
@@ -87,7 +87,7 @@ if (count($items) <= 9) {
                     if (!file_exists($img) || $imageIsTooSmall) {
                         // start checking for alternative paths
                         // look for the img in the header path
-                        //if () {
+                        //if (file_exists()) {
                             
                         // look for the img in the media path
                         //} else if () {
@@ -106,7 +106,6 @@ if (count($items) <= 9) {
                 }
         
                 // new list for first of every 10th item
-                //if ($count % 9 === 0 || $count === 0) {
                 if ($count % 9 === 0) {
                     echo "<ul>";
                 }
@@ -136,7 +135,6 @@ if (count($items) <= 9) {
                 } // end of if !empty($class)
                 
                 // close list for first of every 10th item
-                //if ($count % 9 === 8 || $count === 8) {
                 if ($count % 9 === 8) {
                     echo "</ul>";
                 }

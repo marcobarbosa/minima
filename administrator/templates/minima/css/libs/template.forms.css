@@ -32,17 +32,17 @@
 /*
  * Administrator forms, lists
  * */
-
+/* using !important to avoid extensions from breaking the design */
 fieldset                                {
                                             background: #fff;
+                                            border: none !important;
                                             -moz-border-radius: 6px;
                                             -webkit-border-radius: 6px;
                                             border-radius: 6px;
                                             border: none;
-                                            margin: 10px 10px 0;
-                                            margin-top: 10px!important;
+                                            margin: 10px 10px 0 !important;
                                             overflow: hidden;
-                                            padding: 0 15px 15px 15px;
+                                            padding: 0 15px 15px 15px !important;
                                         }
 
     fieldset:last-child                 {   margin-bottom: 0; }
@@ -53,7 +53,7 @@ legend                                  {
                                             font-size: 12px;
                                             letter-spacing: 1px;
                                             margin: 0;
-                                            padding: 0 0 20px;
+                                            padding: 0 0 20px !important;
                                             text-shadow: 1px 1px 0 #fff;
                                             text-transform: uppercase;
                                         }
@@ -123,9 +123,6 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
     fieldset li                         {
                                             list-style: none;
                                             margin: 0;
-                                            -moz-border-radius: 6px;
-                                            -webkit-border-radius: 6px;
-                                            border-radius: 6px;
                                         }
 
     .config-option-list li input, .config-option-list li select
@@ -143,16 +140,6 @@ fieldset ol                             {   margin: 0; padding: 0; list-style: n
                 .config-option-list li:first-child,
                 .adminformlist li:first-child
                                         {   border-top: none; }
-
-            /*.config-option-list li:hover,
-            .adminformlist li:hover,
-            fieldset li:hover           {
-                                            background: #FFFFED;
-                                            background: -moz-linear-gradient(top, #FFFFEE 0%, #FFFFEE 50%, #FFFFED 51%, #FFFFED 100%);
-                                            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFEE), color-
-                                            stop(50%,#FFFFEE), color-stop(51%,#FFFFED), color-stop(100%,#FFFFED));
-                                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFEE', endColorstr='#FFFFED',GradientType=0 );
-                                        }*/
 
             #rules li:hover             {   background: transparent; }
 

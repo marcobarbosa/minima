@@ -17,6 +17,7 @@
                                         }
 
     #panel-pagination                   {   height: 20px; width: 50%; position: absolute; top: -5px; padding: 0 46%;}
+
         #panel-pagination li            {
                                             cursor: pointer;
                                             line-height: 0;
@@ -29,9 +30,7 @@
                                             box-shadow: inset 0px 1px 4px rgba(0,0,0,0.3);
                                             border-radius: 8px;
                                         }
-
-        #panel-pagination .current      {  color: #fff; }
-
+    #panel-list ul { float: left; width: 900px; margin: 0; padding: 0;}
 
     #panel-list li                      {   height: 85px; float: left; margin: 5px; width: 290px; }
 
@@ -63,18 +62,24 @@
 
             #panel-list li a:active     {   position: relative; top: 2px; }
 
-            #panel-list li.ext a        {
+            #panel-list .ext a        {
                                             background-image: none;
                                             padding-left: 0;
-                                            width: 256px;
+                                            width: 246px;
                                         }
 
-            #panel-list li.ext a img    {
+            /* make sure the container is 48px to match the native icons */
+            #panel-list .ext figure     {   
                                             float: left;
-                                            padding: 12px 12px 0 32px;                                            
+                                            height: 48px; 
+                                            line-height: 0;
+                                            margin: 0 12px;
+                                            width: 48px; 
+
                                         }
 
-#panel-list li .extension-desc          {
+            
+#panel-list li .ext-desc                {
                                             font-size: 11px;
                                             font-weight: normal;
                                             display: block;

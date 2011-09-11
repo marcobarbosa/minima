@@ -33,7 +33,7 @@
     // MINIMA CLASSES
     // ==================================================
 	// MinimaPanelClass by Henrik Hussfelt, Marco Barbosa
-	var MinimaPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getChildren("li").length;this.options.panelList.setStyle("width",Math.round(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},helloWorld:function(){alert("cool")},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}});
+    var MinimaPanelClass=new Class({Implements:[Options],panelStatus:{"true":"active","false":"inactive"},panel:null,options:{prev:"",next:"",panelList:"",panelPage:"",panelWrapper:"",toIncrement:0,increment:900},minima:null,maxRightIncrement:null,panelSlide:null,numberOfExtensions:null,initialize:function(a){this.minima=document.id(this.options.minima)||document.id("minima");this.setOptions(a);this.panel=new Fx.Slide.Mine(this.options.panelWrapper,{mode:"vertical",transition:Fx.Transitions.Pow.easeOut}).hide();if(this.options.next){this.panelSlide=new Fx.Tween(this.options.panelList,{duration:500,transition:"back:in:out"});this.numberOfExtensions=this.options.panelList.getElements("li").length;this.options.panelList.setStyle("width",Math.ceil(this.numberOfExtensions/9)*this.options.increment);this.maxRightIncrement=-Math.ceil(this.options.panelPage.getChildren().length*this.options.increment-this.options.increment);this.showButtons()}},doPrevious:function(){if(this.options.toIncrement<0){this.options.next.show();this.options.toIncrement+=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getPrevious("li").addClass("current");this.showButtons()}},doNext:function(){if(this.options.toIncrement>this.maxRightIncrement){this.options.prev.show();this.options.toIncrement-=this.options.increment;this.panelSlide.pause();this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current").getNext("li").addClass("current");this.showButtons()}},changeToPage:function(b){var a=b.id.substr("panel-pagination-".length);this.panelSlide.pause();this.options.toIncrement=Math.ceil(0-this.options.increment*a);this.panelSlide.start("margin-left",this.options.toIncrement);this.options.panelPage.getFirst(".current").removeClass("current");b.addClass("current");this.showButtons()},showButtons:function(){if(this.options.toIncrement==0){this.options.prev.hide()}else{this.options.prev.show()}if(this.options.toIncrement==this.maxRightIncrement){this.options.next.hide()}else{this.options.next.show()}}});
 
 	// MinimaTabsClass by Henrik Hussfelt, Marco Barbosa
     var MinimaTabsClass=new Class({Implements:[Options],options:{},elements:{tabs:null,content:null},initialize:function(a,b){this.setOptions(a);this.elements=b},moveTabs:function(a){a.inject($("content"),"top")},showFirst:function(){this.elements.content.pick().removeClass("hide")},hideAllContent:function(){this.elements.content.addClass("hide")},addTabsAction:function(){var a=this;this.elements.tabs.each(function(c,b){c.addEvents({click:function(d){d.stop();a.elements.tabs.removeClass("active");a.elements.tabs[b].addClass("active");a.elements.content.addClass("hide");a.elements.content[b].removeClass("hide")}})})}});
@@ -193,13 +193,13 @@ window.addEvent('domready', function() {
     // PANEL TAB
     // ==================================================
     // tabs wrapper
-    var tabsWrapper = $('panel-wrapper'),
-        extra       = $('more')
-        extraLists  = $('list-content'),
-        openPanel   = $('panel-tab'),
-        listWrapper = $('list-wrapper');
+    var $panelWrapper = $('panel-wrapper'),
+        extra        = $('more')
+        extraLists   = $('list-content'),
+        openPanel    = $('panel-tab'),
+        listWrapper  = $('list-wrapper');
 
-    if (tabsWrapper) {
+    if ($panelWrapper) {
 
 	    // Fixing wrapper bug
 	    Fx.Slide.Mine = new Class({
@@ -210,26 +210,31 @@ window.addEvent('domready', function() {
 	        }
 	    });
 
+        // cache elements
+        var $panelPagination = $('panel-pagination'),
+            $prev            = $('prev'),
+            $next            = $('next');
+
 		// Create a Panel instance
 		var Panel = new MinimaPanelClass({
-				panelWrapper: $('panel-wrapper'),
-				prev: $('prev'),
-				next: $('next'),
+				panelWrapper: $panelWrapper,
+				prev: $prev,
+				next: $next,
 				panelList: $('panel-list'),
-				panelPage: $('panel-pagination')
+				panelPage: $panelPagination
 		});
 
 		// Setup click event for previous
-		$('prev').addEvent('click', function() {
+		$prev.addEvent('click', function() {
 			Panel.doPrevious();
 		});
 		// Setup click event for previous
-		$('next').addEvent('click', function() {
+		$next.addEvent('click', function() {
 			Panel.doNext();
 		});
 
 		// Fix panel pagination
-		$('panel-pagination').getChildren("li").addEvent('click', function() {
+		$panelPagination.getChildren("li").addEvent('click', function() {
 			// Send ID to changepage as this contains pagenumber
 			Panel.changeToPage(this);
 		});
@@ -240,10 +245,7 @@ window.addEvent('domready', function() {
                 //minima.getElements("#shortcuts .parent").getChildren('.sub').dissolve({duration: 200}).removeClass('hover');
                 minima.getElements("#shortcuts .parent").removeClass('hover');
         		Panel.panel.toggle();
-            }/*,
-            'outerClick' : function(){
-                //Panel.panel.slideOut();
-            }*/
+            }
         });
 
         // change status on toggle complete
@@ -256,7 +258,7 @@ window.addEvent('domready', function() {
             Panel.panel.toggle();
         });
 
-    }; // end of if(tabsWrapper)
+    }; // end of if($panelWrapper)
 
 
     // dropdown menu
