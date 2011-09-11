@@ -46,24 +46,26 @@ if (count($items) <= 9) {
 
             // standard components that we have the icons ready
             $jComponents = array("com_banners", "com_contact", "com_messages", "com_newsfeeds", "com_redirect", "com_search", "com_weblinkss");
-            
-            foreach ($items as $item) :
+
+            foreach ($items as $item) {
                 
                 // one more extension
                 $count++;
 
                 // get the description from the language file (100 chars)
-                $desc = strip_tags( substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100) );
+                $description = strip_tags( substr(JText::_(''.strtoupper($item->title).'_XML_DESCRIPTION'), 0, 100) );
                 
                 // get the title of the component             
                 $title = JText::_(''.strtoupper($item->title));
                 
                 // do we have a description?
                 // show the "no description available" message if not
-                if (strpos($desc, '_XML_DESCRIPTION') !== false) {
-                    $desc = JText::_('TPL_MINIMA_NODESCRIPTION');
+                if (strpos($description, '_XML_DESCRIPTION') !== false) {
+                    $description = JText::_('TPL_MINIMA_NODESCRIPTION');
                 }
                 
+                $isIconFound = false;
+
                 // if it's a standard extension, add the class to use the sprites
                 if (in_array(strtolower($item->element), $jComponents)) {
                     
@@ -74,28 +76,42 @@ if (count($items) <= 9) {
                     $class = "icon-48-".$arrClass[1];
 
                 } else {
+
                     // component dev already specifies image path
-                    // so grab 48 px icon vs. 16 px
-                	$img = str_replace('16', '48', $item->img);
-                    
+                    $img = str_replace('16', '48', $item->img);
+
+                    // get image dimensions, maybe we still got the 16px one
+                    // $imageIsTooSmall....
+                    $imageIsTooSmall = false; // temporary
+
+                    // does the supplied image exist?
+                    if (!file_exists($img) || $imageIsTooSmall) {
+                        // start checking for alternative paths
+                        // look for the img in the header path
+                        //if () {
+                            
+                        // look for the img in the media path
+                        //} else if () {
+                            
+                        //}
+                        
+                    } else {
+                        $isIconFound = true;
+                    }
+
                     // last fallback if img still not found
-                    if (!file_exists($img)) {
+                    if (!$isIconFound) {
                         $class = "icon-48-generic";
                     }
-                }
-        ?>
-        <?php   
-                // new page list every 9 items
-                if ($count % 9 === 0) {
-                    echo "<ul>";
-                }
 
+                }
+        
                 // standard extension
                 if (!empty($class)) { 
         ?>
                 <li>
                     <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $title; ?>
-                        <span class="extension-desc"><?php echo $desc; ?></span>
+                        <span class="ext-desc"><?php echo $description; ?></span>
                     </a>
                 </li>
         <?php   
@@ -103,20 +119,19 @@ if (count($items) <= 9) {
                 } else { 
         ?>
                 <li class="ext">
-                    <img src="<?php echo $img; ?>" width="48" height="48" alt="<?php echo $title; ?>" />
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>"><?php echo $title; ?>
-                        <span class="extension-desc"><?php echo $desc; ?></span>
+                    <a href="<?php echo $item->link; ?>" class="<?php echo $class; ?>">
+                        <figure>
+                            <img src="<?php echo $img; ?>" alt="<?php echo $title; ?>" />
+                        </figure>
+                        <?php echo $title; ?>
+                        <span class="ext-desc"><?php echo $description; ?></span>
                     </a>
                 </li>
         <?php   
                 } // end of if !empty($class)
-                 
-                // close page list
-                if ($count % 9 === 0) {
-                    echo "</ul>";
-                } 
-        
-        endforeach; 
+                         
+        }; //end of loop
+         
         ?>
     </ul>
 

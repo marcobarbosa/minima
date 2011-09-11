@@ -56,7 +56,7 @@ class ModMypanelHelper
         $components = $db->loadObjectList();
 
         // Parse the list of extensions.
-        foreach ($components as &$component) {
+        foreach ($components as $component) {
             // Trim the menu link.
             $component->link = trim($component->link);
 
