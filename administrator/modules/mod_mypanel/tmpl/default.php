@@ -49,9 +49,6 @@ if (count($items) <= 9) {
 
             foreach ($items as $item) {
                 
-                // one more extension
-                $count++;
-
                 // reset local vars
                 $isIconFound = false; 
                 $class = "";
@@ -109,7 +106,8 @@ if (count($items) <= 9) {
                 }
         
                 // new list for first of every 10th item
-                if ($count % 10 === 0 || $count === 1) {
+                //if ($count % 9 === 0 || $count === 0) {
+                if ($count % 9 === 0) {
                     echo "<ul>";
                 }
 
@@ -138,9 +136,13 @@ if (count($items) <= 9) {
                 } // end of if !empty($class)
                 
                 // close list for first of every 10th item
-                if ($count % 10 === 10 || $count === 9) {
+                //if ($count % 9 === 8 || $count === 8) {
+                if ($count % 9 === 8) {
                     echo "</ul>";
                 }
+
+                // one more extension
+                $count++;
                          
         }; //end of loop
          
