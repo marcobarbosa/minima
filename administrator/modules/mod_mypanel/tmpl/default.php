@@ -77,25 +77,39 @@ if (count($items) <= 9) {
                 } else {
 
                     // component dev already specifies image path
+                    // if any '16' is present in the title change it to '48'
                     $img = str_replace('16', '48', $item->img);
 
-                    // get image dimensions, maybe we still got the 16px one
-                    // $imageIsTooSmall....
-                    $imageIsTooSmall = false; // temporary
-
                     // does the supplied image exist?
-                    if (!file_exists($img) || $imageIsTooSmall) {
-                        // start checking for alternative paths
+                    if (file_exists($img)) {
+                        
+                        // make sure image found is not too small
+                        $imgDimensions = getimagesize($img);
+                        
+                        // $imgDimensions[0] contains the width
+                        if ($imgDimensions[0] >= 48) {
+                            $isIconFound = true;
+                        }
+                        
+                    // start checking for alternative paths
+                    } else {
+                        
+                        // break full path into parts
+                        $imgFullPath = explode("/", $img);
+                        // get the last one (image name)
+                        $imgName = $imgFullPath[count($imgFullPath)-1];
+                        
+                        // foreach array of possibilities
+
                         // look for the img in the header path
-                        //if (file_exists()) {
+                        if (file_exists()) {
                             
                         // look for the img in the media path
-                        //} else if () {
+                        } else /*if ()*/ {
                             
-                        //}
+                        }
                         
-                    } else {
-                        $isIconFound = true;
+                        
                     }
 
                     // last fallback if img still not found

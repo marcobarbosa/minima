@@ -49,6 +49,7 @@ $requestVars = array(
     <link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.shortcuts.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/module.mypanel.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.cpanel.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.forms.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/component.menu.css" rel="stylesheet">
@@ -159,8 +160,12 @@ $requestVars = array(
     </footer>
     <script>
         head.js(
-            {minima: "templates/<?php echo $this->template ?>/js/minima.js"}/*,
-            {fixes: "templates/<?php echo $this->template ?>/js/libs/minima.fixes.js"}*/
+            { minimaClass: "templates/<?php echo $this->template ?>/js/libs/minima.class.js" },
+            { minimaPanel: "templates/<?php echo $this->template ?>/js/libs/minima.panel.js" },
+            { minimaTabs: "templates/<?php echo $this->template ?>/js/libs/minima.tabs.js" },
+            { minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js" },
+            { minimaFilterbar: "templates/<?php echo $this->template ?>/js/libs/minima.filterbar.js" },
+            { minima: "templates/<?php echo $this->template ?>/js/minima.js"}
         , function() {
             // all done            
             $('minima').addClass('ready');

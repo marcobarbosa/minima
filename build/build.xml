@@ -2,14 +2,15 @@
 <project name="minima" default="pkg">
 
     <!-- set global properties for this build -->
-    <propertyfile
-    file="ftp.properties"
+    <!--<propertyfile file="ftp.properties"
     comment="FTP information">
 	  	<entry  key="server" value="_server" />
 	  	<entry  key="userid" value="_userid" />
 	  	<entry  key="password" value="_password" />
 	  	<entry  key="remotedir" value="_remotedir" />
-	</propertyfile>
+	</propertyfile>-->
+	<property file="./config/build.properties"/>
+    <property file="./config/ftp.properties"/>
 
 	<target name="clean">
 		<echo message="Cleaning directories.." />
@@ -17,21 +18,23 @@
 		<delete file="pkg_minima.zip" />
 	</target>
 
+	<!-- create the package -->
 	<target name="pkg">
 		<antcall target="clean" />
 		<echo message="Building package.." />
 		<mkdir dir="packages" />		
-		<zip destfile="packages/mod_mypanel.zip" basedir="../administrator/modules/mod_mypanel" />
-		<zip destfile="packages/mod_myshortcuts.zip" basedir="../administrator/modules/mod_myshortcuts" />
-		<zip destfile="packages/tpl_minima.zip" basedir="../administrator/templates/minima" />
+		<zip destfile="./packages/mod_mypanel.zip" basedir="../administrator/modules/mod_mypanel" />
+		<zip destfile="./packages/mod_myshortcuts.zip" basedir="../administrator/modules/mod_myshortcuts" />
+		<zip destfile="./packages/tpl_minima.zip" basedir="../administrator/templates/minima" />
 		<zip destfile="pkg_minima.zip">
 			<fileset dir=".">
-				<include name="packages/**" />
+				<include name="./packages/**" />
 				<include name="manifest.xml" />
 			</fileset>
 		</zip>
 	</target>
 	
+	<!-- FTP deploy, run separately -->
 	<target name="ftp">
 		<ftp
 			server="${_server}" 			
@@ -43,5 +46,81 @@
 			</fileset>
 		</ftp>		
 	</target>
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
+
+    <target name="-mkdirs">
+      <if>
+          <or>
+            <equals arg1="${dir.publish}" arg2="."/>
+            <equals arg1="${dir.publish}" arg2=".."/>
+            <equals arg1="${dir.publish}" arg2="/"/>
+            <equals arg1="${dir.publish}" arg2="./"/>
+            <equals arg1="${dir.publish}" arg2="../"/>
+          </or>
+          <then>
+            <fail message="Your dir.publish folder is set to ${dir.publish} which could delete your entire site or worse. Change it in project.properties"/>
+          </then>
+          <else>
+            <echo message="Creating directory structure... ${dir.publish}"/>
+
+            <mkdir dir="${dir.intermediate}"/>
+            <copy todir="${dir.intermediate}" includeEmptyDirs="true">
+                <fileset dir="${dir.source}/" excludes="${file.default.exclude}, ${file.exclude}">
+                    <type type="dir"/>
+                </fileset>
+            </copy>
+              <mkdir dir="${dir.publish}"/>
+              <copy todir="${dir.publish}" includeEmptyDirs="true">
+                  <fileset dir="${dir.source}/" excludes="${file.default.exclude}, ${file.exclude}">
+                      <type type="dir"/>
+                  </fileset>
+              </copy>
+          </else>
+      </if>
+    </target>
+
+    <target name="-copy" depends="-mkdirs">
+    <!-- This is a private target -->
+
+        <echo message="Copying over new files..."/>
+
+        <copy todir="./${dir.publish}">
+            <fileset dir="${dir.source}/" excludes="${file.default.exclude}, ${file.exclude}">
+                <!-- exclude files that are superseded by optimized versions with different names -->
+                <!-- this is not strictly necessary, but it avoids putting unreferenced files into your server -->
+                <exclude name="${dir.js}/**/*.js"/>
+                <exclude name="${dir.css}/**/*.css"/>
+                <exclude name="${file.manifest}"/>
+            </fileset>
+        </copy>
+
+        <echo message="A copy of all non-dev files are now in: ./${dir.publish}."/>
+    </target>
+
+    <!-- JAVASCRIPT -->
+    <target name="-js.main.concat" depends="-js.all.minify" description="(PRIVATE) Concatenates the JS files in dir.js">
+        <echo message="Concatenating Main JS scripts..."/>
+        <!-- overwrite=no here means not to overwrite if the target is newer than the sources -->
+        <concat destfile="./${dir.intermediate}/${dir.js}/scripts-concat.js" overwrite="no">
+            <fileset dir="./${dir.intermediate}/">
+                <include name="${dir.js.main}/plugins.js"/>
+                <include name="${dir.js.main}/${file.root.script}"/>
+            </fileset>
+        </concat>
+    </target>
+
+
 </project>

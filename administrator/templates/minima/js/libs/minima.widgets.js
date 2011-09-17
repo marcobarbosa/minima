@@ -133,7 +133,6 @@ var MinimaWidgetsClass = new Class({
     },
     // attach the drag and drop events
     attachDrag: function(){
-        console.log(this.columns);
         var that = this;
         // create new sortables
         new Sortables( this.columns, {

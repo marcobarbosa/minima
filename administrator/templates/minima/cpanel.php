@@ -145,6 +145,11 @@ $requestVars = array(
     </footer>
     <script>
         head.js(
+            { minimaClass: "templates/<?php echo $this->template ?>/js/libs/minima.class.js" },
+            { minimaPanel: "templates/<?php echo $this->template ?>/js/libs/minima.panel.js" },
+            { minimaTabs: "templates/<?php echo $this->template ?>/js/libs/minima.tabs.js" },
+            { minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js" },
+            { minimaFilterbar: "templates/<?php echo $this->template ?>/js/libs/minima.filterbar.js" },
             { minima: "templates/<?php echo $this->template ?>/js/minima.js" },
             { localStorage: "templates/<?php echo $this->template ?>/js/plugins/localstorage.js" },
             { widgets: "templates/<?php echo $this->template ?>/js/libs/minima.widgets.js" }
