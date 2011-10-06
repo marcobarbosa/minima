@@ -14,9 +14,7 @@ defined('_JEXEC') or die;
 require_once dirname(__FILE__).DS.'helper.php';
 
 // Initialise variables.
-$lang       = &JFactory::getLanguage();
-$user       = &JFactory::getUser();
-$enabled    = JRequest::getInt('hidemainmenu') ? false : true;
+$helper = ModMypanelHelper::getInstance();
 
 // Render the module layout
 require JModuleHelper::getLayoutPath('mod_mypanel');
