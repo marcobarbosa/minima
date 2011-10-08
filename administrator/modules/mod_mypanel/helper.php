@@ -26,7 +26,7 @@ class ModMypanelHelper
     public function __construct( $config = array() )
     {
         // cache configuration
-        $config['cache_request'] = isset($config['cache_request']) ? $config['cache_request'] : false ;
+        $config['cache_request'] = isset($config['cache_request']) ? $config['cache_request'] : true ;
         $config['cache_time'] = isset($config['cache_time']) ? $config['cache_time'] : 30 ;
         // number of items displayed per page
         $config['pages'] = 9;
@@ -83,11 +83,8 @@ class ModMypanelHelper
             $this->_data = $this->_loadExtensions();
             // storing cache data
             $this->_cache->store($this->_data,$request_key,$cache_group);
-        }
+        } else { echo 'dados da cache'; }
 
-        //loading languages after get data
-        //$this->_loadLanguages();
-        
         return $this->_data;
     }
     
@@ -135,13 +132,14 @@ class ModMypanelHelper
                 // Only add this top level if it is authorised and enabled.
                 if ($authCheck == false || ($authCheck && $user->authorize('core.manage', $component->element))) {
 
-                    $xml = $this->getComponentXml($component);
-                    // $this->_loadLanguage($component);
+                    // load language files for title and description
+                    $lang->load($component->element, JPATH_BASE);
+                    $lang->load($component->element, JPATH_ADMINISTRATOR);
 
                     // fix all the data for this root level entry
                     $component->link = trim($component->link);
+                    $component->description = strip_tags( substr(JText::_(''.strtoupper($component->title).'_XML_DESCRIPTION'), 0, 100) );
                     $component->title = JText::_(''.strtoupper($component->title));
-                    $component->description = strip_tags( substr(JText::_(''.$component->title.'_XML_DESCRIPTION'), 0, 100) );
 
                     // get the description if it exists
                     // show the "no description available" message if not
@@ -173,7 +171,8 @@ class ModMypanelHelper
 
         } // end foreach
 
-        // $this->_loadLanguages($langs);
+        // load additional language files
+        $this->_loadLanguages($langs);
         
         return $data;
     }
@@ -234,16 +233,14 @@ class ModMypanelHelper
     }
     
     /**
-     * Load custom language file
+     * Load aditional language files
      */
     public function _loadLanguages($langs)
     {
         // Initialise variables.
         $lang   = JFactory::getLanguage();
         
-        // $lang->load($row->element, JPATH_BASE);
-        // $lang->load($row->element, JPATH_ADMINISTRATOR);
-                // Load additional language files.
+        // Load additional language files.
         foreach (array_keys($langs) as $langName) {            
             // Load the core file then
             // Load extension-local file.
