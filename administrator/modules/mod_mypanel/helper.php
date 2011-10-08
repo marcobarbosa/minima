@@ -2,7 +2,8 @@
 /** 
  * @package     Minima
  * @subpackage  mod_mypanel
- * @author      Marco Barbosa e Júlio Pontes
+ * @author      Júlio Pontes
+ * @author      Marco Barbosa
  * @copyright   Copyright (C) 2010 Marco Barbosa. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -19,20 +20,31 @@ class ModMypanelHelper
     protected $_config;
     protected $_cache;
 
+    /**
+     * Constructor of helper
+     */
     public function __construct( $config = array() )
     {
+        // cache configuration
         $config['cache_request'] = isset($config['cache_request']) ? $config['cache_request'] : false ;
         $config['cache_time'] = isset($config['cache_time']) ? $config['cache_time'] : 30 ;
+        // number of items displayed per page
         $config['pages'] = 9;
         
+        // set the configuration
         $this->_config = $config;
         
+        // instace cache
         jimport('joomla.cache.cache');
         $this->_cache = JCache::getInstance();
+        // config cache
         $this->_cache->setCaching($config['cache_request']);
         $this->_cache->setLifeTime($config['cache_time']);
     }
     
+    /**
+     * Singleton instance of helper
+     */
     public function getInstance()
     {
         static $instance;
@@ -44,32 +56,50 @@ class ModMypanelHelper
         return $instance;
     }
     
+    /**
+     * Return number of pages
+     */
     public function getNumPages()
     {
         return ceil( count($this->_data) / $this->_config['pages']);
     }
     
+    /**
+     * Return array items 
+     */
     public function getItems()
     {
+        // cache key
         $request_key = md5(__CLASS__);
+        // cache folder
         $cache_group = 'mypanel';
         
+        // get cached data
         $this->_data = $this->_cache->get($request_key,$cache_group);
         
+        // check if cache data is empty
         if (empty($this->_data)) {
+            // load extensions
             $this->_data = $this->_loadExtensions();
+            // storing cache data
             $this->_cache->store($this->_data,$request_key,$cache_group);
         }
+
+        //loading languages after get data
+        //$this->_loadLanguages();
         
         return $this->_data;
     }
     
-    public function _loadExtensions()
+    public function _loadExtensions($authCheck = true)
     {
         // Initialise variables.
-        $db = JFactory::getDbo();
+        $db     = JFactory::getDbo();
         $query  = $db->getQuery(true);
         $user   = JFactory::getUser();
+        $lang   = JFactory::getLanguage();
+        $langs  = array();
+        $data   = array();
         
         // $query->select('e.extension_id, e.name, e.element');
         // $query->from('#__extensions AS e');
@@ -86,7 +116,7 @@ class ModMypanelHelper
         // Filter on the enabled states.
         $query->leftJoin('#__extensions AS e ON m.component_id = e.extension_id');
 
-        $query->where('m.client_id=1');
+        $query->where('m.client_id = 1');
         $query->where('e.enabled = 1');
         $query->where('m.id > 1');
 
@@ -94,32 +124,56 @@ class ModMypanelHelper
         $query->order('m.id DESC');
 
         $db->setQuery($query);
-        $rows = $db->loadObjectList();
-        
-        $data = array();
-        
-        foreach($rows as $row)
-        {
-            $this->loadLanguages($row);
-            $xml = $this->getComponentXml($row);
-            
-            $description = JText::_(strtoupper($row->element).'_XML_DESCRIPTION');
-            
-            //component object
-            $component = new stdclass;
-            $component->name = ($xml) ? $xml->name : $row->title ;
-            //$component->name = JText::_(''.strtoupper($row->title));
-            $component->description = (strpos($description,'_XML_DESCRIPTION') >= 0) ? JText::_('TPL_MINIMA_NODESCRIPTION') : JString::substr($description,0,100) ;
-            
-            if (!$component->image = $this->getExtensionImage($row)) {
 
-                $component->cssClass = $this->getExtensionClass($row);
-                
-            }
-            $component->link = 'index.php?option='.$row->element;
+        $components = $db->loadObjectList();
+        
+        // loop through the results
+        foreach($components as $component) {
             
-            array_push($data, $component);
-        }
+            if ($component->parent_id == 1) {
+                
+                // Only add this top level if it is authorised and enabled.
+                if ($authCheck == false || ($authCheck && $user->authorize('core.manage', $component->element))) {
+
+                    $xml = $this->getComponentXml($component);
+                    // $this->_loadLanguage($component);
+
+                    // fix all the data for this root level entry
+                    $component->link = trim($component->link);
+                    $component->title = JText::_(''.strtoupper($component->title));
+                    $component->description = strip_tags( substr(JText::_(''.$component->title.'_XML_DESCRIPTION'), 0, 100) );
+
+                    // get the description if it exists
+                    // show the "no description available" message if not
+                    if (strpos($component->description, '_XML_DESCRIPTION') !== false) {
+                        $component->description = JText::_('TPL_MINIMA_NODESCRIPTION');
+                    }
+
+                    // get image if it exists 
+                    // grab the css class for it if not
+                    if (!$component->image = $this->getExtensionImage($component)) {
+                        $component->cssClass = $this->getExtensionStyleClass($component);
+                    }
+
+                    // if the root menu link is empty, add it in
+                    if (empty($component->link)) {
+                        $component->link = 'index.php?option='.$component->element;
+                    }
+
+                    // all fixed 
+                    // save the data to display
+                    $data[$component->id] = $component;
+
+                    if (!empty($component->element)) {
+                        $langs[$component->element.'.sys'] = true;
+                    }
+
+                } //end if $authCheck
+            }
+
+        } // end foreach
+
+        // $this->_loadLanguages($langs);
         
         return $data;
     }
@@ -137,9 +191,9 @@ class ModMypanelHelper
     }
 
     /**
-     * Return the extension's class
+     * Return the extension's CSS class
      */
-    public function getExtensionClass($row) 
+    public function getExtensionStyleClass($row) 
     {
 
         // standard Joomla! components
@@ -182,12 +236,23 @@ class ModMypanelHelper
     /**
      * Load custom language file
      */
-    public function loadLanguages($row)
+    public function _loadLanguages($langs)
     {
         // Initialise variables.
         $lang   = JFactory::getLanguage();
         
-        $lang->load($row->element, JPATH_BASE);
-        $lang->load($row->element, JPATH_ADMINISTRATOR);
+        // $lang->load($row->element, JPATH_BASE);
+        // $lang->load($row->element, JPATH_ADMINISTRATOR);
+                // Load additional language files.
+        foreach (array_keys($langs) as $langName) {            
+            // Load the core file then
+            // Load extension-local file.
+                $lang->load($langName, JPATH_BASE, null, false, false)
+            ||  $lang->load($langName, JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), null, false, false)
+            ||  $lang->load($langName, JPATH_BASE, $lang->getDefault(), false, false)
+            ||  $lang->load($langName, JPATH_ADMINISTRATOR.'/components/'.str_replace('.sys', '', $langName), $lang->getDefault(), false, false);
+        }
+
+
     }
 }

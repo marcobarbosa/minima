@@ -38,23 +38,39 @@ $nPages = $helper->getNumPages();
     <ul id="panel-list">
         <?php
             $class = ""; $count = 0;
-           foreach ($items as $item) :
+            foreach ($items as $item) :
+
+                // new list for first of every 10th item
+                if ($count % 9 === 0) {
+                    echo "<ul>";
+                }
         ?>
         <?php   if (empty($item->image)): ?>
                 <li>
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $item->cssClass; ?>"><?php echo $item->name; ?>
-                        <span class="extension-desc"><?php echo $item->description; ?></span>
+                    <a href="<?php echo $item->link; ?>" class="<?php echo $item->cssClass; ?>"><?php echo $item->title; ?>
+                        <span class="ext-desc"><?php echo $item->description; ?></span>
                     </a>
                 </li>
         <?php else: ?>
                 <li class="ext">
-                    <img src="<?php echo $item->image; ?>" width="48" height="48" alt="<?php echo $item->name; ?>" />
-                    <a href="<?php echo $item->link; ?>" class="<?php echo $item->cssClass; ?>"><?php echo $item->name; ?>
-                        <span class="extension-desc"><?php echo $item->description; ?></span>
+                    <img src="<?php echo $item->image; ?>" width="48" height="48" alt="<?php echo $item->title; ?>" />
+                    <a href="<?php echo $item->link; ?>" class=""><?php echo $item->title; ?>
+                        <span class="ext-desc"><?php echo $item->description; ?></span>
                     </a>
                 </li>
-        <?php endif; ?>
-    <?php endforeach; ?>
+        <?php 
+                endif; 
+                
+                // close list for first of every 10th item
+                if ($count % 9 === 8) {
+                    echo "</ul>";
+                }
+
+                // one more extension
+                $count++;
+
+            endforeach; 
+        ?>
     </ul>
     <!-- next button -->
     <a href="#" id="next" <?php if ($invisible) echo "class=\"invisible\""; ?>><span class="arrow"></span></a>
