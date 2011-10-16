@@ -11,9 +11,11 @@
 
 window.addEvent('domready', function() {
 
-    var out = document.getElementById('jform_params_templateColor'),
+    var out = $('#jform_params_templateColor'),
         reg = /^#(.)\1(.)\2(.)\3$/,
-        inputDarkerColor = document.getElementById('jform_params_darkerColor');
+        inputDarkerColor = $('#jform_params_darkerColor');
+
+    if ( out ) {
 
     // for stylying and positioning
     $$('.fltrt')[0].addClass('templateBasic');
@@ -62,4 +64,5 @@ window.addEvent('domready', function() {
 
     }
 
+    }
 });

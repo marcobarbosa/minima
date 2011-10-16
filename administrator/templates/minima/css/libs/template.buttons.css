@@ -46,7 +46,7 @@ div.toolbar-list                        {   float: right; padding: 0; text-align
                                         }
 
         div.toolbar-list a:active       {   top: 1px; }
-        #actions .toolbar               {   width: 100%; }
+        /*#actions .toolbar               {   width: 100%; }*/
 
 #bulkActions a,
 #toolbar a,
@@ -214,7 +214,7 @@ input[type="button"]:active
                                             border: 1px solid #ccc; border-top: 1px solid #e4e4e4!important; border-bottom: 1px solid #ccc!important;
                                             color: #297BA2!important;
                                             font-weight: normal;
-                                            padding: 6px 0 6px 12px;
+                                            padding: 6px 12px;
                                             margin: 0;
                                         }
 

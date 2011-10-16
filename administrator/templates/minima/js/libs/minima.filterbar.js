@@ -100,7 +100,10 @@ var MinimaFilterBarClass = new Class({
         // if the string contains something
         if (this.pageTitle.length) {
             // change the h2 with the new string
-            h2Title.set( 'html', h2Title.get('html') + "<em>( "+this.pageTitle+")</em>" );
+            // don't add "- select -" strings
+            if (!this.pageTitle.contains("-")) {
+                h2Title.set( 'html', h2Title.get('html') + "<em>( "+this.pageTitle+")</em>" );
+            }
         };
     },
 

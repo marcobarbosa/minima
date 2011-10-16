@@ -34,7 +34,6 @@
         #shortcuts ul .home             {   margin-right: 2px; }
             #shortcuts ul .home  a      {
                                             text-indent: -9999px;
-                                            background: transparent url('../../images/icons.png') center -19px;
                                             width: 16px;
                                         }
 
@@ -97,7 +96,6 @@
  */
 
 #shortcuts .parent a                    {                                                                                       
-                                            background: transparent url('../../images/arrows.png') no-repeat right -232px;                                            
                                             padding-right: 22px;
                                         }
 

@@ -9,7 +9,7 @@
 	<description>Minima template package.</description>
 	<update>http://minimatemplate.com/update/update.xml</update>
 	<files folder="packages">				
-		<file type="template"	id="minima"	         client="administrator">tpl_minima.zip</file>				
+		<file type="template"	id="minima"	         client="administrator">minima.zip</file>				
 		<file type="module"		id="mod_mypanel" 	 client="administrator">mod_mypanel.zip</file>
 		<file type="module"		id="mod_myshortcuts"  client="administrator">mod_myshortcuts.zip</file>		
 	</files>

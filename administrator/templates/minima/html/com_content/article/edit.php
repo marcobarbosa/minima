@@ -18,16 +18,25 @@ JHtml::_('behavior.keepalive');
 ?>
 
 <script type="text/javascript">
-    Joomla.submitbutton = function(task)
-    {
+    Joomla.submitbutton = function(task) {
         if (task == 'article.cancel' || document.formvalidator.isValid(document.id('item-form'))) {
             <?php echo $this->form->getField('articletext')->save(); ?>
             Joomla.submitform(task, document.getElementById('item-form'));
-        }
-        else {
+        } else {
             alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
         }
-    }
+    };
+    window.addEvent('domready', function() {
+        new Keyboard({
+            defaultEventType: 'keydown',
+            active: true,
+            events: {
+                'ctrl+s': function() { Joomla.submitbutton('article.apply'); },
+                'ctrl+shift+s' : function() { Joomla.submitbutton('article.save'); },
+                'ctrl+n' : function() { Joomla.submitbutton('article.save2new'); }
+            }
+        });
+    });
 </script>
 <ul id="submenu" class="out">
     <li class="item-content"><a href="#" class="active"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_CONTENT'); ?></a></li>
@@ -36,7 +45,7 @@ JHtml::_('behavior.keepalive');
     <li class="item-permissions"><a href="#"><?php echo JText::_('TPL_MINIMA_CONTENT_LABEL_PERMISSIONS'); ?></a></li>
     <?php endif; ?>
 </ul>
-<form action="<?php JRoute::_('index.php?option=com_content'); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_content&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
     <div id="item-basic">
     <div class="width-70 fltlft">
         <fieldset class="adminform">
@@ -163,5 +172,6 @@ JHtml::_('behavior.keepalive');
     </div><!-- /#item-permissions -->
 
     <input type="hidden" name="task" value="" />
+    <input type="hidden" name="return" value="<?php echo JRequest::getCmd('return');?>" />
         <?php echo JHtml::_('form.token'); ?>
 </form>

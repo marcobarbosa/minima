@@ -45,15 +45,14 @@ $requestVars = array(
 
     <jdoc:include type="head" />
 
+
     <link href="templates/<?php echo $this->template ?>/css/libs/template.reset.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.buttons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.shortcuts.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/libs/module.mypanel.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/libs/template.cpanel.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">
     <link href="templates/<?php echo $this->template ?>/css/libs/template.forms.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/libs/component.menu.css" rel="stylesheet">
-    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">    
+    <link href="templates/<?php echo $this->template ?>/css/libs/module.mypanel.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/libs/template.icons.css" rel="stylesheet">
+    <link href="templates/<?php echo $this->template ?>/css/template.css" rel="stylesheet">     
     
     <!--<link href="templates/<?php echo $this->template ?>/css/tablet.css" media="screen and (min-device-width: 768px) and (max-device-width : 1024px)" rel="stylesheet">-->
 
@@ -165,7 +164,7 @@ $requestVars = array(
             { minimaTabs: "templates/<?php echo $this->template ?>/js/libs/minima.tabs.js" },
             { minimaToolbar: "templates/<?php echo $this->template ?>/js/libs/minima.toolbar.js" },
             { minimaFilterbar: "templates/<?php echo $this->template ?>/js/libs/minima.filterbar.js" },
-            { minima: "templates/<?php echo $this->template ?>/js/minima.js"}
+            { minima: "templates/<?php echo $this->template ?>/js/minima.js" }
         , function() {
             // all done            
             $('minima').addClass('ready');

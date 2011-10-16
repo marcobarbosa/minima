@@ -616,6 +616,13 @@ BODY.error                              {   background: #ccc; }
 
 #bulkActions .active .arrow             {   background: url('../images/arrows.png') no-repeat -5px -452px; }
 
+/* BACKGROUND IMAGES
+====================================================================================== */
+#shortcuts ul .home  a                  {   background: transparent url('../images/icons.png') center -19px; }
+
+#shortcuts .parent a                    {   background: transparent url('../images/arrows.png') no-repeat right -232px; }
+
+
 /*
  * STATUS STYLES
  */
@@ -720,16 +727,20 @@ p.noresults                             {   padding: 20px 15px; }
                                         }
 
 .pane-sliders .content                  {
-                                            background: #fff;
+                                            background: #fff!important;
                                             -moz-border-radius: 0 0 6px 6px;
                                             -webkit-border-radius: 0 0 6px 6px;
                                             border-radius: 0 0 6px 6px;
-                                            margin: 0;
                                         }
 
     #permissions-sliders .content       {   margin: 0; }
 
-    .pane-down                          {   border: 1px solid #cfcfcf!important; border-top: none!important; }
+    .pane-down                          {   
+                                            border: 1px solid #cfcfcf!important; 
+                                            border-top: none!important; 
+                                        }
+
+    .pane-slider.pane-hide              {   display: none; }
 
 .pane-sliders .adminlist                {   border: none; font-size: 11px;  }
     .pane-sliders .adminlist td         {   border: none; }
@@ -981,11 +992,13 @@ ul#legend li                            {
                                             margin: 20px;
                                         }
 
+form#adminForm                          {   margin: 0 12px; }
+
 table.adminlist                         {
                                             border-spacing: 0;
                                             border-top: 1px solid #cecece;
                                             color: #666;
-                                            margin: 0 12px;
+                                            width: 100%;
                                         }
 
 table.adminlist td,
@@ -1121,7 +1134,6 @@ table.adminlist td.order span           {
 .list-footer                            {
                                             background: #fff;
                                             height: 35px;
-                                            margin: 0 12px;
                                         }
 
 table.adminlist .list-footer            {   border: none; margin-top: -4px; padding: 0;  width:100%; }
