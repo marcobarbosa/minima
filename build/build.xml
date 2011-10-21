@@ -82,6 +82,10 @@
     <replaceregexp match="/{([^}]+)}/gs" replace="">
         <fileset dir="./template" includes="index.php"/>
     </replaceregexp>
+    
+    <replaceregexp match="\&lt;!\-\- BEGIN CSS.*END \-\-\&gt;" replace='link rel=styles.min.css' flags="s">
+    <replaceregexp match="\&lt;!\-\- BEGIN JS.*END \-\-\&gt;" replace='link rel=minima.min.js' flags="s">
+    
     <replaceregexp match="/{source}" replace="">
         <fileset dir="./template" includes="index.php"/>
     </replaceregexp>
