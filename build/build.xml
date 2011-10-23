@@ -77,6 +77,7 @@
     </apply>
   </target>
 
+  <!-- updating assets links -->
   <target name="update-sources">
     <echo message="removing CSS sources.." />
     <replaceregexp match="\&lt;!\-\- BEGIN CSS.*END \-\-\&gt;" replace='link rel=templates.min.css' flags="s">
