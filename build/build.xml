@@ -77,30 +77,17 @@
     </apply>
   </target>
 
-  <!-- <target name="update-links">
-    <echo message="removing javascript sources.." />
-    <replaceregexp match="/{([^}]+)}/gs" replace="">
-        <fileset dir="./template" includes="index.php"/>
-    </replaceregexp>
-    <replaceregexp match="/{source}" replace="">
-        <fileset dir="./template" includes="index.php"/>
-    </replaceregexp>
-    <echo message="updating javascript links.." />    
-    <replaceregexp match="minima.js" replace="minima.min.js" flags="g">
-        <fileset dir="./template" includes="index.php"/>
-    </replaceregexp>
-    <echo message="updating css links.." />    
-    <replaceregexp match="template.css" replace="template.min.js" flags="g">
-        <fileset dir="./template" includes="index.php"/>
-    </replaceregexp>
-    <echo message="" />
-  </target> -->
+  <target name="update-sources">
+    <echo message="removing CSS sources.." />
+    <replaceregexp match="\&lt;!\-\- BEGIN CSS.*END \-\-\&gt;" replace='link rel=templates.min.css' flags="s">
+      <echo message="removing Javascript sources.." />
+    <replaceregexp match="\&lt;!\-\- BEGIN JS.*END \-\-\&gt;" replace='link rel=minima.min.js' flags="s">
+  </target>
 
   <!-- delete all the unnecessary unminified files -->
   <target name="strip">
     <delete dir="./template/css/libs"/>
     <delete dir="./template/js/libs"/>
-    <!-- rename files -->
   </target>
 
   <target name="imagespng">
@@ -108,17 +95,17 @@
         <if>
             <and>
                 <os family="unix" />
-                <available file="optipng" filepath="${ENV.PATH}" />
+                <available file="optipng" filepath="./tools/" />
             </and>
             <then>
                 <!-- work around https://sourceforge.net/tracker/?func=detail&aid=2671422&group_id=151404&atid=780916 -->
                 <delete>
-                    <fileset dir="./${dir.publish}/${dir.images}/">
+                    <fileset dir="./template/images/">
                         <include name="**/*.png"/>
                     </fileset>
                 </delete>
-                <apply executable="optipng" dest="./${dir.publish}/${dir.images}/" osfamily="unix">
-                    <fileset dir="./${dir.source}/${dir.images}/" includes="**/*.png"  excludes="${images.bypass}, ${images.default.bypass}"/>
+                <apply executable="optipng" dest="./template/images/" osfamily="unix">
+                    <fileset dir="./template/images/" includes="**/*.png"  excludes="${images.bypass}, ${images.default.bypass}" />
                     <arg value="-quiet"/>
                     <arg value="-o7"/>
                     <arg value="-out"/>
@@ -158,6 +145,10 @@
     </zip>
   </target>
 
+  <target name="increment-version">
+    <echo message="Incrementing version.." />
+  </target>
+
   <!-- FTP deploy, run separately -->
   <!--<target name="ftp">
     <ftp
@@ -168,7 +159,7 @@
       <fileset dir=".">
         <include name="pkg_minima.zip" />			
       </fileset>
-    </ftp>		
+    </ftp>
   </target>-->
 
 </project>

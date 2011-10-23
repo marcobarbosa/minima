@@ -83,11 +83,14 @@ class ModMypanelHelper
             $this->_data = $this->_loadExtensions();
             // storing cache data
             $this->_cache->store($this->_data,$request_key,$cache_group);
-        } else { echo 'dados da cache'; }
+        } 
 
         return $this->_data;
     }
     
+    /**
+     * Load the components from the database
+     */
     public function _loadExtensions($authCheck = true)
     {
         // Initialise variables.
@@ -97,14 +100,6 @@ class ModMypanelHelper
         $lang   = JFactory::getLanguage();
         $langs  = array();
         $data   = array();
-        
-        // $query->select('e.extension_id, e.name, e.element');
-        // $query->from('#__extensions AS e');
-        
-        // $query->where('e.enabled = 1');
-        // $query->where('e.access <= '.$user->get('aid'));
-        
-        // $query->order('e.name');
         
         // Prepare the query.
         $query->select('m.id, m.title, m.alias, m.link, m.img, m.parent_id, m.client_id, e.element');
@@ -213,23 +208,6 @@ class ModMypanelHelper
             
         }
         
-    }
-    
-    public function getComponentXml($row)
-    {
-        $paths = array(
-            JPATH_ADMINISTRATOR .DS. 'components' .DS. $row->element,
-            JPATH_SITE .DS. 'components' .DS. $row->element
-        );
-        
-        jimport('joomla.filesystem.path');
-        $xmlFilesInDir = JPath::find($paths,$row->element.'.xml$');
-        
-        if ($xmlFilesInDir !== false) {
-            $xmlFilesInDir = JApplicationHelper::parseXMLInstallFile($xmlFilesInDir);
-        }
-        
-        return $xmlFilesInDir;
     }
     
     /**

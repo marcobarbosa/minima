@@ -16,7 +16,7 @@ class Mod_MyshortcutsInstallerScript {
 
         $db = JFactory::getDBO();
         
-        $db->setQuery("SELECT `home` FROM `#__template_styles` WHERE `#__template_styles`.`template` = 'minima'");                
+        $db->setQuery("SELECT `home` FROM `#__template_styles` WHERE `#__template_styles`.`template` = 'minima'");
 
         $alreadyInstalled = $db->loadResult();
 
@@ -74,7 +74,7 @@ class Mod_MyshortcutsInstallerScript {
             // check for widgets-first and widgets-last modules
             $db->setQuery("SELECT `position` FROM `#__modules` WHERE `#__modules`.`position` LIKE 'widgets'");
             
-            // they should be cpanel instead
+            // as of beta 4 they should be cpanel instead
             $hasWrongPositions = $db->loadResult();
 
             // minima doesn't need dashboard positions anymore
@@ -91,7 +91,7 @@ class Mod_MyshortcutsInstallerScript {
 
 
             // cleaning cache
-            JModel::cleanCache("Minima");
+            //JModel::cleanCache("Minima");
 
         }
     } // end of postflight
