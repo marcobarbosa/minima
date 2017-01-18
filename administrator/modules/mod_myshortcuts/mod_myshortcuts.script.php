@@ -14,6 +14,24 @@ class Mod_MyshortcutsInstallerScript {
 
     function postflight($type, $parent) {
 
+		//Set the loaded language based on the browser http headers
+		if(isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
+		{
+			$config =& JFactory::getConfig();
+			$languages = strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+			$languages = explode(',', $languages);
+			$language  = $config->getValue('config.language');
+			foreach($languages as $language)
+			{
+				if(JLanguage::exists($language)) break;
+			}
+			$config->setValue('config.language', $language);
+			$language = JFactory::getLanguage();
+			$language->setLanguage($config->getValue('config.language'));
+			$language->load();
+		}
+		
+
         $db = JFactory::getDBO();
         
         $db->setQuery("SELECT `home` FROM `#__template_styles` WHERE `#__template_styles`.`template` = 'minima'");
